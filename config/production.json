@@ -1,0 +1,7 @@
+{
+    "db":{
+        "username": "root",
+        "host": "localhost",
+        "database": "tasitasitdb"
+    }
+}

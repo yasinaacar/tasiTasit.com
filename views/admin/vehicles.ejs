@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container">
+        <div class="row mt-5">
+            <%- include('../partials/alert') %>
+            <div class="col-md-12">
+                <!-- vehicle-table -->
+                <table class="table table-striped table-hover table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th>Araç Kodu</th>
+                            <th>Araç Resmi</th>
+                            <th>Plaka</th>
+                            <th>Marka</th>
+                            <th>Kapasite</th>
+                            <th>Teker Sayısı</th>
+                            <th>Araç türü</th>
+                            <th style="width: 200px;"><a href="/admin/vehicle/create" class="btn btn-sm btn-primary">+ Araç Ekle</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% vehicles.forEach(vehicle => { %>
+                            <tr>
+                                <td><%= vehicle.vehicleCode %></td>
+                                <td><%= vehicle.vehicleImg %></td>
+                                <td><%= vehicle.plate %></td>
+                                <td><%= vehicle.brand %></td>
+                                <td><%= vehicle.capacity %></td>
+                                <td><%= vehicle.wheels %></td>
+                                <td>Gösterilemiyor</td>
+                                <td>
+                                    <div class="btns">
+                                        <a href="/admin/vehicle/edit/<%= vehicle.id %>" class="btn btn-primary btn-sm">Düzenle</a>
+                                        <a href="/admin/vehicle/delete/<%= vehicle.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= vehicle.id %>">Sil</a>
+                                        <!-- delete-vehicle-panel -->
+                                        <div class="modal fade" id="modal_<%= vehicle.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Araç Sil</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table table-striped table-hover table-bordered mt-5 table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Araç Kodu</th>
+                                                                    <th>Araç Resmi</th>
+                                                                    <th style="width: 1020px;">Plaka</th>
+                                                                    <th>Marka</th>
+                                                                    <th>Kapasite</th>
+                                                                    <th>Teker Sayısı</th>
+                                                                    <th>Araç türü</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><%= vehicle.vehicleCode %></td>
+                                                                    <td><%= vehicle.vehicleImg %></td>
+                                                                    <td><%= vehicle.plate %></td>
+                                                                    <td><%= vehicle.brand %></td>
+                                                                    <td><%= vehicle.capacity %></td>
+                                                                    <td><%= vehicle.wheels %></td>
+                                                                    <td>Gösterilemiyor</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <form action="/admin/vehicle/delete/<%= vehicle.id %>" method="post">
+                                                            <input type="hidden" name="vehicleId" value="<%= vehicle.id %>">
+                                                            <input type="hidden" name="plate" value="<%= vehicle.plate %>">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/script') %>
+</body>
+</html>
