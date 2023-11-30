@@ -30,7 +30,7 @@ app.use(session({
         db: sequelize
     })
 }));
-
+app.use(express.urlencoded({extended: true}));
 
 
 app.use("/libs", express.static(path.join(__dirname,"node_modules")));

@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "NODE_ENV=development PORT=3000 DB_PASSWORD=21216500++mySQL nodemon app.js",
-    "prod": "NODE_ENV=production PORT=8080 DB_PASSWORD=21216500++mySQL nodemon app.js",
+    "dev": "NODE_ENV=development PORT=3000 DB_PASSWORD=<your_database_password> nodemon app.js",
+    "prod": "NODE_ENV=production PORT=8080 DB_PASSWORD=<your_database_password> nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -26,6 +26,7 @@
     "mysql2": "^2.3.3",
     "nodemon": "^3.0.1",
     "sequelize": "^6.21.4",
+    "slugify": "^1.6.6",
     "winston": "^3.11.0"
   }
 }

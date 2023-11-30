@@ -14,7 +14,7 @@
                     <thead>
                         <tr>
                             <th>Araç Kodu</th>
-                            <th>Araç Resmi</th>
+                            <th style="width: 140px;">Araç Resmi</th>
                             <th>Plaka</th>
                             <th>Marka</th>
                             <th>Kapasite</th>
@@ -27,12 +27,14 @@
                         <% vehicles.forEach(vehicle => { %>
                             <tr>
                                 <td><%= vehicle.vehicleCode %></td>
-                                <td><%= vehicle.vehicleImg %></td>
+                                <td>
+                                    <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>"style="width: 140px;">  
+                                </td>
                                 <td><%= vehicle.plate %></td>
                                 <td><%= vehicle.brand %></td>
                                 <td><%= vehicle.capacity %></td>
                                 <td><%= vehicle.wheels %></td>
-                                <td>Gösterilemiyor</td>
+                                <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>
                                 <td>
                                     <div class="btns">
                                         <a href="/admin/vehicle/edit/<%= vehicle.id %>" class="btn btn-primary btn-sm">Düzenle</a>
@@ -51,7 +53,7 @@
                                                                 <tr>
                                                                     <th>Araç Kodu</th>
                                                                     <th>Araç Resmi</th>
-                                                                    <th style="width: 1020px;">Plaka</th>
+                                                                    <th>Plaka</th>
                                                                     <th>Marka</th>
                                                                     <th>Kapasite</th>
                                                                     <th>Teker Sayısı</th>
@@ -61,12 +63,14 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td><%= vehicle.vehicleCode %></td>
-                                                                    <td><%= vehicle.vehicleImg %></td>
+                                                                    <td>
+                                                                        <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>"style="width: 140px;">  
+                                                                    </td>
                                                                     <td><%= vehicle.plate %></td>
                                                                     <td><%= vehicle.brand %></td>
                                                                     <td><%= vehicle.capacity %></td>
                                                                     <td><%= vehicle.wheels %></td>
-                                                                    <td>Gösterilemiyor</td>
+                                                                    <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -76,6 +80,7 @@
                                                         <form action="/admin/vehicle/delete/<%= vehicle.id %>" method="post">
                                                             <input type="hidden" name="vehicleId" value="<%= vehicle.id %>">
                                                             <input type="hidden" name="plate" value="<%= vehicle.plate %>">
+                                                            <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">
                                                             <button type="submit" class="btn btn-danger">Delete</button>
                                                         </form>
                                                     </div>

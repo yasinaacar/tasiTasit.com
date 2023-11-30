@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container">
+        <div class="row my-5">
+            <%- include('../partials/alert') %>
+            <h3 class="text-center"><%= title %></h3>
+            <div class="col-md-12">
+                <!-- update-vehicle type -->
+                <div class="edit-vehicleType">
+                    <div class="card">
+                        <div class="card-header bg-secondary"><%= title %></div>
+                        <div class="card-body">
+                          <div class="row d-flex justify-content-center">
+                            <form action="/admin/vehicle-type/edit/<%= vehicleType.url %>" method="post">
+                                <div class="col-auto mb-2">
+                                  <input type="text" class="form-control" name="vehicleTypeName" placeholder="Araç Türünü Girin" value="<%= vehicleType.vehicleTypeName %>">
+                                </div>
+                                <div class="col-auto mb-2">
+                                    <input type="hidden" name="vehicleTypeId" value="<%= vehicleType.id %>">
+                                    <button type="submit" class="btn btn-success px-4">Güncelle</button>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">Kategoriye Kayıtlı Araçlar</h3>
+                <hr>
+                <div class="table-responsive  mt-5">
+                    <h6>"<%= vehicleType.vehicleTypeName %>" Türündeki Toplam Araç Sayısı: <%= vehicles.length %></h6>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Araç Kodu</th>
+                                <th style="width: 140px;">Araç Resmi</th>
+                                <th>Plaka</th>
+                                <th>Marka</th>
+                                <th>Kapasite</th>
+                                <th>Teker Sayısı</th>
+                                <th style="width: 200px;"><a href="/admin/vehicle/create" class="btn btn-sm btn-primary">+ Araç Ekle</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% vehicles.forEach(vehicle => { %>
+                                <tr>
+                                    <td><%= vehicle.vehicleCode %></td>
+                                    <td><img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>"style="width: 140px;"></td>
+                                    <td><%= vehicle.plate %></td>
+                                    <td><%= vehicle.brand %></td>
+                                    <td><%= vehicle.capacity %></td>
+                                    <td><%= vehicle.wheels %></td>
+                                    <td>
+                                        <form method="post" action="/admin/vehicle-type/vehicle/remove/<%= vehicle.url %>">
+                                            <input type="hidden" name="vehicleId" value="<%= vehicle.id %>">
+                                            <input type="hidden" name="plate" value="<%= vehicle.plate %>">
+                                            <input type="hidden" name="vehicleTypeUrl" value="<%= vehicleType.url %>">
+                                            <button type="submit" class="btn btn-sm btn-danger">Kaldır</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/script') %>
+</body>
+</html>

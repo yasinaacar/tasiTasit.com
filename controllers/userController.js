@@ -1,3 +1,5 @@
 exports.get_homepage=async(req,res)=>{
-    res.send("ana sayfa")
+    return res.render("user/homepage",{
+        title: "Ana Sayfa"
+    })
 }

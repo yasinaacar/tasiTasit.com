@@ -9,17 +9,23 @@ const Vehicle=sequelize.define("vehicle", {
         type: DataTypes.STRING
     },
     plate:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     },
     brand:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
     },
     capacity:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     wheels:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
+    url:{
+        type: DataTypes.STRING
+    }
 });
 
 

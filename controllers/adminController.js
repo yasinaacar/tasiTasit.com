@@ -2,40 +2,80 @@ const VehicleType=require("../models/vehicle-type");
 const Vehicle=require("../models/vehicle");
 const logger = require("../startup/logger");
 const randomCodeGenerator=require("../public/js/randomcodeGenerator");
-const randomcodeGenerator = require("../public/js/randomcodeGenerator");
+const slugfield=require("../helpers/slugfield");
+const fs=require("fs");
+
 
 //vehicle Types process
 exports.post_vehicleType_create=async(req,res)=>{
     const vehicleTypeName=req.body.vehicleTypeName;
-    const vehicleType=await VehicleType.create({vehicleTypeName: vehicleTypeName});
-    const generatedCode=randomCodeGenerator("VHCTY", vehicleType);
-    vehicleType.vehicleTypeCode=generatedCode;
-    await vehicleType.save();
-    req.session.message={text:`${vehicleTypeName} adlı araç türü eklendi`, class:"success"}
-    return res.redirect("/admin/vehicle-types?action=create");
+    try {
+        const vehicleType=await VehicleType.create({vehicleTypeName: vehicleTypeName});
+        vehicleType.url=slugfield(vehicleTypeName);
+        const generatedCode=randomCodeGenerator("VHCTY", vehicleType);
+        vehicleType.vehicleTypeCode=generatedCode;
+        await vehicleType.save();
+        req.session.message={text:`${vehicleTypeName} adlı araç türü eklendi`, class:"success"}
+        return res.redirect("/admin/vehicle-types?action=create");
+        
+    } catch (err) {
+        console.log(err)
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${vehicleTypeName} adında araç türü zaten kayıtlı`, class:"warning"};
+            return res.redirect("/admin/vehicle-types");
+        }
+        if(err.name="SequelizeValidationError"){
+            req.session.message={text:"Araç Türü Adının uzunluğu mininmum 2 maksimum 30 karakter içermeli ve boş geçilemez", class:"warning"};
+            return res.redirect("/admin/vehicle-types");
+        }
+
+    }
     
 };
-
+exports.get_vehicleType_edit=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const slug=req.params.slug;
+    const vehicleType=await VehicleType.findOne({where:{url: slug}});
+    const vehicleTypeId=vehicleType.id
+    const vehicles=await Vehicle.findAll({where:{vehicleTypeId: vehicleTypeId}});
+    return res.render("admin/vehicle-type-edit",{
+        title: "Araç Türü Düzenle",
+        vehicleType: vehicleType,
+        vehicles: vehicles,
+        message: message
+    })
+};
 exports.post_vehicleType_edit=async(req,res)=>{
     const vehicleTypeId=req.body.vehicleTypeId;
     const vehicleTypeName=req.body.vehicleTypeName;
 
     const vehicleType=await VehicleType.findByPk(vehicleTypeId);
     vehicleType.vehicleTypeName=vehicleTypeName;
+    vehicleType.url=slugfield(vehicleTypeName);
     await vehicleType.save();
     req.session.message={text:`${vehicleType.vehicleTypeCode} kodlu araç türü güncellendi`, class:"success"};
     return res.redirect("/admin/vehicle-types?action=edit");
 };
+exports.post_remove_vehicle_from_vehicleType=async(req,res)=>{
+    const vehicleId=req.body.vehicleId;
+    const plate=req.body.plate;
+    const vehicleTypeUrl=req.body.vehicleTypeUrl;
 
+    const vehicle=await Vehicle.findByPk(vehicleId);
+    vehicle.vehicleTypeId=null;
+    await vehicle.save();
+    req.session.message={text:`${plate} plakalı araç kaldırıldı`, class:"warning"};
+    return res.redirect(`/admin/vehicle-type/edit/${vehicleTypeUrl}`);
+}
 exports.post_vehicleType_delete=async(req,res)=>{
     const vehicleTypeId=req.body.vehicleTypeId;
     await VehicleType.destroy({where:{id: vehicleTypeId}});
     req.session.message={text:`Araç türü silindi`, class:"danger"};
     return res.redirect("/admin/vehicle-types");
 };
-
 exports.get_vehicleTypes=async(req,res)=>{
-    const vehicleTypes=await VehicleType.findAll();
+    const vehicleTypes=await VehicleType.findAll({include:{model: Vehicle}});
     const message=req.session.message;
     delete req.session.message;
     return res.render("admin/vehicle-types",{
@@ -47,63 +87,122 @@ exports.get_vehicleTypes=async(req,res)=>{
 
 //vehicle process
 exports.get_vehicle_create=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message
     const vehicleTypes=await VehicleType.findAll();
     return res.render("admin/vehicle-create",{
         title: "Araç Ekle",
-        vehicleTypes: vehicleTypes
+        vehicleTypes: vehicleTypes,
+        message: message
     });
 };
 
 exports.post_vehicle_create=async(req,res)=>{
-    const vehicleImg=req.body.vehicleImg;
     const plate=req.body.plate;
-    const brand=req.body.brand;
-    const capacity=req.body.capacity;
-    const wheels=req.body.wheels;
-    const vehicleType=req.body.vehicleType;
-
-
-    const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels});
-    await vehicle.setVehicleType(vehicleType);
-
-    let generatedCode=randomcodeGenerator("VHC", vehicle);
-    vehicle.vehicleCode=generatedCode;
-    await vehicle.save();
-
-    req.session.message={text: `${generatedCode} kodlu araç eklendi`, class:"success"};
-
-    return res.redirect("/admin/vehicles?action=create");
+    try {
+        const vehicleImg=req.file ? req.file.filename: "defaultVehicle.jpg";
+        const brand=req.body.brand;
+        const capacity=req.body.capacity;
+        const wheels=req.body.wheels;
+        const vehicleTypeId=req.body.vehicleTypeId;
+    
+    
+        const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels});
+    
+        let generatedCode=randomCodeGenerator("VHC", vehicle);
+        vehicle.url=slugfield(plate);
+        vehicle.vehicleCode=generatedCode;
+        vehicleTypeId=="-1" ? vehicle.vehicleTypeId=null : vehicle.vehicleTypeId=vehicleTypeId;
+        await vehicle.save();
+    
+        req.session.message={text: `${plate} plakalı araç eklendi`, class:"success"};
+    
+        return res.redirect("/admin/vehicles?action=create");
+        
+    } catch (err) {
+        console.log(err)
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${plate} plakalı bir araç zaten sistemde mevcut`, class:"warning"}
+            return res.redirect("/admin/vehicle/create");
+        }
+        
+        if(err.name=="SequelizeDatabaseError"){
+            req.session.message={text:`Kapasite ve teker sayısı boş geçilemez `, class:"warning"}
+            return res.redirect("/admin/vehicle/create");
+        }
+    }
 };
 
 exports.get_vehicle_edit=async(req,res)=>{
     const vehicleId=req.params.vehicleId;
-
     const vehicle=await Vehicle.findByPk(vehicleId);
+    const vehicleTypes=await VehicleType.findAll();
     return res.render("admin/vehicle-edit", {
         title: "Araç Düzenle",
-        vehicle: vehicle
+        vehicle: vehicle,
+        vehicleTypes:vehicleTypes
     });
 };
 
 exports.post_vehicle_edit=async(req,res)=>{
     const vehicleId=req.body.vehicleId;
-    const vehicleImg=req.body.vehicleImg;
+    let vehicleImg=req.body.vehicleImg;
     const plate=req.body.plate;
     const brand=req.body.brand;
     const capacity=req.body.capacity;
     const wheels=req.body.wheels;
+    const vehicleTypeId=req.body.vehicleTypeId;
+    if(req.file){
+        vehicleImg=req.file.filename;
 
-    await Vehicle.update({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels},{where:{id:vehicleId}});
+        if(req.body.vehicleImg!="defaultVehicle.jpg"){
+            fs.unlink("./public/images/"+req.body.vehicleImg,err=>{
+                if(err){
+                    logger.error(`Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: ${req.body.vehicleImg},${err}`);
+                }
+            })
+        }
+        
+    }
+
+    const vehicle=await Vehicle.findByPk(vehicleId);
+    vehicle.vehicleImg=vehicleImg;
+    vehicle.plate=plate;
+    vehicle.brand=brand;
+    vehicle.capacity=capacity;
+    vehicle.wheels=wheels;
+    if(vehicleTypeId=="-1"){
+        vehicle.vehicleTypeId=null;
+        await vehicle.save();
+        req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
+        return res.redirect("/admin/vehicles?action=edit")
+    }
+    vehicle.vehicleTypeId=vehicleTypeId;
+    await vehicle.save();
+    
     req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
-
     return res.redirect("/admin/vehicles?action=edit")
+
+    
+
 };
 
 exports.post_vehicle_delete=async(req,res)=>{
     const vehicleId=req.body.vehicleId;
     const plate=req.body.plate;
-
+    const vehicleImg=req.body.vehicleImg;
+    console.log(vehicleImg)
     await Vehicle.destroy({where:{id:vehicleId}});
+
+    if(vehicleImg!="defaultVehicle.jpg"){
+        fs.unlink("/public/images/"+vehicleImg,err=>{
+            fs.unlink("./public/images/"+req.body.vehicleImg,err=>{
+                if(err){
+                    logger.error(`Araç silindi ancak resmi silinemedi. Silinemeyen resim: ${vehicleImg},${err}`);
+                }
+            })
+        })
+    }
 
     req.session.message={text:`${plate} plakalı araç silindi`, class:"danger"};
 
@@ -114,8 +213,7 @@ exports.post_vehicle_delete=async(req,res)=>{
 exports.get_vehicles=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const vehicles=await Vehicle.findAll();
-    console.log(vehicles[0].vehicleTypeId);
+    const vehicles=await Vehicle.findAll({include:{model:VehicleType,  attributes:["vehicleTypeName"]}});
     return res.render("admin/vehicles",{
         title: "Araçlarım",
         vehicles: vehicles,

@@ -5,8 +5,8 @@ const error=require("../middlewares/error");
 
 module.exports=function(app){
     app.use("/admin",adminRoutes);
-    app.use("*", notfound);
     app.use(userRoutes);
+    app.use("*", notfound);
     app.use(error);
 }
 

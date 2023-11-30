@@ -1,19 +1,21 @@
 const express=require("express");
 const router=express.Router();
-
+const imageUpload=require("../helpers/imageUpload");
 const adminController=require("../controllers/adminController");
 
 //vehicle type url
 router.post("/vehicle-type/create", adminController.post_vehicleType_create);
-router.post("/vehicle-type/edit/:id", adminController.post_vehicleType_edit);
+router.get("/vehicle-type/edit/:slug", adminController.get_vehicleType_edit);
+router.post("/vehicle-type/edit/:slug", adminController.post_vehicleType_edit);
+router.post("/vehicle-type/vehicle/remove/:slug", adminController.post_remove_vehicle_from_vehicleType);
 router.post("/vehicle-type/delete/:id", adminController.post_vehicleType_delete);
 router.get("/vehicle-types", adminController.get_vehicleTypes);
 
 //vehicle url
 router.get("/vehicle/create", adminController.get_vehicle_create);
-router.post("/vehicle/create", adminController.post_vehicle_create);
+router.post("/vehicle/create", imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_create);
 router.get("/vehicle/edit/:vehicleId", adminController.get_vehicle_edit);
-router.post("/vehicle/edit/:vehicleId", adminController.post_vehicle_edit);
+router.post("/vehicle/edit/:vehicleId", imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_edit);
 router.post("/vehicle/delete/:vehicleId", adminController.post_vehicle_delete);
 router.get("/vehicles", adminController.get_vehicles);
 

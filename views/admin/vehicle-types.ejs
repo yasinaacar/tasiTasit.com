@@ -34,7 +34,7 @@
                             <tr>
                                 <th>#ID</th>
                                 <th>Araç Türü</th>
-                                <th>Araç Sayısı</th>
+                                <th>Kayıtlı Araç Sayısı</th>
                                 <th style="width: 200px;"></th>
                             </tr>
                         </thead>
@@ -43,31 +43,11 @@
                                 <tr>
                                     <td><%= vehicleType.vehicleTypeCode%></td>
                                     <td><%= vehicleType.vehicleTypeName %></td>
-                                    <td>0</td>
+                                    <td><%= vehicleType.vehicles.length %></td>
                                     <td>
                                         <div class="btns">
-                                            <a href="/admin/vehicle-type/edit/<%= vehicleType.id %>" class="btn btn-primary btn-sm"data-bs-toggle="offcanvas" data-bs-target="#offcanvas_<%= vehicleType.id %>" aria-controls="offcanvas_<%= vehicleType.id %>">Düzenle</a>
+                                            <a href="/admin/vehicle-type/edit/<%= vehicleType.url %>" class="btn btn-primary btn-sm">Düzenle</a>
                                             <!-- update-vehicle-type-panel -->
-                                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas_<%= vehicleType.id%>"aria-labelledby="offcanvasRightLabel">
-                                          <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="offcanvasRightLabel">Araç Güncelle</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                          </div>
-                                          <div class="offcanvas-body">
-                                                <!-- update-vehicle type -->
-                                                <div class="update-vehicleType">
-                                                    <form action="/admin/vehicle-type/edit/<%= vehicleType.id %>" method="post">
-                                                        <input type="hidden" name="vehicleTypeId" value="<%= vehicleType.id %>">
-                                                        <div class="col-auto mb-2">
-                                                          <input type="text" class="form-control" name="vehicleTypeName" value="<%= vehicleType.vehicleTypeName %>">
-                                                        </div>
-                                                        <div class="col-auto mb-2">
-                                                          <button type="submit" class="btn btn-success px-4">Update</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                          </div>
-                                            </div>
                                             <a href="/admin/vehicle-type/delete/<%= vehicleType.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= vehicleType.id %>">Sil</a>
                                             <!-- delete-vehicle-type-panel -->
                                             <div class="modal fade" id="modal_<%= vehicleType.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

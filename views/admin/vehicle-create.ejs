@@ -9,13 +9,14 @@
 
     <div class="container mt-5">
         <div class="row">
-            <form method="post">
+            <%- include('../partials/alert') %>
+            <form method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-10">
                         <div class="mb-3 row">
                             <label for="vehicleImg" class="col-sm-2 col-form-label">Araç Resmi:</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="vehicleImg" name="vehicleImg">
+                            <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -43,10 +44,10 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="vehicleType" class="col-sm-2 col-form-label">Araç Türü:</label>
+                            <label for="vehicleTypeId" class="col-sm-2 col-form-label">Araç Türü:</label>
                             <div class="col-sm-10 d-flex">
-                                <select class="form-select" name="vehicleType" id="vehicleType">
-                                    <option selected>Araç Türünü Seçin</option>
+                                <select class="form-select" name="vehicleTypeId" id="vehicleType">
+                                    <option value="-1" selected>Araç Türünü Seçin</option>
                                     <% vehicleTypes.forEach(vehicleType => { %>
                                         <option  value="<%= vehicleType.id %>"><%= vehicleType.vehicleTypeName %></option>
                                     <% }) %>

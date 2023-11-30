@@ -199,3 +199,416 @@
   level: 'error',
   timestamp: '26-11-2023  20:57:03'
 }
+{
+  message: "Cannot read properties of undefined (reading 'vehicleTypeId')",
+  level: 'error',
+  timestamp: '30-11-2023  10:56:17'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicleTypeId')",
+  level: 'error',
+  timestamp: '30-11-2023  10:56:23'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicleTypeId')",
+  level: 'error',
+  timestamp: '30-11-2023  10:56:25'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicleTypeId')",
+  level: 'error',
+  timestamp: '30-11-2023  10:56:31'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicleTypeId')",
+  level: 'error',
+  timestamp: '30-11-2023  10:56:42'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicleTypeId')",
+  level: 'error',
+  timestamp: '30-11-2023  10:56:44'
+}
+{
+  message: 'Validation error: Validation len on vehicleTypeName failed',
+  level: 'error',
+  timestamp: '30-11-2023  11:01:28'
+}
+{
+  message: "Cannot read properties of undefined (reading 'validatorKey')",
+  level: 'error',
+  timestamp: '30-11-2023  11:12:53'
+}
+{
+  message: "Cannot read properties of undefined (reading 'validatorKey')",
+  level: 'error',
+  timestamp: '30-11-2023  11:12:55'
+}
+{
+  message: "Cannot read properties of undefined (reading 'validatorKey')",
+  level: 'error',
+  timestamp: '30-11-2023  11:12:58'
+}
+{
+  message: "Cannot read properties of undefined (reading 'validatorKey')",
+  level: 'error',
+  timestamp: '30-11-2023  11:13:16'
+}
+{
+  message: "Cannot read properties of undefined (reading 'validatorKey')",
+  level: 'error',
+  timestamp: '30-11-2023  11:13:27'
+}
+{
+  message: "Cannot read properties of undefined (reading 'errors')",
+  level: 'error',
+  timestamp: '30-11-2023  11:13:54'
+}
+{
+  message: "Cannot read properties of undefined (reading 'errors')",
+  level: 'error',
+  timestamp: '30-11-2023  11:13:56'
+}
+{
+  message: "Cannot read properties of undefined (reading 'errors')",
+  level: 'error',
+  timestamp: '30-11-2023  11:14:22'
+}
+{
+  message: "Cannot read properties of undefined (reading 'errors')",
+  level: 'error',
+  timestamp: '30-11-2023  11:15:12'
+}
+{
+  message: "Cannot read properties of undefined (reading 'message')",
+  level: 'error',
+  timestamp: '30-11-2023  11:15:33'
+}
+{
+  message: "Cannot read properties of undefined (reading 'errors')",
+  level: 'error',
+  timestamp: '30-11-2023  11:15:59'
+}
+{
+  message: "Cannot read properties of undefined (reading 'errno')",
+  level: 'error',
+  timestamp: '30-11-2023  11:20:24'
+}
+{
+  message: 'vehicles.getVehicleTypes is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:28:59'
+}
+{
+  message: 'vehicles.getVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:29:14'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:48\n' +
+    '    46|                             <div class="col-sm-10 d-flex">\r\n' +
+    '    47|                                 <select class="form-select" name="vehicleType" id="vehicleType">\r\n' +
+    ' >> 48|                                     <% vehicleTypes.forEach(vehicleType => { %>\r\n' +
+    '    49|                                         <option  value="<%= vehicleType.id %>"><%= vehicleType.vehicleTypeName %></option>\r\n' +
+    '    50|                                     <% }) %>\r\n' +
+    '    51|                                 </select>\r\n' +
+    '\n' +
+    'vehicleTypes is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  11:39:07'
+}
+{
+  message: 'vehicle.setVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:46:46'
+}
+{
+  message: 'vehicle.setVehicleTypes is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:47:12'
+}
+{
+  message: 'vehicle.setVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:47:22'
+}
+{
+  message: 'vehicle.save is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:49:10'
+}
+{
+  message: 'vehicle.save is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:50:01'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`vehicles`, CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`vehicleTypeId`) REFERENCES `vehicletypes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '30-11-2023  11:51:12'
+}
+{
+  message: 'vehicle.removeVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:52:12'
+}
+{
+  message: 'vehicle.removeVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:52:33'
+}
+{
+  message: 'vehicle.removeVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:53:11'
+}
+{
+  message: 'vehicle.removeVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:56:47'
+}
+{
+  message: 'vehicle.removeVehicleTypes is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  11:56:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicles.ejs:35\n' +
+    '    33|                                 <td><%= vehicle.capacity %></td>\r\n' +
+    '    34|                                 <td><%= vehicle.wheels %></td>\r\n' +
+    ' >> 35|                                 <td><%= vehicle.vehicleType.vehicleTypeName %></td>\r\n' +
+    '    36|                                 <td>\r\n' +
+    '    37|                                     <div class="btns">\r\n' +
+    '    38|                                         <a href="/admin/vehicle/edit/<%= vehicle.id %>" class="btn btn-primary btn-sm">Düzenle</a>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '30-11-2023  11:58:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicles.ejs:35\n' +
+    '    33|                                 <td><%= vehicle.capacity %></td>\r\n' +
+    '    34|                                 <td><%= vehicle.wheels %></td>\r\n' +
+    ' >> 35|                                 <td><%= vehicle.vehicleType.vehicleTypeName %></td>\r\n' +
+    '    36|                                 <td>\r\n' +
+    '    37|                                     <div class="btns">\r\n' +
+    '    38|                                         <a href="/admin/vehicle/edit/<%= vehicle.id %>" class="btn btn-primary btn-sm">Düzenle</a>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '30-11-2023  11:58:52'
+}
+{
+  message: "Incorrect integer value: 'null' for column 'vehicleTypeId' at row 1",
+  level: 'error',
+  timestamp: '30-11-2023  12:00:38'
+}
+{
+  message: 'consolelog is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  12:03:35'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-types.ejs:47\n' +
+    '    45|                                     <td><%= vehicleType.vehicleTypeName %></td>\r\n' +
+    '    46|                                     <td><% for (let count of vehicleType.vehicles) { %>\r\n' +
+    ' >> 47|                                         <%= item.lenght %>\r\n' +
+    '    48|                                       <% } %></td>\r\n' +
+    '    49|                                     <td>\r\n' +
+    '    50|                                         <div class="btns">\r\n' +
+    '\n' +
+    'item is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  12:07:29'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-types.ejs:47\n' +
+    '    45|                                     <td><%= vehicleType.vehicleTypeName %></td>\r\n' +
+    '    46|                                     <td><% for (let count of vehicleType.vehicles) { %>\r\n' +
+    ' >> 47|                                         <%= item.length %>\r\n' +
+    '    48|                                       <% } %></td>\r\n' +
+    '    49|                                     <td>\r\n' +
+    '    50|                                         <div class="btns">\r\n' +
+    '\n' +
+    'item is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  12:07:41'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-types.ejs:46\n' +
+    '    44|                                     <td><%= vehicleType.vehicleTypeCode%></td>\r\n' +
+    '    45|                                     <td><%= vehicleType.vehicleTypeName %></td>\r\n' +
+    ' >> 46|                                     <td><%= vehicleTypes.vehicles.length %></td>\r\n' +
+    '    47|                                     <td>\r\n' +
+    '    48|                                         <div class="btns">\r\n' +
+    '    49|                                             <a href="/admin/vehicle-type/edit/<%= vehicleType.id %>" class="btn btn-primary btn-sm"data-bs-toggle="offcanvas" data-bs-target="#offcanvas_<%= vehicleType.id %>" aria-controls="offcanvas_<%= vehicleType.id %>">Düzenle</a>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '30-11-2023  12:09:05'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicles')",
+  level: 'error',
+  timestamp: '30-11-2023  12:23:47'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicles')",
+  level: 'error',
+  timestamp: '30-11-2023  12:23:55'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicles')",
+  level: 'error',
+  timestamp: '30-11-2023  12:23:59'
+}
+{
+  message: "Cannot read properties of undefined (reading 'vehicles')",
+  level: 'error',
+  timestamp: '30-11-2023  12:24:15'
+}
+{
+  message: "Cannot set properties of null (setting 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '30-11-2023  12:25:14'
+}
+{
+  message: "Cannot set properties of null (setting 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '30-11-2023  12:26:25'
+}
+{
+  message: "Cannot set properties of null (setting 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '30-11-2023  12:26:27'
+}
+{
+  message: "Incorrect integer value: 'Ara\\xC3\\xA7 T\\xC3\\xBCr\\xC3\\xBCn\\xC3\\xBC Se\\xC3\\xA7in' for column 'vehicleTypeId' at row 1",
+  level: 'error',
+  timestamp: '30-11-2023  12:31:16'
+}
+{
+  message: "Incorrect integer value: 'Ara\\xC3\\xA7 T\\xC3\\xBCr\\xC3\\xBCn\\xC3\\xBC Se\\xC3\\xA7in' for column 'vehicleTypeId' at row 1",
+  level: 'error',
+  timestamp: '30-11-2023  12:31:54'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`vehicles`, CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`vehicleTypeId`) REFERENCES `vehicletypes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '30-11-2023  12:32:19'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`vehicles`, CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`vehicleTypeId`) REFERENCES `vehicletypes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '30-11-2023  12:35:42'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`vehicles`, CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`vehicleTypeId`) REFERENCES `vehicletypes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '30-11-2023  12:36:13'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`vehicles`, CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`vehicleTypeId`) REFERENCES `vehicletypes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '30-11-2023  12:36:16'
+}
+{
+  message: 'vehicle.removeVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  13:00:27'
+}
+{
+  message: 'vehicle.removeVehicleType is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  13:00:50'
+}
+{
+  message: 'vehicle.removeVehicleTypes is not a function',
+  level: 'error',
+  timestamp: '30-11-2023  13:00:57'
+}
+{
+  message: 'plate is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  13:01:33'
+}
+{
+  message: "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '30-11-2023  13:17:45'
+}
+{
+  message: "Cannot set properties of null (setting 'vehicleImg')",
+  level: 'error',
+  timestamp: '30-11-2023  13:26:22'
+}
+{
+  message: "Cannot set properties of null (setting 'vehicleImg')",
+  level: 'error',
+  timestamp: '30-11-2023  13:27:27'
+}
+{
+  message: 'Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: polo-2016-1701339483952.webp',
+  level: 'error',
+  timestamp: '30-11-2023  13:27:51'
+}
+{
+  message: 'Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: jetta-2015-1701340071861.jpg',
+  level: 'error',
+  timestamp: '30-11-2023  13:28:03'
+}
+{
+  message: "Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: defaultVehicle-1701340083275.jpg,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\imagesdefaultVehicle-1701340083275.jpg'",
+  level: 'error',
+  timestamp: '30-11-2023  13:29:20'
+}
+{
+  message: "Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: jetta-2015-1701340160724.jpg,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\imagesjetta-2015-1701340160724.jpg'",
+  level: 'error',
+  timestamp: '30-11-2023  13:29:58'
+}
+{
+  message: "Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: polo-2016-1701340198419.webp,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\imagespolo-2016-1701340198419.webp'",
+  level: 'error',
+  timestamp: '30-11-2023  13:30:35'
+}
+{
+  message: 'Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: defaultVehicle-1701340235730.jpg,null',
+  level: 'error',
+  timestamp: '30-11-2023  13:31:09'
+}
+{
+  message: "Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: jetta-2015-1701340269680.jpg,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\images\\jetta-2015-1701340269680.jpg'",
+  level: 'error',
+  timestamp: '30-11-2023  13:31:52'
+}
+{
+  message: 'Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: doblo-maxi-2016-1701340494102.jpg,null',
+  level: 'error',
+  timestamp: '30-11-2023  13:35:05'
+}
+{
+  message: "Araç silindi ancak resmi silinemedi. Silinemeyen resim: undefined,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\images\\undefined'",
+  level: 'error',
+  timestamp: '30-11-2023  13:39:48'
+}
+{
+  message: 'Araç silindi ancak resmi silinemedi. Silinemeyen resim: doblo-maxi-2016-1701340838897.jpg,null',
+  level: 'error',
+  timestamp: '30-11-2023  13:40:47'
+}
+{
+  message: 'Araç silindi ancak resmi silinemedi. Silinemeyen resim: polo-2016-1701340312297.webp,null',
+  level: 'error',
+  timestamp: '30-11-2023  13:41:21'
+}
+{
+  message: "Araç silindi ancak resmi silinemedi. Silinemeyen resim: polo-2016-1701340971927.webp,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\image1s\\polo-2016-1701340971927.webp'",
+  level: 'error',
+  timestamp: '30-11-2023  13:43:02'
+}
+{
+  message: 'Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: jetta-2015-1701341055863.jpg,null',
+  level: 'error',
+  timestamp: '30-11-2023  13:44:28'
+}
