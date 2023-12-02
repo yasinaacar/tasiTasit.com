@@ -612,3 +612,214 @@
   level: 'error',
   timestamp: '30-11-2023  13:44:28'
 }
+{
+  message: 'Failed to lookup view "admin/driver-create" in views directory "C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views"',
+  level: 'error',
+  timestamp: '30-11-2023  14:56:11'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\driver-create.ejs:55\n' +
+    '    53|                                 <select class="form-select" name="vehicleTypeId" id="vehicleType">\r\n' +
+    '    54|                                     <option value="-1" selected>Araç Türünü Seçin</option>\r\n' +
+    ' >> 55|                                     <% vehicleTypes.forEach(vehicleType => { %>\r\n' +
+    '    56|                                         <option  value="<%= vehicleType.id %>"><%= vehicleType.vehicleTypeName %></option>\r\n' +
+    '    57|                                     <% }) %>\r\n' +
+    '    58|                                 </select>\r\n' +
+    '\n' +
+    'vehicleTypes is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  14:56:29'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\driver-create.ejs:55\n' +
+    '    53|                                 <select class="form-select" name="vehicleTypeId" id="vehicleType">\r\n' +
+    '    54|                                     <option value="-1" selected>Araç Türünü Seçin</option>\r\n' +
+    ' >> 55|                                     <% vehicleTypes.forEach(vehicleType => { %>\r\n' +
+    '    56|                                         <option  value="<%= vehicleType.id %>"><%= vehicleType.vehicleTypeName %></option>\r\n' +
+    '    57|                                     <% }) %>\r\n' +
+    '    58|                                 </select>\r\n' +
+    '\n' +
+    'vehicleTypes is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  14:56:32'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\driver-create.ejs:55\n' +
+    '    53|                                 <select class="form-select" name="vehicleTypeId" id="vehicleType">\r\n' +
+    '    54|                                     <option value="-1" selected>Araç Türünü Seçin</option>\r\n' +
+    ' >> 55|                                     <% vehicleTypes.forEach(vehicleType => { %>\r\n' +
+    '    56|                                         <option  value="<%= vehicleType.id %>"><%= vehicleType.vehicleTypeName %></option>\r\n' +
+    '    57|                                     <% }) %>\r\n' +
+    '    58|                                 </select>\r\n' +
+    '\n' +
+    'vehicleTypes is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  14:56:35'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\drivers.ejs:39\n' +
+    '    37|                                     <div class="btns">\r\n' +
+    '    38|                                         <a href="/admin/driver/edit/<%= driver.url %>" class="btn btn-primary btn-sm">Düzenle</a>\r\n' +
+    ' >> 39|                                         <a href="/admin/driver/delete/<%= driver.url %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= vehicle.id %>">Sil</a>\r\n' +
+    '    40|                                         <!-- delete-vehicle-panel -->\r\n' +
+    '    41|                                         <div class="modal fade" id="modal_<%= driver.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">\r\n' +
+    '    42|                                             <div class="modal-dialog">\r\n' +
+    '\n' +
+    'vehicle is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  16:11:01'
+}
+{
+  message: 'Op is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  17:20:39'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:64\n' +
+    '    62|                             <% drivers.forEach(driver => { %>                             \r\n' +
+    '    63|                                 <div class="form-check">\r\n' +
+    ' >> 64|                                     <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=>drv.id==driver.id ? "checked":"") %>>\r\n' +
+    '    65|                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>\r\n' +
+    '    66|                                 </div>\r\n' +
+    '    67|                             <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'some')",
+  level: 'error',
+  timestamp: '30-11-2023  17:22:42'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:64\n' +
+    '    62|                             <% drivers.forEach(driver => { %>                             \r\n' +
+    '    63|                                 <div class="form-check">\r\n' +
+    ' >> 64|                                     <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=>(drv.id==driver.id) ? "checked":"") %>>\r\n' +
+    '    65|                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>\r\n' +
+    '    66|                                 </div>\r\n' +
+    '    67|                             <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'some')",
+  level: 'error',
+  timestamp: '30-11-2023  17:22:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:64\n' +
+    '    62|                             <% drivers.forEach(driver => { %>                             \r\n' +
+    '    63|                                 <div class="form-check">\r\n' +
+    ' >> 64|                                     <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=>(drv.id==driver.id) ? "checked":"") %>>\r\n' +
+    '    65|                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>\r\n' +
+    '    66|                                 </div>\r\n' +
+    '    67|                             <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'some')",
+  level: 'error',
+  timestamp: '30-11-2023  17:23:38'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:64\n' +
+    '    62|                             <% drivers.forEach(driver => { %>                             \r\n' +
+    '    63|                                 <div class="form-check">\r\n' +
+    ' >> 64|                                     <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=>drv.id==driver.id ? checked:"") %>>\r\n' +
+    '    65|                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>\r\n' +
+    '    66|                                 </div>\r\n' +
+    '    67|                             <% }) %>\r\n' +
+    '\n' +
+    'checked is not defined',
+  level: 'error',
+  timestamp: '30-11-2023  17:27:53'
+}
+{
+  message: 'FETCH ERROR: TypeError: fetch failed',
+  level: 'error',
+  timestamp: '01-12-2023  09:42:06'
+}
+{
+  message: 'Turkey API Network response was not OK',
+  level: 'error',
+  timestamp: '01-12-2023  09:42:34'
+}
+{
+  message: 'FETCH ERROR: Error: Turkey API Network response was not ok',
+  level: 'error',
+  timestamp: '01-12-2023  09:42:34'
+}
+{
+  message: 'provinvces is not defined',
+  level: 'error',
+  timestamp: '01-12-2023  11:56:49'
+}
+{
+  message: "Cannot read properties of undefined (reading 'district')",
+  level: 'error',
+  timestamp: '01-12-2023  12:40:49'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:25\n' +
+    '    23|                        <% routes.forEach(route => { %>\r\n' +
+    '    24|                             <td>000</td>\r\n' +
+    ' >> 25|                             <td><%= route.district.some(dst=>dst.id==route.startPoint ? dst.name: "") %></td>\r\n' +
+    '    26|                             <td><%= route.district.name %></td>\r\n' +
+    '    27|                        <% }) %>\r\n' +
+    '    28|                     </tbody>\r\n' +
+    '\n' +
+    'route.district.some is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  12:43:21'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:25\n' +
+    '    23|                        <% routes.forEach(route => { %>\r\n' +
+    '    24|                             <td>000</td>\r\n' +
+    ' >> 25|                             <td><%= route.district.map(dst=>dst.id==route.startPoint ? dst.name: "") %></td>\r\n' +
+    '    26|                             <td><%= route.district.name %></td>\r\n' +
+    '    27|                        <% }) %>\r\n' +
+    '    28|                     </tbody>\r\n' +
+    '\n' +
+    'route.district.map is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  12:43:37'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:25\n' +
+    '    23|                        <% routes.forEach(route => { %>\r\n' +
+    '    24|                             <td>000</td>\r\n' +
+    ' >> 25|                             <td><%= route.district.mpa(dst=>(dst.id==route.startPoint) ? dst.name: "") %></td>\r\n' +
+    '    26|                             <td><%= route.district.name %></td>\r\n' +
+    '    27|                        <% }) %>\r\n' +
+    '    28|                     </tbody>\r\n' +
+    '\n' +
+    'route.district.mpa is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  12:43:54'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:25\n' +
+    '    23|                        <% routes.forEach(route => { %>\r\n' +
+    '    24|                             <td>000</td>\r\n' +
+    ' >> 25|                             <td><%= route.district.some(dst=>(dst.id==route.startPoint) ? dst.name: "") %></td>\r\n' +
+    '    26|                             <td><%= route.district.name %></td>\r\n' +
+    '    27|                        <% }) %>\r\n' +
+    '    28|                     </tbody>\r\n' +
+    '\n' +
+    'route.district.some is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  12:44:03'
+}
+{
+  message: 'routes[0].district.some is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  12:46:03'
+}
+{
+  message: 'routes[0].district.some is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  14:35:52'
+}
+{
+  message: 'routes[0].district.some is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  14:37:28'
+}
+{
+  message: 'routes[0].district.some is not a function',
+  level: 'error',
+  timestamp: '01-12-2023  14:37:30'
+}

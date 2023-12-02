@@ -20,6 +20,7 @@
                             <th>Kapasite</th>
                             <th>Teker Sayısı</th>
                             <th>Araç türü</th>
+                            <th>Şoförler</th>
                             <th style="width: 200px;"><a href="/admin/vehicle/create" class="btn btn-sm btn-primary">+ Araç Ekle</a></th>
                         </tr>
                     </thead>
@@ -35,6 +36,9 @@
                                 <td><%= vehicle.capacity %></td>
                                 <td><%= vehicle.wheels %></td>
                                 <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>
+                                <td><% for (let driver of vehicle.drivers) { %>
+                                    <li><%= driver.fullname %></li>
+                                  <% } %></td>
                                 <td>
                                     <div class="btns">
                                         <a href="/admin/vehicle/edit/<%= vehicle.id %>" class="btn btn-primary btn-sm">Düzenle</a>

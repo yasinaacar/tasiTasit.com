@@ -21,9 +21,10 @@ router.get("/vehicles", adminController.get_vehicles);
 
 //driver url
 router.get("/driver/create", adminController.get_driver_create);
-router.post("/driver/create", adminController.post_driver_create);
-router.get("/driver/edit/:id", adminController.get_driver_edit);
-router.post("/driver/edit/:id", adminController.post_driver_edit);
+router.post("/driver/create",imageUpload.upload.single("driverImg"), adminController.post_driver_create);
+router.get("/driver/edit/:id/:slug", adminController.get_driver_edit);
+router.post("/driver/edit/:id/:slug",imageUpload.upload.single("driverImg"), adminController.post_driver_edit);
+router.post("/driver/delete/:id/:slug", adminController.post_driver_delete);
 router.get("/drivers", adminController.get_drivers);
 
 //voyage url
