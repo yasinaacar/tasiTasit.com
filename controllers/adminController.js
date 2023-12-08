@@ -4,6 +4,8 @@ const Driver=require("../models/driver");
 const District=require("../models/district");
 const Province=require("../models/province");
 const Route=require("../models/route");
+const CargoType=require("../models/cargoType");
+const Role=require("../models/role");
 const logger = require("../startup/logger");
 const randomCodeGenerator=require("../public/js/randomcodeGenerator");
 const slugfield=require("../helpers/slugfield");
@@ -374,7 +376,6 @@ exports.get_route_create=async(req,res)=>{
         provinces: provinces
     }));
 };
-
 exports.post_route_create=async(req,res)=>{
     const startDistrict=req.body.startDistrict;
     const finishDistrict=req.body.finishDistrict;
@@ -382,23 +383,6 @@ exports.post_route_create=async(req,res)=>{
     const route=await Route.create({startPoint:startDistrict, endPoint:finishDistrict});;
     return res.redirect("/admin/routes");
 };
-
-exports.get_route_edit=async(req,res)=>{
-    res.send("get route edit page");
-};
-
-exports.post_route_edit=async(req,res)=>{
-    res.send("get route edit page");
-};
-
-exports.get_route_delete=async(req,res)=>{
-    res.send("get route delete page");
-};
-
-exports.post_route_delete=async(req,res)=>{
-    res.send("post route delete page");
-};
-
 exports.get_routes=async(req,res)=>{
     const routes=await Route.findAll({include:{model:District}});
     return res.render("admin/routes",{
@@ -407,150 +391,143 @@ exports.get_routes=async(req,res)=>{
     });
 };
 
+//cargo type process
+exports.post_cargoType_create=async(req,res)=>{
+    const cargoTypeName=req.body.cargoTypeName;
+    try {
+        const cargoType=await CargoType.create({cargoTypeName: cargoTypeName});
 
-//voyage process
-exports.get_voyage_create=async(req,res)=>{
-    res.send("get voyage create page");
+        cargoType.cargoTypeCode=randomCodeGenerator("CRTYP",(cargoType));
+        cargoType.url=slugfield(cargoTypeName);
+        await cargoType.save();
+
+        req.session.message={text:`${cargoTypeName} adlı kargo türü başarıyla eklendi`, class:"success"};
+        return res.redirect("/admin/cargo-types");
+
+    } catch (err) {
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${cargoTypeName} adlı kargo türü zaten sistemde mevcut`, class:"warning"}
+            return res.redirect("/admin/cargo-types");
+        }
+        
+    }
 };
+exports.post_cargoType_edit=async(req,res)=>{
+    const cargoTypeName=req.body.cargoTypeName;
+    const cargoTypeId=req.body.cargoTypeId;
+    try {
+        const cargoType=await CargoType.findByPk(cargoTypeId);
+        cargoType.cargoTypeName=cargoTypeName;
+        cargoType.url=slugfield(cargoTypeName);
+        await cargoType.save();
 
-exports.post_voyage_create=async(req,res)=>{
-    res.send("post voyage create page");
+        req.session.message={text:`${cargoTypeName} adlı kargo türü başarıyla eklendi`, class:"warning"};
+        return res.redirect("/admin/cargo-types");
+
+    } catch (err) {
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${cargoTypeName} adlı kargo türü zaten sistemde mevcut`, class:"warning"}
+            return res.redirect("/admin/cargo-types");
+        }
+    }
 };
-
-exports.get_voyage_edit=async(req,res)=>{
-    res.send("get voyage edit page");
-};
-
-exports.post_voyage_edit=async(req,res)=>{
-    res.send("get voyage edit page");
-};
-
-exports.get_voyage_delete=async(req,res)=>{
-    res.send("get voyage delete page");
-};
-
-exports.post_voyage_delete=async(req,res)=>{
-    res.send("post voyage delete page");
-};
-
-exports.get_voyages=async(req,res)=>{
-    res.send("voyages page");
-};
-
-
-
-//cargo process
-exports.get_cargo_create=async(req,res)=>{
-    res.send("get cargo create page");
-};
-
-exports.post_cargo_create=async(req,res)=>{
-    res.send("post cargo create page");
-};
-
-exports.get_cargo_edit=async(req,res)=>{
-    res.send("get cargo edit page");
-};
-
-exports.post_cargo_edit=async(req,res)=>{
-    res.send("get cargo edit page");
-};
-
-exports.get_cargo_delete=async(req,res)=>{
-    res.send("get cargo delete page");
-};
-
-exports.post_cargo_delete=async(req,res)=>{
-    res.send("post cargo delete page");
-};
-
-exports.get_cargos=async(req,res)=>{
-    res.send("cargos page");
-};
-
-//shipper advert process
-exports.get_shipper_advert_create=async(req,res)=>{
-    res.send("get shipper_advert create page");
-};
-
-exports.post_shipper_advert_create=async(req,res)=>{
-    res.send("post shipper_advert create page");
-};
-
-exports.get_shipper_advert_edit=async(req,res)=>{
-    res.send("get shipper_advert edit page");
-};
-
-exports.post_shipper_advert_edit=async(req,res)=>{
-    res.send("get shipper_advert edit page");
-};
-
-exports.get_shipper_advert_delete=async(req,res)=>{
-    res.send("get shipper_advert delete page");
-};
-
-exports.post_shipper_advert_delete=async(req,res)=>{
-    res.send("post shipper_advert delete page");
-};
-
-exports.get_shipper_adverts=async(req,res)=>{
-    res.send("shipper_adverts page");
+exports.post_cargoType_delete=async(req,res)=>{
+    const cargoTypeId=req.body.cargoTypeId;
+    const cargoTypeName=req.body.cargoTypeName;
+    await CargoType.destroy({where:{id:cargoTypeId}});
+    req.session.message={text:`${cargoTypeName} adlı kargo türü silindi`, class:"danger"};
+    return res.redirect("/admin/cargo-types");
+};  
+exports.get_cargoTypes=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const cargoTypes=await CargoType.findAll();
+    return res.render("admin/cargo-types",{
+        title: "Kargo Türleri",
+        cargoTypes: cargoTypes,
+        message: message
+    })
 };
 
 //customer advert process
-exports.get_customer_advert_create=async(req,res)=>{
-    res.send("get customer_advert create page");
-};
+exports.get_adverts=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    return res.render("/admin/adverts-of-cargo",{
+        title: "Taşıtılacak Yüklerim",
+    })
+}
 
-exports.post_customer_advert_create=async(req,res)=>{
-    res.send("post customer_advert create page");
-};
-
-exports.get_customer_advert_edit=async(req,res)=>{
-    res.send("get customer_advert edit page");
-};
-
-exports.post_customer_advert_edit=async(req,res)=>{
-    res.send("get customer_advert edit page");
-};
-
-exports.get_customer_advert_delete=async(req,res)=>{
-    res.send("get customer_advert delete page");
-};
-
-exports.post_customer_advert_delete=async(req,res)=>{
-    res.send("post customer_advert delete page");
-};
-
-exports.get_customer_adverts=async(req,res)=>{
-    res.send("customer_adverts page");
-};
-
-//offer process
-exports.get_offer_create=async(req,res)=>{
-    res.send("get offer create page");
-};
-
-exports.post_offer_create=async(req,res)=>{
-    res.send("post offer create page");
-};
-
-exports.get_offer_edit=async(req,res)=>{
-    res.send("get offer edit page");
-};
-
-exports.post_offer_edit=async(req,res)=>{
-    res.send("get offer edit page");
-};
-
-exports.get_offer_delete=async(req,res)=>{
-    res.send("get offer delete page");
-};
-
-exports.post_offer_delete=async(req,res)=>{
-    res.send("post offer delete page");
-};
-
-exports.get_offers=async(req,res)=>{
-    res.send("offers page");
-};
+//role process
+exports.post_role_create=async(req,res)=>{
+    const roleName=req.body.roleName;
+    try {
+        const role=await Role.create({roleName:roleName.toLowerCase(), url:slugfield(roleName)});
+        role.roleCode=await randomCodeGenerator("ROL",role);
+        await role.save();
+        req.session.message={text:`${role.roleName} adlı rol başarıyla eklendi`, class:"success"};
+        return res.redirect("/admin/roles");
+    } catch (err) {
+        if(err.name=="SequelizeValidationError"){
+            req.session.message={text:`Rol adı minimum 2 maksimum 20 karakter içermelidir`, class:"warning"};
+            return res.redirect("/admin/roles");
+        }
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${roleName} adlı rol zaten var`, class:"warning"};
+            return res.redirect("/admin/roles");
+        }
+    }
+}
+exports.get_role_edit=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const slug=req.params.slug;
+    const role=await Role.findOne({where:{url:slug}});
+    return res.render("admin/role-edit",{
+        title: "Rol Güncelle",
+        role: role,
+        message: message
+    })
+}
+exports.post_role_edit=async(req,res)=>{
+    const roleName=req.body.roleName;
+    try {
+        const roleId=req.body.roleId;
+        await Role.update({roleName: roleName.toLowerCase(), url:slugfield(roleName)}, {where:{id: roleId}});
+        req.session.message={text:`${roleName} adlı rol güncellendi`, class:"primary"};
+        return res.redirect("/admin/roles");
+        
+    } catch (err) {
+        const slug=req.params.slug;
+        if(err.name=="SequelizeValidationError"){
+            req.session.message={text:`Rol adı minimum 2 maksimum 20 karakter içermelidir`, class:"warning"};
+            return res.redirect("/admin/role/edit/"+slug);
+        }
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${roleName} adlı rol zaten var`, class:"warning"};
+            return res.redirect("/admin/role/edit/"+slug);
+        }
+    }
+}
+exports.post_role_delete=async(req,res)=>{
+    try {
+        const roleId=req.body.roleId;
+        const roleName=req.body.roleName;
+        await Role.destroy({where:{id: roleId}});
+        req.session.message={text:`${roleName} adlı rol silindi`, class:"danger"};
+        return res.redirect("/admin/roles");
+    } catch (err) {
+        console.log(err);
+    }
+}
+exports.get_roles=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const roles=await Role.findAll();
+    return res.render("admin/roles",{
+        title:"Roller",
+        roles: roles,
+        message: message
+    })
+    
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container">
+        <div class="row mt-5">
+            <%- include('../partials/alert') %>
+            <div class="col-md-12">
+                <!-- add-cargo type -->
+                <div class="create-cargoType">
+                    <div class="card">
+                        <div class="card-header bg-secondary">Kargo Türü Oluştur</div>
+                        <div class="card-body">
+                          <div class="row d-flex justify-content-center">
+                            <form action="/admin/cargo-type/create" method="post">
+                                <div class="col-auto mb-2">
+                                  <input type="text" class="form-control" name="cargoTypeName" placeholder="Kargo Türünü Girin">
+                                </div>
+                                <div class="col-auto mb-2">
+                                  <button type="submit" class="btn btn-success px-4">Add</button>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <!-- vehicle-types-table -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered mt-5">
+                        <thead>
+                            <tr>
+                                <th>Kargo Tür Kodu</th>
+                                <th>Kargo Türü</th>
+                                <th>Kayıtlı Kargo Sayısı</th>
+                                <th style="width: 200px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% cargoTypes.forEach(cargoType => { %>
+                                <tr>
+                                    <td><%= cargoType.cargoTypeCode%></td>
+                                    <td><%= cargoType.cargoTypeName %></td>
+                                    <td>0</td>
+                                    <td>
+                                        <div class="btns">
+                                            <!-- update-vehicle-type-panel -->
+                                            <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_<%= cargoType.id %>" aria-controls="offcanvasRight">Düzenle</button>
+
+                                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas_<%= cargoType.id %>" aria-labelledby="offcanvasRightLabel">
+                                              <div class="offcanvas-header">
+                                                <h5 class="offcanvas-title" id="offcanvasRightLabel">Araç Türü Düzenle</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                              </div>
+                                              <div class="offcanvas-body">
+                                                <form action="/admin/cargo-type/edit/<%= cargoType.id %>" method="post">
+                                                    <div class="col-auto mb-2">
+                                                        <input type="text" class="form-control" name="cargoTypeName" placeholder="Kargo Türünü Girin" value="<%= cargoType.cargoTypeName %>">
+                                                    </div>
+                                                    <div class="col-auto mb-2">
+                                                        <input type="hidden" name="cargoTypeId" value="<%= cargoType.id %>">
+                                                        <button type="submit" class="btn btn-success px-4">Güncelle</button>
+                                                    </div>
+                                                </form>
+                                              </div>
+                                            </div>
+                                            <a href="/admin/vehicle-type/delete/<%= cargoType.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= cargoType.id %>">Sil</a>
+                                            <!-- delete-vehicle-type-panel -->
+                                            <div class="modal fade" id="modal_<%= cargoType.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Araç Türü Sil</h1>
+                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body table-responsive">
+                                                            <table class="table table-striped table-hover table-bordered mt-5">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#ID</th>
+                                                                        <th>Araç Türü</th>
+                                                                        <th>Araç Sayısı</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><%= cargoType.cargoTypeCode%></td>
+                                                                        <td><%= cargoType.cargoTypeName %></td>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <form action="/admin/cargo-type/delete/<%= cargoType.id %>" method="post">
+                                                                <input type="hidden" name="cargoTypeId" value="<%= cargoType.id %>">
+                                                                <input type="hidden" name="cargoTypeName" value="<%= cargoType.cargoTypeName %>">
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/script') %>
+</body>
+</html>
