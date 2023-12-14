@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container">
+        <div class="row m-5">
+            <div class="col-12">
+                <!-- create-role -->
+                <div class="mb-4">
+                    <div class="card create-category-card">
+                        <div class="card-header">Create Role</div>
+                        <div class="card-body">
+                            <form action="/admin/role/create" method="post" class="row gx-3 gy-2 align-items-center justify-content-center">
+                                <div class="col-xl-10 col-md-12 ">
+                                    <label class="visually-hidden" for="roleName">Role Name: </label>
+                                    <input type="text" class="form-control" id="roleName" placeholder="Role Name" name="roleName">
+                                </div>
+                                <div class="col-xl-1 col-md-12 text-center">
+                                    <button type="submit" class="btn btn-danger ">Create</button>
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+                <%- include('../partials/alert') %>
+                <h3 class="text-center my-4"><%= title %></h3>
+                <div class="mb-2 category-list-table table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th style="width:200px">Role Code</th>
+                                <th>Role Name</th>
+                                <th>User Count</th>
+                                <th style="width: 200px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% roles.forEach(role => { %>                             
+                                <tr class=" align-items-center">
+                                    <td><%= role.roleCode %></td>
+                                    <td><%= role.roleName %></td>
+                                    <td>0</td>
+                                    <td>
+                                        <div class="btns">
+                                            <!-- update-role -->
+                                            <a href="/admin/role/edit/<%= role.url%>" class="editBtn btn btn-primary btn-sm">Düzenle</a>
+                                            <!-- delete-role -->
+                                            <a href="/admin/role/delete/<%= role.id %>" class="deleteBtn btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= role._id %>">Sil</a>
+                                            <div class="modal fade" id="modal_<%= role._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Role</h1>
+                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body table-responsive">
+                                                            <table class="table table-striped table-hover table-bordered mt-5">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Role Code</th>
+                                                                        <th style="width: 1020px;">Role Name</th>
+                                                                        <th>User Count</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><%= role.roleCode %></td>
+                                                                        <td><%= role.roleName %></td>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <form action="/admin/role/delete/<%= role.id %>" method="post">
+                                                                <input type="hidden" name="roleId" value="<%= role.id %>">
+                                                                <input type="hidden" name="roleName" value="<%= role.roleName %>">
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -31,6 +31,7 @@ app.use(session({
     })
 }));
 app.use(express.urlencoded({extended: true}));
+app.use(require("./middlewares/locals"));
 
 
 app.use("/libs", express.static(path.join(__dirname,"node_modules")));
@@ -44,7 +45,8 @@ require("./startup/associations")();
 
 //connect database
 (async()=>{
-    await sequelize.sync({alter: true});
+    // await sequelize.sync({alter: true});
+    // await require("./data/dummy-data")();
 })();
 
 

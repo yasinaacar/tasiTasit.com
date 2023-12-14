@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container">
+        <div class="row mt-5">
+            <%- include('../partials/alert') %>
+            <div class="col-md-12">
+                <!-- vehicle-table -->
+                <table class="table table-striped table-hover table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th>Rota Kodu</th>
+                            <th>Başlangıç Şehri</th>
+                            <th>Bitiş Şehri</th>
+                            <th style="width: 200px;"><a href="/admin/route/create" class="btn btn-sm btn-primary">+ Rota Ekle</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <% routes.forEach(route => { %>
+                            <td>000</td>
+                            <td><%= route.district.name %></td>
+                            <td><%= route.district.name %></td>
+                       <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/script') %>
+</body>
+</html>

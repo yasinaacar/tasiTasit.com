@@ -1,9 +1,17 @@
 const VehicleType=require("../models/vehicle-type");
 const Vehicle=require("../models/vehicle");
+const Driver=require("../models/driver");
+const District=require("../models/district");
+const Province=require("../models/province");
+const Route=require("../models/route");
+const CargoType=require("../models/cargoType");
+const Role=require("../models/role");
+const User = require("../models/user");
 const logger = require("../startup/logger");
 const randomCodeGenerator=require("../public/js/randomcodeGenerator");
 const slugfield=require("../helpers/slugfield");
 const fs=require("fs");
+const { Op } = require("sequelize");
 
 
 //vehicle Types process
@@ -96,7 +104,6 @@ exports.get_vehicle_create=async(req,res)=>{
         message: message
     });
 };
-
 exports.post_vehicle_create=async(req,res)=>{
     const plate=req.body.plate;
     try {
@@ -132,18 +139,19 @@ exports.post_vehicle_create=async(req,res)=>{
         }
     }
 };
-
 exports.get_vehicle_edit=async(req,res)=>{
     const vehicleId=req.params.vehicleId;
-    const vehicle=await Vehicle.findByPk(vehicleId);
+    const vehicle=await Vehicle.findByPk(vehicleId,{include:{model: Driver, attributes:["id"]}});
+    console.log(vehicle)
     const vehicleTypes=await VehicleType.findAll();
+    const drivers=await Driver.findAll({attributes:["fullname", "id"]})
     return res.render("admin/vehicle-edit", {
         title: "Araç Düzenle",
         vehicle: vehicle,
-        vehicleTypes:vehicleTypes
+        vehicleTypes:vehicleTypes,
+        drivers: drivers
     });
 };
-
 exports.post_vehicle_edit=async(req,res)=>{
     const vehicleId=req.body.vehicleId;
     let vehicleImg=req.body.vehicleImg;
@@ -152,6 +160,8 @@ exports.post_vehicle_edit=async(req,res)=>{
     const capacity=req.body.capacity;
     const wheels=req.body.wheels;
     const vehicleTypeId=req.body.vehicleTypeId;
+    const driverIds=req.body.driverIds;
+    console.log("drivers------->", driverIds)
     if(req.file){
         vehicleImg=req.file.filename;
 
@@ -165,28 +175,39 @@ exports.post_vehicle_edit=async(req,res)=>{
         
     }
 
-    const vehicle=await Vehicle.findByPk(vehicleId);
-    vehicle.vehicleImg=vehicleImg;
-    vehicle.plate=plate;
-    vehicle.brand=brand;
-    vehicle.capacity=capacity;
-    vehicle.wheels=wheels;
-    if(vehicleTypeId=="-1"){
-        vehicle.vehicleTypeId=null;
+    const vehicle=await Vehicle.findByPk(vehicleId,{include:{model:Driver}});
+    if(vehicle){
+        vehicle.vehicleImg=vehicleImg;
+        vehicle.plate=plate;
+        vehicle.brand=brand;
+        vehicle.capacity=capacity;
+        vehicle.wheels=wheels;
+        if(vehicleTypeId=="-1"){
+            vehicle.vehicleTypeId=null;
+            await vehicle.save();
+            req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
+            return res.redirect("/admin/vehicles?action=edit")
+        }
+        vehicle.vehicleTypeId=vehicleTypeId;
+        if(driverIds==undefined){
+            await vehicle.removeDrivers(vehicle.drivers);
+        }else{
+            await vehicle.removeDrivers(vehicle.drivers);
+            const selectedCategories=await Driver.findAll({
+                where:{id:{[Op.in]:driverIds}}
+            });
+
+            await vehicle.addDrivers(selectedCategories);
+        }
         await vehicle.save();
+        
         req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
         return res.redirect("/admin/vehicles?action=edit")
     }
-    vehicle.vehicleTypeId=vehicleTypeId;
-    await vehicle.save();
-    
-    req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
-    return res.redirect("/admin/vehicles?action=edit")
 
-    
+    return res.redirect("/admin/vehicles")
 
 };
-
 exports.post_vehicle_delete=async(req,res)=>{
     const vehicleId=req.body.vehicleId;
     const plate=req.body.plate;
@@ -209,11 +230,11 @@ exports.post_vehicle_delete=async(req,res)=>{
     return res.redirect("/admin/vehicles?action=delete");
     
 };
-
 exports.get_vehicles=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const vehicles=await Vehicle.findAll({include:{model:VehicleType,  attributes:["vehicleTypeName"]}});
+    const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    console.log(vehicles)
     return res.render("admin/vehicles",{
         title: "Araçlarım",
         vehicles: vehicles,
@@ -223,204 +244,306 @@ exports.get_vehicles=async(req,res)=>{
 
 //driver process
 exports.get_driver_create=async(req,res)=>{
-    res.send("get driver create page");
+    const message=req.session.message;
+    delete req.session.message;
+    return res.render("admin/driver-create",{
+        title: "Şoför Ekle",
+        message: message
+    })
 };
-
 exports.post_driver_create=async(req,res)=>{
-    res.send("post driver create page");
-};
+    try {
+        const driverImg=req.file ? req.file.filename:"defaultDriver.jpg";
+        const fullname=req.body.fullname;
+        const telephone=req.body.telephone;
+        const email=req.body.email;
+        const gender=req.body.gender=="-1" ? null: req.body.gender;
+        const url=slugfield(fullname);
 
+        const driver=await Driver.create({
+            driverImg: driverImg,
+            fullname: fullname,
+            telephone: telephone,
+            email: email,
+            gender: gender,
+            url: url
+        });
+
+        driver.driverCode=randomCodeGenerator("DRV", driver);
+        await driver.save();
+
+
+        req.session.message={text:`${fullname} adlı soför eklendi`, class:"success"};
+        return res.redirect("/admin/drivers");
+
+    } catch (err) {
+        console.log(err);
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:"Telefon Numarası ya da E-Posta zaten sistemde mevcut", class:"warning"};
+            return res.redirect("/admin/driver/create");
+        }
+    }
+};
 exports.get_driver_edit=async(req,res)=>{
-    res.send("get driver edit page");
+    const driverId=req.params.id;
+    const message=req.session.message;
+    delete req.session.message;
+    const driver=await Driver.findByPk(driverId,{attributes:["driverImg", "fullname", "telephone", "id", "email", "gender"]});
+    return res.render("admin/driver-edit",{
+        title: "Şoför Güncelle",
+        driver: driver,
+        message: message
+    })
 };
-
 exports.post_driver_edit=async(req,res)=>{
-    res.send("get driver edit page");
-};
+    const driverId=req.body.driverId;
+    const slug=req.params.slug;
+    try {
+        let driverImg=req.body.driverImg;
+        const fullname=req.body.fullname;
+        const telephone=req.body.telephone;
+        const email=req.body.email;
+        const gender=req.body.gender=="-1" ? null: req.body.gender;
 
-exports.get_driver_delete=async(req,res)=>{
-    res.send("get driver delete page");
-};
+        if(req.file){
+            driverImg=req.file.filename;
+    
+            if(req.body.driverImg!="defaultVehicle.jpg"){
+                fs.unlink("./public/images/"+req.body.driverImg,err=>{
+                    if(err){
+                        logger.error(`Şoför resmi güncellendi ancak eski şoför resmi silinemedi. Silinemeyen resim: ${req.body.driverImg},${err}`);
+                    }
+                })
+            }
+            
+        }
 
+        const driver=await Driver.findByPk(driverId);
+        driver.driverImg=driverImg;
+        driver.fullname=fullname;
+        driver.telephone=telephone;
+        driver.email=email;
+        driver.gender=gender;
+        driver.url=slugfield(fullname);
+        await driver.save();
+
+        req.session.message={text:`${fullname} adlı şoför bilgileri güncellendi`, class:"success"};
+        return res.redirect("/admin/drivers");
+
+    } catch (err) {
+        console.log(err);
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:"Telefon Numarası ya da E-Posta zaten sistemde mevcut", class:"warning"};
+            return res.redirect(`/admin/driver/edit/${driverId}/${slug}`);
+        }
+    }
+};
 exports.post_driver_delete=async(req,res)=>{
-    res.send("post driver delete page");
-};
+    const driverId=req.body.driverId;
+    const driverImg=req.body.driverImg;
 
+    if(driverImg!="defaultDriver.jpg"){
+        fs.unlink("/public/images/"+driverImg,err=>{
+            fs.unlink("./public/images/"+req.body.driverImg,err=>{
+                if(err){
+                    logger.error(`Şoför silindi ancak resmi silinemedi. Silinemeyen resim: ${driverImg},${err}`);
+                }
+            })
+        })
+    }
+
+    await Driver.destroy({where:{id:driverId}});
+
+    req.session.message={text:"Soför silindi", class:"danger"};
+    return res.redirect("/admin/drivers");
+};
 exports.get_drivers=async(req,res)=>{
-    res.send("drivers page");
+    const message=req.session.message;
+    delete req.session.message;
+    const drivers=await Driver.findAll();
+    return res.render("admin/drivers",{
+        title: "Şöförler",
+        message: message,
+        drivers: drivers
+    });
 };
 
-//voyage process
-exports.get_voyage_create=async(req,res)=>{
-    res.send("get voyage create page");
-};
-
-exports.post_voyage_create=async(req,res)=>{
-    res.send("post voyage create page");
-};
-
-exports.get_voyage_edit=async(req,res)=>{
-    res.send("get voyage edit page");
-};
-
-exports.post_voyage_edit=async(req,res)=>{
-    res.send("get voyage edit page");
-};
-
-exports.get_voyage_delete=async(req,res)=>{
-    res.send("get voyage delete page");
-};
-
-exports.post_voyage_delete=async(req,res)=>{
-    res.send("post voyage delete page");
-};
-
-exports.get_voyages=async(req,res)=>{
-    res.send("voyages page");
-};
 
 //route process
 exports.get_route_create=async(req,res)=>{
-    res.send("get route create page");
+    const provinces=await Province.findAll();
+    return res.render("admin/route-create",({
+        title: "Rota Oluştur",
+        provinces: provinces
+    }));
 };
-
 exports.post_route_create=async(req,res)=>{
-    res.send("post route create page");
-};
+    const startDistrict=req.body.startDistrict;
+    const finishDistrict=req.body.finishDistrict;
 
-exports.get_route_edit=async(req,res)=>{
-    res.send("get route edit page");
+    const route=await Route.create({startPoint:startDistrict, endPoint:finishDistrict});;
+    return res.redirect("/admin/routes");
 };
-
-exports.post_route_edit=async(req,res)=>{
-    res.send("get route edit page");
-};
-
-exports.get_route_delete=async(req,res)=>{
-    res.send("get route delete page");
-};
-
-exports.post_route_delete=async(req,res)=>{
-    res.send("post route delete page");
-};
-
 exports.get_routes=async(req,res)=>{
-    res.send("routes page");
+    const routes=await Route.findAll({include:{model:District}});
+    return res.render("admin/routes",{
+        title: "Rotalar",
+        routes: routes
+    });
 };
 
+//cargo type process
+exports.post_cargoType_create=async(req,res)=>{
+    const cargoTypeName=req.body.cargoTypeName;
+    try {
+        const cargoType=await CargoType.create({cargoTypeName: cargoTypeName});
 
-//cargo process
-exports.get_cargo_create=async(req,res)=>{
-    res.send("get cargo create page");
+        cargoType.cargoTypeCode=randomCodeGenerator("CRTYP",(cargoType));
+        cargoType.url=slugfield(cargoTypeName);
+        await cargoType.save();
+
+        req.session.message={text:`${cargoTypeName} adlı kargo türü başarıyla eklendi`, class:"success"};
+        return res.redirect("/admin/cargo-types");
+
+    } catch (err) {
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${cargoTypeName} adlı kargo türü zaten sistemde mevcut`, class:"warning"}
+            return res.redirect("/admin/cargo-types");
+        }
+        
+    }
 };
+exports.post_cargoType_edit=async(req,res)=>{
+    const cargoTypeName=req.body.cargoTypeName;
+    const cargoTypeId=req.body.cargoTypeId;
+    try {
+        const cargoType=await CargoType.findByPk(cargoTypeId);
+        cargoType.cargoTypeName=cargoTypeName;
+        cargoType.url=slugfield(cargoTypeName);
+        await cargoType.save();
 
-exports.post_cargo_create=async(req,res)=>{
-    res.send("post cargo create page");
+        req.session.message={text:`${cargoTypeName} adlı kargo türü başarıyla eklendi`, class:"warning"};
+        return res.redirect("/admin/cargo-types");
+
+    } catch (err) {
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${cargoTypeName} adlı kargo türü zaten sistemde mevcut`, class:"warning"}
+            return res.redirect("/admin/cargo-types");
+        }
+    }
 };
-
-exports.get_cargo_edit=async(req,res)=>{
-    res.send("get cargo edit page");
-};
-
-exports.post_cargo_edit=async(req,res)=>{
-    res.send("get cargo edit page");
-};
-
-exports.get_cargo_delete=async(req,res)=>{
-    res.send("get cargo delete page");
-};
-
-exports.post_cargo_delete=async(req,res)=>{
-    res.send("post cargo delete page");
-};
-
-exports.get_cargos=async(req,res)=>{
-    res.send("cargos page");
-};
-
-//shipper advert process
-exports.get_shipper_advert_create=async(req,res)=>{
-    res.send("get shipper_advert create page");
-};
-
-exports.post_shipper_advert_create=async(req,res)=>{
-    res.send("post shipper_advert create page");
-};
-
-exports.get_shipper_advert_edit=async(req,res)=>{
-    res.send("get shipper_advert edit page");
-};
-
-exports.post_shipper_advert_edit=async(req,res)=>{
-    res.send("get shipper_advert edit page");
-};
-
-exports.get_shipper_advert_delete=async(req,res)=>{
-    res.send("get shipper_advert delete page");
-};
-
-exports.post_shipper_advert_delete=async(req,res)=>{
-    res.send("post shipper_advert delete page");
-};
-
-exports.get_shipper_adverts=async(req,res)=>{
-    res.send("shipper_adverts page");
+exports.post_cargoType_delete=async(req,res)=>{
+    const cargoTypeId=req.body.cargoTypeId;
+    const cargoTypeName=req.body.cargoTypeName;
+    await CargoType.destroy({where:{id:cargoTypeId}});
+    req.session.message={text:`${cargoTypeName} adlı kargo türü silindi`, class:"danger"};
+    return res.redirect("/admin/cargo-types");
+};  
+exports.get_cargoTypes=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const cargoTypes=await CargoType.findAll();
+    return res.render("admin/cargo-types",{
+        title: "Kargo Türleri",
+        cargoTypes: cargoTypes,
+        message: message
+    })
 };
 
 //customer advert process
-exports.get_customer_advert_create=async(req,res)=>{
-    res.send("get customer_advert create page");
+exports.get_adverts=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    return res.render("/admin/adverts-of-cargo",{
+        title: "Taşıtılacak Yüklerim",
+    })
+}
+
+//role process
+exports.post_role_create=async(req,res)=>{
+    const roleName=req.body.roleName;
+    try {
+        const role=await Role.create({roleName:roleName.toLowerCase(), url:slugfield(roleName)});
+        role.roleCode=await randomCodeGenerator("ROL",role);
+        await role.save();
+        req.session.message={text:`${role.roleName} adlı rol başarıyla eklendi`, class:"success"};
+        return res.redirect("/admin/roles");
+    } catch (err) {
+        if(err.name=="SequelizeValidationError"){
+            req.session.message={text:`Rol adı minimum 2 maksimum 20 karakter içermelidir`, class:"warning"};
+            return res.redirect("/admin/roles");
+        }
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${roleName} adlı rol zaten var`, class:"warning"};
+            return res.redirect("/admin/roles");
+        }
+    }
+};
+exports.get_role_edit=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const slug=req.params.slug;
+    const role=await Role.findOne({where:{url:slug}});
+    return res.render("admin/role-edit",{
+        title: "Rol Güncelle",
+        role: role,
+        message: message
+    })
+};
+exports.post_role_edit=async(req,res)=>{
+    const roleName=req.body.roleName;
+    try {
+        const roleId=req.body.roleId;
+        await Role.update({roleName: roleName.toLowerCase(), url:slugfield(roleName)}, {where:{id: roleId}});
+        req.session.message={text:`${roleName} adlı rol güncellendi`, class:"primary"};
+        return res.redirect("/admin/roles");
+        
+    } catch (err) {
+        const slug=req.params.slug;
+        if(err.name=="SequelizeValidationError"){
+            req.session.message={text:`Rol adı minimum 2 maksimum 20 karakter içermelidir`, class:"warning"};
+            return res.redirect("/admin/role/edit/"+slug);
+        }
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${roleName} adlı rol zaten var`, class:"warning"};
+            return res.redirect("/admin/role/edit/"+slug);
+        }
+    }
+};
+exports.post_role_delete=async(req,res)=>{
+    try {
+        const roleId=req.body.roleId;
+        const roleName=req.body.roleName;
+        await Role.destroy({where:{id: roleId}});
+        req.session.message={text:`${roleName} adlı rol silindi`, class:"danger"};
+        return res.redirect("/admin/roles");
+    } catch (err) {
+        console.log(err);
+    }
+};
+exports.get_roles=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const roles=await Role.findAll();
+    return res.render("admin/roles",{
+        title:"Roller",
+        roles: roles,
+        message: message
+    })
+    
 };
 
-exports.post_customer_advert_create=async(req,res)=>{
-    res.send("post customer_advert create page");
-};
+//user process
+exports.get_users=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
 
-exports.get_customer_advert_edit=async(req,res)=>{
-    res.send("get customer_advert edit page");
-};
-
-exports.post_customer_advert_edit=async(req,res)=>{
-    res.send("get customer_advert edit page");
-};
-
-exports.get_customer_advert_delete=async(req,res)=>{
-    res.send("get customer_advert delete page");
-};
-
-exports.post_customer_advert_delete=async(req,res)=>{
-    res.send("post customer_advert delete page");
-};
-
-exports.get_customer_adverts=async(req,res)=>{
-    res.send("customer_adverts page");
-};
-
-//offer process
-exports.get_offer_create=async(req,res)=>{
-    res.send("get offer create page");
-};
-
-exports.post_offer_create=async(req,res)=>{
-    res.send("post offer create page");
-};
-
-exports.get_offer_edit=async(req,res)=>{
-    res.send("get offer edit page");
-};
-
-exports.post_offer_edit=async(req,res)=>{
-    res.send("get offer edit page");
-};
-
-exports.get_offer_delete=async(req,res)=>{
-    res.send("get offer delete page");
-};
-
-exports.post_offer_delete=async(req,res)=>{
-    res.send("post offer delete page");
-};
-
-exports.get_offers=async(req,res)=>{
-    res.send("offers page");
-};
+    const users=await User.findAll({include:{model: Role}});
+    const roles=await Role.findAll({attributes:["id", "roleName"]});
+    return res.render("admin/users",{
+        title:"Kullanıcı Listesi",
+        message: message,
+        users: users,
+        roles: roles
+    })
+}

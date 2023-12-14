@@ -6,29 +6,48 @@
       </button>
       <div class="collapse navbar-collapse mx-3" id="navbarNav">
         <ul class="navbar-nav me-auto ">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/admin/vehicles">Araçlar</a>
-          </li>
+          <% if (isAuth) { %>           
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/vehicles">Araçlar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/drivers">Şöförler</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/routes">Rotalar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/cargo-types">Kargo Türleri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/roles">Roller</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/users">Kullanıcılar</a>
+            </li>
+          <% } %>
         </ul>
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Username
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Account</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
+          <% if (!isAuth) { %>             
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/auth/login">Giriş Yap</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Login</a>
+              <a class="nav-link" aria-current="page" href="/auth/register/customer">Üye Ol</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Sign Up</a>
+            <% } %>
+            <% if (isAuth) { %>             
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#"><%= fullname %></a>
               </li>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/auth/logout">Çıkış Yap</a>
+              </li>
+            <% } %>
           </ul>
       </div>
     </div>

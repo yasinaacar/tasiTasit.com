@@ -3,5 +3,15 @@
         "host": "localhost",
         "database": "tasitasitdb",
         "username": "root"
+    },
+    "emailOptions":{
+        "host": "smtp-mail.outlook.com",
+        "port": 587,
+        "secure": false,
+        "ciphers": "SSLv3"
+    },
+    "email":{
+        "from": "adressforapp@outlook.com",
+        "username": "Mail Sender"
     }
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container mt-5">
+        <div class="row">
+            <%- include('../partials/alert') %>
+            <div class="col-md-12 d-flex justify-content-center mt-3 ">
+                <div class="card text-bg-light mb-3" style="width: 22rem;">
+                    <div class="card-header text-center bg-primary"><h5 class="text-light">Giriş Yap</h5></div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-Mail:</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="alreadyTaken">
+                            </div>
+                            <div class="mb-3">
+                              <label for="password" class="form-label">Password:</label>
+                              <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="buttons text-center">
+                                <button type="submit" class="btn btn-danger" id="signUpBtn">Giriş Yap</button>
+                            </div>
+                            <div class="my-3">
+                                <p>Do not have an account: <a href="/auth/register/customer">Üye Ol</a></p>
+                            </div>
+                            <div class="my-3">
+                                <a href="/auth/reset-password" class="float-end">Şifremi Unuttum</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <div class="container mt-5">
+        <div class="row">
+            <%- include('../partials/alert') %>
+            <div class="col-md-12 d-flex justify-content-center mt-3 ">
+                <div class="card text-bg-light mb-3" style="width: 22rem;">
+                    <div class="card-header text-center bg-primary"><h5 class="text-light">Üye Ol</h5></div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3 row">
+                                <ul class="nav nav-pills nav-fill border-bottom">
+                                    <li class="nav-item">
+                                      <a class="nav-link <%= userType=="customer" ? "active": "" %>" id="type-customer" href="/auth/register/customer">Yük Taşıt</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link  <%= userType=="shipper" ? "active": "" %> "  id="type-shipper"  href="/auth/register/shipper">Yük Taşı</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link  <%= userType=="firm" ? "active": "" %>"  id="type-firm"  href="/auth/register/firm">Firma</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-3">
+                              <label for="fullname" class="form-label"><%= userType=="firm" ? "Firma Adı" : "Ad Soyad" %></label>
+                              <input type="text" class="form-control" id="fullname" name="fullname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-Mail:</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="alreadyTaken">
+                                <% if (typeof message != "undefined" && message.warning=="alreadyTaken") { %>
+                                    <div id="alreadyTaken" class="form-text text-danger"><%= message.text %></div>
+                                <% } %>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="mb-3">
+                              <label for="password" class="form-label">Password:</label>
+                              <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwordagain" class="form-label">Password Again:</label>
+                                <input type="password" class="form-control" id="passwordagain" name="passwordagain" aria-describedby="noMatches">
+                                  <div id="noMatches" class="form-text text-danger" style="display: none;">Password again and password not match</div>
+
+                            </div>
+                            <div class="mb-3 float-start">
+                                <div class="form-check mb-2 ">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"  id="termsAndConditions" name="termsAndConditions">
+                                        <label class="form-check-label" for="termsAndConditions"><a href="#">Gizlilik ve Şartlar</a> sözleşmesini okudum kabul ediyorum</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons text-center">
+                                <button type="submit" class="btn btn-danger" id="signUpBtn" disabled>Sign Up</button>
+                            </div>
+                            <div class="my-3">
+                                <p>Alraedy have an account: <a href="/auth/login">Giriş Yap</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/script') %>
+    <script>
+        const termsAndConditions = document.getElementById('termsAndConditions');
+        const privacyPolicy = document.getElementById('privacyPolicy');
+        const password = document.getElementById('password');
+        const passwordAgain = document.getElementById('passwordagain');
+        const signUpBtn = document.getElementById('signUpBtn');
+        const noMatches = document.getElementById('noMatches');
+
+        passwordAgain.addEventListener("input", () => {
+            if (password.value === passwordAgain.value) {
+                noMatches.style.display = "none"; // Eşleşme varsa hata mesajını gizle
+                termsAndConditions.addEventListener('change', function () {
+                    signUpBtn.disabled = !termsAndConditions.checked; // Buton durumunu güncelle
+                });
+
+            } else {
+                noMatches.style.display = "block"; // Eşleşme yoksa hata mesajını göster
+                signUpBtn.disabled = true; // Butonu devre dışı bırak
+            }
+        });
+
+    </script>
+</body>
+</html>

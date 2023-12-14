@@ -1,5 +1,11 @@
 {
     "db":{
         "password": "DB_PASSWORD"
+    },
+    "jwt":{
+        "privateKey": "JWT_KEY"
+    },
+    "email":{
+        "password": "MAIL_PASSWORD"
     }
 }
