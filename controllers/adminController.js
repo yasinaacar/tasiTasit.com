@@ -6,6 +6,7 @@ const Province=require("../models/province");
 const Route=require("../models/route");
 const CargoType=require("../models/cargoType");
 const Role=require("../models/role");
+const User = require("../models/user");
 const logger = require("../startup/logger");
 const randomCodeGenerator=require("../public/js/randomcodeGenerator");
 const slugfield=require("../helpers/slugfield");
@@ -477,7 +478,7 @@ exports.post_role_create=async(req,res)=>{
             return res.redirect("/admin/roles");
         }
     }
-}
+};
 exports.get_role_edit=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
@@ -488,7 +489,7 @@ exports.get_role_edit=async(req,res)=>{
         role: role,
         message: message
     })
-}
+};
 exports.post_role_edit=async(req,res)=>{
     const roleName=req.body.roleName;
     try {
@@ -508,7 +509,7 @@ exports.post_role_edit=async(req,res)=>{
             return res.redirect("/admin/role/edit/"+slug);
         }
     }
-}
+};
 exports.post_role_delete=async(req,res)=>{
     try {
         const roleId=req.body.roleId;
@@ -519,7 +520,7 @@ exports.post_role_delete=async(req,res)=>{
     } catch (err) {
         console.log(err);
     }
-}
+};
 exports.get_roles=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
@@ -530,4 +531,19 @@ exports.get_roles=async(req,res)=>{
         message: message
     })
     
+};
+
+//user process
+exports.get_users=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+
+    const users=await User.findAll({include:{model: Role}});
+    const roles=await Role.findAll({attributes:["id", "roleName"]});
+    return res.render("admin/users",{
+        title:"Kullanıcı Listesi",
+        message: message,
+        users: users,
+        roles: roles
+    })
 }

@@ -31,6 +31,7 @@ app.use(session({
     })
 }));
 app.use(express.urlencoded({extended: true}));
+app.use(require("./middlewares/locals"));
 
 
 app.use("/libs", express.static(path.join(__dirname,"node_modules")));
