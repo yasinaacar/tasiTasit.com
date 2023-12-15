@@ -53,6 +53,10 @@ const User=sequelize.define("user", {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
+    isBlocked:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     tokenExpiration:{
         type: DataTypes.DATE
     },

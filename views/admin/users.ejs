@@ -17,8 +17,9 @@
                                 <th style="width:200px">User Code</th>
                                 <th>Fullname</th>
                                 <th>E-Mail</th>
+                                <th>Aktif</th>
                                 <th>Role</th>
-                                <th style="width: 120px;"></th>
+                                <th style="width: 220px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,13 +28,14 @@
                                     <td><%= user.userCode %></td>
                                     <td><%= user.fullname %></td>
                                     <td><%= user.email %></td>
+                                    <td><%= user.isActive==true ? "Aktif" : "Pasif" %></td>
                                     <td>
                                         <% for (let role of user.roles) { %>
                                             <li><%= role.roleName %></li>
                                         <% } %>
                                     </td>
                                     <td>
-                                        <div class="table-buttons">
+                                        <div class="table-buttons d-flex justify-content-center">
                                             <!-- update-table-panel -->
                                             <a href="/admin/user/edit/<%= user.id%>"  data-bs-toggle="offcanvas" data-bs-target="#offcanvas_<%= user.id%>" aria-controls="offcanvasRight" class="btn btn-sm btn-primary">Düzenle</a>
                                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas_<%= user.id%>" aria-labelledby="offcanvasRightLabel">
@@ -68,12 +70,24 @@
                                                             <% }) %>
                                                         </div>
                                                         <input type="hidden" name="userId" value="<%= user.id %>">
-                                                        <input type="hidden" name="userCode" value="<%= user.userCode %>">
                                                         <button type="submit" class="btn ms-2 mt-2 btn-danger">Update</button>
                                                     </form>
 
                                                 </div>
                                             </div>
+                                            <% if (user.isBlocked) { %>
+                                                <form action="/admin/user/remove-block/<%= user.id %>" method="post">
+                                                    <input type="hidden" name="userId" value="<%= user.id %>">
+                                                    <button type="submit" class="btn btn-warning btn-sm ms-2">Engeli Kaldır</button>
+                                                </form>
+                                            <% } %>
+                                            <% if (!user.isBlocked) { %>                                             
+                                                <form action="/admin/user/block/<%= user.id %>" method="post">
+                                                    <input type="hidden" name="userId" value="<%= user.id %>">
+                                                    <button type="submit" class="btn btn-danger btn-sm ms-2">Engelle</button>
+                                                </form>
+                                            <% } %>
+                                            
                                         </div>
                                     </td>
                                 </tr>

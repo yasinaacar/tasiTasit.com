@@ -42,14 +42,14 @@
                                 <tr class=" align-items-center">
                                     <td><%= role.roleCode %></td>
                                     <td><%= role.roleName %></td>
-                                    <td>0</td>
+                                    <td><%= role.users.length %></td>
                                     <td>
-                                        <div class="btns">
+                                        <div class="btns <%= role.url=="admin" || role.url=="customer" ? "btn-disabled":"" %>" >
                                             <!-- update-role -->
                                             <a href="/admin/role/edit/<%= role.url%>" class="editBtn btn btn-primary btn-sm">Düzenle</a>
                                             <!-- delete-role -->
-                                            <a href="/admin/role/delete/<%= role.id %>" class="deleteBtn btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= role._id %>">Sil</a>
-                                            <div class="modal fade" id="modal_<%= role._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <a href="/admin/role/delete/<%= role.id %>" class="deleteBtn btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= role.id %>">Sil</a>
+                                            <div class="modal fade" id="modal_<%= role.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -69,7 +69,8 @@
                                                                     <tr>
                                                                         <td><%= role.roleCode %></td>
                                                                         <td><%= role.roleName %></td>
-                                                                        <td>0</td>
+                                                                        <td><%= role.users.length %></td>
+
                                                                     </tr>
                                                                 </tbody>
                                                             </table>

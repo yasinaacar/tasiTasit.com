@@ -43,10 +43,14 @@ router.get("/cargo-types", isAuth, adminController.get_cargoTypes);
 router.post("/role/create", isAuth, adminController.post_role_create);
 router.get("/role/edit/:slug", isAuth, adminController.get_role_edit);
 router.post("/role/edit/:slug", isAuth, adminController.post_role_edit);
+router.post("/role/:slug/remove-user/:id", isAuth, adminController.post_remove_user_from_role);
 router.post("/role/delete/:id", isAuth, adminController.post_role_delete);
 router.get("/roles", isAuth, adminController.get_roles);
 
 //user url
+router.post("/user/edit/:id", isAuth, adminController.post_user_edit);
+router.post("/user/block/:id", isAuth, adminController.post_user_block);
+router.post("/user/remove-block/:id", isAuth, adminController.post_user_remove_block);
 router.get("/users", isAuth, adminController.get_users);
 
 

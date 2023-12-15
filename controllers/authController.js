@@ -7,7 +7,6 @@ const {transporter}=require("../helpers/emailSender");
 
 const randomcodeGenerator = require("../public/js/randomcodeGenerator");
 const logger = require("../startup/logger");
-const { Op } = require("sequelize");
 const isAuth = require("../middlewares/isAuth");
 //register
 exports.get_register=async(req,res)=>{
@@ -42,11 +41,11 @@ exports.post_register=async(req,res)=>{
             isActive: false
         });
         user.userCode=await randomcodeGenerator("USR",user);
-        user.token=await jwt.sign(user.id, config.get("jwt.privateKey"));
-        user.tokenExpiration= 1000*60*30 + Date.now();
+        user.token=jwt.sign(user.id, config.get("jwt.privateKey"));
+        user.tokenExpiration= 1000*60 + Date.now();
         await user.save();
-        const role=await Role.findOne({where:{roleName:"customer"}})
-        await user.setRoles(role);   
+        const role=await Role.findOne({where:{roleName:"customer"}, attributes:["id"]})
+        await role.addUser(user);//set role for user   
         const sendedMail=await transporter.sendMail({
             from: config.get("email.from"),
             to: user.email,
@@ -96,7 +95,7 @@ exports.get_login=async(req,res)=>{
 exports.post_login=async(req,res)=>{
     const email=req.body.email;
     const password=req.body.password;
-    const url=req.query.returnUrl;
+    // const url=req.query.returnUrl;
 
     const user=await User.findOne({where:{email: email}});
     if(!user){
@@ -132,6 +131,12 @@ exports.post_login=async(req,res)=>{
         return res.redirect("/auth/login");
     }
 
+    if(user.isBlocked==true){
+        req.session.message={text:"Görünüşe göre topluluk kurallarını ihlal ettiğiniz için hesabınız askıya alınmış. Maalesef bu hesap artık aktif değil", class:"danger"};
+        return res.redirect("/auth/login");
+        
+    }
+
     if(user.isActive==true){
         const match=await bcrypt.compare(password,user.password);
 
@@ -145,7 +150,7 @@ exports.post_login=async(req,res)=>{
             req.session.fullname=user.fullname;
             req.session.userID=user.id;
 
-            return res.redirect(url || "/admin/vehicles/");
+            return res.redirect("/admin/vehicles/");
         }
         req.session.message={text:"Parola yanlış", message:"warning"};
         return res.redirect("/auth/login");
