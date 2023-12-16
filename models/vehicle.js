@@ -10,7 +10,7 @@ const Vehicle=sequelize.define("vehicle", {
     },
     plate:{
         type: DataTypes.STRING,
-        unique: true
+        unique: true,
     },
     brand:{
         type: DataTypes.STRING,

@@ -1,9 +1,10 @@
 const express=require("express");
 const router=express.Router();
-const imageUpload=require("../helpers/imageUpload");
+
+const {imageUpload}=require("../helpers/index-helpers");
+const {isAuth ,isAdmin,isFirm, isShipper}=require("../middlewares/isAccess");
+
 const adminController=require("../controllers/adminController");
-const isAuth=require("../middlewares/isAuth");
-const {isAdmin,isFirm, isShipper}=require("../middlewares/isAccess");
 
 
 //vehicle type url
@@ -17,8 +18,8 @@ router.get("/vehicle-types", isAuth, isAdmin,adminController.get_vehicleTypes);
 //vehicle url
 router.get("/vehicle/create", isAuth,  isShipper, adminController.get_vehicle_create);
 router.post("/vehicle/create", isAuth,  isShipper, imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_create);
-router.get("/vehicle/edit/:vehicleId", isAuth,  isShipper, adminController.get_vehicle_edit);
-router.post("/vehicle/edit/:vehicleId", isAuth,  isShipper, imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_edit);
+router.get("/vehicle/edit/:plate", isAuth,  isShipper, adminController.get_vehicle_edit);
+router.post("/vehicle/edit/:plate", isAuth,  isShipper, imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_edit);
 router.post("/vehicle/delete/:vehicleId", isAuth, isShipper, adminController.post_vehicle_delete);
 router.get("/vehicles", isAuth, isShipper, adminController.get_vehicles);
 
@@ -27,7 +28,7 @@ router.get("/driver/create", isAuth, isFirm, adminController.get_driver_create);
 router.post("/driver/create", isAuth, isFirm,imageUpload.upload.single("driverImg"), adminController.post_driver_create);
 router.get("/driver/edit/:id/:slug", isAuth, isFirm, adminController.get_driver_edit);
 router.post("/driver/edit/:id/:slug", isAuth, isFirm,imageUpload.upload.single("driverImg"), adminController.post_driver_edit);
-router.post("/driver/delete/:id/:slug", isAuth, isFirm, adminController.post_driver_delete);
+router.post("/driver/delete/:id", isAuth, isFirm, adminController.post_driver_delete);
 router.get("/drivers", isAuth, isFirm, adminController.get_drivers);
 
 //route url

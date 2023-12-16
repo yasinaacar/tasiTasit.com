@@ -1,12 +1,17 @@
+//models
 const {  Role, User }=require("../models/index-models");
-const bcrypt=require("../helpers/bcrypt");
+
+//helpers
+const {bcrypt, transporter, randomCodeGenerator}=require("../helpers/index-helpers")
+
+//middlewares
+const {isAuth}=require("../middlewares/isAccess");
+
 const jwt=require("jsonwebtoken");
 const config= require("config");
-const {transporter}=require("../helpers/emailSender");
 
-const randomcodeGenerator = require("../public/js/randomcodeGenerator");
 const logger = require("../startup/logger");
-const isAuth = require("../middlewares/isAuth");
+
 //register
 exports.get_register=async(req,res)=>{
     const userType=req.params.userType;
@@ -39,7 +44,7 @@ exports.post_register=async(req,res)=>{
             termsAndConditions: termsAndConditions,
             isActive: false
         });
-        user.userCode=await randomcodeGenerator("USR",user);
+        user.userCode=await randomCodeGenerator("USR",user);
         user.token=jwt.sign(user.id, config.get("jwt.privateKey"));
         user.tokenExpiration= 1000*60 + Date.now();
         await user.save();
@@ -93,11 +98,12 @@ exports.get_login=async(req,res)=>{
 };
 exports.post_login=async(req,res)=>{
     if(isAuth){
-        req.session.isAuth=false 
+        req.session.isAuth=false;
+
     }
     const email=req.body.email;
     const password=req.body.password;
-    // const url=req.query.returnUrl;
+    const url=req.query.returnUrl ? req.query.returnUrl : "/";
 
     const user=await User.findOne({where:{email: email},include:{model:Role, attributes:["roleName"]}});
     if(!user){
@@ -142,9 +148,6 @@ exports.post_login=async(req,res)=>{
         const match=await bcrypt.compare(password,user.password);
 
         if(match){
-            if(isAuth){
-                req.session.isAuth=false;
-            }
             user.lastActivity=new Date();
             await user.save();
             req.session.isAuth=true;
@@ -158,14 +161,17 @@ exports.post_login=async(req,res)=>{
                 req.session.isFirm=true;
             }
             else if(req.session.roles.includes("firm")){
+                req.session.isAdmin=false;
                 req.session.isFirm=true;
                 req.session.isShipper=true;
             }
             else if(req.session.roles.includes("shipper")){
+                req.session.isAdmin=false;
+                req.session.isFirm=false;
                 req.session.isShipper=true;
             }
 
-            return res.redirect("/");
+            return res.redirect(url);
         }
         req.session.message={text:"Parola yanlış", message:"warning"};
         return res.redirect("/auth/login");

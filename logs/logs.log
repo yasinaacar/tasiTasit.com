@@ -1,0 +1,74 @@
+{
+  message: "Cannot set properties of undefined (setting 'isAuth')",
+  level: 'error',
+  timestamp: '16-12-2023  16:15:17'
+}
+{
+  message: "Cannot set properties of undefined (setting 'isAuth')",
+  level: 'error',
+  timestamp: '16-12-2023  16:16:09'
+}
+{
+  message: "Cannot set properties of undefined (setting 'isAuth')",
+  level: 'error',
+  timestamp: '16-12-2023  16:16:54'
+}
+{
+  message: 'Validation error',
+  level: 'error',
+  timestamp: '16-12-2023  17:08:04'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:17\n' +
+    '    15|                         <div class="mb-3 row">\r\n' +
+    '    16|                             <label for="vehicleImg" class="col-sm-2 col-form-label">Araç Resmi:</label>\r\n' +
+    ' >> 17|                             <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>" class="col-sm-2">\r\n' +
+    '    18|                             <div class="col-sm-8">\r\n' +
+    '    19|                             <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">\r\n' +
+    '    20|                             <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'vehicleImg')",
+  level: 'error',
+  timestamp: '16-12-2023  17:14:13'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:17\n' +
+    '    15|                         <div class="mb-3 row">\r\n' +
+    '    16|                             <label for="vehicleImg" class="col-sm-2 col-form-label">Araç Resmi:</label>\r\n' +
+    ' >> 17|                             <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>" class="col-sm-2">\r\n' +
+    '    18|                             <div class="col-sm-8">\r\n' +
+    '    19|                             <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">\r\n' +
+    '    20|                             <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'vehicleImg')",
+  level: 'error',
+  timestamp: '16-12-2023  17:15:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-edit.ejs:17\n' +
+    '    15|                         <div class="mb-3 row">\r\n' +
+    '    16|                             <label for="vehicleImg" class="col-sm-2 col-form-label">Araç Resmi:</label>\r\n' +
+    ' >> 17|                             <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>" class="col-sm-2">\r\n' +
+    '    18|                             <div class="col-sm-8">\r\n' +
+    '    19|                             <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">\r\n' +
+    '    20|                             <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'vehicleImg')",
+  level: 'error',
+  timestamp: '16-12-2023  17:16:04'
+}
+{
+  message: 'plate is not defined',
+  level: 'error',
+  timestamp: '16-12-2023  17:21:59'
+}
+{
+  message: 'plate is not defined',
+  level: 'error',
+  timestamp: '16-12-2023  17:22:15'
+}
+{
+  message: 'plate is not defined',
+  level: 'error',
+  timestamp: '16-12-2023  17:22:59'
+}

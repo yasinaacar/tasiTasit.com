@@ -1,4 +1,3 @@
-const logger = require("../startup/logger");
 const bcrypt=require("bcrypt");
 const saltRounds=10;
 

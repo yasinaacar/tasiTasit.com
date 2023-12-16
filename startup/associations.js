@@ -1,8 +1,5 @@
 const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, vehicleDriver }=require("../models/index-models");
 
-
-
-
 module.exports=function(){
 
     //vehicle and vehicle type relation (one to many)

@@ -4,8 +4,8 @@ const User=require("../models/user");
 const Role=require("../models/role");
 const logger = require("../startup/logger");
 const slugfield= require("../helpers/slugfield");
-const randomCodeGenerator=require("../public/js/randomcodeGenerator");
 const bcrypt=require("../helpers/bcrypt");
+const randomCodeGenerator = require("../helpers/randomCodeGenerator");
 
 
 
@@ -49,18 +49,18 @@ async function dummyData(){
             await role.save();
         };
         logger.info("Roles are added to database");
-        
+
         //create User
         const userCount=await User.count();
         if(userCount==0){
             const users=await User.bulkCreate([
-                {fullname:"Admin Profili", email:"adressforapp@outlook.com", phone:"11111111111", password: await bcrypt.hash("123456"),termsAndConditions: true, isActive: true},
+                {fullname:"Admin Profili", email:"admin@tasitasit.com", phone:"11111111111", password: await bcrypt.hash("123456"),termsAndConditions: true, isActive: true},
                 {fullname:"Firma Profili", email:"firm@tasitasit.com", phone:"22222222222", password: await bcrypt.hash("123456"),termsAndConditions: true, isActive: true},
                 {fullname:"Nakliyeci Profili", email:"shipper@tasitasit.com", phone:"33333333333", password: await bcrypt.hash("123456"),termsAndConditions: true, isActive: true},
                 {fullname:"Müşteri Profili", email:"customer@tasitasit.com", phone:"44444444444", password: await bcrypt.hash("123456"),termsAndConditions: true, isActive: true},
             ]);
             for (const user of users) {
-                user.userCode=await randomCodeGenerator("USR",user);
+                user.userCode=await randomCodeGenerator("USR", user);
                 await user.save();
             }
             logger.info("Users are added to database");
@@ -74,10 +74,10 @@ async function dummyData(){
             await users[1].addRole(roles[3]);
 
             //for shipper
+            await users[2].addRole(roles[1]);
             await users[2].addRole(roles[2]);
-            await users[2].addRole(roles[3]);
 
-            await users[3].addRole(roles[2]); //for customer
+            await users[3].addRole(roles[1]); //for customer
 
             logger.info("Created association between users and roles");
         };

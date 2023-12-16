@@ -2,20 +2,23 @@ const {DataTypes}=require("sequelize");
 const {sequelize} = require("../startup/db");
 
 const VehicleType=sequelize.define("vehicleType", {
+    vehicleTypeCode:{
+        type: DataTypes.STRING
+    },
     vehicleTypeName:{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate:{
-            len:[5,10]
+            len: [2,20],
+            notNull: true,
+            isLowercase: true, 
         }
 
     },
-    vehicleTypeCode:{
-        type: DataTypes.STRING
-    },
     url:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     }
 });
 

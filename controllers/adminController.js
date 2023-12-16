@@ -1,23 +1,25 @@
-const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle }=require("../models/index-models")
+//models
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle }=require("../models/index-models");
+
+//helpers
+const {transporter, slugfield, randomCodeGenerator}=require("../helpers/index-helpers");
+
 const logger = require("../startup/logger");
-const randomCodeGenerator=require("../public/js/randomcodeGenerator");
-const slugfield=require("../helpers/slugfield");
 const fs=require("fs");
 const { Op } = require("sequelize");
 const config  = require("config");
-const {transporter}=require("../helpers/emailSender");
 
 
 //vehicle Types process
 exports.post_vehicleType_create=async(req,res)=>{
     const vehicleTypeName=req.body.vehicleTypeName;
     try {
-        const vehicleType=await VehicleType.create({vehicleTypeName: vehicleTypeName});
+        const vehicleType=await VehicleType.create({vehicleTypeName: vehicleTypeName.toLowerCase()});
         vehicleType.url=slugfield(vehicleTypeName);
-        const generatedCode=randomCodeGenerator("VHCTY", vehicleType);
+        const generatedCode=await randomCodeGenerator("VHCTY", vehicleType);
         vehicleType.vehicleTypeCode=generatedCode;
         await vehicleType.save();
-        req.session.message={text:`${vehicleTypeName} adlı araç türü eklendi`, class:"success"}
+        req.session.message={text:`${vehicleType.vehicleTypeName} adlı araç türü eklendi`, class:"success"}
         return res.redirect("/admin/vehicle-types?action=create");
         
     } catch (err) {
@@ -51,13 +53,26 @@ exports.get_vehicleType_edit=async(req,res)=>{
 exports.post_vehicleType_edit=async(req,res)=>{
     const vehicleTypeId=req.body.vehicleTypeId;
     const vehicleTypeName=req.body.vehicleTypeName;
+    const url=req.params.slug;
 
     const vehicleType=await VehicleType.findByPk(vehicleTypeId);
-    vehicleType.vehicleTypeName=vehicleTypeName;
-    vehicleType.url=slugfield(vehicleTypeName);
-    await vehicleType.save();
-    req.session.message={text:`${vehicleType.vehicleTypeCode} kodlu araç türü güncellendi`, class:"success"};
-    return res.redirect("/admin/vehicle-types?action=edit");
+    try {        
+        vehicleType.vehicleTypeName=vehicleTypeName.toLowerCase();
+        vehicleType.url=slugfield(vehicleTypeName);
+        await vehicleType.save();
+        req.session.message={text:`${vehicleType.vehicleTypeCode} kodlu araç türü güncellendi`, class:"success"};
+        return res.redirect("/admin/vehicle-types?action=edit");
+    } catch (err) {
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${vehicleTypeName.toLowerCase()} adında araç türü zaten kayıtlı`, class:"warning"};
+            return res.redirect("/admin/vehicle-type/edit/"+url);
+        }
+        if(err.name="SequelizeValidationError"){
+            req.session.message={text:"Araç Türü Adının uzunluğu mininmum 2 maksimum 30 karakter içermeli ve boş geçilemez", class:"warning"};
+            return res.redirect("/admin/vehicle-type/edit/"+url);
+        }
+    }
+
 };
 exports.post_remove_vehicle_from_vehicleType=async(req,res)=>{
     const vehicleId=req.body.vehicleId;
@@ -108,9 +123,9 @@ exports.post_vehicle_create=async(req,res)=>{
         const vehicleTypeId=req.body.vehicleTypeId;
     
     
-        const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels});
+        const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate.toUppercase(), brand: brand, capacity: capacity, wheels: wheels});
     
-        let generatedCode=randomCodeGenerator("VHC", vehicle);
+        let generatedCode=await randomCodeGenerator("VHC", vehicle);
         vehicle.url=slugfield(plate);
         vehicle.vehicleCode=generatedCode;
         vehicleTypeId=="-1" ? vehicle.vehicleTypeId=null : vehicle.vehicleTypeId=vehicleTypeId;
@@ -134,72 +149,91 @@ exports.post_vehicle_create=async(req,res)=>{
     }
 };
 exports.get_vehicle_edit=async(req,res)=>{
-    const vehicleId=req.params.vehicleId;
-    const vehicle=await Vehicle.findByPk(vehicleId,{include:{model: Driver, attributes:["id"]}});
-    console.log(vehicle)
+    const plate=req.params.plate;
+    const vehicle=await Vehicle.findOne({where:{url:plate},include:{model: Driver, attributes:["id"]}});
     const vehicleTypes=await VehicleType.findAll();
-    const drivers=await Driver.findAll({attributes:["fullname", "id"]})
+    const drivers=await Driver.findAll({attributes:["fullname", "id"]});
+    const message=req.session.message;
+    delete req.session.message;
     return res.render("admin/vehicle-edit", {
         title: "Araç Düzenle",
         vehicle: vehicle,
         vehicleTypes:vehicleTypes,
-        drivers: drivers
+        drivers: drivers,
+        message: message
     });
 };
 exports.post_vehicle_edit=async(req,res)=>{
-    const vehicleId=req.body.vehicleId;
-    let vehicleImg=req.body.vehicleImg;
+    const url=req.params.plate;
     const plate=req.body.plate;
-    const brand=req.body.brand;
-    const capacity=req.body.capacity;
-    const wheels=req.body.wheels;
-    const vehicleTypeId=req.body.vehicleTypeId;
-    const driverIds=req.body.driverIds;
-    console.log("drivers------->", driverIds)
-    if(req.file){
-        vehicleImg=req.file.filename;
 
-        if(req.body.vehicleImg!="defaultVehicle.jpg"){
-            fs.unlink("./public/images/"+req.body.vehicleImg,err=>{
-                if(err){
-                    logger.error(`Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: ${req.body.vehicleImg},${err}`);
+    try {
+        const vehicleId=req.body.vehicleId;
+        let vehicleImg=req.body.vehicleImg;
+        const brand=req.body.brand;
+        const capacity=req.body.capacity;
+        const wheels=req.body.wheels;
+        const vehicleTypeId=req.body.vehicleTypeId;
+        const driverIds=req.body.driverIds;
+        
+            if(req.file){
+                vehicleImg=req.file.filename;
+        
+                if(req.body.vehicleImg!="defaultVehicle.jpg"){
+                    fs.unlink("./public/images/"+req.body.vehicleImg,err=>{
+                        if(err){
+                            logger.error(`Araç resmi güncellendi ancak eski araç resmi silinemedi. Silinemeyen resim: ${req.body.vehicleImg},${err}`);
+                        }
+                    })
                 }
-            })
+                
+            }
+        
+            const vehicle=await Vehicle.findByPk(vehicleId,{include:{model:Driver}});
+            if(vehicle){
+                vehicle.vehicleImg=vehicleImg;
+                vehicle.plate=plate.toUpperCase();
+                vehicle.brand=brand;
+                vehicle.capacity=capacity;
+                vehicle.wheels=wheels;
+                vehicle.url=slugfield(plate)
+                if(vehicleTypeId=="-1"){
+                    vehicle.vehicleTypeId=null;
+                    await vehicle.save();
+                    req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
+                    return res.redirect("/admin/vehicles?action=edit")
+                }
+                vehicle.vehicleTypeId=vehicleTypeId;
+                if(driverIds==undefined){
+                    await vehicle.removeDrivers(vehicle.drivers);
+                }else{
+                    await vehicle.removeDrivers(vehicle.drivers);
+                    const selectedCategories=await Driver.findAll({
+                        where:{id:{[Op.in]:driverIds}}
+                    });
+        
+                    await vehicle.addDrivers(selectedCategories);
+                }
+                await vehicle.save();
+                
+                req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
+                return res.redirect("/admin/vehicles?action=edit")
+            }
+        
+            return res.redirect("/admin/vehicles")
+        
+    } catch (err) {
+        console.log(err)
+        if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${plate} plakalı bir araç zaten sistemde mevcut`, class:"warning"}
+            return res.redirect("/admin/vehicle/edit/"+url);
         }
         
-    }
-
-    const vehicle=await Vehicle.findByPk(vehicleId,{include:{model:Driver}});
-    if(vehicle){
-        vehicle.vehicleImg=vehicleImg;
-        vehicle.plate=plate;
-        vehicle.brand=brand;
-        vehicle.capacity=capacity;
-        vehicle.wheels=wheels;
-        if(vehicleTypeId=="-1"){
-            vehicle.vehicleTypeId=null;
-            await vehicle.save();
-            req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
-            return res.redirect("/admin/vehicles?action=edit")
+        if(err.name=="SequelizeDatabaseError"){
+            req.session.message={text:`Kapasite ve teker sayısı boş geçilemez `, class:"warning"}
+            return res.redirect("/admin/vehicle/edit"/url);
         }
-        vehicle.vehicleTypeId=vehicleTypeId;
-        if(driverIds==undefined){
-            await vehicle.removeDrivers(vehicle.drivers);
-        }else{
-            await vehicle.removeDrivers(vehicle.drivers);
-            const selectedCategories=await Driver.findAll({
-                where:{id:{[Op.in]:driverIds}}
-            });
-
-            await vehicle.addDrivers(selectedCategories);
-        }
-        await vehicle.save();
-        
-        req.session.message={text:`${plate} plakalı araç güncellendi`, class:"success"};
-        return res.redirect("/admin/vehicles?action=edit")
     }
-
-    return res.redirect("/admin/vehicles")
 
 };
 exports.post_vehicle_delete=async(req,res)=>{
@@ -263,7 +297,7 @@ exports.post_driver_create=async(req,res)=>{
             url: url
         });
 
-        driver.driverCode=randomCodeGenerator("DRV", driver);
+        driver.driverCode=await randomCodeGenerator("DRV", driver);
         await driver.save();
 
 
@@ -392,7 +426,7 @@ exports.post_cargoType_create=async(req,res)=>{
     try {
         const cargoType=await CargoType.create({cargoTypeName: cargoTypeName});
 
-        cargoType.cargoTypeCode=randomCodeGenerator("CRTYP",(cargoType));
+        cargoType.cargoTypeCode=await randomCodeGenerator("CRTYP",(cargoType));
         cargoType.url=slugfield(cargoTypeName);
         await cargoType.save();
 
@@ -557,7 +591,6 @@ exports.post_user_edit=async(req,res)=>{
     const user=await User.findByPk(userId,{include:{model:Role}});
     if(roleIds==undefined){
         await user.removeRoles(user.roles); 
-        req.session.message={text:`${user.fullname} adlı kullanıcı başarıyla güncellendi`, class:"success"};
     };
 
     await user.removeRoles(user.roles);
@@ -585,7 +618,7 @@ exports.post_user_block=async(req,res)=>{
         });
 
         if(sendedMail){
-            logger.info(`Hesabı silinen kullanıcıya mail gönderildi. DETAY: ${sendedMail.messageId}`)
+            logger.info(`Hesabı engellenen kullanıcıya mail gönderildi. DETAY: ${sendedMail.messageId}`)
         }
         req.session.message={text:`${user.fullname} adlı kullanıcı engellendi`, class:"warning"};
         return res.redirect("/admin/users");
@@ -602,7 +635,7 @@ exports.post_user_remove_block=async(req,res)=>{
         const sendedMail=await transporter.sendMail({
             from: config.get("email.from"),
             to: user.email,
-            subject: "Hesabın Tekrara Açıldı || tasitasit.com",
+            subject: "Hesabın Tekrar Açıldı || tasitasit.com",
             html:`
                 <h1>Hesabın Tekrar Açıldı :)</h1>
                 <h5>Sevgili ${user.fullname}</h5>
@@ -613,7 +646,7 @@ exports.post_user_remove_block=async(req,res)=>{
         if(sendedMail){
             logger.info(`Hesabı aktifleştirilen kullanıcıya mail gönderildi. DETAY: ${sendedMail.messageId}`)
         }
-        req.session.message={text:`${user.fullname} adlı kullanıcı engellendi`, class:"warning"};
+        req.session.message={text:`${user.fullname} adlı kullanıcının engeli kaldırıldı`, class:"warning"};
         return res.redirect("/admin/users");
     } catch (err) {
         console.log(err)
