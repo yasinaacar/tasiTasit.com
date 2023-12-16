@@ -45,6 +45,9 @@ const User=sequelize.define("user", {
     token:{
         type: DataTypes.STRING
     },
+    tokenExpiration:{
+        type: DataTypes.DATE
+    },
     termsAndConditions:{
         type: DataTypes.BOOLEAN,
         allowNull: false
@@ -57,13 +60,6 @@ const User=sequelize.define("user", {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     },
-    tokenExpiration:{
-        type: DataTypes.DATE
-    },
-    lastActivity:{
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    }
 });
 
 

@@ -1,12 +1,4 @@
-const VehicleType=require("../models/vehicle-type");
-const Vehicle=require("../models/vehicle");
-const Driver=require("../models/driver");
-const District=require("../models/district");
-const Province=require("../models/province");
-const Route=require("../models/route");
-const CargoType=require("../models/cargoType");
-const Role=require("../models/role");
-const User = require("../models/user");
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle }=require("../models/index-models")
 const logger = require("../startup/logger");
 const randomCodeGenerator=require("../public/js/randomcodeGenerator");
 const slugfield=require("../helpers/slugfield");

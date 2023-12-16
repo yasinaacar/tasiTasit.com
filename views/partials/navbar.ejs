@@ -6,28 +6,34 @@
       </button>
       <div class="collapse navbar-collapse mx-3" id="navbarNav">
         <ul class="navbar-nav me-auto ">
-          <% if (isAuth) { %>           
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/vehicles">Araçlar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/drivers">Şöförler</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/routes">Rotalar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/cargo-types">Kargo Türleri</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/roles">Roller</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/admin/users">Kullanıcılar</a>
-            </li>
+          <% if (isAuth) { %>
+            <% if (isAdmin) { %>             
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/cargo-types">Kargo Türleri</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/roles">Roller</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/users">Kullanıcılar</a>
+              </li>
+            <% } %>           
+            <% if (isFirm) { %>             
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/drivers">Şöförler</a>
+              </li>
+            <% } %>
+            <% if (isShipper) { %>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/vehicles">Araçlar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/routes">Rotalar</a>
+              </li>
+            <% } %>
           <% } %>
         </ul>
         <ul class="navbar-nav ms-auto">

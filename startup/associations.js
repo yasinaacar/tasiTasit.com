@@ -1,13 +1,4 @@
-const VehicleType=require("../models/vehicle-type");
-const Vehicle=require("../models/vehicle");
-const Driver=require("../models/driver");
-const vehicleDriver=require("../models/vehicleDriver");
-const District=require("../models/district");
-const Province=require("../models/province");
-const Route=require("../models/route");
-const User=require("../models/user");
-const Role=require("../models/role");
-const userRole=require("../models/userRole");
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, vehicleDriver }=require("../models/index-models");
 
 
 

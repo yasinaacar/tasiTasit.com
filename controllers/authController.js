@@ -1,5 +1,4 @@
-const User=require("../models/user");
-const Role=require("../models/role");
+const {  Role, User }=require("../models/index-models");
 const bcrypt=require("../helpers/bcrypt");
 const jwt=require("jsonwebtoken");
 const config= require("config");
@@ -93,11 +92,14 @@ exports.get_login=async(req,res)=>{
     });
 };
 exports.post_login=async(req,res)=>{
+    if(isAuth){
+        req.session.isAuth=false 
+    }
     const email=req.body.email;
     const password=req.body.password;
     // const url=req.query.returnUrl;
 
-    const user=await User.findOne({where:{email: email}});
+    const user=await User.findOne({where:{email: email},include:{model:Role, attributes:["roleName"]}});
     if(!user){
         req.session.message={text:"Bu e-posta adresine kayıtlı kullanıcı yok.", class:"warning"};
         return res.redirect("/auth/login");
@@ -133,8 +135,7 @@ exports.post_login=async(req,res)=>{
 
     if(user.isBlocked==true){
         req.session.message={text:"Görünüşe göre topluluk kurallarını ihlal ettiğiniz için hesabınız askıya alınmış. Maalesef bu hesap artık aktif değil", class:"danger"};
-        return res.redirect("/auth/login");
-        
+        return res.redirect("/auth/login");      
     }
 
     if(user.isActive==true){
@@ -149,8 +150,22 @@ exports.post_login=async(req,res)=>{
             req.session.isAuth=true;
             req.session.fullname=user.fullname;
             req.session.userID=user.id;
+            req.session.roles=user.roles.map(role=>role["roleName"]);
+            req.session.isCustomer=true;
+            if(req.session.roles.includes("admin")){
+                req.session.isAdmin=true;
+                req.session.isShipper=true;
+                req.session.isFirm=true;
+            }
+            else if(req.session.roles.includes("firm")){
+                req.session.isFirm=true;
+                req.session.isShipper=true;
+            }
+            else if(req.session.roles.includes("shipper")){
+                req.session.isShipper=true;
+            }
 
-            return res.redirect("/admin/vehicles/");
+            return res.redirect("/");
         }
         req.session.message={text:"Parola yanlış", message:"warning"};
         return res.redirect("/auth/login");
