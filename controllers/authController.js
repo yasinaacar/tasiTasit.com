@@ -31,6 +31,10 @@ exports.post_register=async(req,res)=>{
     const phone=req.body.phone;
     const termsAndConditions=req.body.termsAndConditions == "on" ? true: false;
     try {
+        //getRoleByName function is taking user type ande searching in roles and return that role
+        function getRoleByName(userType) {
+            return roles.find(rol => rol.roleName === userType);
+        };
         if(!termsAndConditions){
             req.session.message={text:"Şartlar ve Koşulları onaylamanız gerekir", class:"warning"};
             return res.redirect("/auth/register/"+userType);
@@ -48,8 +52,11 @@ exports.post_register=async(req,res)=>{
         user.token=jwt.sign(user.id, config.get("jwt.privateKey"));
         user.tokenExpiration= 1000*60 + Date.now();
         await user.save();
-        const role=await Role.findOne({where:{roleName:"customer"}, attributes:["id"]})
-        await role.addUser(user);//set role for user   
+        const roles=await Role.findAll({raw:true});
+        const customer=getRoleByName("customer");
+        await user.addRole(customer.id);//set customer role for user (default every user must be customer)  
+        const selectedRole=getRoleByName(userType);
+        await user.addRole(selectedRole.id);//set selected role for user
         const sendedMail=await transporter.sendMail({
             from: config.get("email.from"),
             to: user.email,
@@ -84,6 +91,7 @@ exports.post_register=async(req,res)=>{
             req.session.message={text:`Tüm alanları doldurduğunuzdan ve sözleşmeyi kabul ettiğinizden emin olun`, class:"warning"};
             return res.redirect("/auth/register/"+userType);
         }
+        console.log(err)
     }
 };
 

@@ -72,3 +72,8 @@
   level: 'error',
   timestamp: '16-12-2023  17:22:59'
 }
+{
+  message: 'customer is not defined',
+  level: 'error',
+  timestamp: '18-12-2023  11:00:32'
+}
