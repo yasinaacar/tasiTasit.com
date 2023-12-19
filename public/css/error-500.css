@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;800&family=Raleway&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #FEF7E4;
+    font-family: 'Montserrat', sans-serif;
+}
+.main::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.main{
+    background: url(/static/images/500.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.main .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.main .content-desc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main .content h1{
+    color: #D13123;
+}
+
+.button{
+    background: linear-gradient(90deg,#ffde59,#ff914d);
+    padding: 10px 30px;
+    border-radius: 50px;
+    opacity: .8;
+    transition: .5s;
+}
+.button:hover{
+    opacity: 1;
+    color: #fff;
+}

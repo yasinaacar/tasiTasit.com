@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <%- include('../../partials/alert') %>
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="mb-3 row">
+                            <label for="title" class="col-sm-2 col-form-label">İlan Başlığı:</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="title" name="title" placeholder="Bursa-İstanbul Kolili Ürün">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="editor" class="col-sm-2 col-form-label">İlan Açıklaması:</label>
+                            <div class="col-sm-10">
+                              <textarea type="text" class="form-control" id="editor" name="description" style="width: 100% ;" rows="3" placeholder="İlan hakkında detay ekle" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <h6>Teslim Tarihi Aralığını Seçin</h6>
+                            <hr>
+                            <div class="col-md-5">
+                                <label for="startDate" class="form-label">Başlangıç:</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="endDate" class="form-label">Bitiş:</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="row mb-3">
+                                <h3 class="text-center mb-4">Başlangıç noktası Seçin</h3>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="col-sm-10 d-flex">
+                                    <select class="form-select" name="startProvince" id="startProvince">
+                                        <option value="-1" selected>Şehir Seçin</option>
+                                        <% provinces.forEach(province => { %>
+                                            <option value="<%= province.id %>"><%= province.name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-sm-10 d-flex">
+                                    <select class="form-select" name="startDistrict" id="startDistrict">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <h3 class="text-center mb-4">Bitiş noktası Seçin</h3>
+                            <hr>
+                            <div class="col-md-6">
+                                <div class="col-sm-10 d-flex">
+                                    <select class="form-select" name="finishProvince" id="finishProvince">
+                                        <option value="-1" selected>Şehir Seçin</option>
+                                        <% provinces.forEach(province => { %>
+                                            <option value="<%= province.id %>"><%= province.name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-sm-10 d-flex">
+                                    <select class="form-select" name="endDistrict" id="endDistrict">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3  text-center">
+                            <button type="submit" class="btn btn-primary px-5">Yayınla</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../../partials/script') %>
+    <%- include('../../partials/ckEditor') %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const startProvince = document.getElementById('startProvince');
+    const startDistrict = document.getElementById('startDistrict');
+    const finishProvince = document.getElementById('finishProvince');
+    const endDistrict = document.getElementById('endDistrict');
+
+    // İlçeleri getiren fonksiyon
+    const getDistricts = (provinceId, districtElement) => {
+        fetch(`https://turkiyeapi.dev/api/v1/provinces/${provinceId}`)
+            .then(response => response.json())
+            .then(data => {
+                districtElement.innerHTML = '<option value="-1" selected>İlçe Seçin</option>';
+
+                for (const district of data.data.districts) {
+                    const option = document.createElement('option');
+                    option.value = district.id;
+                    option.textContent = district.name;
+                    districtElement.appendChild(option);
+                }
+            })
+            .catch(error => console.error('İlçeler getirilemedi:', error));
+        };
+        
+            // Event listener ile ilçeleri getirme
+            startProvince.addEventListener('change', function () {
+                const selectedStartProvinceId = startProvince.value;
+                getDistricts(selectedStartProvinceId, startDistrict);
+            });
+        
+            finishProvince.addEventListener('change', function () {
+                const selectedFinishProvinceId = finishProvince.value;
+                getDistricts(selectedFinishProvinceId, endDistrict);
+            });
+    });
+    </script>
+</body>
+</html>

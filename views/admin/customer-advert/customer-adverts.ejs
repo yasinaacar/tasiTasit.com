@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <div class="row mt-5">
+            <%- include('../../partials/alert') %>
+            <div class="col-md-12">
+                <!-- vehicle-table -->
+                <table class="table table-striped table-hover table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th>İlan Kodu</th>
+                            <th>İlan Başlığı</th>
+                            <th>Başlangıç Noktası</th>
+                            <th>Bitiş Noktası</th>
+                            <th>Teslimat Tarihi</th>
+                            <th>Kargo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% adverts.forEach(advert => { %>
+                            <tr>
+                                <td><%= advert.advertCode %></td>
+                                <td><%= advert.title %></td>
+                                <td>
+                                    <% const foundDistrictStart = districts.find(district => district.id == advert.startPoint); %>
+                                    <%- foundDistrictStart ? `${foundDistrictStart.name}, <b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>
+                                </td>
+                                <td class="endPoint">
+                                    <% const foundDistrictEnd = districts.find(district => district.id == advert.endPoint); %>
+                                    <b>
+                                        <%- foundDistrictEnd ? `${foundDistrictEnd.name}, <b>${foundDistrictEnd.province.name}</b>` : "Bulunamadı"; %>
+                                    </b>
+                                </td>
+                                <td><span class="startDate"><%= advert.startDate %></span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                    <span class="endDate"><%= advert.endDate %></span>
+                                </td>
+                                <td>
+                                    <a href="/admin/cargo/details/<%= advert.cargo.cargoCode %>"><%= advert.cargo.cargoCode %></a>
+                                </td>
+                                <td>
+                                    <div class="btns">
+                                        <a href="/admin/customer-advert/edit/<%= advert.id %>/cargo/<%= advert.cargo.id %>" class="btn btn-primary btn-sm">Düzenle</a>
+                                        <a href="/admin/customer-advert/delete/<%= advert.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= advert.id %>">Sil</a>
+                                        <!-- delete-advert-panel -->
+                                        <div class="modal fade" id="modal_<%= advert.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Kargo Sil</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body table-responsive">
+                                                        <table class="table table-striped table-hover table-bordered mt-5 table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>İlan Kodu</th>
+                                                                    <th>İlan Başlığı</th>
+                                                                    <th>Başlangıç Noktası</th>
+                                                                    <th>Bitiş Noktası</th>
+                                                                    <th>Teslimat Tarihi</th>
+                                                                    <th>Kargo</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><%= advert.advertCode %></td>
+                                                                    <td><%= advert.title %></td>
+                                                                    <td><%= districts.find(dist=>dist.id===advert.startPoint ? dist.id : "Bulunamadı") %></td>
+                                                                    <td><%= advert.endPoint %></td>
+                                                                    <td><%= advert.startDate %> X <%= advert.endDate %></td>
+                                                                    <td><li>0</li></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <h6>Bu ilanı silerseniz, ilişkili kargonuzda silinir. Yine de silmek istiyor musunuz?</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <form action="/admin/customer-advert/delete/<%= advert.id %>" method="post">
+                                                            <input type="hidden" name="advertId" value="<%= advert.id %>">
+                                                            <input type="hidden" name="advertCode" value="<%= advert.advertCode %>">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../../partials/script') %>
+    <!-- for change date format -->
+    <script src="../../../static/js/dateConvertor.js"></script> 
+</body>
+</html>

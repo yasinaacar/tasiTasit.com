@@ -1,60 +1,70 @@
-<nav class="navbar navbar-expand-lg bg-primary">
-    <div class="container-fluid">
-      <h3><a class="navbar-brand text-light" href="/">tasitasit.com</a></h3>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse mx-3" id="navbarNav">
-        <ul class="navbar-nav me-auto ">
-          <% if (isAuth) { %>
-            <% if (isAdmin) { %>             
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/cargo-types">Kargo Türleri</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/roles">Roller</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/users">Kullanıcılar</a>
-              </li>
-            <% } %>           
-            <% if (isFirm) { %>             
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/drivers">Şöförler</a>
-              </li>
-            <% } %>
-            <% if (isShipper) { %>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/vehicles">Araçlar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin/routes">Rotalar</a>
-              </li>
-            <% } %>
+<nav class="navbar navbar-expand-lg bg-light" id="navbar">
+  <div class="container-fluid">
+    <h3><a class="navbar-brand text-light" href="/">tasitasit.com</a></h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mx-3" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <% if (isAuth) { %>
+          <% if (isAdmin) { %>             
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/cargo-types">Kargo Türleri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/roles">Roller</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/users">Kullanıcılar</a>
+            </li>
+          <% } %>           
+          <% if (isFirm) { %>             
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/drivers">Şöförler</a>
+            </li>
+          <% } %>
+          <% if (isShipper) { %>
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/vehicles">Araçlar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/admin/routes">Rotalar</a>
+            </li>
+          <% } %>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/customer-advert/create/cargo">Yük Taşıt</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/cargos">Kargolarım</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/customer-adverts">İlanlarım (Müşteri)</a>
+          </li>
+        <% } %>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <% if (!isAuth) { %>             
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/auth/login"><div class="btn button">Giriş Yap</div></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/auth/register/customer"><div class="btn button" style="background: linear-gradient(90deg,#8c52ff,#ff914d);">Üye Ol
+            </div></a>
+          </li>
+          <% } %>
+          <% if (isAuth) { %>             
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="#"><%= fullname %></a>
+            </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="link" href="/auth/logout">Çıkış Yap</a>
+            </li>
           <% } %>
         </ul>
-        <ul class="navbar-nav ms-auto">
-          <% if (!isAuth) { %>             
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/auth/login">Giriş Yap</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/auth/register/customer">Üye Ol</a>
-            </li>
-            <% } %>
-            <% if (isAuth) { %>             
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#"><%= fullname %></a>
-              </li>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/auth/logout">Çıkış Yap</a>
-              </li>
-            <% } %>
-          </ul>
-      </div>
     </div>
+  </div>
 </nav>

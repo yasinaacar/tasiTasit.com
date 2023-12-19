@@ -1,4 +1,4 @@
-const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, vehicleDriver }=require("../models/index-models");
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, vehicleDriver, CustomerAdvert }=require("../models/index-models");
 
 module.exports=function(){
 
@@ -22,4 +22,11 @@ module.exports=function(){
     User.belongsToMany(Role, {through: userRole});
     Role.belongsToMany(User, {through: userRole});
 
+    //cargo and cargo type relation (one to many)
+    CargoType.hasMany(Cargo);
+    Cargo.belongsTo(CargoType);
+
+    //cargo and customer advert relation (one to one)
+    Cargo.hasOne(CustomerAdvert);
+    CustomerAdvert.belongsTo(Cargo);
 }

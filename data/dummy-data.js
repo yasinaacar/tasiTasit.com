@@ -1,11 +1,10 @@
-const District=require("../models/district");
-const Province=require("../models/province");
-const User=require("../models/user");
-const Role=require("../models/role");
 const logger = require("../startup/logger");
 const slugfield= require("../helpers/slugfield");
 const bcrypt=require("../helpers/bcrypt");
 const randomCodeGenerator = require("../helpers/randomCodeGenerator");
+
+const { Cargo, CargoType, District, Driver, Province, Role, Route, VehicleType, Vehicle, User }=require("../models/index-models");
+
 
 
 
@@ -83,7 +82,22 @@ async function dummyData(){
         };
     };
 
-    
+    const cargoType_count=await CargoType.count();
+    if(cargoType_count==0){
+        const cargoTypes=await CargoType.bulkCreate([
+            {cargoTypeName: "dökme mal", url:slugfield("dökme mal")},
+            {cargoTypeName: "koli", url:slugfield("koli")},
+            {cargoTypeName: "çuval", url:slugfield("çuval")},
+        ]);
+
+        for (const cargoType of cargoTypes) {
+            cargoType.cargoTypeCode=await randomCodeGenerator("CRTYP",cargoType);
+            await cargoType.save();
+        };
+
+        logger.info("Kargo Türleri Başarıyla Eklendi")
+
+    }    
 
 
 }

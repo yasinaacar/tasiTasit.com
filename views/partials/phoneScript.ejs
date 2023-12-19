@@ -1,0 +1,12 @@
+<!-- Phone Number JS -->
+<script src="/static/phone/js/intlTelInput.js"></script>
+
+<!-- Phone Number Script -->
+<script>
+const telephone = document.querySelector("#telephone");
+window.intlTelInput(telephone, {
+  utilsScript: "/tel/js/utils.js",
+  initialCountry: "tr",
+  nationalMode: true,
+});
+</script>

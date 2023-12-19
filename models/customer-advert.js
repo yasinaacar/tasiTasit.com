@@ -1,30 +1,31 @@
 const {DataTypes}=require("sequelize");
 const {sequelize} = require("../startup/db");
 
-const Cargo=sequelize.define("cargo", {
-    cargoImg:{
+const CustomerAdvert=sequelize.define("customerAdvert", {
+    advertCode:{
         type: DataTypes.STRING,
     },
-    cargoName:{
+    title:{
         type: DataTypes.STRING
     },
-    weight:{
-        type: DataTypes.INTEGER,
-        validate:{
-            isNumeric: true,
-        }
-    },
-    verticalHeight:{
+    startPoint:{
         type: DataTypes.INTEGER,
     }, 
-    horizontalHeight:{
+    endPoint:{
         type: DataTypes.INTEGER,
     },
     description:{
         type: DataTypes.TEXT,
     },
-    cargoCode:{
-        type: DataTypes.STRING,
+    startDate:{
+        type: DataTypes.DATEONLY
+    },
+    endDate:{
+        type: DataTypes.DATEONLY
+    },
+    isActive:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     },
     isDeleted:{
         type: DataTypes.BOOLEAN,
@@ -33,5 +34,5 @@ const Cargo=sequelize.define("cargo", {
 });
 
 
-module.exports= Cargo;
+module.exports= CustomerAdvert;
 
