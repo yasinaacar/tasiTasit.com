@@ -56,5 +56,21 @@ router.post("/user/block/:id", isAuth, isAdmin, adminController.post_user_block)
 router.post("/user/remove-block/:id", isAuth,  isAdmin,adminController.post_user_remove_block);
 router.get("/users", isAuth, isAdmin, adminController.get_users);
 
+//advert-csutomer url
+router.get("/customer-advert/create/cargo", adminController.get_customer_advert_cargo_create);
+router.post("/customer-advert/create/cargo", imageUpload.upload.single("cargoImg"),adminController.post_customer_advert_cargo_create);
+router.get("/customer-advert/create/:cargoId", adminController.get_customer_advert_create);
+router.post("/customer-advert/create/:cargoId",adminController.post_customer_advert_create);
+router.get("/customer-advert/edit/:advertId/cargo/:cargoId", adminController.get_customer_advert_cargo_edit);
+router.post("/customer-advert/edit/:advertId/cargo/:cargoId", imageUpload.upload.single("cargoImg"), adminController.post_customer_advert_cargo_edit);
+router.get("/customer-advert/edit/:advertId", adminController.get_customer_advert_edit);
+router.post("/customer-advert/delete/:advertId", adminController.post_customer_advert_delete);
+router.get("/customer-adverts", adminController.get_customer_adverts);
+
+//cargo url
+router.get("/cargo/details/:cargoCode", adminController.get_cargo_detail);
+router.post("/cargo/delete/:id", adminController.post_cargo_delete);
+router.get("/cargos", adminController.get_cargos);
+
 
 module.exports=router;

@@ -5,63 +5,74 @@
 </head>
 <body>
     <%- include('../partials/navbar') %>
+    <%- include('../partials/alert') %>
 
-
-    <div class="container mt-5">
-        <div class="row">
-            <%- include('../partials/alert') %>
-            <form method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="mb-3 row">
-                            <label for="vehicleImg" class="col-sm-2 col-form-label">Araç Resmi:</label>
-                            <div class="col-sm-10">
-                            <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="plate" class="col-sm-2 col-form-label">Plaka:</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="plate" name="plate" placeholder="Url adresini girin">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="brand" class="col-sm-2 col-form-label">Marka:</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="brand" name="brand">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="capacity" class="col-sm-2 col-form-label">Kapasite (kg):</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="capacity" name="capacity">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="wheels" class="col-sm-2 col-form-label">Teker Sayısı:</label>
-                            <div class="col-sm-10 d-flex">
-                                <input type="wheels" class="form-control" id="wheels" name="wheels">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="vehicleTypeId" class="col-sm-2 col-form-label">Araç Türü:</label>
-                            <div class="col-sm-10 d-flex">
-                                <select class="form-select" name="vehicleTypeId" id="vehicleType">
-                                    <option value="-1" selected>Araç Türünü Seçin</option>
-                                    <% vehicleTypes.forEach(vehicleType => { %>
-                                        <option  value="<%= vehicleType.id %>"><%= vehicleType.vehicleTypeName %></option>
-                                    <% }) %>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3  text-center">
-                            <button type="submit" class="btn btn-primary px-5">Ekle</button>
-                        </div>
-                    </div>
+    <div class="forms mt-5">
+        <div class="card">
+          <div class="card-body">
+            <form method="post">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="vehicleImg" class="col-form-label">Araç Resmi:</label>
                 </div>
+                <div class="col-md-6">
+                  <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="plate" class="col-form-label">Plaka:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control text-center" id="plate" name="plate" placeholder="35 TT 023" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="brand" class="col-form-label">Marka:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control text-center" id="brand" name="brand" placeholder="ISUZU" oninput="this.value = this.value.replace(/[0-9]/g, '')">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="capacity" class="col-form-label">Kapasite:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="number" class="form-control text-center" id="capacity" name="capacity" placeholder="1000 KG" min="0" pattern="^[0-9]" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="wheels" class="col-form-label">Teker Sayısı:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="wheels" class="form-control text-center" id="wheels" name="wheels" placeholder="10" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="vehicleTypeId" class="col-form-label">Araç Türü:</label>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-select" name="vehicleTypeId" id="vehicleType">
+                    <option value="-1" selected class="text-center">Araç Türünü Seçin</option>
+                    <% vehicleTypes.forEach(vehicleType => { %>
+                        <option value="<%= vehicleType.id %>"  class="text-center"><%= vehicleType.vehicleTypeName %></option>
+                     
+                    <% }) %>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <button type="submit" class="button px-5">Ekle</button>
+              </div>
             </form>
+          </div>
         </div>
-    </div>
+      </div>
+
 
     <%- include('../partials/script') %>
 </body>

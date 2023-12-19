@@ -7,61 +7,67 @@
     <%- include('../partials/navbar') %>
 
 
-    <div class="container mt-5">
-        <div class="row">
+    <div class="forms">
+        <div class="container">
             <%- include('../partials/alert') %>
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row mb-4">
-                            <h3 class="text-center mb-4">Başlangıç noktası Seçin</h3>
-                            <hr>
-                            <div class="col-md-6">
-                                <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="startProvince" id="startProvince">
-                                        <option value="-1" selected>Şehir Seçin</option>
-                                        <% provinces.forEach(province => { %>
-                                            <option value="<%= province.id %>"><%= province.name %></option>
-                                        <% }) %>
-                                    </select>
+            <div class="card" id="card">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row mb-4">
+                                    <h3 class="text-center mb-4">Başlangıç noktası Seçin</h3>
+                                    <hr>
+                                    <div class="col-md-6 mb-5">
+                                        <div class="col-sm-10 d-flex">
+                                            <select class="form-select text-center" name="startProvince" id="startProvince">
+                                                <option value="-1" selected>Şehir Seçin</option>
+                                                <% provinces.forEach(province => { %>
+                                                    <option value="<%= province.id %>"><%= province.name %></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-sm-10 d-flex">
+                                            <select class="form-select text-center" name="startDistrict" id="startDistrict">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <h3 class="text-center mb-4">Bitiş noktası Seçin</h3>
+                                    <hr>
+                                    <div class="col-md-6">
+                                        <div class="col-sm-10 d-flex mb-5">
+                                            <select class="form-select text-center" name="finishProvince" id="finishProvince">
+                                                <option value="-1" selected>Şehir Seçin</option>
+                                                <% provinces.forEach(province => { %>
+                                                    <option value="<%= province.id %>"><%= province.name %></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-sm-10 d-flex">
+                                            <select class="form-select text-center" name="finishDistrict" id="finishDistrict">
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="startDistrict" id="startDistrict">
-                                    </select>
-                                </div>
+        
+                            <div class="row">
+                                <button type="submit" class="button px-5 view">Ekle</button>
                             </div>
                         </div>
-                        <div class="row mb-4">
-                            <h3 class="text-center mb-4">Bitiş noktası Seçin</h3>
-                            <hr>
-                            <div class="col-md-6">
-                                <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="finishProvince" id="finishProvince">
-                                        <option value="-1" selected>Şehir Seçin</option>
-                                        <% provinces.forEach(province => { %>
-                                            <option value="<%= province.id %>"><%= province.name %></option>
-                                        <% }) %>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="finishDistrict" id="finishDistrict">
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3  text-center">
-                        <button type="submit" class="btn btn-primary px-5">Ekle</button>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
+        
     </div>
+
 
     <%- include('../partials/script') %>
     <script>

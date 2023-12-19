@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <%- include('../../partials/alert') %>
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="mb-3 row">
+                            <label for="cargoName" class="col-sm-2 col-form-label">İlan Başlığı veya Kargo Adı:</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="cargoName" name="cargoName" placeholder="Bursa-İstanbul Kolili Ürün">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="cargoImg" class="col-sm-2 col-form-label">Kargo Resmi:</label>
+                            <div class="col-sm-10">
+                            <input type="file" class="form-control" id="cargoImg" name="cargoImg">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="editor" class="col-sm-2 col-form-label">Kargo Açıklaması:</label>
+                            <div class="col-sm-10">
+                              <textarea type="text" class="form-control" id="editor" name="description" style="width: 100% ;" rows="3" placeholder="Kargo hakkında detay ekle" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="weight" class="col-sm-2 col-form-label">Kilo:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="weight" name="weight">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="horizontalHeight" class="col-sm-2 col-form-label">Uzunluk (Yatay):</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="horizontalHeight" name="horizontalHeight">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="verticalHeight" class="col-sm-2 col-form-label">Uzunluk: (Dikey)</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="verticalHeight" name="verticalHeight">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="cargoType" class="col-sm-2 col-form-label">Kargo Türü:</label>
+                            <div class="col-sm-10 d-flex">
+                                <select class="form-select" name="cargoType">
+                                    <option selected value="-1">Seçilmedi</option>
+                                    <% cargoTypes.forEach(cargoType => { %>
+                                        <option value="<%= cargoType.id %>"><%= cargoType.cargoTypeName %></option>
+                                    <% }) %>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="mb-3  text-center">
+                            <button type="submit" class="btn btn-primary px-5">Sonraki</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../../partials/script') %>
+    <%- include('../../partials/ckEditor') %>
+
+</body>
+</html>

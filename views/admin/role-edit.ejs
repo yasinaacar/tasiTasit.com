@@ -6,68 +6,66 @@
 <body>
     <%- include('../partials/navbar') %>
     <div class="container">
-        <div class="row my-5">
+        <div class="forms">
             <%- include('../partials/alert') %>
             <h3 class="text-center"><%= title %></h3>
-            <div class="col-md-12">
-                <!-- update-role -->
-                <div class="edit-vehicleType">
-                    <div class="card">
-                        <div class="card-header bg-secondary"><%= title %></div>
-                        <div class="card-body">
-                          <div class="row d-flex justify-content-center">
-                            <form action="/admin/role/edit/<%= role.url %>" method="post">
-                                <div class="col-auto mb-2">
-                                  <input type="text" class="form-control" name="roleName" placeholder="Rol Adını Girin" value="<%= role.roleName %>">
-                                </div>
-                                <div class="col-auto mb-2">
-                                    <input type="hidden" name="roleId" value="<%= role.id %>">
-                                    <button type="submit" class="btn btn-success px-4">Güncelle</button>
-                                </div>
-                            </form>
-                          </div>
+            <!-- update-role -->
+            <div class="card" id="card">
+                <div class="card-body">
+                    <form action="/admin/role/edit/<%= role.url %>" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control text-center" name="roleName" placeholder="Rol Adını Girin" value="<%= role.roleName %>">
+                            </div>
                         </div>
-                      </div>
+
+                        <div class="row">
+                            <input type="hidden" name="roleId" value="<%= role.id %>">
+                            <button type="submit" class="button px-5 view">Güncelle</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center">Role Kayıtlı Kullanıcılar</h3>
-                <hr>
-                <div class="table-responsive  mt-5">
-                    <h6>"<%= role.roleName %>" Rolündeki Kullanıcı Sayısı: <b><%= role.users.length %></b></h6>
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Kullanıcı Kodu</th>
-                                <th>Ad Soyad</th>
-                                <th>Email</th>
-                                <th>Roller</th>
-                                <th style="width: 200px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% role.users.forEach(user => { %>                             
+
+        <div class="forms">
+            <div class="card" id="card">
+                <div class="card-body">
+                    <h3 class="text-center">Role Kayıtlı Kullanıcılar</h3>
+                    <hr>
+                    <div class="table-responsive  mt-5">
+                        <h6 style="text-transform: uppercase;">"<%= role.roleName %>" Rolündeki Kullanıcı Sayısı: <b> <%= role.users.length %></b></h6>
+                        <table class="table table-striped table-hover" id="table">
+                            <thead>
                                 <tr>
-                                    <td><%= user.userCode %></td>
-                                    <td><%= user.fullname %></td>
-                                    <td><%= user.email %></td>
-                                    <td>
-                                        
-                                    </td>
-                                    <td>
-                                        <form action="/admin/role/<%= role.url %>/remove-user/<%= user.id %>" method="post">
-                                            <input type="hidden" name="userId" value="<%= user.id %>">
-                                            <input type="hidden" name="roleId" value="<%= role.id %>">
-                                            <button type="submit" class="btn btn-sm btn-danger">Kaldır</button>
-                                        </form>
-                                    </td>
-    
+                                    <th>Kullanıcı Kodu</th>
+                                    <th>Ad Soyad</th>
+                                    <th>Email</th>
+                                    <th>Roller</th>
+                                    <th style="width: 200px;"></th>
                                 </tr>
-                            <% }) %>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <% role.users.forEach(user => { %>                             
+                                    <tr>
+                                        <td><%= user.userCode %></td>
+                                        <td><%= user.fullname %></td>
+                                        <td><%= user.email %></td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <form action="/admin/role/<%= role.url %>/remove-user/<%= user.id %>" method="post">
+                                                <input type="hidden" name="userId" value="<%= user.id %>">
+                                                <input type="hidden" name="roleId" value="<%= role.id %>">
+                                                <button type="submit" class="btn delete"> <i class="bi bi-person-dash-fill"></i> Kaldır</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

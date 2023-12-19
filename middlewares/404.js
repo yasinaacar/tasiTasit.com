@@ -1,3 +1,3 @@
 module.exports=async function(req,res){
-    return res.status(404).send("404 Not Found");
+    return res.status(404).render("errors/404",{title:"404 Not Found"});
 }

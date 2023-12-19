@@ -1,0 +1,102 @@
+.forms{
+    position: relative;
+    margin-top: 50px;
+}
+.card{
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 80%;
+    box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.3);
+    transition: .5s ease-in-out;
+}
+.card form .row{
+    margin-bottom: 2rem;
+}
+.forms .row .button, .button{
+    background: linear-gradient(90deg,#ffde59,#ff914d);
+    padding: 10px 30px;
+    border-radius: 50px;
+    opacity: .8;
+    transition: .5s;
+    border: none;
+}
+
+.forms .row .button:hover, .button:hover{
+    opacity: 1;
+}
+.forms input,
+.form-select{
+    border: 0;
+    border-radius: 5px;
+    /* border-left: 2px solid #ff914d;
+    border-right: 2px solid #ff914d; */
+    border-bottom: 2px solid #ff914d;
+    /* border: 2px solid #ff914d; */
+}
+.forms input[type=checkbox]{
+    border: 2px solid black;
+}
+input:focus{
+    outline: 2px solid #ff914d !important;
+    /* outline: none; */
+}
+
+#arrowDown{
+    margin-top: 100px !important;
+    left: 50%;
+}
+#arrowUp{
+    display: none;
+    position: absolute;
+    bottom: 0;
+}
+
+#table thead th{
+    text-align: center;
+}
+
+#table tr td{
+    align-items: center;
+    vertical-align: middle;
+}
+#table .left-text{
+    width: 300px;
+    text-align: left;
+}
+.btns{
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+}
+
+.update, .delete{
+    font-size: 26px;
+}
+.edit, .delete{
+    font-size: 30px !important;
+}
+.edit{
+    color: rgb(9, 129, 234);
+}
+.delete{
+    color: red;
+}
+.update{
+    color: #0fe789;
+    font-size: 20px;
+}
+.removeBlock{
+    color: #FF9800;
+    font-size: 15px !important;
+}
+.blockBtn{
+    font-size: 20px !important;
+}
+/* copy text from input */
+.copy{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

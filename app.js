@@ -45,7 +45,7 @@ require("./startup/associations")();
 
 //connect database
 (async()=>{
-    // await sequelize.sync({force: true});
+    // await sequelize.sync({alter: true});
     // await require("./data/dummy-data")();
 })();
 

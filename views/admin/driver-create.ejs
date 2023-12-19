@@ -5,57 +5,65 @@
 </head>
 <body>
     <%- include('../partials/navbar') %>
+    <%- include('../partials/alert') %>
 
-
-    <div class="container mt-5">
-        <div class="row">
-            <%- include('../partials/alert') %>
+    <div class="forms mt-5">
+        <div class="card">
+          <div class="card-body">
             <form method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="mb-3 row">
-                            <label for="driverImg" class="col-sm-2 col-form-label">Şoför Resmi:</label>
-                            <div class="col-sm-10">
-                            <input type="file" class="form-control" id="driverImg" name="driverImg">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="fullname" class="col-sm-2 col-form-label">Ad Soyad:</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Url adresini girin">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="telephone" class="col-sm-2 col-form-label">Telefon Numarası:</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="telephone" name="telephone">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="email" class="col-sm-2 col-form-label">E-Posta:</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="gender" class="col-sm-2 col-form-label">Cinsiyet:</label>
-                            <div class="col-sm-10 d-flex">
-                                <select class="form-select" name="gender">
-                                    <option selected value="-1">Seçilmedi</option>
-                                    <option value="true">Erkek</option>
-                                    <option value="false">Kadın</option>
-                                  </select>
-                            </div>
-                        </div>
-                        <div class="mb-3  text-center">
-                            <button type="submit" class="btn btn-primary px-5">Ekle</button>
-                        </div>
-                    </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="driverImg" class="col-form-label">Şoför Resmi:</label>
                 </div>
+                <div class="col-md-6">
+                  <input type="file" class="form-control" id="driverImg" name="driverImg">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="fullname" class="col-form-label">Ad Soyad:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control text-center" id="fullname" name="fullname" placeholder="Deneme Denendi"
+                   required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="telephone" class="col-form-label">Telefon Numarası:</label>
+                </div>
+                <div class="col-md-6">
+                <input type="tel" class="form-control text-center" id="telephone" name="telephone" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="email" class="col-form-label">E-Posta:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control text-center" id="email" name="email" placeholder="deneme@pau" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="gender" class="col-form-label">Cinsiyet:</label>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-select" name="gender">
+                    <option value="" selected class="text-center">Cinsiyet Seçiniz</option>
+                    <option value="true" class="text-center">Erkek</option>
+                    <option value="false" class="text-center">Kadın</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <button type="submit" class="button px-5">Ekle</button>
+              </div>
             </form>
+          </div>
         </div>
-    </div>
-
+      </div>
     <%- include('../partials/script') %>
+    <%- include('../partials/phoneScript') %>
 </body>
 </html>

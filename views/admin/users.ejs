@@ -5,14 +5,14 @@
 </head>
 <body>
     <%- include('../partials/navbar') %>
-    <div class="container">
-        <div class="row m-5">
-            <div class="col-12">
+    <div class="forms">
+        <div class="card" id="card">
+            <div class="card-body">
                 <%- include('../partials/alert') %>
                 <h3 class="text-center my-4"><%= title %></h3>
-                <div class="mb-2 category-list-table table-responsive">
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead>
+                <div class="category-list-table table-responsive">
+                    <table class="table table-striped table-hover table-bordered" >
+                        <thead id="table">
                             <tr class="text-center">
                                 <th style="width:200px">User Code</th>
                                 <th>Fullname</th>
@@ -22,7 +22,7 @@
                                 <th style="width: 220px;"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="table">
                             <% users.forEach(user => { %>                             
                                 <tr class=" align-items-center">
                                     <td><%= user.userCode %></td>
@@ -37,7 +37,7 @@
                                     <td>
                                         <div class="table-buttons d-flex justify-content-center">
                                             <!-- update-table-panel -->
-                                            <a href="/admin/user/edit/<%= user.id%>"  data-bs-toggle="offcanvas" data-bs-target="#offcanvas_<%= user.id%>" aria-controls="offcanvasRight" class="btn btn-sm btn-primary">Düzenle</a>
+                                            <a href="/admin/user/edit/<%= user.id%>"  data-bs-toggle="offcanvas" data-bs-target="#offcanvas_<%= user.id%>" aria-controls="offcanvasRight" class="btn edit"><i class="bi bi-pencil-square"></i></a>
                                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas_<%= user.id%>" aria-labelledby="offcanvasRightLabel">
                                                 <div class="offcanvas-header">
                                                   <h5 class="offcanvas-title" id="offcanvasRightLabel">User Edit</h5>
@@ -46,15 +46,36 @@
                                                 <div class="offcanvas-body mx-4">
                                                     <div class="row mb-3">
                                                         <label for="userName">User Name: </label>
-                                                        <input type="text" class="form-control mt-2" id="userName" name="userName" value="<%= user.fullname %>" disabled>
+                                                        <div class="row">
+                                                            <div class="col-11">
+                                                                <input type="text" class="form-control mt-2" id="userName" name="userName" value="<%= user.fullname %>" disabled>
+                                                            </div>
+                                                            <div class="col-1 copy">
+                                                            <i class="bi bi-copy btnCopy"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <label for="email">E-Mail: </label>
-                                                        <input type="email" class="form-control mt-2" id="email" name="email" value="<%= user.email %>" disabled>
+                                                        <div class="row">
+                                                            <div class="col-11">
+                                                                <input type="email" class="form-control mt-2" id="email" name="email" value="<%= user.email %>" disabled>
+                                                            </div>
+                                                            <div class="col-1 copy">
+                                                            <i class="bi bi-copy btnCopy"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="row mb-3">
                                                         <label for="phone">Phone: </label>
-                                                        <input type="tel" class="form-control mt-2" id="phone" name="phone" value="<%= user.phone %>" disabled>
+                                                        <div class="row">
+                                                            <div class="col-11">
+                                                                <input type="tel" class="form-control" id="phone" name="phone" value="<%= user.phone %>" disabled>
+                                                            </div>
+                                                            <div class="col-1 copy">
+                                                            <i class="bi bi-copy btnCopy"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <form action="/admin/user/edit/<%= user.id %>" method="post" >
                                                         <div class="row my-3">
@@ -69,8 +90,10 @@
                                                                 </div>
                                                             <% }) %>
                                                         </div>
-                                                        <input type="hidden" name="userId" value="<%= user.id %>">
-                                                        <button type="submit" class="btn ms-2 mt-2 btn-danger">Update</button>
+                                                        <div class="row">
+                                                            <input type="hidden" name="userId" value="<%= user.id %>">
+                                                            <button type="submit" class="btn update"><i class="bi bi-arrow-clockwise"></i> Update</button> 
+                                                        </div>
                                                     </form>
 
                                                 </div>
@@ -78,16 +101,25 @@
                                             <% if (user.isBlocked) { %>
                                                 <form action="/admin/user/remove-block/<%= user.id %>" method="post">
                                                     <input type="hidden" name="userId" value="<%= user.id %>">
-                                                    <button type="submit" class="btn btn-warning btn-sm ms-2">Engeli Kaldır</button>
+                                                    <button type="submit" class="btn removeBlock">
+                                                        <div class="row d-flex flex-column align-items-center">
+                                                            <div class="col-2">
+                                                                <i class="bi bi-person-fill-x text-center" style="font-size: 25px;"></i>
+                                                            </div>
+                                                            <div class="col-10" style="width: 100% !important;">
+                                                                Engeli Kaldır
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                    
                                                 </form>
                                             <% } %>
                                             <% if (!user.isBlocked) { %>                                             
                                                 <form action="/admin/user/block/<%= user.id %>" method="post">
                                                     <input type="hidden" name="userId" value="<%= user.id %>">
-                                                    <button type="submit" class="btn btn-danger btn-sm ms-2">Engelle</button>
+                                                    <button type="submit" class="btn delete blockBtn"><i class="bi bi-person-dash"></i> Engelle</button>
                                                 </form>
                                             <% } %>
-                                            
                                         </div>
                                     </td>
                                 </tr>
@@ -98,7 +130,6 @@
             </div>
         </div>
     </div>
-
     <%- include('../partials/script') %>
 </body>
 </html>
