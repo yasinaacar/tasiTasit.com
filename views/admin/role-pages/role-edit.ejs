@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <div class="forms">
+            <%- include('../../partials/alert') %>
+            <h3 class="text-center"><%= title %></h3>
+            <!-- update-role -->
+            <div class="card" id="card">
+                <div class="card-body">
+                    <form action="/admin/role/edit/<%= role.url %>" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control text-center" name="roleName" placeholder="Rol Adını Girin" value="<%= role.roleName %>">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <input type="hidden" name="roleId" value="<%= role.id %>">
+                            <button type="submit" class="button px-5 view">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="forms">
+            <div class="card" id="card">
+                <div class="card-body">
+                    <h3 class="text-center">Role Kayıtlı Kullanıcılar</h3>
+                    <hr>
+                    <div class="table-responsive  mt-5">
+                        <h6 style="text-transform: uppercase;">"<%= role.roleName %>" Rolündeki Kullanıcı Sayısı: <b> <%= role.users.length %></b></h6>
+                        <table class="table table-striped table-hover" id="table">
+                            <thead>
+                                <tr>
+                                    <th>Kullanıcı Kodu</th>
+                                    <th>Ad Soyad</th>
+                                    <th>Email</th>
+                                    <th>Roller</th>
+                                    <th style="width: 200px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% role.users.forEach(user => { %>                             
+                                    <tr>
+                                        <td><%= user.userCode %></td>
+                                        <td><%= user.fullname %></td>
+                                        <td><%= user.email %></td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <form action="/admin/role/<%= role.url %>/remove-user/<%= user.id %>" method="post">
+                                                <input type="hidden" name="userId" value="<%= user.id %>">
+                                                <input type="hidden" name="roleId" value="<%= role.id %>">
+                                                <button type="submit" class="btn delete"> <i class="bi bi-person-dash-fill"></i> Kaldır</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../partials/script') %>
+</body>
+</html>

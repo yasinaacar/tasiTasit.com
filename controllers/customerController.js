@@ -1,0 +1,304 @@
+//models
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, CustomerAdvert }=require("../models/index-models");
+
+//helpers
+const {transporter, slugfield, randomCodeGenerator}=require("../helpers/index-helpers");
+const { Op } = require("sequelize");;
+
+
+
+//advert-customer process
+
+exports.get_customer_advert_create=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const provinces=await Province.findAll();
+    return res.render("admin/customer-advert/customer-advert-create",{
+        title:"Müşteri İlanı Oluştur",
+        message: message,
+        provinces: provinces
+    });
+};
+exports.post_customer_advert_create=async(req,res)=>{
+    const cargoId=req.params.cargoId;
+    
+    try {
+        
+        //default dates
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD formatına çevrildi
+        const todayDate = new Date(today);
+        const oneMonthLaterDate = new Date(todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate()).toISOString().split('T')[0];
+        const title=req.body.title;
+        const description=req.body.description;
+        const startDate=req.body.startDate ? req.body.startDate: today;
+        const endDate=req.body.endDate ? req.body.endDate : oneMonthLaterDate;
+        if(endDate<startDate){
+            req.session.message={text:"Bitiş tarihi başlangıç tarihini öncesi olmaz", class:"danger"};
+            return res.redirect("/customer/customer-advert/create/"+cargoId);
+
+        }
+        const startDistrict=req.body.startDistrict;
+        const endDistrict=req.body.endDistrict;
+        
+        const advert=await CustomerAdvert.create({
+            title: title,
+            description: description,
+            startDate: startDate,
+            endDate: endDate,
+            startPoint: startDistrict,
+            endPoint: endDistrict
+        });
+        advert.advertCode=await randomCodeGenerator("ADVCST",advert);
+        await advert.save();
+        const cargo=await Cargo.findByPk(cargoId);
+        await advert.setCargo(cargo);
+        req.session.message={text:`${advert.advertCode} kodlu ilan yayınlandı`, class:"success"};
+        return res.redirect("/customer/customer-adverts")
+    } catch (err) {
+        console.log(err)
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+        }
+        req.session.message={text: message, class:"warning"};
+        return res.redirect("/customer/customer-advert/create/"+cargoId);
+        
+
+    }
+};
+exports.get_customer_advert_edit=async(req,res)=>{
+    try {
+        const message=req.session.message;
+        delete req.session.message;
+        const advertId=req.params.advertId;
+        const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{id:advertId},{isDeleted: false}]}});
+        const provinces=await Province.findAll();
+        return res.render("admin/customer-advert/customer-advert-edit",{
+            title:"Kargo Düzenle",
+            message: message,
+            advert:advert,
+            provinces: provinces
+        });
+        
+    } catch (err) {
+        console.log(err)
+    }
+};
+//advert update process not completed
+exports.post_customer_advert_edit=async(req,res)=>{
+    const advertId=req.body.advertId;
+    try {
+        
+        const today = new Date().toISOString().split('T')[0];
+        const todayDate = new Date(today);
+        const oneMonthLaterDate = new Date(todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate()).toISOString().split('T')[0];
+        const title=req.body.title;
+        const description=req.body.description;
+        const startDate=req.body.startDate ? req.body.startDate: today;
+        const endDate=req.body.endDate ? req.body.endDate : oneMonthLaterDate;
+        if(endDate<startDate){
+            req.session.message={text:"Bitiş tarihi başlangıç tarihini öncesi olmaz", class:"danger"};
+            return res.redirect("/customer/customer-advert/edit/"+advertId);
+
+        }
+        const startDistrict=req.body.startDistrict;
+        const endDistrict=req.body.endDistrict;
+        
+        const advert=await CustomerAdvert.findByPk(advertId,{include: {model: Cargo}});
+        // await advert.setCargo(cargo);
+        req.session.message={text:`${advert.advertCode} kodlu ilan yayınlandı`, class:"success"};
+        return res.redirect("/customer/customer-adverts")
+    } catch (err) {
+        console.log(err)
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+        }
+        req.session.message={text: message, class:"warning"};
+        return res.redirect("/customer/customer-advert/create/"+advertId);
+
+
+    }
+    
+    
+};
+exports.post_customer_advert_delete=async(req,res)=>{
+   const advertId=req.body.advertId;
+   const advertCode=req.body.advertCode;
+
+    const advert=await CustomerAdvert.findOne({where:{id:advertId}});
+    advert.isDeleted=true;
+    await advert.save();
+    await Cargo.update({isDeleted: true},{where:{id: advert.cargoId}});
+
+    req.session.message={text:`${advertCode} kodlu ilan silindi`, class:"danger"};
+    return res.redirect("/customer/customer-adverts");
+
+};
+exports.get_customer_adverts=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const adverts=await CustomerAdvert.findAll({where:{isDeleted: false}, include:{model:Cargo}});
+    const districts=await District.findAll({include:{model: Province, attributes:["name"]}, attributes:["id", "name"]});
+    return res.render("admin/customer-advert/customer-adverts",{
+        title:"İlanlarım",
+        message: message,
+        adverts: adverts,
+        districts: districts
+    });
+};
+
+
+//cargo process
+exports.get_cargo_create=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const cargoTypes=await CargoType.findAll({raw: true});
+    return res.render("admin/cargo-pages/cargo-create",{
+        title:"Müşteri İlanı-Kargo Oluştur",
+        message: message,
+        cargoTypes: cargoTypes
+    });
+};
+exports.post_cargo_create=async(req,res)=>{
+    const cargoName=req.body.cargoName;
+    const cargoImg=req.file ? req.file.filename:"defaultCargo.jpg";
+    const description=req.body.description;
+    const weight=req.body.weight ? req.body.weight : 0;
+    const verticalHeight=req.body.verticalHeight ? req.body.verticalHeight : 0;
+    const horizontalHeight=req.body.horizontalHeight ? req.body.horizontalHeight : 0;
+    const cargoType=req.body.cargoType;
+
+    try {
+        const cargo=await Cargo.create({
+            cargoName: cargoName,
+            cargoImg: cargoImg,
+            description: description,
+            weight: weight,
+            verticalHeight: verticalHeight,
+            horizontalHeight: horizontalHeight
+        });
+        await cargo.setCargoType(cargoType);
+
+        cargo.cargoCode=await randomCodeGenerator("CRG", cargo);
+        await cargo.save();
+        req.session.message={text:`${cargo.cargoCode} kodlu kargo oluşturuldu.`, class:"success"};
+        return res.redirect("/customer/customer-advert/create/"+cargo.id);
+
+    } catch (err) {
+        console.log(err);
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                    message += `${e.message} <br>`
+            }
+        }
+        if(err.name=="SequelizeForeignKeyConstraintError"){
+            message=`<b>Kargo Türü</b> boş geçilemez`;
+        }
+        req.session.message={text:message, class:"warning"};
+        return res.redirect("/customer/customer-advert/create/cargo");
+
+    }
+
+};
+exports.get_cargo_edit=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const cargoId=req.params.cargoId;
+    const cargo=await Cargo.findOne({where:{
+        [Op.and]:[
+            {id:cargoId},{isdeleted:false}
+        ]},
+        include:{model:CargoType, attributes:["id", "cargoTypeName"]}
+    });
+    const advertId=(await cargo.getCustomerAdvert()).id;
+    const cargoTypes=await CargoType.findAll({raw: true});
+    return res.render("admin/cargo-pages/cargo-edit",{
+        title:"Kargo Düzenle",
+        message: message,
+        cargoTypes: cargoTypes,
+        cargo: cargo,
+        advertId: advertId
+    });
+};
+exports.post_cargo_edit=async(req,res)=>{
+    const advertId=req.body.advertId;
+    const cargoId=req.body.cargoId;
+    try {
+        const cargoName=req.body.cargoName;
+        const cargoImg=req.file ? req.file.filename:"defaultCargo.jpg";
+        const description=req.body.description;
+        const weight=req.body.weight ? req.body.weight : 0;
+        const verticalHeight=req.body.verticalHeight ? req.body.verticalHeight : 0;
+        const horizontalHeight=req.body.horizontalHeight ? req.body.horizontalHeight : 0;
+        const cargoType=req.body.cargoType;
+        const cargo=await Cargo.findByPk(cargoId,{include:{model: CargoType, attributes:["id"]}});
+        if(cargo.isDeleted==true){
+            req.session.message={text:`${cargo.cargoCode} kodlu kargo maalesef güncellenemiyor.`, class:"warning"};
+            return res.redirect("/customer/customer-adverts")
+        };
+        cargo.cargoName=cargoName;
+        cargo.description=description;
+        cargo.weight=weight;
+        cargo.verticalHeight=verticalHeight;
+        cargo.horizontalHeight=horizontalHeight;
+        await cargo.save();
+
+        await cargo.setCargoType(cargoType);
+
+        req.session.message={text:`${cargo.cargoCode} kodlu kargo güncellendi`, class:"success"};
+        //router linkine göre güncellenecek
+        return res.redirect(`/customer/customer-advert/edit/${advertId}`);
+
+
+    } catch (err) {
+        console.log(err);
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                    message += `${e.message} <br>`
+            }
+        }
+        if(err.name=="SequelizeForeignKeyConstraintError"){
+            message=`<b>Kargo Türü</b> boş geçilemez`;
+        }
+        req.session.message={text:message, class:"warning"};
+        return res.redirect(`/customer/customer-advert/edit/${advertId}/cargo/${cargoId}`);
+
+    }
+};
+exports.get_cargo_detail=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const cargoCode=req.params.cargoCode;
+    const cargo=await Cargo.findOne({where:{cargoCode:cargoCode},include:{model:CargoType, attributes:["id", "cargoTypeName"]}});
+    return res.render("admin/cargo-pages/cargo-details",{
+        title:"Kargo Düzenle",
+        message: message,
+        cargo: cargo
+    })
+}
+exports.post_cargo_delete=async(req,res)=>{
+    const cargoId=req.body.cargoId;
+    const cargoCode=req.body.cargoCode;
+    //cargo is never delete because if have any problem like anti-legal cargo we must hide it for officers
+    await Cargo.update({isDeleted: true},{where:{id:cargoId}}); 
+    await CustomerAdvert.update({isDeleted: true},{where:{cargoId:cargoId}})
+    req.session.message={text:`${cargoCode} kodlu kargonuz silinmiştir`, class: "danger"};
+    return res.redirect("/customer/cargos");
+}
+exports.get_cargos=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const cargos=await Cargo.findAll({where:{isDeleted:false},include:{model: CargoType}});
+    return res.render("admin/cargo-pages/cargos",{
+        title: "Kargolar",
+        message: message,
+        cargos: cargos
+    });
+};

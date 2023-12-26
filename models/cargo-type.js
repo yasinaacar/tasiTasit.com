@@ -9,7 +9,22 @@ const CargoType=sequelize.define("cargoType", {
     cargoTypeName:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate:{
+            isLowercase:{
+                msg: `Kargo türü adı sadece <b>küçük harf</b> içermelidir`
+            },
+            notNull:{
+                msg: "Kargo Türü adı boş geçilemez"
+            },
+            notEmpty:{
+                msg: "Kargo Türü adı boş geçilemez"
+            },
+            len:{
+                args: [3,25],
+                msg: "Kargo Türü adı mininmum 3 maksimum 25 karakter içermelidir"
+            }
+        }
     },
     url:{
         type: DataTypes.STRING

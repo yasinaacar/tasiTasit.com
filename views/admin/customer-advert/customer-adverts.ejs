@@ -42,12 +42,12 @@
                                     <span class="endDate"><%= advert.endDate %></span>
                                 </td>
                                 <td>
-                                    <a href="/admin/cargo/details/<%= advert.cargo.cargoCode %>"><%= advert.cargo.cargoCode %></a>
+                                    <a href="/customer/cargo/details/<%= advert.cargo.cargoCode %>"><%= advert.cargo.cargoCode %></a>
                                 </td>
                                 <td>
                                     <div class="btns">
-                                        <a href="/admin/customer-advert/edit/<%= advert.id %>/cargo/<%= advert.cargo.id %>" class="btn btn-primary btn-sm">Düzenle</a>
-                                        <a href="/admin/customer-advert/delete/<%= advert.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= advert.id %>">Sil</a>
+                                        <a href="/customer/customer-advert/edit/<%= advert.id %>/cargo/<%= advert.cargo.id %>" class="btn btn-primary btn-sm">Düzenle</a>
+                                        <a href="/customer/customer-advert/delete/<%= advert.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= advert.id %>">Sil</a>
                                         <!-- delete-advert-panel -->
                                         <div class="modal fade" id="modal_<%= advert.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -83,7 +83,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <form action="/admin/customer-advert/delete/<%= advert.id %>" method="post">
+                                                        <form action="/customer/customer-advert/delete/<%= advert.id %>" method="post">
                                                             <input type="hidden" name="advertId" value="<%= advert.id %>">
                                                             <input type="hidden" name="advertCode" value="<%= advert.advertCode %>">
                                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -105,7 +105,7 @@
         </div>
     </div>
     <%- include('../../partials/script') %>
-    <!-- for change date format -->
-    <script src="../../../static/js/dateConvertor.js"></script> 
+    <!-- to change the date format -->
+    <script src="../../../static/js/dateFormatConvertor.js"></script> 
 </body>
 </html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <%- include('../../partials/alert') %>
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="mb-3 row">
+                            <label for="vehicleImg" class="col-sm-2 col-form-label">Araç Resmi:</label>
+                            <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>" class="col-sm-2">
+                            <div class="col-sm-8">
+                            <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">
+                            <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="plate" class="col-sm-2 col-form-label">Plaka:</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="plate" name="plate" placeholder="Url adresini girin" value="<%= vehicle.plate %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="brand" class="col-sm-2 col-form-label">Marka:</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="brand" name="brand" value="<%= vehicle.brand %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="capacity" class="col-sm-2 col-form-label">Kapasite (kg):</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="capacity" name="capacity" value="<%= vehicle.capacity %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="wheels" class="col-sm-2 col-form-label">Teker Sayısı:</label>
+                            <div class="col-sm-10 d-flex">
+                                <input type="wheels" class="form-control" id="wheels" name="wheels" value="<%= vehicle.wheels %>">
+                            </div>
+                        </div> 
+                        <div class="mb-3 row">
+                            <label for="vehicleType" class="col-sm-2 col-form-label">Araç Türü:</label>
+                            <div class="col-sm-10 d-flex">
+                                <select class="form-select" name="vehicleTypeId" id="vehicleType">
+                                    <option value="-1">Araç Türü YOK!!</option>
+                                    <% vehicleTypes.forEach(vehicleType => { %>
+                                        <option  value="<%= vehicleType.id %>" <%= vehicle.vehicleTypeId==vehicleType.id ? "selected":"" %>><%= vehicleType.vehicleTypeName %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 ms-5">
+                        <div class="row mb-3">
+                            <h4 class="pb-3 border-bottom">Şoförler</h4>
+                            <% drivers.forEach(driver => { %>                             
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=> drv.id==driver.id) ? "checked":"" %>>
+                                    <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                    <div class="mb-3  text-center">
+                        <input type="hidden" name="vehicleId" value="<%= vehicle.id %>">
+                        <button type="submit" class="btn btn-primary px-5">Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    <div class="forms mt-5">
+        <div class="card">
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-2">
+                              <label for="vehicleImg" class="col-form-label">Araç Resmi:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" id="vehicleImg" name="vehicleImg">
+                                <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="plate" class="col-form-label">Plaka:</label>
+                            </div>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control text-center" id="plate" name="plate" value="<%= vehicle.plate %>" required="required">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="brand" class="col-form-label">Marka:</label>
+                            </div>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control text-center" id="brand" name="brand" oninput="this.value = this.value.replace(/[0-9]/g, '')" value="<%= vehicle.brand %>">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="capacity" class="col-form-label">Kapasite:</label>
+                            </div>
+                            <div class="col-md-6">
+                              <input type="number" class="form-control text-center" id="capacity" name="capacity" min="0" pattern="^[0-9]" required="required" value="<%= vehicle.capacity %>">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="wheels" class="col-form-label">Teker Sayısı:</label>
+                            </div>
+                            <div class="col-md-6">
+                              <input type="wheels" class="form-control text-center" id="wheels" name="wheels" required="required" value="<%= vehicle.wheels %>">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label for="vehicleTypeId" class="col-form-label">Araç Türü:</label>
+                            </div>
+                            <div class="col-md-6">
+                              <select class="form-select text-center" name="vehicleTypeId" id="vehicleType">
+                                <option value="-1">Araç Türünü Seçin</option>
+                                <% vehicleTypes.forEach(vehicleType => { %>
+                                    <option  value="<%= vehicleType.id %>" <%= vehicle.vehicleTypeId==vehicleType.id ? "selected":"" %>><%= vehicleType.vehicleTypeName %></option>
+                                <% }) %>
+                            </select>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <h4 class="pb-3 border-bottom">Şoförler</h4>
+                            <% drivers.forEach(driver => { %>                             
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=> drv.id==driver.id) ? "checked":"" %>>
+                                    <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                  <input type="hidden" name="vehicleId" value="<%= vehicle.id %>">
+                  <button type="submit" class="button px-5">Ekle</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/script') %>
+</body>
+</html>

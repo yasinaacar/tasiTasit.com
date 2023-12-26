@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <%- include('../../partials/alert') %>
+   
+    <div class="forms">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive" id="tableResponsive">
+                    <!-- driver-table -->
+                <table class="table table-striped table-hover mt-5" id="table">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Şöför Kodu</th>
+                            <th style="width: 80px;">Fotoğraf</th>
+                            <th>Ad-Soyad</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                            <th>Araçlar</th>
+                            <th>Cinsiyet</th>
+                            <th style="width: 200px;" class="text-center"><a href="/firm/driver/create" class="btn btn-create">+ Şoför Ekle</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% drivers.forEach(driver => { %>
+                            <tr>
+                                <td><%= driver.driverCode %></td>
+                                <td>
+                                    <img src="/static/images/<%= driver.driverImg %>" alt="<%= driver.driverImg %>"style="width: 60px; border-radius: 15px;">  
+                                </td>
+                                <td><%= driver.fullname %></td>
+                                <td><%= driver.phone %></td>
+                                <td><%= driver.email %></td>
+                                <td>
+                                    <% for (let vehicle of driver.vehicles) { %>
+                                        <li><%= vehicle.plate %></li>
+                                    <% } %>
+                                </td>
+                                <td><%= driver.gender==true ? "Erkek":"Kadın" %></td>
+                                <td>
+                                    <div class="btns">
+                                        <a href="/firm/driver/edit/<%= driver.id %>/<%= driver.url %>" class="btn edit"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/firm/driver/delete/<%= driver.id %>" class="btn delete" data-bs-toggle="modal" data-bs-target="#modal_<%= driver.id %>"><i class="bi bi-trash"></i></a>
+                                        <!-- delete-driver-panel -->
+                                        <div class="modal fade" id="modal_<%= driver.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Araç Sil</h1>
+                                                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                                                    </div>
+                                                    <div class="modal-body table-responsive">
+                                                        <table class="table table-striped table-hover table-bordered mt-5 table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Şöför Kodu</th>
+                                                                    <th style="width: 80px;">Fotoğraf</th>
+                                                                    <th>Ad-Soyad</th>
+                                                                    <th>Araçlar</th>
+                                                                    <th>Cinsiyet</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><%= driver.driverCode %></td>
+                                                                    <td>
+                                                                        <img src="/static/images/<%= driver.driverImg %>" alt="<%= driver.driverImg %>"style="width: 80px;">  
+                                                                    </td>
+                                                                    <td><%= driver.fullname %></td>
+                                                                    <td>Girilmedi</td>
+                                                                    <td><%= driver.gender==true ? "Erkek":"Kadın" %></td>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="button px-5" data-bs-dismiss="modal">Close</button>
+                                                        <form action="/firm/driver/delete/<%= driver.id %>" method="post">
+                                                            <input type="hidden" name="driverId" value="<%= driver.id %>">
+                                                            <input type="hidden" name="driverImg" value="<%= driver.driverImg %>">
+                                                            <button type="submit" class="btn delete"><i class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../partials/script') %>
+</body>
+</html>

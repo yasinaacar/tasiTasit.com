@@ -12,6 +12,10 @@ const District=sequelize.define("district", {
     name:{
         type: DataTypes.STRING,
         allowNull: false,
+        validate:{
+            notNull: true,
+            notEmpty: true,
+        }
     }
 },{timestamps: false});
 

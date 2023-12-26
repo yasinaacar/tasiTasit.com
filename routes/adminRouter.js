@@ -15,26 +15,6 @@ router.post("/vehicle-type/vehicle/remove/:slug", isAuth, isAdmin, adminControll
 router.post("/vehicle-type/delete/:id", isAuth, isAdmin, adminController.post_vehicleType_delete);
 router.get("/vehicle-types", isAuth, isAdmin,adminController.get_vehicleTypes);
 
-//vehicle url
-router.get("/vehicle/create", isAuth,  isShipper, adminController.get_vehicle_create);
-router.post("/vehicle/create", isAuth,  isShipper, imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_create);
-router.get("/vehicle/edit/:plate", isAuth,  isShipper, adminController.get_vehicle_edit);
-router.post("/vehicle/edit/:plate", isAuth,  isShipper, imageUpload.upload.single("vehicleImg"),adminController.post_vehicle_edit);
-router.post("/vehicle/delete/:vehicleId", isAuth, isShipper, adminController.post_vehicle_delete);
-router.get("/vehicles", isAuth, isShipper, adminController.get_vehicles);
-
-//driver url
-router.get("/driver/create", isAuth, isFirm, adminController.get_driver_create);
-router.post("/driver/create", isAuth, isFirm,imageUpload.upload.single("driverImg"), adminController.post_driver_create);
-router.get("/driver/edit/:id/:slug", isAuth, isFirm, adminController.get_driver_edit);
-router.post("/driver/edit/:id/:slug", isAuth, isFirm,imageUpload.upload.single("driverImg"), adminController.post_driver_edit);
-router.post("/driver/delete/:id", isAuth, isFirm, adminController.post_driver_delete);
-router.get("/drivers", isAuth, isFirm, adminController.get_drivers);
-
-//route url
-router.get("/route/create", isAuth, isShipper, adminController.get_route_create);
-router.post("/route/create", isAuth, isShipper, adminController.post_route_create);
-router.get("/routes", isAuth, isShipper, adminController.get_routes);
 
 //cargo type url
 router.post("/cargo-type/create", isAuth, isAdmin, adminController.post_cargoType_create);
@@ -56,21 +36,6 @@ router.post("/user/block/:id", isAuth, isAdmin, adminController.post_user_block)
 router.post("/user/remove-block/:id", isAuth,  isAdmin,adminController.post_user_remove_block);
 router.get("/users", isAuth, isAdmin, adminController.get_users);
 
-//advert-csutomer url
-router.get("/customer-advert/create/cargo", adminController.get_customer_advert_cargo_create);
-router.post("/customer-advert/create/cargo", imageUpload.upload.single("cargoImg"),adminController.post_customer_advert_cargo_create);
-router.get("/customer-advert/create/:cargoId", adminController.get_customer_advert_create);
-router.post("/customer-advert/create/:cargoId",adminController.post_customer_advert_create);
-router.get("/customer-advert/edit/:advertId/cargo/:cargoId", adminController.get_customer_advert_cargo_edit);
-router.post("/customer-advert/edit/:advertId/cargo/:cargoId", imageUpload.upload.single("cargoImg"), adminController.post_customer_advert_cargo_edit);
-router.get("/customer-advert/edit/:advertId", adminController.get_customer_advert_edit);
-router.post("/customer-advert/delete/:advertId", adminController.post_customer_advert_delete);
-router.get("/customer-adverts", adminController.get_customer_adverts);
-
-//cargo url
-router.get("/cargo/details/:cargoCode", adminController.get_cargo_detail);
-router.post("/cargo/delete/:id", adminController.post_cargo_delete);
-router.get("/cargos", adminController.get_cargos);
 
 
 module.exports=router;

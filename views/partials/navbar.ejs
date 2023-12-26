@@ -9,7 +9,7 @@
         <% if (isAuth) { %>
           <% if (isAdmin) { %>             
             <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/admin/vehicle-types">Araç Türleri</a>
+              <a class="nav-link" id="link" aria-current="page"  href="/admin/vehicle-types">Araç Türleri</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="link" aria-current="page" href="/admin/cargo-types">Kargo Türleri</a>
@@ -23,25 +23,25 @@
           <% } %>           
           <% if (isFirm) { %>             
             <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/admin/drivers">Şöförler</a>
+              <a class="nav-link" id="link" aria-current="page" href="/firm/drivers">Şöförler</a>
             </li>
           <% } %>
           <% if (isShipper) { %>
             <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/admin/vehicles">Araçlar</a>
+              <a class="nav-link" id="link" aria-current="page" href="/shipper/vehicles">Araçlar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/admin/routes">Rotalar</a>
+              <a class="nav-link" id="link" aria-current="page" href="/shipper/routes">Rotalar</a>
             </li>
           <% } %>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/admin/customer-advert/create/cargo">Yük Taşıt</a>
+            <a class="nav-link" id="link" aria-current="page" href="/customer/customer-advert/create/cargo">Yük Taşıt</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/admin/cargos">Kargolarım</a>
+            <a class="nav-link" id="link" aria-current="page" href="/customer/cargos">Kargolarım</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/admin/customer-adverts">İlanlarım (Müşteri)</a>
+            <a class="nav-link" id="link" aria-current="page" href="/customer/customer-adverts">İlanlarım (Müşteri)</a>
           </li>
         <% } %>
       </ul>

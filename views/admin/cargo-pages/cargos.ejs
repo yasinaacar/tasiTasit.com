@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <div class="row mt-5">
+            <%- include('../../partials/alert') %>
+            <div class="col-md-12">
+                <!-- vehicle-table -->
+                <table class="table table-striped table-hover table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th>Kargo Kodu</th>
+                            <th style="width: 140px;">Kargo Resmi</th>
+                            <th>Kargo Adı</th>
+                            <th>Kilo</th>
+                            <th>Uzunluk</th>
+                            <th>Kargo Türü</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cargos.forEach(cargo => { %>
+                            <tr>
+                                <td><%= cargo.cargoCode %></td>
+                                <td>
+                                    <img src="/static/images/<%= cargo.cargoImg %>" alt="<%= cargo.cargoImg %>"style="width: 140px;">  
+                                </td>
+                                <td><%= cargo.cargoName %></td>
+                                <td><%= cargo.weight %></td>
+                                <td><%= cargo.verticalHeight %> X <%= cargo.horizontalHeight %></td>
+                                <td><li><%= cargo.cargoType.cargoTypeName %></li></td>
+                                <td>
+                                    <div class="btns">
+                                        <a href="/admin/cargo/edit/<%= cargo.id %>" class="btn btn-primary btn-sm">Düzenle</a>
+                                        <a href="/admin/cargo/delete/<%= cargo.id %>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_<%= cargo.id %>">Sil</a>
+                                        <!-- delete-cargo-panel -->
+                                        <div class="modal fade" id="modal_<%= cargo.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Kargo Sil</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body table-responsive">
+                                                        <table class="table table-striped table-hover table-bordered mt-5 table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Kargo Kodu</th>
+                                                                    <th>Kargo Resmi</th>
+                                                                    <th>Kargo Adı</th>
+                                                                    <th>Kilo</th>
+                                                                    <th>Uzunluk</th>
+                                                                    <th>Kargo Türü</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><%= cargo.cargoCode %></td>
+                                                                    <td>
+                                                                        <img src="/static/images/<%= cargo.cargoImg %>" alt="<%= cargo.cargoImg %>"style="width: 140px;">  
+                                                                    </td>
+                                                                    <td><%= cargo.cargoName %></td>
+                                                                    <td><%= cargo.weight %></td>
+                                                                    <td><%= cargo.verticalHeight %> X <%= cargo.horizontalHeight %></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <h6>Bu kargoyu silmeniz, kargonun bağlantılı olduğu ilanı da siler. Yine de Kargoyu silmek istediğinize emin misiniz?</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <form action="/admin/cargo/delete/<%= cargo.id %>" method="post">
+                                                            <input type="hidden" name="cargoId" value="<%= cargo.id %>">
+                                                            <input type="hidden" name="cargoCode" value="<%= cargo.cargoCode %>">
+                                                            <input type="hidden" name="cargoImg" value="<%= cargo.cargoImg %>">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../../partials/script') %>
+</body>
+</html>

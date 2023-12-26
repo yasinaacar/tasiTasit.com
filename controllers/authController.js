@@ -1,8 +1,8 @@
 //models
 const {  Role, User }=require("../models/index-models");
 
-//helpers
-const {bcrypt, transporter, randomCodeGenerator}=require("../helpers/index-helpers")
+//helper
+const {bcrypt, transporter, randomCodeGenerator,}=require("../helpers/index-helpers")
 
 //middlewares
 const {isAuth}=require("../middlewares/isAccess");
@@ -181,7 +181,7 @@ exports.post_login=async(req,res)=>{
 
             return res.redirect(url);
         }
-        req.session.message={text:"Parola yanlış", message:"warning"};
+        req.session.message={text:"Parola yanlış", class:"warning"};
         return res.redirect("/auth/login");
 
     }

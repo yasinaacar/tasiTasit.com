@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <%- include('../../partials/alert') %>
+
+
+    <div class="forms">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive" id="tableResponsive">
+                    <table class="table table-striped table-hover mt-5" id="table">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Araç Kodu</th>
+                                <th style="width: 140px;">Araç Resmi</th>
+                                <th>Plaka</th>
+                                <th>Marka</th>
+                                <th>Kapasite</th>
+                                <th>Teker Sayısı</th>
+                                <th>Araç türü</th>
+                                <th>Şoförler</th>
+                                <th style="width: 200px;" class="text-center"><a href="/shipper/vehicle/create" class="btn btn-create">+ Araç Ekle</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% vehicles.forEach(vehicle => { %>
+                                <tr>
+                                    <td><%= vehicle.vehicleCode %></td>
+                                    <td>
+                                        <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>"style="width: 140px;">  
+                                    </td>
+                                    <td><%= vehicle.plate %></td>
+                                    <td><span><%= vehicle.brand %></span></td>
+                                    <td><%= vehicle.capacity %></td>
+                                    <td><%= vehicle.wheels %></td>
+                                    <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>
+                                    <td><% for (let driver of vehicle.drivers) { %>
+                                        <li><%= driver.fullname %></li>
+                                        <% } %></td>
+                                    <td>
+                                        <div class="btns">
+                                            <a href="/shipper/vehicle/edit/<%= vehicle.url %>" class="btn edit"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="/shipper/vehicle/delete/<%= vehicle.id %>" class="btn delete text-center" data-bs-toggle="modal" data-bs-target="#modal_<%= vehicle.id %>"><i class="bi bi-trash"></i></a>
+                                            <!-- delete-vehicle-panel -->
+                                            <div class="modal fade" id="modal_<%= vehicle.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Araç Sil</h1>
+                                                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                                                        </div>
+                                                        <div class="modal-body table-responsive">
+                                                            <table class="table table-striped table-hover table-bordered mt-5 table-responsive">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Araç Kodu</th>
+                                                                        <th>Araç Resmi</th>
+                                                                        <th>Plaka</th>
+                                                                        <th>Marka</th>
+                                                                        <th>Kapasite</th>
+                                                                        <th>Teker Sayısı</th>
+                                                                        <th>Araç türü</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><%= vehicle.vehicleCode %></td>
+                                                                        <td>
+                                                                            <img src="/static/images/<%= vehicle.vehicleImg %>" alt="<%= vehicle.vehicleImg %>"style="width: 140px;">  
+                                                                        </td>
+                                                                        <td><%= vehicle.plate %></td>
+                                                                        <td><%= vehicle.brand %></td>
+                                                                        <td><%= vehicle.capacity %></td>
+                                                                        <td><%= vehicle.wheels %></td>
+                                                                        <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                                <button type="button" class="button px-5" data-bs-dismiss="modal">Close</button>
+                                                            <form action="/shipper/vehicle/delete/<%= vehicle.id %>" method="post">
+                                                                <input type="hidden" name="vehicleId" value="<%= vehicle.id %>">
+                                                                <input type="hidden" name="plate" value="<%= vehicle.plate %>">
+                                                                <input type="hidden" name="vehicleImg" value="<%= vehicle.vehicleImg %>">
+                                                                <button type="submit" class="btn delete text-center"><i class="bi bi-trash"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <%- include('../../partials/script') %>
+</body>
+</html>

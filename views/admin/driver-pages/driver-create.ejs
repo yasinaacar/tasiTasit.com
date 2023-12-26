@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <%- include('../../partials/alert') %>
+
+    <div class="forms mt-5">
+        <div class="card">
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="driverImg" class="col-form-label">Şoför Resmi:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="file" class="form-control" id="driverImg" name="driverImg">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="fullname" class="col-form-label">Ad Soyad:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control text-center" id="fullname" name="fullname" placeholder="Deneme Denendi"
+                   required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="phone" class="col-form-label">Telefon Numarası:</label>
+                </div>
+                <div class="col-md-6">
+                <input type="tel" class="form-control text-center" id="phone" name="phone" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="email" class="col-form-label">E-Posta:</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control text-center" id="email" name="email" placeholder="deneme@pau" required="required">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="gender" class="col-form-label">Cinsiyet:</label>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-select" name="gender">
+                    <option value="true" class="text-center" selected>Erkek</option>
+                    <option value="false" class="text-center">Kadın</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <button type="submit" class="button px-5">Ekle</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <%- include('../../partials/script') %>
+    <%- include('../../partials/phoneScript') %>
+</body>
+</html>

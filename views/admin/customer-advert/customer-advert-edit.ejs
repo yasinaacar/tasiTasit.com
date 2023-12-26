@@ -54,6 +54,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="startDistrict" id="startDistrict">
+                                        <option value="<%= advert.startPoint %>" selected><%= advert.startPoint %></option>
                                     </select>
                                 </div>
                             </div>
@@ -74,12 +75,13 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="endDistrict" id="endDistrict">
-                                        <option value="<%= province.id %>"><%= province.name %></option>
+                                        <option value="<%= advert.startPoint %>" selected><%= advert.startPoint %></option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3  text-center">
+                            <input type="hidden" name="advertId" value="<%= advert.id %>">
                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>
                         </div>
                     </div>
@@ -90,41 +92,7 @@
 
     <%- include('../../partials/script') %>
     <%- include('../../partials/ckEditor') %>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    const startProvince = document.getElementById('startProvince');
-    const startDistrict = document.getElementById('startDistrict');
-    const finishProvince = document.getElementById('finishProvince');
-    const endDistrict = document.getElementById('endDistrict');
-
-    // İlçeleri getiren fonksiyon
-    const getDistricts = (provinceId, districtElement) => {
-        fetch(`https://turkiyeapi.dev/api/v1/provinces/${provinceId}`)
-            .then(response => response.json())
-            .then(data => {
-                districtElement.innerHTML = '<option value="-1" selected>İlçe Seçin</option>';
-
-                for (const district of data.data.districts) {
-                    const option = document.createElement('option');
-                    option.value = district.id;
-                    option.textContent = district.name;
-                    districtElement.appendChild(option);
-                }
-            })
-            .catch(error => console.error('İlçeler getirilemedi:', error));
-        };
-        
-            // Event listener ile ilçeleri getirme
-            startProvince.addEventListener('change', function () {
-                const selectedStartProvinceId = startProvince.value;
-                getDistricts(selectedStartProvinceId, startDistrict);
-            });
-        
-            finishProvince.addEventListener('change', function () {
-                const selectedFinishProvinceId = finishProvince.value;
-                getDistricts(selectedFinishProvinceId, endDistrict);
-            });
-    });
-    </script>
+    <!--to get district associated with province when the province is selected-->
+    <script src="../../../static/js/provinceDistrictSelector.js"></script> 
 </body>
 </html>

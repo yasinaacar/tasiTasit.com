@@ -12,7 +12,11 @@ const Province=sequelize.define("province", {
     name:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate:{
+            notNull: true,
+            notEmpty: true,
+        }
     }
 },{timestamps: false});
 

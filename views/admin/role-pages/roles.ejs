@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <div class="forms">
+            <div class="card create-category-card" id="card">
+                <div class="card-header bg-secondary text-light text-center mb-3">Create Role</div>
+                <div class="card-body">
+                    <form action="/admin/role/create" method="post" class="row gx-3 gy-2 align-items-center justify-content-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="visually-hidden" for="roleName">Role Name:</label>
+                                <input type="text" class="form-control text-center" id="roleName" placeholder="Role Name" name="roleName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="button px-5 view">Create</button>
+                        </div>
+                    </form>    
+                </div>
+            </div>
+        </div>
+        <div class="forms">
+            <div class="card" id="card">
+                <div class="card-body">
+                    <!-- create-rol -->
+                    <%- include('../../partials/alert') %>
+                    <h3 class="text-center my-4"><%= title %></h3>
+                    <div class="mb-2 category-list-table table-responsive">
+                        <table class="table table-striped table-hover" id="table">
+                            <thead>
+                                <tr class="text-center">
+                                    <th style="width:200px">Role Code</th>
+                                    <th>Role Name</th>
+                                    <th>User Count</th>
+                                    <th style="width: 200px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% roles.forEach(role => { %>                             
+                                    <tr class=" align-items-center">
+                                        <td><%= role.roleCode %></td>
+                                        <td><%= role.roleName %></td>
+                                        <td><%= role.users.length %></td>
+                                        <td>
+                                            <div class="btns <%= role.url=="admin" || role.url=="customer" ? "btn-disabled":"" %>" >
+                                                <!-- update-role -->
+                                                <a href="/admin/role/edit/<%= role.url%>" class="btn edit"><i class="bi bi-pencil-square"></i></a>
+                                                <!-- delete-role -->
+                                                <a href="/admin/role/delete/<%= role.id %>" class="btn delete" data-bs-toggle="modal" data-bs-target="#modal_<%= role.id %>"><i class="bi bi-trash"></i></a>
+                                                <div class="modal fade" id="modal_<%= role.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Role</h1>
+                                                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                                                            </div>
+                                                            <div class="modal-body table-responsive">
+                                                                <table class="table table-striped table-hover table-bordered mt-5">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Role Code</th>
+                                                                            <th style="width: 1020px;">Role Name</th>
+                                                                            <th>User Count</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><%= role.roleCode %></td>
+                                                                            <td><%= role.roleName %></td>
+                                                                            <td><%= role.users.length %></td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="button px-5" data-bs-dismiss="modal">Close</button>
+                                                                <form action="/admin/role/delete/<%= role.id %>" method="post">
+                                                                    <input type="hidden" name="roleId" value="<%= role.id %>">
+                                                                    <input type="hidden" name="roleName" value="<%= role.roleName %>">
+                                                                    <button type="submit" class="btn delete"><i class="bi bi-trash"></i></button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/script') %>
+</body>
+</html>

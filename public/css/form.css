@@ -42,6 +42,23 @@ input:focus{
     /* outline: none; */
 }
 
+#table, #table tr, #table td, #table th{
+    border: 1px solid #F2F1EB;
+    text-align: center;
+}
+#table thead th{
+    background-color: #cfe2ff !important;
+}
+#table thead th{
+    text-align: center;
+}
+
+#table tr td{
+    align-items: center;
+}
+#table ul li{
+    text-align: left;
+}
 #arrowDown{
     margin-top: 100px !important;
     left: 50%;
