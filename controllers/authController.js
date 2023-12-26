@@ -73,25 +73,30 @@ exports.post_register=async(req,res)=>{
             logger.info(`Yeni Kayıt yapan kullanıcıya mail gönderildi. DETAY: ${sendedMail.messageId}`)
         }
 
-        req.session.message={text:`${user.email} adresine bir onaylama e postası gönderdik. E-Mailini onayladıktan sonra hesabına giriş yapabilirsin`, class: "warning"}
+        req.session.message={text:`<b>"${user.email}"</b> adresine bir onaylama e postası gönderdik. E-Mailini onayladıktan sonra hesabına giriş yapabilirsin`, class: "warning"}
         return res.redirect("/auth/login");
     } catch (err) {
+        let message= "";
         if(err.name=="SequelizeUniqueConstraintError"){
-            console.log(err.errors[0].path)
-            if(err.errors[0].path=="email"){
-                req.session.message={text:`Girdiğiniz e-mail adresine kayıtlı bir hesap zaten var`, class:"warning"};
-                return res.redirect("/auth/register/"+userType);
+            for (const e of err.errors) {
+                message += `${e.message} <br>`;
+
             }
-            if(err.errors[0].path=="phone"){
-                req.session.message={text:`Girdiğiniz telefon numarasıyla kayıtlı bir hesap zaten var`, class:"warning"};
-                return res.redirect("/auth/register/"+userType);
+            req.session.message={text:message, class:"danger"};
+
+        }
+        else if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`;
             }
+            req.session.message={text:message, class:"warning"};
         }
-        if(err.name=="SequelizeValidationError"){
-            req.session.message={text:`Tüm alanları doldurduğunuzdan ve sözleşmeyi kabul ettiğinizden emin olun`, class:"warning"};
-            return res.redirect("/auth/register/"+userType);
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
         }
-        console.log(err)
+
+        return res.redirect("/auth/register/"+userType);
     }
 };
 

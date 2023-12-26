@@ -4,6 +4,7 @@ const {sequelize} = require("../startup/db");
 const CustomerAdvert=sequelize.define("customerAdvert", {
     advertCode:{
         type: DataTypes.STRING,
+        unique: true
     },
     title:{
         type: DataTypes.STRING

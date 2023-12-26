@@ -4,42 +4,73 @@ const {sequelize} = require("../startup/db");
 const User=sequelize.define("user", {
     userCode:{
         type: DataTypes.STRING,
+        unique: true
     },
     fullname:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
-            len: [3,40],
-            notNull: true, 
-            notEmpty: true,
+            len: {
+                args:[3,40],
+                msg: "Ad Soyad/Firma Adı minimum 3 maksimum 40 karakter içermelidir"
+            },
+            notNull:  {
+                msg: "Ad Soyad/Firma Adı boş geçilemez"
+            },
+            notEmpty:  {
+                msg: "Ad Soyad/Firma Adı boş geçilemez"
+            },
+            isAlpha:{
+                msg: "Ad Soyad/Firma Adı yalnızca harflerden oluşmalıdır"
+            }
         }
     },
     email:{
         type: DataTypes.STRING,
-        unique: true,
+        unique: {msg: "Bu e-mail adresine kayıtlı bir kullanıcı zaten var"},
         allowNull: false,
         validate:{
-            notNull: false,
-            notEmpty: true,
-            isEmail: true
+            notNull: {
+                msg: "E-Mail kısmı boş geçilemez"
+            },
+            notEmpty:  {
+                msg: "E-Mail kısmı boş geçilemez"
+            },
+            isEmail: {
+                msg: "Girdiğiniz E-Mail adresinin 'e-mail' türünde olduğundan emin olun"
+            }
         }
     },
     phone:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: {msg: "Bu telefon numarasına kayıtlı bir kullanıcı zaten var"},
         validate:{
-            notNull: false,
-            notEmpty: true
+            notNull: {
+                msg: "Telefon Numarası boş geçilemez"
+            },
+            notEmpty:  {
+                msg: "Telefon Numarası boş geçilemez"
+            },
+            isNumeric:{
+                msg: "Telefon numarası yalnızca sayılardan oluşmalıdır"
+            }
         }
     },
     password:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
-            notNull: false,
-            len: [6],
-            notEmpty:true
+            notNull: {
+                msg: "Şifre boş geçilemez"
+            },
+            len: {
+                args:[6],
+                msg: "Şifre uzunluğu minimum 6 karakter olmalı"
+            },
+            notEmpty: {
+                msg: "Şifre boş geçilemez"
+            }
         }
     },
     token:{
@@ -50,10 +81,12 @@ const User=sequelize.define("user", {
     },
     termsAndConditions:{
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
         allowNull: false
     },
     isActive:{
         type: DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false
     },
     isBlocked:{

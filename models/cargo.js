@@ -4,12 +4,14 @@ const {sequelize} = require("../startup/db");
 const Cargo=sequelize.define("cargo", {
     cargoCode:{
         type: DataTypes.STRING,
+        unique: true
     },
     cargoName:{
         type: DataTypes.STRING
     },
     cargoImg:{
         type: DataTypes.STRING,
+        defaultValue: "defaultCargo.jpg"
     },
     description:{
         type: DataTypes.TEXT,

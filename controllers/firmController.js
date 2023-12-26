@@ -56,6 +56,11 @@ exports.post_driver_create=async(req,res)=>{
         else if(err.name=="SequelizeUniqueConstraintError"){
             req.session.message={text:"Telefon Numarası ya da E-Posta zaten sistemde mevcut", class:"warning"};
         }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
         req.session.message={text: message, class:"warning"};
         return res.redirect("/firm/driver/create");
     }
@@ -113,9 +118,14 @@ exports.post_driver_edit=async(req,res)=>{
                     message += `${e.message} <br>`;
             }
         }
-        if(err.name=="SequelizeUniqueConstraintError"){
+        else if(err.name=="SequelizeUniqueConstraintError"){
             message == "Telefon Numarası ya da E-Posta zaten sistemde mevcut"
         }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
         req.session.message={text: message, class:"warning"};
         return res.redirect(`/firm/driver/edit/${driverId}/${slug}`);
     }

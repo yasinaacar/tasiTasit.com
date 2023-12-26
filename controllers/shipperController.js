@@ -44,16 +44,22 @@ exports.post_vehicle_create=async(req,res)=>{
         return res.redirect("/shipper/vehicles?action=create");
         
     } catch (err) {
-        console.log(err)
-        if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${plate} plakalı bir araç zaten sistemde mevcut`, class:"warning"}
-            return res.redirect("/admin/vehicle/create");
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"warning"}
         }
-        
-        if(err.name=="SequelizeDatabaseError"){
-            req.session.message={text:`Kapasite ve teker sayısı boş geçilemez `, class:"warning"}
-            return res.redirect("/admin/vehicle/create");
+        else if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${plate} plakalı bir araç zaten sistemde mevcut`, class:"danger"}
+        }       
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
         }
+
+        return res.redirect("/shipper/vehicle/create");
     }
 };
 exports.get_vehicle_edit=async(req,res)=>{
@@ -131,16 +137,21 @@ exports.post_vehicle_edit=async(req,res)=>{
             return res.redirect("/shipper/vehicles")
         
     } catch (err) {
-        console.log(err)
-        if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${plate} plakalı bir araç zaten sistemde mevcut`, class:"warning"}
-            return res.redirect("/shipper/vehicle/edit/"+url);
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"warning"}
         }
-        
-        if(err.name=="SequelizeDatabaseError"){
-            req.session.message={text:`Kapasite ve teker sayısı boş geçilemez `, class:"warning"}
-            return res.redirect("/shipper/vehicle/edit"/url);
+        else if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`${plate} plakalı bir araç zaten sistemde mevcut`, class:"danger"}
+        }       
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
         }
+        return res.redirect("/shipper/vehicle/edit/"+url);
     }
 
 };

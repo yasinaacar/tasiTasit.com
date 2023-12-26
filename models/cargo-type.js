@@ -27,7 +27,8 @@ const CargoType=sequelize.define("cargoType", {
         }
     },
     url:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     }
 },{timestamps: false});
 

@@ -19,19 +19,26 @@ exports.post_vehicleType_create=async(req,res)=>{
         const generatedCode=await randomCodeGenerator("VHCTY", vehicleType);
         vehicleType.vehicleTypeCode=generatedCode;
         await vehicleType.save();
-        req.session.message={text:`${vehicleType.vehicleTypeName} adlı araç türü eklendi`, class:"success"}
+        req.session.message={text:`<b>"${vehicleType.vehicleTypeName}"</b> adlı araç türü eklendi`, class:"success"}
         return res.redirect("/admin/vehicle-types?action=create");
         
     } catch (err) {
-        console.log(err)
+        let message= "";
         if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${vehicleTypeName} adında araç türü zaten kayıtlı`, class:"warning"};
-            return res.redirect("/admin/vehicle-types");
+            req.session.message={text:`<b>"${vehicleTypeName}"</b> adında araç türü zaten kayıtlı`, class:"warning"};
         }
-        if(err.name="SequelizeValidationError"){
-            req.session.message={text:"Araç Türü Adının uzunluğu mininmum 2 maksimum 30 karakter içermeli ve boş geçilemez", class:"warning"};
-            return res.redirect("/admin/vehicle-types");
+        else if(err.name="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`;
+            }
+            req.session.message={text:message, class:"warning"}
         }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+        return res.redirect("/admin/vehicle-types");
+
 
     }
     
@@ -60,17 +67,26 @@ exports.post_vehicleType_edit=async(req,res)=>{
         vehicleType.vehicleTypeName=vehicleTypeName.toLowerCase();
         vehicleType.url=slugfield(vehicleTypeName);
         await vehicleType.save();
-        req.session.message={text:`${vehicleType.vehicleTypeCode} kodlu araç türü güncellendi`, class:"success"};
+        req.session.message={text:`${vehicleType.vehicleTypeCode} kodlu araç türü güncellendi`, class:"primary"};
         return res.redirect("/admin/vehicle-types?action=edit");
     } catch (err) {
+        let message= "";
         if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${vehicleTypeName.toLowerCase()} adında araç türü zaten kayıtlı`, class:"warning"};
-            return res.redirect("/admin/vehicle-type/edit/"+url);
+            req.session.message={text:`<b>"${vehicleTypeName}"</b> adında araç türü zaten kayıtlı`, class:"warning"};
         }
-        if(err.name="SequelizeValidationError"){
-            req.session.message={text:"Araç Türü Adının uzunluğu mininmum 2 maksimum 30 karakter içermeli ve boş geçilemez", class:"warning"};
-            return res.redirect("/admin/vehicle-type/edit/"+url);
+        else if(err.name="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`;
+            }
+            req.session.message={text:message, class:"warning"}
         }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+        return res.redirect("/admin/vehicle-types");
+
+
     }
 
 };
@@ -106,13 +122,13 @@ exports.get_vehicleTypes=async(req,res)=>{
 exports.post_cargoType_create=async(req,res)=>{
     const cargoTypeName=req.body.cargoTypeName;
     try {
-        const cargoType=await CargoType.create({cargoTypeName: cargoTypeName});
+        const cargoType=await CargoType.create({cargoTypeName: cargoTypeName.toLowerCase()});
 
         cargoType.cargoTypeCode=await randomCodeGenerator("CRTYP",(cargoType));
         cargoType.url=slugfield(cargoTypeName);
         await cargoType.save();
 
-        req.session.message={text:`${cargoTypeName} adlı kargo türü başarıyla eklendi`, class:"success"};
+        req.session.message={text:`<b>"${cargoTypeName.toLowerCase()}"</b> adlı kargo türü başarıyla eklendi`, class:"success"};
         return res.redirect("/admin/cargo-types?action=create");
 
     } catch (err) {
@@ -132,7 +148,8 @@ exports.post_cargoType_create=async(req,res)=>{
             return res.redirect("/admin/cargo-types");
         }
         else{
-            return res.render("errors/500", {title: "500"})
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
         }
         
     }
@@ -146,22 +163,35 @@ exports.post_cargoType_edit=async(req,res)=>{
         cargoType.url=slugfield(cargoTypeName);
         await cargoType.save();
 
-        req.session.message={text:`${cargoTypeName} adlı kargo türü başarıyla eklendi`, class:"warning"};
-        return res.redirect("/admin/cargo-types");
+        req.session.message={text:`<b>"${cargoTypeName}"</b> adlı kargo türü başarıyla güncellendi`, class:"primary"};
+        return res.redirect("/admin/cargo-types?action=edit");
 
     } catch (err) {
-        if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${cargoTypeName} adlı kargo türü zaten sistemde mevcut`, class:"warning"}
-            return res.redirect("/admin/cargo-types");
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+         req.session.message={text:message, class:"warning"};
+
         }
+        else if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`<b>"${cargoTypeName.toLowerCase()}"</b> adlı kargo türü zaten sistemde mevcut`, class:"danger"}
+        }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+        return res.redirect("/admin/cargo-types");
+
     }
 };
 exports.post_cargoType_delete=async(req,res)=>{
     const cargoTypeId=req.body.cargoTypeId;
     const cargoTypeName=req.body.cargoTypeName;
     await CargoType.destroy({where:{id:cargoTypeId}});
-    req.session.message={text:`${cargoTypeName} adlı kargo türü silindi`, class:"danger"};
-    return res.redirect("/admin/cargo-types");
+    req.session.message={text:`<b>"${cargoTypeName}"</b> adlı kargo türü silindi`, class:"danger"};
+    return res.redirect("/admin/cargo-types?action=delete");
 };  
 exports.get_cargoTypes=async(req,res)=>{
     const message=req.session.message;
@@ -184,14 +214,23 @@ exports.post_role_create=async(req,res)=>{
         req.session.message={text:`${role.roleName} adlı rol başarıyla eklendi`, class:"success"};
         return res.redirect("/admin/roles");
     } catch (err) {
+        console.log(err);
+        let message="";
         if(err.name=="SequelizeValidationError"){
-            req.session.message={text:`Rol adı minimum 2 maksimum 20 karakter içermelidir`, class:"warning"};
-            return res.redirect("/admin/roles");
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+         req.session.message={text:message, class:"warning"};
+
         }
-        if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${roleName} adlı rol zaten var`, class:"warning"};
-            return res.redirect("/admin/roles");
+        else if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`<b>${roleName.toLowerCase()}</b> adlı rol zaten var`, class:"warning"};
         }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+        return res.redirect("/admin/roles");
     }
 };
 exports.get_role_edit=async(req,res)=>{
@@ -213,24 +252,33 @@ exports.post_role_edit=async(req,res)=>{
         const roleId=req.body.roleId;
         const role=await Role.findByPk(roleId);
         if(role.url=="admin" || role.url=="customer"){
-            req.session.message={text:`${role.roleName} adlı rol silinemez ya da güncellenemez`, class:"danger"}
+            req.session.message={text:`<b>"${role.roleName}"</b> adlı rol silinemez ya da güncellenemez`, class:"danger"}
             return res.redirect("/admin/role/edit/"+slug);
         }
         role.roleName=roleName.toLowerCase();
         role.url=slugfield(roleName);
         await role.save();
-        req.session.message={text:`${roleName} adlı rol güncellendi`, class:"primary"};
+        req.session.message={text:`<b>"${roleName}"</b> adlı rol güncellendi`, class:"primary"};
         return res.redirect("/admin/roles");
         
     } catch (err) {
+        console.log(err)
+        let message = "";
         if(err.name=="SequelizeValidationError"){
-            req.session.message={text:`Rol adı minimum 2 maksimum 20 karakter içermelidir`, class:"warning"};
-            return res.redirect("/admin/role/edit/"+slug);
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"warning"};
         }
-        if(err.name=="SequelizeUniqueConstraintError"){
-            req.session.message={text:`${roleName} adlı rol zaten var`, class:"warning"};
-            return res.redirect("/admin/role/edit/"+slug);
+        else if(err.name=="SequelizeUniqueConstraintError"){
+            req.session.message={text:`<b>"${roleName}"</b> adlı rol zaten var`, class:"danger"};
         }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
+        return res.redirect("/admin/role/edit/"+slug);
     }
 };
 exports.post_remove_user_from_role=async(req,res)=>{
@@ -249,14 +297,16 @@ exports.post_role_delete=async(req,res)=>{
         const roleName=req.body.roleName;
         const role=await Role.findByPk(roleId);
         if(role.url=="admin" || role.url=="customer"){
-            req.session.message={text:`${roleName} adlı rol silinemez ya da güncellenemez`, class:"danger"}
+            req.session.message={text:`<b>"${roleName}"</b> adlı rol silinemez ya da güncellenemez`, class:"danger"}
             return res.redirect("/admin/roles");
         }
         await role.destroy();
-        req.session.message={text:`${roleName} adlı rol silindi`, class:"danger"};
-        return res.redirect("/admin/roles");
+        req.session.message={text:`"${roleName}" adlı rol silindi`, class:"danger"};
+        return res.redirect("/admin/roles?action=delete");
     } catch (err) {
-        console.log(err);
+        logger.error(err.message);
+        req.session.message={text: "Bilinmeyen bir hata oluştu, şu anda bu silme işlemini gerçekleştiremiyoruz. Lütfen daha sonra tekrar deneyin", class:"danger"}
+        return res.redirect("/admin/roles");
     }
 };
 exports.get_roles=async(req,res)=>{

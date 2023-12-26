@@ -4,6 +4,7 @@ const {sequelize} = require("../startup/db");
 const Driver=sequelize.define("driver", {
     driverCode:{
         type: DataTypes.STRING,
+        unique: true
     },
     driverImg:{
         type: DataTypes.STRING,
@@ -24,10 +25,6 @@ const Driver=sequelize.define("driver", {
                 if(value.split(" ").length<2){
                     throw new Error("Ad ve Soyad arasında bir boşluk bırakın");
                 }
-                // const specialChars =/[!@#$%^&*(),.?":{}_-|<>0-9]/;
-                // if (specialChars.test(value)) {
-                //     throw new Error("Ad Soyad özel karakter veya sayı içeremez");
-                // }
             }
         }
     },
