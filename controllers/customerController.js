@@ -3,7 +3,10 @@ const { Cargo, CargoType, District, Driver, Province, Role, Route, User, Vehicle
 
 //helpers
 const {transporter, slugfield, randomCodeGenerator}=require("../helpers/index-helpers");
-const { Op } = require("sequelize");;
+const { Op } = require("sequelize");
+const fs=require("fs");
+const logger = require("../startup/logger");
+
 
 
 
@@ -75,11 +78,15 @@ exports.get_customer_advert_edit=async(req,res)=>{
         const advertId=req.params.advertId;
         const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{id:advertId},{isDeleted: false}]}});
         const provinces=await Province.findAll();
+        const startPoint=await District.findOne({where:{id:advert.startPoint},include:{model:Province}});
+        const endPoint=await District.findOne({where:{id:advert.endPoint},include:{model:Province}});
         return res.render("admin/customer-advert/customer-advert-edit",{
             title:"Kargo Düzenle",
             message: message,
             advert:advert,
-            provinces: provinces
+            provinces: provinces,
+            startPoint: startPoint,
+            endPoint: endPoint
         });
         
     } catch (err) {
@@ -107,7 +114,13 @@ exports.post_customer_advert_edit=async(req,res)=>{
         const endDistrict=req.body.endDistrict;
         
         const advert=await CustomerAdvert.findByPk(advertId,{include: {model: Cargo}});
-        // await advert.setCargo(cargo);
+        advert.title=title;
+        advert.description=description;
+        advert.startDate=startDate;
+        advert.endDate=endDate;
+        advert.startPoint=startDistrict;
+        advert.endPoint=endDistrict;
+        await advert.save();
         req.session.message={text:`${advert.advertCode} kodlu ilan yayınlandı`, class:"success"};
         return res.redirect("/customer/customer-adverts")
     } catch (err) {
@@ -231,7 +244,19 @@ exports.post_cargo_edit=async(req,res)=>{
     const cargoId=req.body.cargoId;
     try {
         const cargoName=req.body.cargoName;
-        const cargoImg=req.file ? req.file.filename:"defaultCargo.jpg";
+        let cargoImg=req.body.cargoImg;
+        if(req.file){
+            cargoImg=req.file.filename;
+    
+            if(req.body.cargoImg!="defaultCargo.jpg" || req.body.cargoImg!="cuval.webp"){
+                fs.unlink("./public/images/"+req.body.cargoImg,err=>{
+                    if(err){
+                        logger.error(`Kargo resmi güncellendi ancak eski kargo resmi silinemedi. Silinemeyen resim: ${req.body.cargoImg},${err}`);
+                    }
+                })
+            }
+            
+        }
         const description=req.body.description;
         const weight=req.body.weight ? req.body.weight : 0;
         const verticalHeight=req.body.verticalHeight ? req.body.verticalHeight : 0;
@@ -247,6 +272,7 @@ exports.post_cargo_edit=async(req,res)=>{
         cargo.weight=weight;
         cargo.verticalHeight=verticalHeight;
         cargo.horizontalHeight=horizontalHeight;
+        cargo.cargoImg=cargoImg;
         await cargo.save();
 
         await cargo.setCargoType(cargoType);

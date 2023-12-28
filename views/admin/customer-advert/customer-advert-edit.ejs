@@ -44,7 +44,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="startProvince" id="startProvince">
-                                        <option value="<%= advert.startPoint %>" selected><%= advert.startPoint %></option>
+                                        <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>
                                         <% provinces.forEach(province => { %>
                                             <option value="<%= province.id %>"><%= province.name %></option>
                                         <% }) %>
@@ -54,7 +54,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="startDistrict" id="startDistrict">
-                                        <option value="<%= advert.startPoint %>" selected><%= advert.startPoint %></option>
+                                        <option value="<%= startPoint.id %>" selected><%= startPoint.name %></option>
                                     </select>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="finishProvince" id="finishProvince">
-                                        <option value="-1" selected>Şehir Seçin</option>
+                                        <option value="<%= endPoint.province.id %>" selected><%= endPoint.province.name %></option>
                                         <% provinces.forEach(province => { %>
                                             <option value="<%= province.id %>"><%= province.name %></option>
                                         <% }) %>
@@ -75,7 +75,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="endDistrict" id="endDistrict">
-                                        <option value="<%= advert.startPoint %>" selected><%= advert.startPoint %></option>
+                                        <option value="<%= endPoint.id %>" selected><%= endPoint.name %></option>
                                     </select>
                                 </div>
                             </div>

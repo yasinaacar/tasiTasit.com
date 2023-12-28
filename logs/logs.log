@@ -1,0 +1,10 @@
+{
+  message: "Kargo resmi güncellendi ancak eski kargo resmi silinemedi. Silinemeyen resim: undefined,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\images\\undefined'",
+  level: 'error',
+  timestamp: '28-12-2023  11:41:19'
+}
+{
+  message: "Kargo resmi güncellendi ancak eski kargo resmi silinemedi. Silinemeyen resim: undefined,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\images\\undefined'",
+  level: 'error',
+  timestamp: '28-12-2023  11:49:00'
+}
