@@ -1,5 +1,5 @@
 //models
-const {District, Driver, Province, Route, User, VehicleType, Vehicle, }=require("../models/index-models");
+const {District, Driver, Province, Route, User, VehicleType, Vehicle, Voyage, VehicleDriver }=require("../models/index-models");
 
 //helpers
 const {transporter, slugfield, randomCodeGenerator}=require("../helpers/index-helpers");
@@ -199,16 +199,111 @@ exports.get_route_create=async(req,res)=>{
     }));
 };
 exports.post_route_create=async(req,res)=>{
-    const startDistrict=req.body.startDistrict;
-    const finishDistrict=req.body.finishDistrict;
+    try {        
+        const startDistrict=req.body.startDistrict;
+        const endDistrict=req.body.endDistrict;
+        const visitPoints=req.body.visitPoint;
 
-    const route=await Route.create({startPoint:startDistrict, endPoint:finishDistrict});;
-    return res.redirect("/admin/routes");
+        console.log("Başlangıç Noktası ------------>", startDistrict);
+        console.log("Bitiş Noktası ------------>", endDistrict);
+        console.log("Duraklar ------------>", visitPoints);
+
+        const route=await Route.create({startPoint: startDistrict, endPoint: endDistrict, visitPoints: visitPoints});
+        route.routeCode=await randomCodeGenerator("ROT",route);
+        await route.save();
+        return res.redirect("/shipper/route/create");
+    } catch (err) {
+        console.log(err);
+    }
+
+    
+};
+exports.get_route_edit=async(req,res)=>{
+    try {
+        const routeId=req.params.routeId;
+        const route=await Route.findByPk(routeId,{raw:true});
+        const startPoint=await District.findOne({where:{id:route.startPoint},include:{model:Province}});
+        const endPoint=await District.findOne({where:{id:route.endPoint},include:{model:Province}});
+        const provinces=await Province.findAll();
+
+        return res.render("admin/route-edit",({
+            title: "Rota Düzenle",
+            startPoint: startPoint,
+            endPoint: endPoint,
+            route: route,
+            provinces: provinces
+        }));
+        
+    } catch (err) {
+        console.log(err)
+    }
 };
 exports.get_routes=async(req,res)=>{
-    const routes=await Route.findAll({include:{model:District}});
+    const routes=await Route.findAll({include:{model:District},raw: true});
+    const districts=await District.findAll({include:{model: Province}});
+    const provinces=await Province.findAll();
+    const visitPoints=routes[0].visitPoints;
+    for (const visitPoint of visitPoints) {
+        const findProvince=provinces.find(province=>province.id==visitPoint)
+        console.log(findProvince.name)
+    }
     return res.render("admin/routes",{
         title: "Rotalar",
-        routes: routes
+        routes: routes,
+        districts: districts,
+        provinces: provinces
     });
 };
+
+//voyage process
+exports.get_voyage_create=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    
+
+    return res.render("admin/voyage-create", {
+        title: "Sefer Oluştur",
+        message: message,
+        vehicles: vehicles
+    })
+}
+exports.post_voyage_create=async(req,res)=>{
+
+    try {
+        const startDate=req.body.startDate;
+        const endDate=req.body.endDate;
+        const vehicleIds=req.body.vehicleIds;
+        
+        console.log("Başlangıç Tarihi ------------------->", startDate);
+        console.log("Bitiş Tarihi ------------------->", endDate);
+        console.log("Araçlar ------------------->", vehicleIds);
+
+        const voyage=await Voyage.create({startDate: startDate, endDate: endDate});
+        voyage.voyageCode=await randomCodeGenerator("VYG", voyage);
+        await voyage.save();
+        for (const vehicleId of vehicleIds) {
+            const vehicleDriver=await VehicleDriver.findOne({where:{vehicleId: vehicleId}});
+            await vehicleDriver.addVoyages(voyage)
+            
+        }
+        
+        req.session.message={text:"", class:"success"}
+        return res.redirect("/shipper/voyages?action=create")
+    } catch (err) {
+        console.log(err)
+    }
+    
+}
+exports.get_voyages=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const voyages=await Voyage.findAll();
+    const vehicles=await Vehicle.findAll({model:{include:Driver}})
+    return res.render("admin/voyages", {
+        title: "Seferlerim",
+        message: message,
+        voyages: voyages,
+        vehicles: vehicles
+    })
+}

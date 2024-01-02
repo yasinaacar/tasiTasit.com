@@ -16,14 +16,32 @@
                                 <th>Rota Kodu</th>
                                 <th>Başlangıç Şehri</th>
                                 <th>Bitiş Şehri</th>
-                                <th style="width: 200px;"><a href="/admin/route/create" class="btn btn-create text-center">+ Rota Ekle</a></th>
+                                <th>Uğranacak Şehirler</th>
+                                <th style="width: 200px;"><a href="/shipper/route/create" class="btn btn-create text-center">+ Rota Ekle</a></th>
                             </tr>
                         </thead>
                         <tbody>
                            <% routes.forEach(route => { %>
-                                <td>000</td>
-                                <td><%= route.district.name %></td>
-                                <td><%= route.district.name %></td>
+                                <tr>
+                                    <td><%= route.routeCode %></td>
+                                    <td>
+                                        <% const findStartPoint = districts.find(district => district.id == route.startPoint); %>
+                                        <%- findStartPoint ? `${findStartPoint.name}, <b>${findStartPoint.province.name}</b>` : "Bulunamadı"; %>
+                                    </td>
+                                    <td>
+                                        <% const findEndPoint = districts.find(district => district.id == route.endPoint); %>
+                                        <%- findEndPoint ? `${findEndPoint.name}, <b>${findEndPoint.province.name}</b>` : "Bulunamadı"; %>
+                                    </td>
+                                    <td>
+                                        <% for (let visitPoint of route.visitPoints) { %>
+                                            <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>
+                                            <li><%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <a href="/shipper/route/edit/<%= route.id %>" class="btn btn-primary btn-sm">Düzenle</a>
+                                    </td>
+                                </tr>
                            <% }) %>
                         </tbody>
                     </table>

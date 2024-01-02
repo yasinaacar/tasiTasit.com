@@ -1,7 +1,7 @@
 const {DataTypes}=require("sequelize");
 const {sequelize} = require("../startup/db");
 
-const vehicleDriver=sequelize.define("vehicleDriver", {
+const VehicleDriver=sequelize.define("vehicleDriver", {
     vehicleDriverId:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -11,5 +11,5 @@ const vehicleDriver=sequelize.define("vehicleDriver", {
 },{timestamps: false});
 
 
-module.exports= vehicleDriver;
+module.exports= VehicleDriver;
 

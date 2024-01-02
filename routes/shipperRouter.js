@@ -19,7 +19,13 @@ router.get("/vehicles", isAuth, isShipper, shipperController.get_vehicles);
 //route url
 router.get("/route/create", isAuth, isShipper, shipperController.get_route_create);
 router.post("/route/create", isAuth, isShipper, shipperController.post_route_create);
+router.get("/route/edit/:routeId", isAuth, isShipper, shipperController.get_route_edit);
 router.get("/routes", isAuth, isShipper, shipperController.get_routes);
+
+//voyage url
+router.get("/voyage/create", isAuth,isShipper, shipperController.get_voyage_create);
+router.post("/voyage/create", isAuth,isShipper, shipperController.post_voyage_create);
+router.get("/voyages", isAuth,isShipper, shipperController.get_voyages);
 
 
 

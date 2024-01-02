@@ -1,4 +1,4 @@
-const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, vehicleDriver, CustomerAdvert }=require("../models/index-models");
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, VehicleDriver, CustomerAdvert, Voyage }=require("../models/index-models");
 
 module.exports=function(){
 
@@ -7,8 +7,8 @@ module.exports=function(){
     Vehicle.belongsTo(VehicleType);
 
     //driver and vehicle relation (many to many)
-    Vehicle.belongsToMany(Driver, {through: vehicleDriver});
-    Driver.belongsToMany(Vehicle, {through:vehicleDriver});
+    Vehicle.belongsToMany(Driver, {through: VehicleDriver});
+    Driver.belongsToMany(Vehicle, {through:VehicleDriver});
 
     //province and district relation (one to many)
     Province.hasMany(District);
@@ -29,4 +29,12 @@ module.exports=function(){
     //cargo and customer advert relation (one to one)
     Cargo.hasOne(CustomerAdvert);
     CustomerAdvert.belongsTo(Cargo);
+
+    //voyage and route relation (one to one)
+    Route.hasOne(Voyage);
+    Voyage.belongsTo(Route);
+
+    //voyage and vehicle-driver relation (one to many)
+    VehicleDriver.hasMany(Voyage,{ foreignKey: 'vehicleDriverId' });
+    Voyage.belongsTo(VehicleDriver,{ foreignKey: 'vehicleDriverId' });
 }

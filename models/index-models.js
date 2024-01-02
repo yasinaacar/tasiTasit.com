@@ -9,7 +9,8 @@ const User=require("../models/user");
 const VehicleType=require("../models/vehicle-type");
 const Vehicle=require("../models/vehicle");
 const userRole=require("../models/userRole");
-const vehicleDriver=require("../models/vehicleDriver");
+const VehicleDriver=require("../models/vehicleDriver");
 const CustomerAdvert=require("../models/customer-advert");
+const Voyage=require("../models/voyage");
 
-module.exports={ Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, vehicleDriver, CustomerAdvert };
+module.exports={ Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, VehicleDriver, CustomerAdvert, Voyage };

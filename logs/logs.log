@@ -8,3 +8,290 @@
   level: 'error',
   timestamp: '28-12-2023  11:49:00'
 }
+{
+  message: "Unknown column 'route.visitPoints' in 'field list'",
+  level: 'error',
+  timestamp: '02-01-2024  14:06:42'
+}
+{
+  message: "Unknown column 'route.visitPoints' in 'field list'",
+  level: 'error',
+  timestamp: '02-01-2024  14:07:24'
+}
+{
+  message: "Unknown column 'route.visitPoints' in 'field list'",
+  level: 'error',
+  timestamp: '02-01-2024  14:07:29'
+}
+{
+  message: "Unknown column 'route.routeCode' in 'field list'",
+  level: 'error',
+  timestamp: '02-01-2024  14:15:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:27\n' +
+    '    25|                                     <td><%= route.routeCode %></td>\r\n' +
+    '    26|                                     <td>\r\n' +
+    ' >> 27|                                         <% const findStartPoint = districts.find(district => district.id == route.startPoint); %>\r\n' +
+    '    28|                                         <%- findStartPoint ? `${findStartPoint.name}, <b>${findStartPoint.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    29|                                     </td>\r\n' +
+    '    30|                                     <td></td>\r\n' +
+    '\n' +
+    'districts is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:27:57'
+}
+{
+  message: 'ro is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:28:33'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:28\n' +
+    '    26|                                     <td>\r\n' +
+    '    27|                                         <% const findStartPoint = districts.find(district => district.id == route.startPoint); %>\r\n' +
+    ' >> 28|                                         <%- findStartPoint ? `${findStartPoint.name}, <b>${findStartPoint.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    29|                                     </td>\r\n' +
+    '    30|                                     <td></td>\r\n' +
+    '    31|                                     <td></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '02-01-2024  14:28:47'
+}
+{
+  message: "Identifier 'findEndPoint' has already been declared in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '02-01-2024  14:29:57'
+}
+{
+  message: "Identifier 'findEndPoint' has already been declared in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '02-01-2024  14:32:17'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:37\n' +
+    '    35|                                     <td>\r\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    ' >> 37|                                             <li><%= provinces.find(province=>province.id == visitPoint ? rovince.name : "Bulunmadı") %></li>\r\n' +
+    '    38|                                         <% } %>\r\n' +
+    '    39|                                     </td>\r\n' +
+    '    40|                                     <td></td>\r\n' +
+    '\n' +
+    'rovince is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:43:14'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    'startPoint is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:54:33'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:56:08'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:57:52'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  14:58:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '02-01-2024  15:02:11'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '02-01-2024  15:07:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  15:08:16'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  15:11:49'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  15:12:16'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:25\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    '    24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    ' >> 25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '    28|                                             </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  15:12:17'
+}
+{
+  message: 'Failed to lookup view "admin/voyages" in views directory "C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views"',
+  level: 'error',
+  timestamp: '02-01-2024  15:52:28'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-create.ejs:72\n' +
+    '    70|                                 <select class="form-select text-center" name="visitPoint" id="visitPoint_${stationCounter}">\r\n' +
+    '    71|                                     <option value="-1" selected>${stationCounter}. Durak Noktasını Seçin</option>\r\n' +
+    ' >> 72|                                     <% provinces.forEach(province => { %>\r\n' +
+    '    73|                                         <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    74|                                     <% }) %>\r\n' +
+    '    75|                                 </select>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  16:45:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-create.ejs:54\n' +
+    '    52|                                                         </thead>\r\n' +
+    '    53|                                                         <tbody>\r\n' +
+    ' >> 54|                                                             <% vehicles.forEach(vehicle => { %>\r\n' +
+    '    55|                                                                 <tr>\r\n' +
+    '    56|                                                                     <td><%= vehicle.vehicleCode %></td>\r\n' +
+    '    57|                                                                     <td>\r\n' +
+    '\n' +
+    'vehicles is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  17:17:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-create.ejs:54\n' +
+    '    52|                                                         </thead>\r\n' +
+    '    53|                                                         <tbody>\r\n' +
+    ' >> 54|                                                             <% vehicles.forEach(vehicle => { %>\r\n' +
+    '    55|                                                                 <tr>\r\n' +
+    '    56|                                                                     <td><%= vehicle.vehicleCode %></td>\r\n' +
+    '    57|                                                                     <td>\r\n' +
+    '\n' +
+    'vehicles is not defined',
+  level: 'error',
+  timestamp: '02-01-2024  17:18:26'
+}
+{
+  message: "Cannot read properties of undefined (reading 'visitPoints')",
+  level: 'error',
+  timestamp: '02-01-2024  17:22:35'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-create.ejs:61\n' +
+    '    59|                                                         <td><%= vehicle.capacity %></td>\r\n' +
+    '    60|                                                         <td><%= vehicle.wheels %></td>\r\n' +
+    ' >> 61|                                                         <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>\r\n' +
+    '    62|                                                         <td><% for (let driver of vehicle.drivers) { %>\r\n' +
+    '    63|                                                             <li><%= driver.fullname %></li>\r\n' +
+    '    64|                                                             <% } %></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '02-01-2024  17:22:39'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-create.ejs:61\n' +
+    '    59|                                                         <td><%= vehicle.capacity %></td>\r\n' +
+    '    60|                                                         <td><%= vehicle.wheels %></td>\r\n' +
+    ' >> 61|                                                         <td><%= vehicle.vehicleTypeId!=null ? vehicle.vehicleType.vehicleTypeName:"Belirtilmedi" %></td>\r\n' +
+    '    62|                                                         <td><% for (let driver of vehicle.drivers) { %>\r\n' +
+    '    63|                                                             <li><%= driver.fullname %></li>\r\n' +
+    '    64|                                                             <% } %></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'vehicleTypeName')",
+  level: 'error',
+  timestamp: '02-01-2024  17:22:41'
+}
