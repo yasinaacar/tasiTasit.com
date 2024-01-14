@@ -295,3 +295,512 @@
   level: 'error',
   timestamp: '02-01-2024  17:22:41'
 }
+{
+  message: "Cannot read properties of undefined (reading 'visitPoints')",
+  level: 'error',
+  timestamp: '02-01-2024  18:43:52'
+}
+{
+  message: 'Message failed: 554 5.2.0 STOREDRV.Submission.Exception:OutboundSpamException; Failed to process message due to a permanent exception with message [BeginDiagnosticData]WASCL UserAction verdict is not None. Actual verdict is Suspend, ShowTierUpgrade. OutboundSpamException: WASCL UserAction verdict is not None. Actual verdict is Suspend, ShowTierUpgrade.[EndDiagnosticData] [Hostname=DB4PR02MB9431.eurprd02.prod.outlook.com]',
+  level: 'error',
+  timestamp: '02-01-2024  18:47:40'
+}
+{
+  message: "Cannot read properties of undefined (reading 'visitPoints')",
+  level: 'error',
+  timestamp: '04-01-2024  15:53:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:36\n' +
+    '    34|                                     </td>\r\n' +
+    '    35|                                     <td>\r\n' +
+    ' >> 36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    38|                                             <li><%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '\n' +
+    'route.visitPoints is not iterable',
+  level: 'error',
+  timestamp: '04-01-2024  16:02:26'
+}
+{
+  message: 'Deneme Hatası',
+  level: 'error',
+  timestamp: '04-01-2024  16:12:15'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:36\n' +
+    '    34|                                     </td>\r\n' +
+    '    35|                                     <td>\r\n' +
+    ' >> 36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    38|                                             <li><%- findVisitPoint=="-1" ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '\n' +
+    'route.visitPoints is not iterable',
+  level: 'error',
+  timestamp: '04-01-2024  16:18:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:36\n' +
+    '    34|                                     </td>\r\n' +
+    '    35|                                     <td>\r\n' +
+    ' >> 36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    38|                                             <li><%- findVisitPoint=="-1" ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '\n' +
+    'route.visitPoints is not iterable',
+  level: 'error',
+  timestamp: '04-01-2024  16:19:23'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:36\n' +
+    '    34|                                     </td>\r\n' +
+    '    35|                                     <td>\r\n' +
+    ' >> 36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    38|                                             <li><%- findVisitPoint=="-1" ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '\n' +
+    'route.visitPoints is not iterable',
+  level: 'error',
+  timestamp: '04-01-2024  16:19:27'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:38\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    ' >> 38|                                             <li><%- findVisitPoint!="-1" ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                     </td>\r\n' +
+    '    41|                                     <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '04-01-2024  16:20:34'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:38\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    ' >> 38|                                             <li><%- findVisitPoint!="-1" ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                     </td>\r\n' +
+    '    41|                                     <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '04-01-2024  16:20:35'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:38\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    ' >> 38|                                             <li><%- findVisitPoint!=-1 ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                     </td>\r\n' +
+    '    41|                                     <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '04-01-2024  16:20:57'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:38\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    ' >> 38|                                             <li><%- findVisitPoint!=-1 ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                     </td>\r\n' +
+    '    41|                                     <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '04-01-2024  16:20:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:38\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    ' >> 38|                                             <li><%- findVisitPoint!=-1 ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                     </td>\r\n' +
+    '    41|                                     <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '04-01-2024  16:20:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:38\n' +
+    '    36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    ' >> 38|                                             <li><%- findVisitPoint!=-1 ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                     </td>\r\n' +
+    '    41|                                     <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '04-01-2024  16:20:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:70\n' +
+    '    68|                                         <% } %>\r\n' +
+    '    69|                                         <div class="col-sm-10 d-flex mb-3">\r\n' +
+    ' >> 70|                                             <select class="form-select text-center" name="visitPoint" id="visitPoint_<%= i %>">\r\n' +
+    '    71|                                                 <option value="-1" selected><%= i %>. Durak Noktasını Seçin</option>\r\n' +
+    '    72|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    73|                                                   <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '\n' +
+    'i is not defined',
+  level: 'error',
+  timestamp: '13-01-2024  12:16:23'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:69\n' +
+    '    67|                                             <div class="col-sm-10 d-flex mb-3">\r\n' +
+    '    68|                                                 <select class="form-select text-center" name="visitPoint" id="visitPoint_<%= i+1 %>">\r\n' +
+    ' >> 69|                                                     <option value="<%= route.visitPoints[i+1].id %>" selected><%= route.visitPoints[i+1].name %></option>\r\n' +
+    '    70|                                                     <option value="-1" selected><%= i+1 %>. Durak Noktasını Seçin</option>\r\n' +
+    '    71|                                                     <% provinces.forEach(province => { %>\r\n' +
+    '    72|                                                       <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '13-01-2024  12:20:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:69\n' +
+    '    67|                                             <div class="col-sm-10 d-flex mb-3">\r\n' +
+    '    68|                                                 <select class="form-select text-center" name="visitPoint" id="visitPoint_<%= i+1 %>">\r\n' +
+    ' >> 69|                                                     <option value="<%= i[i+1].id %>" selected><%= i[i+1].name %></option>\r\n' +
+    '    70|                                                     <option value="-1" selected><%= i+1 %>. Durak Noktasını Seçin</option>\r\n' +
+    '    71|                                                     <% provinces.forEach(province => { %>\r\n' +
+    '    72|                                                       <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '13-01-2024  12:21:03'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:69\n' +
+    '    67|                                             <div class="col-sm-10 d-flex mb-3">\r\n' +
+    '    68|                                                 <select class="form-select text-center" name="visitPoint" id="visitPoint_<%= i+1 %>">\r\n' +
+    ' >> 69|                                                     <option value="<%= i[i+1].id %>" selected><%= i[i+1].name %></option>\r\n' +
+    '    70|                                                     <option value="-1" selected><%= i+1 %>. Durak Noktasını Seçin</option>\r\n' +
+    '    71|                                                     <% provinces.forEach(province => { %>\r\n' +
+    '    72|                                                       <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '13-01-2024  12:21:03'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '14-01-2024  09:06:56'
+}
+{
+  message: "Cannot read properties of undefined (reading 'visitPoints')",
+  level: 'error',
+  timestamp: '14-01-2024  09:08:31'
+}
+{
+  message: 'visitPointsArray is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  09:37:33'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:67\n' +
+    '    65|                                     <div class="col-md-6">\r\n' +
+    '    66|                                         <div class="col-sm-10 d-flex mb-3">\r\n' +
+    ' >> 67|                                             <select class="form-select text-center" name="visitPoint" id="visitPoint_<%= i+1 %>">                                              \r\n' +
+    '    68|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    69|                                                   <option value="<%= province.id%>"><%=province.name%></option>\r\n' +
+    '    70|                                                 <% }) %>\r\n' +
+    '\n' +
+    'i is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  09:39:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:71\n' +
+    '    69|                                                     <% provinces.forEach(province => { %>\r\n' +
+    '    70|                                                         <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %> \r\n' +
+    ' >> 71|                                                         <% const findVisitPointQuery = province.id == findVisitPoint.id; %> \r\n' +
+    '    72|                                                         <option value="<%= findVisitPointQuery ? findVisitPoint.id : province.id %>"\r\n' +
+    '    73|                                                             <%= findVisitPointQuery ? "selected" : "" %>>\r\n' +
+    '    74|                                                             <%= findVisitPointQuery ? findVisitPoint.name : province.name %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  09:51:21'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  11:15:26'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  11:15:42'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  11:15:57'
+}
+{
+  message: 'province is not associated to route!',
+  level: 'error',
+  timestamp: '14-01-2024  11:16:45'
+}
+{
+  message: 'startDistrict is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  11:32:09'
+}
+{
+  message: 'Başlangıç Noktası ve Bitiş Noktası Aynı olamaz',
+  level: 'error',
+  timestamp: '14-01-2024  11:36:50'
+}
+{
+  message: 'Başlangıç Noktası ve Bitiş Noktası Aynı olamaz',
+  level: 'error',
+  timestamp: '14-01-2024  11:37:52'
+}
+{
+  message: 'sameStartAndEndPoint is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  11:39:49'
+}
+{
+  message: 'sameStartAndEndPoint is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  11:40:31'
+}
+{
+  message: 'sameStartAndEndPoint is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  11:41:50'
+}
+{
+  message: 'SameStartAndEndPoint is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  11:42:24'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\routes.ejs:36\n' +
+    '    34|                                     </td>\r\n' +
+    '    35|                                     <td>\r\n' +
+    ' >> 36|                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    37|                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    38|                                             <li><%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>\r\n' +
+    '    39|                                         <% } %>\r\n' +
+    '\n' +
+    'route.visitPoints is not iterable',
+  level: 'error',
+  timestamp: '14-01-2024  11:53:15'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:65\n' +
+    '    63|                                     <h3 class="text-center mb-4">Durak Noktası Seçin</h3>\r\n' +
+    '    64|                                     <hr>\r\n' +
+    ' >> 65|                                     <% for (let visitPoint of visitPoints) { %>\r\n' +
+    '    66|                                         <div class="col-md-6">\r\n' +
+    '    67|                                             <div class="col-sm-10 d-flex mb-3">\r\n' +
+    '    68|                                                 <select class="form-select text-center" name="visitPoint" id="visitPoint_<%= %>">                                              \r\n' +
+    '\n' +
+    'visitPoints is not iterable',
+  level: 'error',
+  timestamp: '14-01-2024  11:56:27'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:72\n' +
+    '    70|                                                         <% provinces.forEach(province => { %>\r\n' +
+    '    71|                                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %> \r\n' +
+    ' >> 72|                                                             <% const findVisitPointQuery = province.id == findVisitPoint.id; %> \r\n' +
+    '    73|                                                             <option value="<%= findVisitPointQuery ? findVisitPoint.id : province.id %>"\r\n' +
+    '    74|                                                                 <%= findVisitPointQuery ? "selected" : "" %>>\r\n' +
+    '    75|                                                                 <%= findVisitPointQuery ? findVisitPoint.name : province.name %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  11:59:55'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:72\n' +
+    '    70|                                                         <% provinces.forEach(province => { %>\r\n' +
+    '    71|                                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %> \r\n' +
+    ' >> 72|                                                             <% const findVisitPointQuery = province.id == findVisitPoint.id; %> \r\n' +
+    '    73|                                                             <option value="<%= findVisitPointQuery ? findVisitPoint.id : province.id %>"\r\n' +
+    '    74|                                                                 <%= findVisitPointQuery ? "selected" : "" %>>\r\n' +
+    '    75|                                                                 <%= findVisitPointQuery ? findVisitPoint.name : province.name %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  12:00:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:72\n' +
+    '    70|                                                         <% provinces.forEach(province => { %>\r\n' +
+    '    71|                                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %> \r\n' +
+    ' >> 72|                                                             <% const findVisitPointQuery = province.id == findVisitPoint.id; %> \r\n' +
+    '    73|                                                             <option value="<%= findVisitPointQuery ? findVisitPoint.id : province.id %>"\r\n' +
+    '    74|                                                                 <%= findVisitPointQuery ? "selected" : "" %>>\r\n' +
+    '    75|                                                                 <%= findVisitPointQuery ? findVisitPoint.name : province.name %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  12:00:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-edit.ejs:72\n' +
+    '    70|                                                         <% provinces.forEach(province => { %>\r\n' +
+    '    71|                                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %> \r\n' +
+    ' >> 72|                                                             <% const findVisitPointQuery = province.id == findVisitPoint.id; %> \r\n' +
+    '    73|                                                             <option value="<%= findVisitPointQuery ? findVisitPoint.id : province.id %>"\r\n' +
+    '    74|                                                                 <%= findVisitPointQuery ? "selected" : "" %>>\r\n' +
+    '    75|                                                                 <%= findVisitPointQuery ? findVisitPoint.name : province.name %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '14-01-2024  12:01:41'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:28\n' +
+    '    26|                             <tr>\r\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    ' >> 28|                                 <td><%= voyage.vehicle.plate %></td>\r\n' +
+    '    29|                                 <td></td>\r\n' +
+    '    30|                                 <td><%= voyage.startDate %></td>\r\n' +
+    '    31|                                 <td><%= voyage.endDate %></td>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'plate')",
+  level: 'error',
+  timestamp: '14-01-2024  16:18:49'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:28\n' +
+    '    26|                             <tr>\r\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    ' >> 28|                                 <td><%= voyage.vehicle.plate %></td>\r\n' +
+    '    29|                                 <td></td>\r\n' +
+    '    30|                                 <td><%= voyage.startDate %></td>\r\n' +
+    '    31|                                 <td><%= voyage.endDate %></td>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'plate')",
+  level: 'error',
+  timestamp: '14-01-2024  16:19:56'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:28\n' +
+    '    26|                             <tr>\r\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    ' >> 28|                                 <td><%= voyage.vehicle.plate %></td>\r\n' +
+    '    29|                                 <td></td>\r\n' +
+    '    30|                                 <td><%= voyage.startDate %></td>\r\n' +
+    '    31|                                 <td><%= voyage.endDate %></td>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'plate')",
+  level: 'error',
+  timestamp: '14-01-2024  16:20:17'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:29\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    '    28|                                 <td>\r\n' +
+    ' >> 29|                                     <% voyage.vehicle.forEach(vhc => { %>\r\n' +
+    '    30|                                         <%= vhc.plate %>\r\n' +
+    '    31|                                     <% }) %>\r\n' +
+    '    32|                                 </td>\r\n' +
+    '\n' +
+    'voyage.vehicle.forEach is not a function',
+  level: 'error',
+  timestamp: '14-01-2024  16:22:02'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:29\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    '    28|                                 <td>\r\n' +
+    ' >> 29|                                     <% voyage.vehicle.forEach(vhc => { %>\r\n' +
+    '    30|                                         <%= vhc.plate %>\r\n' +
+    '    31|                                     <% }) %>\r\n' +
+    '    32|                                 </td>\r\n' +
+    '\n' +
+    'voyage.vehicle.forEach is not a function',
+  level: 'error',
+  timestamp: '14-01-2024  16:22:02'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:29\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    '    28|                                 <td>\r\n' +
+    ' >> 29|                                     <% for( let i = 0; i < voyage.vehicle.length; i++ ) { %>\r\n' +
+    '    30|                                         <%= i.plate %>\r\n' +
+    '    31|                                     <% } %>\r\n' +
+    '    32|                                 </td>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'length')",
+  level: 'error',
+  timestamp: '14-01-2024  16:22:42'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:29\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    '    28|                                 <td>\r\n' +
+    ' >> 29|                                     <%= vehicle %>\r\n' +
+    '    30|                                 </td>\r\n' +
+    '    31|                                 <td></td>\r\n' +
+    '    32|                                 <td><%= voyage.startDate %></td>\r\n' +
+    '\n' +
+    'vehicle is not defined',
+  level: 'error',
+  timestamp: '14-01-2024  16:23:07'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyages.ejs:29\n' +
+    '    27|                                 <td><%= voyage.voyageCode %></td>\r\n' +
+    '    28|                                 <td>\r\n' +
+    ' >> 29|                                     <%= voyage.vehicle.plate %>\r\n' +
+    '    30|                                 </td>\r\n' +
+    '    31|                                 <td></td>\r\n' +
+    '    32|                                 <td><%= voyage.startDate %></td>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'plate')",
+  level: 'error',
+  timestamp: '14-01-2024  16:25:30'
+}
+{
+  message: 'driver is not associated to voyage!',
+  level: 'error',
+  timestamp: '14-01-2024  16:29:35'
+}

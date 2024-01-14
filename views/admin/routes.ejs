@@ -33,9 +33,13 @@
                                         <%- findEndPoint ? `${findEndPoint.name}, <b>${findEndPoint.province.name}</b>` : "Bulunamadı"; %>
                                     </td>
                                     <td>
-                                        <% for (let visitPoint of route.visitPoints) { %>
-                                            <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>
-                                            <li><%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>
+                                        <% if (route.visitPoints==null) { %>
+                                            <li>Durak/Güzergah Eklenmemiş</li>
+                                        <% } else { %>    
+                                            <% for (let visitPoint of route.visitPoints) { %>
+                                                <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>
+                                                <li><%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %></li>
+                                            <% } %>
                                         <% } %>
                                     </td>
                                     <td>

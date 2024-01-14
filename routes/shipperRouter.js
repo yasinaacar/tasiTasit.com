@@ -20,6 +20,7 @@ router.get("/vehicles", isAuth, isShipper, shipperController.get_vehicles);
 router.get("/route/create", isAuth, isShipper, shipperController.get_route_create);
 router.post("/route/create", isAuth, isShipper, shipperController.post_route_create);
 router.get("/route/edit/:routeId", isAuth, isShipper, shipperController.get_route_edit);
+router.post("/route/edit/:routeId", isAuth, isShipper, shipperController.post_route_edit);
 router.get("/routes", isAuth, isShipper, shipperController.get_routes);
 
 //voyage url

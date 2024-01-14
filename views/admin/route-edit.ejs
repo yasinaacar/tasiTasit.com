@@ -41,7 +41,7 @@
                                     <hr>
                                     <div class="col-md-6">
                                         <div class="col-sm-10 d-flex mb-5">
-                                            <select class="form-select text-center" name="finishProvince" id="finishProvince">
+                                            <select class="form-select text-center" name="endProvince" id="endProvince">
                                                 <option value="<%= endPoint.province.id %>" selected><%= endPoint.province.name %></option>
                                                 <% provinces.forEach(province => { %>
                                                     <option value="<%= province.id %>"><%= province.name %></option>
@@ -62,16 +62,35 @@
                                 <div class="row mb-4" id="stations">
                                     <h3 class="text-center mb-4">Durak Noktası Seçin</h3>
                                     <hr>
-                                    <div class="col-md-6">
-                                        <div class="col-sm-10 d-flex mb-3">
-                                            <select class="form-select text-center" name="visitPoint" id="visitPoint_1">
-                                                <option value="-1" selected>1. Durak Noktasını Seçin</option>
-                                                <% provinces.forEach(province => { %>
-                                                    <option value="<%= province.id %>"><%= province.name %></option>
-                                                <% }) %>
-                                            </select>
+                                    <% if (visitPoints != null) { %>                                     
+                                        <% for (let visitPoint of visitPoints) { %>
+                                            <div class="col-md-6">
+                                                <div class="col-sm-10 d-flex mb-3">
+                                                    <select class="form-select text-center" name="visitPoint[]" id="visitPoint_<%= %>">                                              
+                                                        <% provinces.forEach(province => { %>
+                                                            <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %> 
+                                                            <% const findVisitPointQuery = province.id == findVisitPoint.id; %> 
+                                                            <option value="<%= findVisitPointQuery ? findVisitPoint.id : province.id %>"
+                                                                <%= findVisitPointQuery ? "selected" : "" %>>
+                                                                <%= findVisitPointQuery ? findVisitPoint.name : province.name %>
+                                                            </option>
+                                                        <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    <% } else{%>
+                                        <div class="col-md-6">
+                                            <div class="col-sm-10 d-flex mb-3">
+                                                <select class="form-select text-center" name="visitPoint[]" id="visitPoint_1">
+                                                    <option value="-1" selected>1. Durak Noktasını Seçin</option>
+                                                    <% provinces.forEach(province => { %>
+                                                        <option value="<%= province.id %>"><%= province.name %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <% } %>
                                 </div>
                                 
                                 <!-- Ekleme Butonu -->
@@ -79,6 +98,7 @@
                                     <div class="col-md-12">
                                         <button type="button" class="button px-5 view" id="addVisitPoint">Durak Ekle</button>
                                         <button type="button" class="button px-5 view" id="removeVisitPoint">Durak Kaldır</button>
+                                        <input type="hidden" name="routeId" value="<%= route.id %>">
                                         <button type="submit" class="btn btn-primary">İleri</button>
                                     </div>
                                 </div>
@@ -146,6 +166,25 @@
                         addVisitPointButton.disabled = false;
                         addVisitPointButton.innerText = "Durak Ekle";
                     }
+                }
+            });
+                // Her durak seçiminde seçilen şehri takip et
+            stationsDiv.addEventListener('change', function(event) {
+                const selectedCityId = event.target.value;
+            
+                // Eğer seçilen bir şehirse, takip listesine ekle
+                if (selectedCityId !== "-1") {
+                    selectedCities.push(selectedCityId);
+                }
+            
+                // Eğer maksimum durak sayısına ulaşıldıysa, kalan tüm seçim kutularını devre dışı bırak
+                if (stationCounter === maxVisitPoint) {
+                    document.querySelectorAll('[name="visitPoint"]').forEach(select => {
+                        const cityId = select.value;
+                        if (cityId !== "-1" && !selectedCities.includes(cityId)) {
+                            select.disabled = true;
+                        }
+                    });
                 }
             });
         });

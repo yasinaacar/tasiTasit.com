@@ -1,7 +1,6 @@
 const {DataTypes}=require("sequelize");
 const {sequelize} = require("../startup/db");
-const vehicleDriver=require("./vehicleDriver");
-
+const {Vehicle}=require("./index-models");
 const Voyage=sequelize.define("voyage", {
     voyageCode:{
         type: DataTypes.STRING,
@@ -51,6 +50,22 @@ const Voyage=sequelize.define("voyage", {
             }
         }
     },
+    vehicleId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+            notEmpty:{
+                msg:`Sefer için bir araç atamak zorundasınız`
+            },
+            notNull:{
+                msg:`Sefer için bir araç atamak zorundasınız`
+            } 
+        },
+        references: {
+            model: Vehicle,
+            key: 'id' 
+        }
+    }
 });
 
 

@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const startProvince = document.getElementById('startProvince');
     const startDistrict = document.getElementById('startDistrict');
-    const finishProvince = document.getElementById('finishProvince');
+    const endProvince = document.getElementById('endProvince');
     const endDistrict = document.getElementById('endDistrict');
 
     // function of get district
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
         getDistricts(selectedStartProvinceId, startDistrict);
     });
 
-    finishProvince.addEventListener('change', function () {
-        const selectedFinishProvinceId = finishProvince.value;
+    endProvince.addEventListener('change', function () {
+        const selectedFinishProvinceId = endProvince.value;
         getDistricts(selectedFinishProvinceId, endDistrict);
     });
 });

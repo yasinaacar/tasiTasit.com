@@ -192,66 +192,123 @@ exports.get_vehicles=async(req,res)=>{
 
 //route process
 exports.get_route_create=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
     const provinces=await Province.findAll();
     return res.render("admin/route-create",({
         title: "Rota Oluştur",
-        provinces: provinces
+        provinces: provinces,
+        message: message
     }));
 };
 exports.post_route_create=async(req,res)=>{
     try {        
-        const startDistrict=req.body.startDistrict;
-        const endDistrict=req.body.endDistrict;
-        const visitPoints=req.body.visitPoint;
-
-        console.log("Başlangıç Noktası ------------>", startDistrict);
-        console.log("Bitiş Noktası ------------>", endDistrict);
-        console.log("Duraklar ------------>", visitPoints);
-
-        const route=await Route.create({startPoint: startDistrict, endPoint: endDistrict, visitPoints: visitPoints});
+        const startPoint=req.body.startDistrict;
+        const endPoint=req.body.endDistrict;
+        let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
+        if(startPoint==endPoint){
+            req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
+            return res.redirect("/shipper/route/create")
+        }
+        const startProvince=req.body.startProvince;
+        const endProvince=req.body.endProvince;
+        if(visitPoints.includes(startProvince) || visitPoints.includes(endProvince)){
+            req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
+            return res.redirect("/shipper/route/create")
+        }
+        const route=await Route.create({startPoint: startPoint, endPoint: endPoint, visitPoints: visitPoints});
         route.routeCode=await randomCodeGenerator("ROT",route);
         await route.save();
-        return res.redirect("/shipper/route/create");
+        return res.redirect("/shipper/routes");
     } catch (err) {
-        console.log(err);
+        let message= "";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"danger"}
+        }else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
+        return res.redirect("/shipper/route/create");
     }
 
     
 };
 exports.get_route_edit=async(req,res)=>{
-    try {
-        const routeId=req.params.routeId;
-        const route=await Route.findByPk(routeId,{raw:true});
-        const startPoint=await District.findOne({where:{id:route.startPoint},include:{model:Province}});
-        const endPoint=await District.findOne({where:{id:route.endPoint},include:{model:Province}});
-        const provinces=await Province.findAll();
+    const message=req.session.message;
+    delete req.session.message;
+    const routeId=req.params.routeId;
+    const route=await Route.findByPk(routeId,{raw:true});
+    const startPoint=await District.findOne({where:{id:route.startPoint},include:{model:Province}});
+    const endPoint=await District.findOne({where:{id:route.endPoint},include:{model:Province}});
+    const provinces=await Province.findAll();
+    let visitPoints=route.visitPoints;
 
-        return res.render("admin/route-edit",({
-            title: "Rota Düzenle",
-            startPoint: startPoint,
-            endPoint: endPoint,
-            route: route,
-            provinces: provinces
-        }));
-        
+    return res.render("admin/route-edit",({
+        title: "Rota Düzenle",
+        startPoint: startPoint,
+        endPoint: endPoint,
+        visitPoints: visitPoints,
+        route: route,
+        provinces: provinces,
+        message: message
+    }));
+};
+exports.post_route_edit=async(req,res)=>{
+    const routeId=req.body.routeId;
+    try {        
+        const startPoint=req.body.startDistrict;
+        const endPoint=req.body.endDistrict;
+        if(startPoint==endPoint){
+            req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
+            return res.redirect("/shipper/route/edit/"+routeId)
+        }
+        let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
+        const startProvince=req.body.startProvince;
+        const endProvince=req.body.endProvince;
+        if(visitPoints.includes(startProvince) || visitPoints.includes(endProvince)){
+            req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
+            return res.redirect("/shipper/route/edit/"+routeId)
+        }
+        //update on database
+        const route=await Route.findByPk(routeId);
+        route.startPoint=startPoint;
+        route.endPoint=endPoint;
+        route.visitPoints=visitPoints;
+        await route.save();
+
+        req.session.message={text: `<b>${route.routeCode}</b> kodlu rota güncellendi`, class:"primary"}
+        return res.redirect("/shipper/routes?action=edit");
     } catch (err) {
-        console.log(err)
+        let message= "";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"danger"}
+        }else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
+        return res.redirect("/shipper/route/create");
     }
 };
 exports.get_routes=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
     const routes=await Route.findAll({include:{model:District},raw: true});
     const districts=await District.findAll({include:{model: Province}});
     const provinces=await Province.findAll();
-    const visitPoints=routes[0].visitPoints;
-    for (const visitPoint of visitPoints) {
-        const findProvince=provinces.find(province=>province.id==visitPoint)
-        console.log(findProvince.name)
-    }
     return res.render("admin/routes",{
         title: "Rotalar",
         routes: routes,
         districts: districts,
-        provinces: provinces
+        provinces: provinces,
+        message: message
     });
 };
 
@@ -260,8 +317,6 @@ exports.get_voyage_create=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
     const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
-    
-
     return res.render("admin/voyage-create", {
         title: "Sefer Oluştur",
         message: message,
@@ -273,37 +328,35 @@ exports.post_voyage_create=async(req,res)=>{
     try {
         const startDate=req.body.startDate;
         const endDate=req.body.endDate;
-        const vehicleIds=req.body.vehicleIds;
-        
-        console.log("Başlangıç Tarihi ------------------->", startDate);
-        console.log("Bitiş Tarihi ------------------->", endDate);
-        console.log("Araçlar ------------------->", vehicleIds);
-
-        const voyage=await Voyage.create({startDate: startDate, endDate: endDate});
+        const vehicleId=req.body.vehicleId;
+        const voyage=await Voyage.create({startDate: startDate, endDate: endDate, vehicleId: vehicleId});
         voyage.voyageCode=await randomCodeGenerator("VYG", voyage);
-        await voyage.save();
-        for (const vehicleId of vehicleIds) {
-            const vehicleDriver=await VehicleDriver.findOne({where:{vehicleId: vehicleId}});
-            await vehicleDriver.addVoyages(voyage)
-            
-        }
-        
-        req.session.message={text:"", class:"success"}
+        await voyage.save(); 
+        req.session.message={text:`${voyage.voyageCode} kodlu sefer oluşturuldu`, class:"success"}
         return res.redirect("/shipper/voyages?action=create")
     } catch (err) {
-        console.log(err)
+        let message= "";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"danger"}
+        }else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
+        return res.redirect("/shipper/voyage/create");
     }
     
 }
 exports.get_voyages=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const voyages=await Voyage.findAll();
-    const vehicles=await Vehicle.findAll({model:{include:Driver}})
+    const voyages=await Voyage.findAll({include:[{model:Vehicle, attributes:["plate"], include:{model: Driver, attributes:["fullname"]}}]});
     return res.render("admin/voyages", {
         title: "Seferlerim",
         message: message,
         voyages: voyages,
-        vehicles: vehicles
     })
 }

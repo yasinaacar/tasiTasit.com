@@ -25,10 +25,16 @@
                         <% voyages.forEach(voyage => { %>
                             <tr>
                                 <td><%= voyage.voyageCode %></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><li></li></td>
+                                <td>
+                                    <%= voyage.vehicle.plate %>
+                                </td>
+                                <td>
+                                    <% for (let driver of voyage.vehicle.drivers) { %>
+                                        <li><%= driver.fullname %></li>
+                                    <% } %>
+                                </td>
+                                <td><%= voyage.startDate %></td>
+                                <td><%= voyage.endDate %></td>
                                 <td>
                                     <div class="btns">
                                         <a href="/admin/voyage/edit/<%= voyage.id %>" class="btn btn-primary btn-sm">Düzenle</a>

@@ -35,6 +35,6 @@ module.exports=function(){
     Voyage.belongsTo(Route);
 
     //voyage and vehicle-driver relation (one to many)
-    VehicleDriver.hasMany(Voyage,{ foreignKey: 'vehicleDriverId' });
-    Voyage.belongsTo(VehicleDriver,{ foreignKey: 'vehicleDriverId' });
+    Vehicle.hasMany(Voyage);
+    Voyage.belongsTo(Vehicle);
 }

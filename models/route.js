@@ -33,6 +33,7 @@ const Route = sequelize.define('route', {
     },
     visitPoints: {
       type: DataTypes.JSON,
+      defaultValue: null
     }
   });
 
