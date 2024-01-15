@@ -902,3 +902,197 @@
   level: 'error',
   timestamp: '15-01-2024  16:57:10'
 }
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:23:57'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:24:16'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:25:22'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:25:41'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:27:04'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:27:34'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    'route is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:27:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-advert-create.ejs:29\n' +
+    '    27|                         </div>\r\n' +
+    '    28|                         <div class="row mb-3  text-center">\r\n' +
+    ' >> 29|                             <input type="hidden" name="voyageId" value="<%= voyage.id %>">\r\n' +
+    '    30|                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>\r\n' +
+    '    31|                         </div>\r\n' +
+    '    32|                     </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '15-01-2024  21:45:28'
+}
+{
+  message: 'Advert is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:48:42'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-advert-edit.ejs:29\n' +
+    '    27|                         </div>\r\n' +
+    '    28|                         <div class="row mb-3  text-center">\r\n' +
+    ' >> 29|                             <input type="hidden" name="voyageId" value="<%= voyage.id %>">\r\n' +
+    '    30|                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>\r\n' +
+    '    31|                         </div>\r\n' +
+    '    32|                     </div>\r\n' +
+    '\n' +
+    'voyage is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:48:54'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-advert-edit.ejs:29\n' +
+    '    27|                         </div>\r\n' +
+    '    28|                         <div class="row mb-3  text-center">\r\n' +
+    ' >> 29|                             <input type="hidden" name="advertId" value="<%= advertId.id %>">\r\n' +
+    '    30|                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>\r\n' +
+    '    31|                         </div>\r\n' +
+    '    32|                     </div>\r\n' +
+    '\n' +
+    'advertId is not defined',
+  level: 'error',
+  timestamp: '15-01-2024  21:49:45'
+}
+{
+  message: "Cannot read properties of null (reading 'voyageCode')",
+  level: 'error',
+  timestamp: '15-01-2024  21:59:27'
+}
+{
+  message: "Cannot read properties of null (reading 'voyageCode')",
+  level: 'error',
+  timestamp: '15-01-2024  22:01:14'
+}
+{
+  message: "Cannot read properties of null (reading 'voyageCode')",
+  level: 'error',
+  timestamp: '15-01-2024  22:01:44'
+}
+{
+  message: "Cannot set properties of null (setting 'isDeleted')",
+  level: 'error',
+  timestamp: '15-01-2024  22:22:15'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '15-01-2024  22:25:21'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '15-01-2024  22:26:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\voyage-pages\\voyage-create.ejs:79\n' +
+    '    77|                                 <div class="row mb-4">\r\n' +
+    '    78|                                     <div class="col-md-12">\r\n' +
+    ' >> 79|                                         <input type="hidden" name="routeId" value="<%= route.id %>">\r\n' +
+    '    80|                                         <button type="submit" class="btn btn-primary">İleri</button>\r\n' +
+    '    81|                                     </div>\r\n' +
+    '    82|                                 </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '15-01-2024  22:26:48'
+}

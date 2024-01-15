@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
 </head>
 <body>
-    <%- include('../partials/navbar') %>
+    <%- include('../../partials/navbar') %>
     <div class="container">
         <div class="row mt-5">
-            <%- include('../partials/alert') %>
+            <%- include('../../partials/alert') %>
             <div class="col-md-12">
                 <!-- vehicle-table -->
                 <table class="table table-striped table-hover table-bordered mt-5">
@@ -61,11 +61,17 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td><%= voyage.voyageCode %></td>
-                                                
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                                    <td><%= voyage.voyageCode %></td>
+                                                                    <td>
+                                                                        <%= voyage.vehicle.plate %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% for (let driver of voyage.vehicle.drivers) { %>
+                                                                            <li><%= driver.fullname %></li>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td><%= voyage.startDate %></td>
+                                                                    <td><%= voyage.endDate %></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -73,7 +79,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <form action="/admin/voyage/delete/<%= voyage.id %>" method="post">
+                                                        <form action="/shipper/voyage/delete/<%= voyage.id %>" method="post">
                                                             <input type="hidden" name="voyageId" value="<%= voyage.id %>">
                                                             <input type="hidden" name="voyageCode" value="<%= voyage.voyageCode %>">>
                                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -94,6 +100,6 @@
             </div>
         </div>
     </div>
-    <%- include('../partials/script') %>
+    <%- include('../../partials/script') %>
 </body>
 </html>

@@ -40,7 +40,7 @@
                                 <td></td>
                                 <td>
                                     <div class="btns">
-                                        <a href="/customer/customer-advert/edit//cargo/" class="btn btn-primary btn-sm">Düzenle</a>
+                                        <a href="/shipper/shipper-advert/edit/advertid/<%= advert.id %>/routeid/<%= advert.voyage.routeId %>" class="btn btn-primary btn-sm">Düzenle</a>
                                         <a href="/customer/customer-advert/delete/" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_">Sil</a>
                                         <!-- delete-advert-panel -->
                                         <div class="modal fade" id="modal_" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -72,9 +72,8 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <form action="/customer/customer-advert/delete/" method="post">
-                                                            <input type="hidden" name="advertId" value="">
-                                                            <input type="hidden" name="advertCode" value="">
+                                                        <form action="/shipper/shipper-advert/delete/advert/<%= advert.id %>" method="post">
+                                                            <input type="hidden" name="advertId" value="<%= advert.id %>">
                                                             <button type="submit" class="btn btn-danger">Delete</button>
                                                         </form>
                                                     </div>

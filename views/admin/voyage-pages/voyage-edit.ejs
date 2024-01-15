@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../../partials/head') %>
 </head>
 <body>
-    <%- include('../partials/navbar') %>
+    <%- include('../../partials/navbar') %>
 
 
     <div class="forms">
         <div class="container">
-            <%- include('../partials/alert') %>
+            <%- include('../../partials/alert') %>
             <div class="card" id="card">
                 <div class="card-body">
                     <form method="post">
@@ -20,14 +20,14 @@
                                         <h3 class="text-center mb-4">Başlangıç Tarihi</h3>
                                         <hr>
                                         <div class="mx-2 row">
-                                            <input type="date" id="startDate" name="startDate">
+                                            <input type="date" id="startDate" name="startDate" value="<%= voyage.startDate %>">
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-5">
                                         <h3 class="text-center mb-4">Bitiş Tarihi</h3>
                                         <hr>
                                         <div class="mx-2 row">
-                                            <input type="date" id="endDate" name="endDate">
+                                            <input type="date" id="endDate" name="endDate" value="<%= voyage.endDate %>">
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,8 @@
                                                             <% } %></td>
                                                         <td>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="vehicleId[]" id="vehicle_<%= vehicle.id %>" value="<%= vehicle.id %>">
+                                                                <input class="form-check-input" type="radio" name="vehicleId" id="vehicle_<%= vehicle.id %>" value="<%= vehicle.id %>"
+                                                                <%= voyage.vehicleId==vehicle.id ? "checked" : "" %>>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -76,7 +77,8 @@
                                 <!-- Ekleme Butonu -->
                                 <div class="row mb-4">
                                     <div class="col-md-12">
-                                        <input type="hidden" name="routeId" value="<%= route.id %>">
+                                        <input type="hidden" name="routeId" value="<%= voyage.routeId %>">
+                                        <input type="hidden" name="voyageId" value="<%= voyage.id %>">
                                         <button type="submit" class="btn btn-primary">İleri</button>
                                     </div>
                                 </div>
@@ -91,7 +93,6 @@
     </div>
 
 
-    <%- include('../partials/script') %>
-    <script src="/static/js/setDefaultForDate.js"></script>
+    <%- include('../../partials/script') %>
 </body>
 </html>

@@ -65,6 +65,10 @@ const Voyage=sequelize.define("voyage", {
             model: Vehicle,
             key: 'id' 
         }
+    },
+    isDeleted:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 });
 
