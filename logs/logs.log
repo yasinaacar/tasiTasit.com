@@ -804,3 +804,101 @@
   level: 'error',
   timestamp: '14-01-2024  16:29:35'
 }
+{
+  message: "Cannot read properties of null (reading 'includes')",
+  level: 'error',
+  timestamp: '15-01-2024  15:19:55'
+}
+{
+  message: "Cannot read properties of null (reading 'includes')",
+  level: 'error',
+  timestamp: '15-01-2024  15:27:51'
+}
+{
+  message: "Cannot read properties of null (reading 'includes')",
+  level: 'error',
+  timestamp: '15-01-2024  15:29:09'
+}
+{
+  message: "Cannot read properties of null (reading 'lenght')",
+  level: 'error',
+  timestamp: '15-01-2024  15:30:24'
+}
+{
+  message: "Cannot read properties of null (reading 'length')",
+  level: 'error',
+  timestamp: '15-01-2024  15:30:52'
+}
+{
+  message: "Cannot read properties of null (reading 'length')",
+  level: 'error',
+  timestamp: '15-01-2024  15:31:39'
+}
+{
+  message: "Cannot read properties of null (reading 'length')",
+  level: 'error',
+  timestamp: '15-01-2024  15:32:13'
+}
+{
+  message: "Cannot read properties of null (reading 'length')",
+  level: 'error',
+  timestamp: '15-01-2024  15:32:26'
+}
+{
+  message: "Cannot read properties of null (reading 'lenght')",
+  level: 'error',
+  timestamp: '15-01-2024  15:32:54'
+}
+{
+  message: "Cannot read properties of null (reading 'length')",
+  level: 'error',
+  timestamp: '15-01-2024  15:34:45'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert-create.ejs:4\n' +
+    '    2| <html lang="en">\r\n' +
+    '    3| <head>\r\n' +
+    " >> 4|     <%- include('../../partials/head') %>\r\n" +
+    '    5| </head>\r\n' +
+    '    6| <body>\r\n' +
+    "    7|     <%- include('../../partials/navbar') %>\r\n" +
+    '\n' +
+    'Could not find the include file "../../partials/head"',
+  level: 'error',
+  timestamp: '15-01-2024  16:07:53'
+}
+{
+  message: "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '15-01-2024  16:28:34'
+}
+{
+  message: "Cannot read properties of undefined (reading 'voyage')",
+  level: 'error',
+  timestamp: '15-01-2024  16:28:50'
+}
+{
+  message: "Cannot read properties of undefined (reading '0')",
+  level: 'error',
+  timestamp: '15-01-2024  16:28:59'
+}
+{
+  message: "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '15-01-2024  16:29:06'
+}
+{
+  message: "Cannot read properties of undefined (reading 'voyage')",
+  level: 'error',
+  timestamp: '15-01-2024  16:56:15'
+}
+{
+  message: "Cannot read properties of undefined (reading 'voyage')",
+  level: 'error',
+  timestamp: '15-01-2024  16:57:10'
+}
+{
+  message: "Cannot read properties of undefined (reading 'voyage')",
+  level: 'error',
+  timestamp: '15-01-2024  16:57:10'
+}

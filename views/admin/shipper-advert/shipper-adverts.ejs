@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <div class="row mt-5">
+            <%- include('../../partials/alert') %>
+            <div class="col-md-12">
+                <!-- vehicle-table -->
+                <table class="table table-striped table-hover table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th>İlan Kodu</th>
+                            <th>İlan Başlığı</th>
+                            <th>Başlangıç Noktası</th>
+                            <th>Bitiş Noktası</th>
+                            <th>Sefer Tarihi</th>
+                            <th>Araç Bilgisi</th>
+                            <th>Şöförler</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <% adverts.forEach(advert => { %>
+                            <tr>
+                                <td><%= advert.advertCode %></td>
+                                <td><%= advert.title %></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <span class="startDate"><%= advert.voyage.startDate %></span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                    <span class="endDate"><%= advert.voyage.endDate %></span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="btns">
+                                        <a href="/customer/customer-advert/edit//cargo/" class="btn btn-primary btn-sm">Düzenle</a>
+                                        <a href="/customer/customer-advert/delete/" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_">Sil</a>
+                                        <!-- delete-advert-panel -->
+                                        <div class="modal fade" id="modal_" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Kargo Sil</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body table-responsive">
+                                                        <table class="table table-striped table-hover table-bordered mt-5 table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>İlan Kodu</th>
+                                                                    <th>İlan Başlığı</th>
+                                                                    <th>Başlangıç Noktası</th>
+                                                                    <th>Bitiş Noktası</th>
+                                                                    <th>Teslimat Tarihi</th>
+                                                                    <th>Kargo</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <h6>Bu ilanı silerseniz, ilişkili kargonuzda silinir. Yine de silmek istiyor musunuz?</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <form action="/customer/customer-advert/delete/" method="post">
+                                                            <input type="hidden" name="advertId" value="">
+                                                            <input type="hidden" name="advertCode" value="">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../../partials/script') %>
+    <!-- to change the date format -->
+    <script src="../../../static/js/dateFormatConvertor.js"></script> 
+</body>
+</html>

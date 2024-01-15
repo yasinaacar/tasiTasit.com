@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <%- include('../../partials/alert') %>
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="mb-3 row">
+                            <label for="title" class="col-sm-2 col-form-label">İlan Başlığı:</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="title" name="title" placeholder="Bursa-İstanbul Kolili Ürün">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="editor" class="col-sm-2 col-form-label">İlan Açıklaması:</label>
+                            <div class="col-sm-10">
+                              <textarea type="text" class="form-control" id="editor" name="description" style="width: 100% ;" rows="3" placeholder="İlan hakkında detay ekle" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3  text-center">
+                            <input type="hidden" name="voyageId" value="<%= voyage.id %>">
+                            <button type="submit" class="btn btn-primary px-5">Yayınla</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../../partials/script') %>
+    <%- include('../../partials/ckEditor') %>
+
+</body>
+</html>

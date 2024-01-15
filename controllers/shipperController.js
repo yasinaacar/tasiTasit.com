@@ -1,5 +1,5 @@
 //models
-const {District, Driver, Province, Route, User, VehicleType, Vehicle, Voyage, VehicleDriver }=require("../models/index-models");
+const {District, Driver, Province, Route, User, VehicleType, Vehicle, Voyage, VehicleDriver, ShipperAdvert }=require("../models/index-models");
 
 //helpers
 const {transporter, slugfield, randomCodeGenerator}=require("../helpers/index-helpers");
@@ -208,18 +208,21 @@ exports.post_route_create=async(req,res)=>{
         let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
         if(startPoint==endPoint){
             req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
-            return res.redirect("/shipper/route/create")
+            return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
         }
-        const startProvince=req.body.startProvince;
-        const endProvince=req.body.endProvince;
-        if(visitPoints.includes(startProvince) || visitPoints.includes(endProvince)){
-            req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
-            return res.redirect("/shipper/route/create")
+        console.log("Kod çalıştı")
+        if(visitPoints && visitPoints.length>0){
+            const startProvince=req.body.startProvince;
+            const endProvince=req.body.endProvince;
+            if(visitPoints.includes(startProvince) || visitPoints.includes(endProvince)){
+                req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
+                return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
+            }
         }
         const route=await Route.create({startPoint: startPoint, endPoint: endPoint, visitPoints: visitPoints});
         route.routeCode=await randomCodeGenerator("ROT",route);
         await route.save();
-        return res.redirect("/shipper/routes");
+        return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`);
     } catch (err) {
         let message= "";
         if(err.name=="SequelizeValidationError"){
@@ -232,7 +235,7 @@ exports.post_route_create=async(req,res)=>{
             return res.render("errors/500",{title: "500"});
         }
 
-        return res.redirect("/shipper/route/create");
+        return res.redirect("/shipper-advert/create/route");
     }
 
     
@@ -314,26 +317,29 @@ exports.get_routes=async(req,res)=>{
 
 //voyage process
 exports.get_voyage_create=async(req,res)=>{
+    const routeId=req.params.routeId;
     const message=req.session.message;
     delete req.session.message;
     const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    const route=await Route.findByPk(routeId,{attributes:["id"]});
     return res.render("admin/voyage-create", {
         title: "Sefer Oluştur",
         message: message,
-        vehicles: vehicles
+        vehicles: vehicles,
+        route: route
     })
-}
+};
 exports.post_voyage_create=async(req,res)=>{
-
+    const routeId=req.body.routeId;
     try {
         const startDate=req.body.startDate;
         const endDate=req.body.endDate;
         const vehicleId=req.body.vehicleId;
-        const voyage=await Voyage.create({startDate: startDate, endDate: endDate, vehicleId: vehicleId});
+        const voyage=await Voyage.create({startDate: startDate, endDate: endDate, vehicleId: vehicleId, routeId: routeId});
         voyage.voyageCode=await randomCodeGenerator("VYG", voyage);
         await voyage.save(); 
         req.session.message={text:`${voyage.voyageCode} kodlu sefer oluşturuldu`, class:"success"}
-        return res.redirect("/shipper/voyages?action=create")
+        return res.redirect(`/shipper/shipper-advert/create/route/${routeId}/voyage/${voyage.id}/advert`)
     } catch (err) {
         let message= "";
         if(err.name=="SequelizeValidationError"){
@@ -346,10 +352,10 @@ exports.post_voyage_create=async(req,res)=>{
             return res.render("errors/500",{title: "500"});
         }
 
-        return res.redirect("/shipper/voyage/create");
+        return res.redirect(`/shipper/shipper-advert/create/route/${routeId}/voyage`);
     }
     
-}
+};
 exports.get_voyages=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
@@ -359,4 +365,45 @@ exports.get_voyages=async(req,res)=>{
         message: message,
         voyages: voyages,
     })
+};
+
+//shipper-advert
+exports.get_shipper_advert_create=async(req,res)=>{
+    const voyageId=req.params.voyageId;
+    const message=req.session.message;
+    delete req.session.message;
+    const voyage=await Voyage.findByPk(voyageId,{attributes:["id"]});
+    return res.render("admin/shipper-advert/shipper-advert-create",{
+        title: "Nakliyeci İlanı",
+        voyage: voyage,
+        message: message
+    });
+};
+exports.post_shipper_advert_create=async(req,res)=>{
+    const voyageId=req.body.voyageId;
+    try {
+        const title=req.body.title;
+        const description=req.body.description;
+
+        const advert=await ShipperAdvert.create({title: title, description: description, voyageId: voyageId});
+        advert.advertCode=await randomCodeGenerator("ADVSHP", advert);
+        advert.save();
+
+        req.session.message={text:`${advert.advertCode} kodlu <b>yük taşıma</b> ilanı başarıyla oluşturuldu`, class:"success"};
+        return res.redirect("/shipper/shipper-adverts?action=create");
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.get_shipper_adverts=async(req,res)=>{
+    const message= req.session.message;
+    delete req.session.message;
+    const adverts=await ShipperAdvert.findAll({where:{isDeleted: false}, include:{model: Voyage}});
+    console.log("Adverts----------->", adverts);
+    return res.render("admin/shipper-advert/shipper-adverts",{
+        title: "İlanlarım",
+        message: message,
+        adverts: adverts
+    });
 }
