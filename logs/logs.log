@@ -1096,3 +1096,314 @@
   level: 'error',
   timestamp: '15-01-2024  22:26:48'
 }
+{
+  message: 'voyageId is not defined',
+  level: 'error',
+  timestamp: '16-01-2024  09:39:25'
+}
+{
+  message: 'vehicle.addUser is not a function',
+  level: 'error',
+  timestamp: '16-01-2024  10:23:51'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\driver-pages\\driver-edit.ejs:18\n' +
+    '    16|                         <div class="mb-3 row">\r\n' +
+    '    17|                             <label for="driverImg" class="col-sm-2 col-form-label">Şoför Resmi:</label>\r\n' +
+    ' >> 18|                             <img src="/static/images/<%= driver.driverImg %>" alt="<%= driver.driverImg %>" class="col-sm-2">\r\n' +
+    '    19|                             <div class="col-sm-8">\r\n' +
+    '    20|                             <input type="file" class="form-control" id="driverImg" name="driverImg">\r\n' +
+    '    21|                             <input type="hidden" class="form-control" name="driverImg" value="<%= driver.driverImg %>">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'driverImg')",
+  level: 'error',
+  timestamp: '16-01-2024  11:10:20'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\driver-pages\\driver-edit.ejs:18\n' +
+    '    16|                         <div class="mb-3 row">\r\n' +
+    '    17|                             <label for="driverImg" class="col-sm-2 col-form-label">Şoför Resmi:</label>\r\n' +
+    ' >> 18|                             <img src="/static/images/<%= driver.driverImg %>" alt="<%= driver.driverImg %>" class="col-sm-2">\r\n' +
+    '    19|                             <div class="col-sm-8">\r\n' +
+    '    20|                             <input type="file" class="form-control" id="driverImg" name="driverImg">\r\n' +
+    '    21|                             <input type="hidden" class="form-control" name="driverImg" value="<%= driver.driverImg %>">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'driverImg')",
+  level: 'error',
+  timestamp: '16-01-2024  11:10:24'
+}
+{
+  message: "Cannot read properties of null (reading 'getCustomerAdvert')",
+  level: 'error',
+  timestamp: '16-01-2024  12:25:48'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\cargo-pages\\cargo-details.ejs:19\n' +
+    '    17|                             <label for="cargoName" class="col-sm-2 col-form-label">Kargo Adı:</label>\r\n' +
+    '    18|                             <div class="col-sm-10">\r\n' +
+    ' >> 19|                               <input type="text" class="form-control" id="cargoName" name="cargoName" placeholder="Bursa-İstanbul Kolili Ürün" value="<%= cargo.cargoName %>" disabled>  \r\n' +
+    '    20|                             </div>\r\n' +
+    '    21|                         </div>\r\n' +
+    '    22|                         <div class="mb-3 row">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'cargoName')",
+  level: 'error',
+  timestamp: '16-01-2024  12:26:41'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\cargo-pages\\cargo-details.ejs:19\n' +
+    '    17|                             <label for="cargoName" class="col-sm-2 col-form-label">Kargo Adı:</label>\r\n' +
+    '    18|                             <div class="col-sm-10">\r\n' +
+    ' >> 19|                               <input type="text" class="form-control" id="cargoName" name="cargoName" placeholder="Bursa-İstanbul Kolili Ürün" value="<%= cargo.cargoName %>" disabled>  \r\n' +
+    '    20|                             </div>\r\n' +
+    '    21|                         </div>\r\n' +
+    '    22|                         <div class="mb-3 row">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'cargoName')",
+  level: 'error',
+  timestamp: '16-01-2024  12:26:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\cargo-pages\\cargo-details.ejs:19\n' +
+    '    17|                             <label for="cargoName" class="col-sm-2 col-form-label">Kargo Adı:</label>\r\n' +
+    '    18|                             <div class="col-sm-10">\r\n' +
+    ' >> 19|                               <input type="text" class="form-control" id="cargoName" name="cargoName" placeholder="Bursa-İstanbul Kolili Ürün" value="<%= cargo.cargoName %>" disabled>  \r\n' +
+    '    20|                             </div>\r\n' +
+    '    21|                         </div>\r\n' +
+    '    22|                         <div class="mb-3 row">\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'cargoName')",
+  level: 'error',
+  timestamp: '16-01-2024  12:28:21'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-advert-create.ejs:29\n' +
+    '    27|                         </div>\r\n' +
+    '    28|                         <div class="row mb-3  text-center">\r\n' +
+    ' >> 29|                             <input type="hidden" name="voyageId" value="<%= voyage.id %>">\r\n' +
+    '    30|                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>\r\n' +
+    '    31|                         </div>\r\n' +
+    '    32|                     </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '16-01-2024  16:16:24'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-advert-create.ejs:29\n' +
+    '    27|                         </div>\r\n' +
+    '    28|                         <div class="row mb-3  text-center">\r\n' +
+    ' >> 29|                             <input type="hidden" name="voyageId" value="<%= voyage.id %>">\r\n' +
+    '    30|                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>\r\n' +
+    '    31|                         </div>\r\n' +
+    '    32|                     </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '16-01-2024  16:16:27'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:71\n' +
+    '    69|                 <div class="row">\r\n' +
+    '    70|                     <div class="col-md-12">\r\n' +
+    ' >> 71|                         <% if (forWho==customer) { %>\r\n' +
+    '    72|                             <div class="accordion" id="accordionExample">\r\n' +
+    '    73|                                 <div class="accordion-item">\r\n' +
+    '    74|                                   <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'customer is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  13:02:38'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:71\n' +
+    '    69|                 <div class="row">\r\n' +
+    '    70|                     <div class="col-md-12">\r\n' +
+    ' >> 71|                         <% if (forWho==customer) { %>\r\n' +
+    '    72|                             <div class="accordion" id="accordionExample">\r\n' +
+    '    73|                                 <div class="accordion-item">\r\n' +
+    '    74|                                   <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'customer is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  13:02:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:72\n' +
+    '    70|                     <div class="col-md-12">\r\n' +
+    '    71|                         <div class="card">\r\n' +
+    ' >> 72|                             <% if (forWho=="customer") { %>\r\n' +
+    '    73|                                 <div class="accordion advert-card" id="accordionExample">\r\n' +
+    '    74|                                     <div class="accordion-item my-2">\r\n' +
+    '    75|                                         <div class="row">\r\n' +
+    '\n' +
+    'forWho is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  14:06:13'
+}
+{
+  message: 'cargoType is not associated to customerAdvert!',
+  level: 'error',
+  timestamp: '17-01-2024  15:26:59'
+}
+{
+  message: "Cannot read properties of undefined (reading 'cargo')",
+  level: 'error',
+  timestamp: '17-01-2024  15:42:11'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:72\n' +
+    '    70|                     <div class="col-md-12">\r\n' +
+    '    71|                         <div class="card">\r\n' +
+    ' >> 72|                             <% if (advert) { %>                             \r\n' +
+    '    73|                                 <% if (advertType=="customer") { %>                             \r\n' +
+    '    74|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    '    75|                                         <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  15:44:18'
+}
+{
+  message: "Cannot read properties of undefined (reading 'cargo')",
+  level: 'error',
+  timestamp: '17-01-2024  15:44:37'
+}
+{
+  message: "Cannot read properties of undefined (reading 'cargo')",
+  level: 'error',
+  timestamp: '17-01-2024  15:47:51'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-advert-create.ejs:29\n' +
+    '    27|                         </div>\r\n' +
+    '    28|                         <div class="row mb-3  text-center">\r\n' +
+    ' >> 29|                             <input type="hidden" name="voyageId" value="<%= voyage.id %>">\r\n' +
+    '    30|                             <button type="submit" class="btn btn-primary px-5">Yayınla</button>\r\n' +
+    '    31|                         </div>\r\n' +
+    '    32|                     </div>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'id')",
+  level: 'error',
+  timestamp: '17-01-2024  15:51:08'
+}
+{
+  message: "Incorrect integer value: '[object SequelizeInstance:voyage]' for column 'voyageId' at row 1",
+  level: 'error',
+  timestamp: '17-01-2024  16:01:18'
+}
+{
+  message: "Incorrect integer value: '[object SequelizeInstance:voyage]' for column 'voyageId' at row 1",
+  level: 'error',
+  timestamp: '17-01-2024  16:01:50'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:185\n' +
+    '    183|                                                         </div>\r\n' +
+    '    184|                                                         <div class="col-md-3">\r\n' +
+    ' >> 185|                                                             <p><%= advert.voyage.vehicle.vehicleType.vehicleTypeName %></p>\r\n' +
+    '    186|                                                         </div>\r\n' +
+    '    187|                                                         <div class="col-md-2">\r\n' +
+    '    188|                                                             <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn">İncele</button>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'vehicleType')",
+  level: 'error',
+  timestamp: '17-01-2024  16:12:11'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:185\n' +
+    '    183|                                                         </div>\r\n' +
+    '    184|                                                         <div class="col-md-3">\r\n' +
+    ' >> 185|                                                             <p><%= advert.voyage.vehicle.vehicleType.vehicleTypeName %></p>\r\n' +
+    '    186|                                                         </div>\r\n' +
+    '    187|                                                         <div class="col-md-2">\r\n' +
+    '    188|                                                             <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn">İncele</button>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'vehicleType')",
+  level: 'error',
+  timestamp: '17-01-2024  16:12:49'
+}
+{
+  message: 'route is not associated to vehicle!',
+  level: 'error',
+  timestamp: '17-01-2024  16:13:13'
+}
+{
+  message: "Identifier 'foundDistrictStart' has already been declared in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '17-01-2024  17:26:37'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:226\n' +
+    '    224|                                                                     </b> \r\n' +
+    '    225|                                                                     <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    ' >> 226|                                                                     <% if (adver.voyage.route.visitPoints) { %>\r\n' +
+    '    227|                                                                         <% for (let visitPoint of route.visitPoints) { %>\r\n' +
+    '    228|                                                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    229|                                                                             <%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %>\r\n' +
+    '\n' +
+    'adver is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  17:29:20'
+}
+{
+  message: "Unexpected token '.' in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '17-01-2024  17:29:54'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:226\n' +
+    '    224|                                                                     </b> \r\n' +
+    '    225|                                                                     <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    ' >> 226|                                                                     <% if (adver.voyage.route.visitPoints) { %>\r\n' +
+    '    227|                                                                         <% for (let visitPoint of advert.voyage.route.visitPoints) { %>\r\n' +
+    '    228|                                                                             <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>\r\n' +
+    '    229|                                                                             <%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %>\r\n' +
+    '\n' +
+    'adver is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  17:30:02'
+}
+{
+  message: "Identifier 'foundDistrictStart' has already been declared in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '17-01-2024  17:36:10'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:180\n' +
+    '    178|                                                                 <span>\r\n' +
+    '    179|                                                         \r\n' +
+    ' >> 180|                                                                     <%- foundDistrictStart ? `<b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    181|                                                                 </span>\r\n' +
+    '    182|                                                                 <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '    183|                                                                 <span>\r\n' +
+    '\n' +
+    "Cannot access 'foundDistrictStart' before initialization",
+  level: 'error',
+  timestamp: '17-01-2024  17:37:24'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:280\n' +
+    '    278|     <script>\r\n' +
+    '    279|         // Add event listeners for show and hide events on the collapse element\r\n' +
+    " >> 280|         document.getElementById('advertId_<%= advert.id %>').addEventListener('show.bs.collapse', function () {\r\n" +
+    '    281|             // Change only the text content inside the button to "Detayları Gizle" when details are shown\r\n' +
+    "    282|             document.getElementById('toggleDetailsBtn_<%= advert.id %>').innerText = 'Detayları Gizle';\r\n" +
+    '    283|         });\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '17-01-2024  17:49:51'
+}

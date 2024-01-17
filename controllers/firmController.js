@@ -22,6 +22,7 @@ exports.get_driver_create=async(req,res)=>{
 };
 exports.post_driver_create=async(req,res)=>{
     try {
+        const userId=req.session.userID;
         const driverImg=req.file ? req.file.filename:"defaultDriver.jpg";
         const fullname=req.body.fullname;
         const phone=req.body.phone;
@@ -35,7 +36,8 @@ exports.post_driver_create=async(req,res)=>{
             phone: phone,
             email: email,
             gender: gender,
-            url: url
+            url: url,
+            userId: userId
         });
 
         driver.driverCode=await randomCodeGenerator("DRV", driver);
@@ -67,9 +69,10 @@ exports.post_driver_create=async(req,res)=>{
 };
 exports.get_driver_edit=async(req,res)=>{
     const driverId=req.params.id;
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const driver=await Driver.findByPk(driverId,{attributes:["driverImg", "fullname", "phone", "id", "email", "gender"]});
+    const driver=await Driver.findOne({where:{[Op.and]:[{userId: userId},{id: driverId}]},attributes:["driverImg", "fullname", "phone", "id", "email", "gender"]});
     return res.render("admin/driver-pages/driver-edit",{
         title: "Şoför Güncelle",
         driver: driver,
@@ -79,6 +82,7 @@ exports.get_driver_edit=async(req,res)=>{
 exports.post_driver_edit=async(req,res)=>{
     const driverId=req.body.driverId;
     const slug=req.params.slug;
+    const userId=req.session.userID;
     try {
         let driverImg=req.body.driverImg;
         const fullname=req.body.fullname;
@@ -99,7 +103,7 @@ exports.post_driver_edit=async(req,res)=>{
             
         }
 
-        const driver=await Driver.findByPk(driverId);
+        const driver=await Driver.findOne({where:{[Op.and]:[{userId: userId},{id: driverId}]}});
         driver.driverImg=driverImg;
         driver.fullname=fullname;
         driver.phone=phone;
@@ -133,6 +137,8 @@ exports.post_driver_edit=async(req,res)=>{
 exports.post_driver_delete=async(req,res)=>{
     const driverId=req.body.driverId;
     const driverImg=req.body.driverImg;
+    const userId=req.session.userID;
+
 
     if(driverImg!="defaultDriver.jpg"){
         fs.unlink("/public/images/"+driverImg,err=>{
@@ -144,15 +150,20 @@ exports.post_driver_delete=async(req,res)=>{
         })
     }
 
-    await Driver.destroy({where:{id:driverId}});
+    const driver=await Driver.destroy({where:{[Op.and]:[{userId: userId},{id:driverId}]}});
+    if(driver){
+        req.session.message={text:"Soför silindi", class:"danger"};
+    }else{
+        req.session.message={text:"Soför silinemedi", class:"danger"};
 
-    req.session.message={text:"Soför silindi", class:"danger"};
+    }
     return res.redirect("/firm/drivers");
 };
 exports.get_drivers=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const drivers=await Driver.findAll({include:{model:Vehicle, attributes:["plate"]}});
+    const userId=req.session.userID;
+    const drivers=await Driver.findAll({where:{userId: userId},include:{model:Vehicle, attributes:["plate"]}});
     return res.render("admin/driver-pages/drivers",{
         title: "Şöförler",
         message: message,

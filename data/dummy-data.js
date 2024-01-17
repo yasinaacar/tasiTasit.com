@@ -79,112 +79,114 @@ async function dummyData(){
             await users[3].addRole(roles[1]); //for customer
 
             logger.info("Created association between users and roles");
-        };
-    };
-    //created cargo-types, cargos and customer adverts
-    const cargoType_count=await CargoType.count();
-    if(cargoType_count==0){
-        const cargoTypes=await CargoType.bulkCreate([
-            {cargoTypeName: "dökme mal", url:slugfield("dökme mal")},
-            {cargoTypeName: "koli", url:slugfield("koli")},
-            {cargoTypeName: "çuval", url:slugfield("çuval")},
-        ]);
 
-        for (const cargoType of cargoTypes) {
-            cargoType.cargoTypeCode=await randomCodeGenerator("CRTYP",cargoType);
-            await cargoType.save();
-        };
-
-        logger.info("Kargo Türleri Başarıyla Eklendi");
-
-        const cargos=await Cargo.bulkCreate([
-            {cargoName: "İhraç Fazlası Tekstil", cargoImg:"defaultCargo.jpg", description: `<a href="#">Tekstilcim</a>'e acilen teslim edilmesi gereken <b>150kg</b> <em>ihraç fazlası tekstil ürünleri</em> mevcuttur. Hızlı bir şekilde teslim edebilecek nakliyeci arkadaşların tekliflerini bekliyorum`, weight: 950, verticalHeight: 175, horizontalHeight: 84.6, cargoTypeId: cargoTypes[0].id},
-            {cargoName: "Akrilik Boya", cargoImg:"defaultCargo.jpg", description: `<a href="#">Nil Tuhafiye</a>'ye acilen teslim edilmesi gereken <b>120 koli</b> <em><a href="#">Rich</a> firmasına ait akrilik boya</em> mevcuttur. Hızlı bir şekilde teslim edebilecek nakliyeci arkadaşların tekliflerini bekliyorum`, weight: 1000, verticalHeight: 375, horizontalHeight: 120, cargoTypeId: cargoTypes[1].id},
-            {cargoName: "Tavuk Yemi", cargoImg:"cuval.webp", description: `<a href="#">Anadolu Yem</a>'e acilen teslim edilmesi gereken <b>5 çuval</b> <em>tavuk yemi</em> mevcuttur. Hızlı bir şekilde teslim edebilecek nakliyeci arkadaşların tekliflerini bekliyorum`, weight: 450, verticalHeight: 875, horizontalHeight: 54.6, cargoTypeId: cargoTypes[2].id},
-        ]);
-        for (const cargo of cargos) {
-            cargo.cargoCode=await randomCodeGenerator("CRG",cargo);
-            await cargo.save();
-        };
-
-        logger.info("Kargolar Başarıyla Eklendi");
-
-
-        const customerAdverts=await CustomerAdvert.bulkCreate([
-            {title: "Denizli'ye Teslim, Tekstil Ürünü", startPoint: 1832, endPoint: 1871, description: `<a href="#">Tekstilcim</a>'e (bir Denizli Tekstil Firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-14", endDate:"2024-01-20", cargoId: cargos[0].id},
-            {title: "Malatya'ya Teslim", startPoint: 1823, endPoint: 1729, description: `<a href="#">Nil Tuhafiye</a>'ye <b>(Malatya'da Hobi/Sanatsal Malzemler Firması)</b> teslim edilmesi gereken <em>kolili</em> ürünler mevcut.`, startDate: "2024-01-16", endDate:"2024-01-24", cargoId: cargos[1].id},
-            {title: "Anadolu Yem (Kayseri)", startPoint: 1566, endPoint: 1846, description: `<a href="#">Anadolu Yem</a>'e (Kayseri firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-16", endDate:"2024-02-16", cargoId: cargos[2].id},
-
-        ]);
-
-        for (const customerAdvert of customerAdverts) {
-            customerAdvert.advertCode=await randomCodeGenerator("ADVCST", customerAdvert);
-            await customerAdvert.save();
-        }
-
-        logger.info("Müşteri İlanları Başarıyla Eklendi");
-
-
-    };    
-
-    //created vehicle-types, vehicles and drivers
-    const vehicleType_count=await VehicleType.count();
-    if(vehicleType_count==0){
-        const vehicleTypes=await VehicleType.bulkCreate([
-            {vehicleTypeName: "doblo", url: slugfield("doblo")},
-            {vehicleTypeName: "kamyonet", url: slugfield("kamyonet")},
-            {vehicleTypeName: "binek", url: slugfield("binek")},
-        ]);
-
-        for (const vehicleType of vehicleTypes) {
-            vehicleType.vehicleTypeCode=await randomCodeGenerator("VHCTY", vehicleType);
-            await vehicleType.save();
-        }
-
-        logger.info("Araç Türleri başarıyla eklendi");
-        //create vehicle
-        const vehicleCount=await Vehicle.count();
-        if(vehicleCount==0){
-            const vehicles=await Vehicle.bulkCreate([
-                { vehicleImg: 'doblo-maxi-2016.jpg', plate: '06 ADJ 436', brand: 'Fiat doblo', capacity: 120, wheels: 4, url: slugfield("06 ADJ 436"), vehicleTypeId: vehicleTypes[0].id },
-                { vehicleImg: 'defaultVehicle.jpg', plate: '35 DEF 456', brand: 'BMC', capacity: 796.5, wheels: 4, url: slugfield("35 DEF 456"),  vehicleTypeId: vehicleTypes[1].id},
-                { vehicleImg: 'polo-2016.webp', plate: '44 KN 238', brand: 'Volkswagen Polo', capacity: 5, wheels: 4, url: slugfield("44 KN 238"), vehicleTypeId: vehicleTypes[2].id }
-            ])
-
-            for (const vehicle of vehicles) {
-                vehicle.vehicleCode=await randomCodeGenerator("VHC", vehicle);
-                await vehicle.save();
-            };
-
-            logger.info("Araçlar başarıyla eklendi"); 
-            //create driver
-            const driverCount=await Driver.count();
-            if(driverCount==0){
-                const drivers=await Driver.bulkCreate([
-                    {driverImg: "driver-1.jpeg", fullname: "Yasin Acar", phone:"5244596379", email: "yasinaacar@outlook.com", gender: 1, url:slugfield("Yasin Acar")},
-                    {driverImg: "driver-2.png", fullname: "Mertali Tosun", phone:"5227725695", email: "mertali3621@gmail.com", gender: 1, url:slugfield("Mertali Tosun")},
-                    {driverImg: "defaultDriver.jpg", fullname: "Şefik Merpez", phone:"5323365376", email: "merpezsefik@outlook.com", gender: 0, url:slugfield("Şefik Merpez")},
+            //created cargo-types, cargos and customer adverts
+            const cargoType_count=await CargoType.count();
+            if(cargoType_count==0){
+                const cargoTypes=await CargoType.bulkCreate([
+                    {cargoTypeName: "dökme mal", url:slugfield("dökme mal")},
+                    {cargoTypeName: "koli", url:slugfield("koli")},
+                    {cargoTypeName: "çuval", url:slugfield("çuval")},
                 ]);
-                for (const driver of drivers) {
-                    driver.driverCode=await randomCodeGenerator("DRV", driver);
-                    await driver.save();
+        
+                for (const cargoType of cargoTypes) {
+                    cargoType.cargoTypeCode=await randomCodeGenerator("CRTYP",cargoType);
+                    await cargoType.save();
                 };
-    
-                logger.info("Sürücüler başarıyla eklendi");
-                //create asscociation between driver and vehicles
-                await drivers[0].addVehicle(vehicles[0]);
-                await drivers[0].addVehicle(vehicles[2]);
-                await drivers[1].addVehicle(vehicles[0]);
-                await drivers[1].addVehicle(vehicles[1]);
-                await drivers[2].addVehicle(vehicles[1]);
+        
+                logger.info("Kargo Türleri Başarıyla Eklendi");
+        
+                const cargos=await Cargo.bulkCreate([
+                    {cargoName: "İhraç Fazlası Tekstil", cargoImg:"defaultCargo.jpg", description: `<a href="#">Tekstilcim</a>'e acilen teslim edilmesi gereken <b>150kg</b> <em>ihraç fazlası tekstil ürünleri</em> mevcuttur. Hızlı bir şekilde teslim edebilecek nakliyeci arkadaşların tekliflerini bekliyorum`, weight: 950, verticalHeight: 175, horizontalHeight: 84.6, cargoTypeId: cargoTypes[0].id, userId: users[0].id},
+                    {cargoName: "Akrilik Boya", cargoImg:"defaultCargo.jpg", description: `<a href="#">Nil Tuhafiye</a>'ye acilen teslim edilmesi gereken <b>120 koli</b> <em><a href="#">Rich</a> firmasına ait akrilik boya</em> mevcuttur. Hızlı bir şekilde teslim edebilecek nakliyeci arkadaşların tekliflerini bekliyorum`, weight: 1000, verticalHeight: 375, horizontalHeight: 120, cargoTypeId: cargoTypes[1].id, userId: users[2].id},
+                    {cargoName: "Tavuk Yemi", cargoImg:"cuval.webp", description: `<a href="#">Anadolu Yem</a>'e acilen teslim edilmesi gereken <b>5 çuval</b> <em>tavuk yemi</em> mevcuttur. Hızlı bir şekilde teslim edebilecek nakliyeci arkadaşların tekliflerini bekliyorum`, weight: 450, verticalHeight: 875, horizontalHeight: 54.6, cargoTypeId: cargoTypes[2].id, userId: users[3].id},
+                ]);
+                for (const cargo of cargos) {
+                    cargo.cargoCode=await randomCodeGenerator("CRG",cargo);
+                    await cargo.save();
+                };
+        
+                logger.info("Kargolar Başarıyla Eklendi");
+        
+        
+                const customerAdverts=await CustomerAdvert.bulkCreate([
+                    {title: "Denizli'ye Teslim, Tekstil Ürünü", startPoint: 1832, endPoint: 1871, description: `<a href="#">Tekstilcim</a>'e (bir Denizli Tekstil Firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-14", endDate:"2024-01-20", cargoId: cargos[0].id, userId: users[0].id},
+                    {title: "Malatya'ya Teslim", startPoint: 1823, endPoint: 1729, description: `<a href="#">Nil Tuhafiye</a>'ye <b>(Malatya'da Hobi/Sanatsal Malzemler Firması)</b> teslim edilmesi gereken <em>kolili</em> ürünler mevcut.`, startDate: "2024-01-16", endDate:"2024-01-24", cargoId: cargos[1].id, userId: users[2].id},
+                    {title: "Anadolu Yem (Kayseri)", startPoint: 1566, endPoint: 1846, description: `<a href="#">Anadolu Yem</a>'e (Kayseri firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-16", endDate:"2024-02-16", cargoId: cargos[2].id, userId: users[3].id},
+        
+                ]);
+        
+                for (const customerAdvert of customerAdverts) {
+                    customerAdvert.advertCode=await randomCodeGenerator("ADVCST", customerAdvert);
+                    await customerAdvert.save();
+                }
+        
+                logger.info("Müşteri İlanları Başarıyla Eklendi");
+        
+        
+            };    
 
-                logger.info("Sürücülere ilgili arçlar başarıyla atandı");
-            }
+            //created vehicle-types, vehicles and drivers
+            const vehicleType_count=await VehicleType.count();
+            if(vehicleType_count==0){
+                const vehicleTypes=await VehicleType.bulkCreate([
+                    {vehicleTypeName: "doblo", url: slugfield("doblo")},
+                    {vehicleTypeName: "kamyonet", url: slugfield("kamyonet")},
+                    {vehicleTypeName: "binek", url: slugfield("binek")},
+                ]);
+        
+                for (const vehicleType of vehicleTypes) {
+                    vehicleType.vehicleTypeCode=await randomCodeGenerator("VHCTY", vehicleType);
+                    await vehicleType.save();
+                }
+        
+                logger.info("Araç Türleri başarıyla eklendi");
+                //create vehicle
+                const vehicleCount=await Vehicle.count();
+                if(vehicleCount==0){
+                    const vehicles=await Vehicle.bulkCreate([
+                        { vehicleImg: 'doblo-maxi-2016.jpg', plate: '06 ADJ 436', brand: 'Fiat doblo', capacity: 120, wheels: 4, url: slugfield("06 ADJ 436"), vehicleTypeId: vehicleTypes[0].id, userId: users[0].id },
+                        { vehicleImg: 'defaultVehicle.jpg', plate: '35 DEF 456', brand: 'BMC', capacity: 796.5, wheels: 4, url: slugfield("35 DEF 456"),  vehicleTypeId: vehicleTypes[1].id, userId: users[1].id},
+                        { vehicleImg: 'polo-2016.webp', plate: '44 KN 238', brand: 'Volkswagen Polo', capacity: 5, wheels: 4, url: slugfield("44 KN 238"), vehicleTypeId: vehicleTypes[2].id, userId: users[2].id }
+                    ])
+        
+                    for (const vehicle of vehicles) {
+                        vehicle.vehicleCode=await randomCodeGenerator("VHC", vehicle);
+                        await vehicle.save();
+                    };
+        
+                    logger.info("Araçlar başarıyla eklendi"); 
+                    //create driver
+                    const driverCount=await Driver.count();
+                    if(driverCount==0){
+                        const drivers=await Driver.bulkCreate([
+                            {driverImg: "driver-1.jpeg", fullname: "Yasin Acar", phone:"5244596379", email: "yasinaacar@outlook.com", gender: 1, url:slugfield("Yasin Acar"), userId: users[0].id},
+                            {driverImg: "driver-2.png", fullname: "Mertali Tosun", phone:"5227725695", email: "mertali3621@gmail.com", gender: 1, url:slugfield("Mertali Tosun"), userId: users[1].id},
+                            {driverImg: "defaultDriver.jpg", fullname: "Şefik Merpez", phone:"5323365376", email: "merpezsefik@outlook.com", gender: 0, url:slugfield("Şefik Merpez"), userId: users[1].id},
+                        ]);
+                        for (const driver of drivers) {
+                            driver.driverCode=await randomCodeGenerator("DRV", driver);
+                            await driver.save();
+                        };
+            
+                        logger.info("Sürücüler başarıyla eklendi");
+                        //create asscociation between driver and vehicles
+                        await drivers[0].addVehicle(vehicles[0]);
+                        await drivers[0].addVehicle(vehicles[2]);
+                        await drivers[1].addVehicle(vehicles[0]);
+                        await drivers[1].addVehicle(vehicles[1]);
+                        await drivers[2].addVehicle(vehicles[1]);
+        
+                        logger.info("Sürücülere ilgili arçlar başarıyla atandı");
+                    }
+                };
+        
+        
+        
+            };
         };
-
-
-
     };
+
 
     //fk key error (for startPoint and endPoint) from route table
 

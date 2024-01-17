@@ -29,16 +29,16 @@ exports.post_vehicle_create=async(req,res)=>{
         const capacity=req.body.capacity;
         const wheels=req.body.wheels;
         const vehicleTypeId=req.body.vehicleTypeId;
+        const userId=req.session.userID;
     
     
-        const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels});
+        const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels, userId:userId});
     
         let generatedCode=await randomCodeGenerator("VHC", vehicle);
         vehicle.url=slugfield(plate);
         vehicle.vehicleCode=generatedCode;
         vehicleTypeId=="-1" ? vehicle.vehicleTypeId=null : vehicle.vehicleTypeId=vehicleTypeId;
         await vehicle.save();
-    
         req.session.message={text: `${plate} plakalı araç eklendi`, class:"success"};
     
         return res.redirect("/shipper/vehicles?action=create");
@@ -63,10 +63,11 @@ exports.post_vehicle_create=async(req,res)=>{
     }
 };
 exports.get_vehicle_edit=async(req,res)=>{
+    const userId=req.session.userID;
     const plate=req.params.plate;
-    const vehicle=await Vehicle.findOne({where:{url:plate},include:{model: Driver}});
+    const vehicle=await Vehicle.findOne({where:{[Op.and]:[{userId: userId},{url:plate}]},include:{model: Driver}});
     const vehicleTypes=await VehicleType.findAll();
-    const drivers=await Driver.findAll({attributes:["fullname", "id"]});
+    const drivers=await Driver.findAll({where:{userId: userId},attributes:["fullname", "id"]});
     const message=req.session.message;
     delete req.session.message;
     return res.render("admin/vehicle-pages/vehicle-edit", {
@@ -103,7 +104,8 @@ exports.post_vehicle_edit=async(req,res)=>{
                 
             }
         
-            const vehicle=await Vehicle.findByPk(vehicleId,{include:{model:Driver}});
+            const userId=req.session.userID;
+            const vehicle=await Vehicle.findOne({where:{[Op.and]:[{userId:userId},{id:vehicleId}]},include:{model:Driver}});
             if(vehicle){
                 vehicle.vehicleImg=vehicleImg;
                 vehicle.plate=plate.toUpperCase();
@@ -157,10 +159,11 @@ exports.post_vehicle_edit=async(req,res)=>{
 };
 exports.post_vehicle_delete=async(req,res)=>{
     const vehicleId=req.body.vehicleId;
+    const userId=req.session.userID;
     const plate=req.body.plate;
     const vehicleImg=req.body.vehicleImg;
     console.log(vehicleImg)
-    await Vehicle.destroy({where:{id:vehicleId}});
+    await Vehicle.destroy({where:{[Op.and]:[{userId:userId},{id:vehicleId}]}});
 
     if(vehicleImg!="defaultVehicle.jpg"){
         fs.unlink("/public/images/"+vehicleImg,err=>{
@@ -178,9 +181,10 @@ exports.post_vehicle_delete=async(req,res)=>{
     
 };
 exports.get_vehicles=async(req,res)=>{
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    const vehicles=await Vehicle.findAll({where:{userId:userId},include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
     console.log(vehicles)
     return res.render("admin/vehicle-pages/vehicles",{
         title: "Araçlarım",
@@ -210,7 +214,6 @@ exports.post_route_create=async(req,res)=>{
             req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
             return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
         }
-        console.log("Kod çalıştı")
         if(visitPoints && visitPoints.length>0){
             const startProvince=req.body.startProvince;
             const endProvince=req.body.endProvince;
@@ -219,7 +222,8 @@ exports.post_route_create=async(req,res)=>{
                 return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
             }
         }
-        const route=await Route.create({startPoint: startPoint, endPoint: endPoint, visitPoints: visitPoints});
+        const userId=req.session.userID;
+        const route=await Route.create({startPoint: startPoint, endPoint: endPoint, visitPoints: visitPoints, userId: userId});
         route.routeCode=await randomCodeGenerator("ROT",route);
         await route.save();
         return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`);
@@ -244,7 +248,8 @@ exports.get_route_edit=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
     const routeId=req.params.routeId;
-    const route=await Route.findByPk(routeId,{raw:true});
+    const userId=req.session.userID;
+    const route=await Route.findOne({where:{[Op.and]:[{userId: userId},{id: routeId}]},raw:true});
     const startPoint=await District.findOne({where:{id:route.startPoint},include:{model:Province}});
     const endPoint=await District.findOne({where:{id:route.endPoint},include:{model:Province}});
     const provinces=await Province.findAll();
@@ -263,6 +268,7 @@ exports.get_route_edit=async(req,res)=>{
 exports.post_route_edit=async(req,res)=>{
     const routeId=req.body.routeId;
     const advertId=req.params.advertId;
+    const userId=req.session.userID;
     try {        
         const startPoint=req.body.startDistrict;
         const endPoint=req.body.endDistrict;
@@ -278,7 +284,7 @@ exports.post_route_edit=async(req,res)=>{
             return res.redirect(`/shipper/shipper-advert/edit/advertid/${advertId}/routeid/${routeId}`)
         }
         //update on database
-        const route=await Route.findByPk(routeId,{include:{model:Voyage}});
+        const route=await Route.findOne({where:{[Op.and]:[{userId: userId},{id: routeId}]},include:{model:Voyage}});
         route.startPoint=startPoint;
         route.endPoint=endPoint;
         route.visitPoints=visitPoints;
@@ -304,7 +310,8 @@ exports.post_route_edit=async(req,res)=>{
 exports.get_routes=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const routes=await Route.findAll({include:{model:District},raw: true});
+    const userId=req.session.userID;
+    const routes=await Route.findAll({where:{userId: userId},include:{model:District},raw: true});
     const districts=await District.findAll({include:{model: Province}});
     const provinces=await Province.findAll();
     return res.render("admin/route-pages/routes",{
@@ -319,9 +326,10 @@ exports.get_routes=async(req,res)=>{
 //voyage process
 exports.get_voyage_create=async(req,res)=>{
     const routeId=req.params.routeId;
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    const vehicles=await Vehicle.findAll({where:{userId:userId},include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
     const route=await Route.findByPk(routeId,{attributes:["id"]});
     return res.render("admin/voyage-pages/voyage-create", {
         title: "Sefer Oluştur",
@@ -332,11 +340,12 @@ exports.get_voyage_create=async(req,res)=>{
 };
 exports.post_voyage_create=async(req,res)=>{
     const routeId=req.body.routeId;
+    const userId=req.session.userID;
     try {
         const startDate=req.body.startDate;
         const endDate=req.body.endDate;
         const vehicleId=req.body.vehicleId;
-        const voyage=await Voyage.create({startDate: startDate, endDate: endDate, vehicleId: vehicleId, routeId: routeId});
+        const voyage=await Voyage.create({startDate: startDate, endDate: endDate, vehicleId: vehicleId, routeId: routeId, userId:userId});
         voyage.voyageCode=await randomCodeGenerator("VYG", voyage);
         await voyage.save(); 
         req.session.message={text:`${voyage.voyageCode} kodlu sefer oluşturuldu`, class:"success"}
@@ -359,10 +368,11 @@ exports.post_voyage_create=async(req,res)=>{
 };
 exports.get_voyage_edit=async(req,res)=>{
     const routeId=req.params.routeId;
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const vehicles=await Vehicle.findAll({include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
-    const voyage=await Voyage.findOne({where:{routeId: routeId}});
+    const vehicles=await Vehicle.findAll({where:{userId: userId},include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    const voyage=await Voyage.findOne({where:{[Op.and]:[{routeId: routeId},{userId:userId}]}});
     return res.render("admin/voyage-pages/voyage-edit", {
         title: "Sefer Düzenle",
         message: message,
@@ -374,8 +384,9 @@ exports.post_voyage_edit=async(req,res)=>{
     const routeId=req.body.routeId;
     const advertId=req.params.advertId;
     const voyageId=req.body.voyageId;
+    const userId=req.session.userID;
     try {
-        let voyage=await Voyage.findByPk(voyageId);
+        let voyage=await Voyage.findOne({where:{[Op.and]:[{userId: userId},{id: voyageId}]}});
         if(voyage){
             const startDate=req.body.startDate;
             const endDate=req.body.endDate;
@@ -412,11 +423,12 @@ exports.post_voyage_edit=async(req,res)=>{
 };
 exports.post_voyage_delete=async(req,res)=>{
     const voyageId=req.body.voyageId;
-    let voyage=await Voyage.findOne({where:{id:voyageId}});
+    const userId=req.session.userID;
+    let voyage=await Voyage.findOne({where:{[Op.and]:[{id:voyageId},{userId: userId}]}});
     if(voyage){
         voyage.isDeleted=true;
         await voyage.save();
-        let advert=await ShipperAdvert.findOne({where:{voyageId:voyageId}});
+        let advert=await ShipperAdvert.findOne({where:{[Op.and]:[{voyageId:voyageId},{userId: userId}]}});
         advert.isDeleted=true;
         await advert.save();
         req.session.message={text:`${voyage.voyageCode} kodlu sefer ve sefer ile ilişkili ${advert.advertCode} kodlu ilan silindi`, class:"danger"};
@@ -424,9 +436,10 @@ exports.post_voyage_delete=async(req,res)=>{
     }
 };
 exports.get_voyages=async(req,res)=>{
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const voyages=await Voyage.findAll({where:{isDeleted:false},include:[{model:Vehicle, attributes:["plate"], include:{model: Driver, attributes:["fullname"]}}]});
+    const voyages=await Voyage.findAll({where:{[Op.and]:[{userId: userId},{isDeleted: false}]},include:[{model:Vehicle, attributes:["plate"], include:{model: Driver, attributes:["fullname"]}}]});
     return res.render("admin/voyage-pages/voyages", {
         title: "Seferlerim",
         message: message,
@@ -437,9 +450,11 @@ exports.get_voyages=async(req,res)=>{
 //shipper-advert
 exports.get_shipper_advert_create=async(req,res)=>{
     const voyageId=req.params.voyageId;
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const voyage=await Voyage.findByPk(voyageId,{attributes:["id"]});
+    const voyage=await Voyage.findOne({where:{[Op.and]:[{userId: userId},{id:voyageId}]}});
+    console.log(voyage)
     return res.render("admin/shipper-advert/shipper-advert-create",{
         title: "Nakliyeci İlanı",
         voyage: voyage,
@@ -451,22 +466,37 @@ exports.post_shipper_advert_create=async(req,res)=>{
     try {
         const title=req.body.title;
         const description=req.body.description;
+        const userId=req.session.userID;
 
-        const advert=await ShipperAdvert.create({title: title, description: description, voyageId: voyageId});
+
+        const advert=await ShipperAdvert.create({title: title, description: description, voyageId: voyageId, userId:userId});
         advert.advertCode=await randomCodeGenerator("ADVSHP", advert);
         advert.save();
 
         req.session.message={text:`${advert.advertCode} kodlu <b>yük taşıma</b> ilanı başarıyla oluşturuldu`, class:"success"};
         return res.redirect("/shipper/shipper-adverts?action=create");
     } catch (err) {
-        console.log(err);
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"warning"};
+            const routeId=req.params.routeId;
+            return res.redirect(`/shipper/shipper-advert/create/route/${routeId}/voyage/${voyageId}/advert`);
+        }else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
     }
 };
 exports.get_shipper_advert_edit=async(req,res)=>{
     const advertId=req.params.advertId;
+    const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const advert=await ShipperAdvert.findByPk(advertId);
+    const advert=await ShipperAdvert.findOne({where:{[Op.and]:[{userId: userId},{id: advertId}]}});
     return res.render("admin/shipper-advert/shipper-advert-edit",{
         title: "Nakliyeci İlanı Düzenle",
         advert: advert,
@@ -475,9 +505,10 @@ exports.get_shipper_advert_edit=async(req,res)=>{
 };
 exports.post_shipper_advert_edit=async(req,res)=>{
     const advertId=req.body.advertId;
+    const userId=req.session.userID;
 
     try {
-        let advert=await ShipperAdvert.findByPk(advertId);
+        let advert=await ShipperAdvert.findOne({where:{[Op.and]:[{userId:userId},{id: advertId}]}});
         if(advert){
             const title=req.body.title;
             const description=req.body.description;
@@ -489,12 +520,25 @@ exports.post_shipper_advert_edit=async(req,res)=>{
             return res.redirect("/shipper/shipper-adverts?action=edit");
         }
     } catch (err) {
-        console.log(err);
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                message += `${e.message} <br>`
+            }
+            req.session.message={text: message, class:"warning"};
+            return res.redirect(`/shipper/shipper-advert/edit/advertid/${advertId}`);
+        }else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
     }
 };
 exports.post_shipper_advert_delete=async(req,res)=>{
     const advertId=req.body.advertId;
-    let advert=await ShipperAdvert.findOne({where:{id:advertId}});
+    const userId=req.session.userID;
+
+    let advert=await ShipperAdvert.findOne({where:{[Op.and]:[{id:advertId},{userId: userId}]}});
     if(advert){
         advert.isDeleted=true;
         await advert.save();
@@ -508,7 +552,8 @@ exports.post_shipper_advert_delete=async(req,res)=>{
 exports.get_shipper_adverts=async(req,res)=>{
     const message= req.session.message;
     delete req.session.message;
-    const adverts=await ShipperAdvert.findAll({where:{isDeleted: false}, include:{model: Voyage}});
+    const userId=req.session.userID;
+    const adverts=await ShipperAdvert.findAll({where:{[Op.and]:[{isDeleted: false},{userId: userId}]}, include:{model: Voyage}});
     return res.render("admin/shipper-advert/shipper-adverts",{
         title: "İlanlarım",
         message: message,

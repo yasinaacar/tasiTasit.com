@@ -41,4 +41,26 @@ module.exports=function(){
     //voyage and shipper advert relation (one to one)
     Voyage.hasOne(ShipperAdvert);
     ShipperAdvert.belongsTo(Voyage);
+
+    //relation with user table and other tables (for specific access)
+    User.hasMany(Cargo);
+    Cargo.belongsTo(User);
+
+    User.hasMany(CustomerAdvert);
+    CustomerAdvert.belongsTo(User);
+
+    User.hasMany(Route);
+    Route.belongsTo(User);
+
+    User.hasMany(Voyage);
+    Voyage.belongsTo(User);
+
+    User.hasMany(Vehicle);
+    Vehicle.belongsTo(User);
+
+    User.hasMany(Driver);
+    Driver.belongsTo(User);
+
+    User.hasMany(ShipperAdvert);
+    ShipperAdvert.belongsTo(User);
 };

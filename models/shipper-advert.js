@@ -7,7 +7,21 @@ const ShipperAdvert=sequelize.define("shipperAdvert", {
         unique: true
     },
     title:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notNull: {
+                msg: `<b>İlan Başlığı</b> boş geçilemez`
+            },
+            notEmpty:{
+                msg: `<b>İlan Başlığı</b> boş geçilemez`
+            },
+            len:{
+                args: [5,50],
+                msg: `<b>İlan Başlığı</b> en az 5 en fazla 50 karakter içermelidir`
+                
+            }
+        }
     },
     description:{
         type: DataTypes.TEXT,

@@ -42,6 +42,7 @@ exports.post_customer_advert_create=async(req,res)=>{
         }
         const startDistrict=req.body.startDistrict;
         const endDistrict=req.body.endDistrict;
+        const userId=req.session.userID;
         
         const advert=await CustomerAdvert.create({
             title: title,
@@ -49,7 +50,8 @@ exports.post_customer_advert_create=async(req,res)=>{
             startDate: startDate,
             endDate: endDate,
             startPoint: startDistrict,
-            endPoint: endDistrict
+            endPoint: endDistrict,
+            userId: userId
         });
         advert.advertCode=await randomCodeGenerator("ADVCST",advert);
         await advert.save();
@@ -76,7 +78,9 @@ exports.get_customer_advert_edit=async(req,res)=>{
         const message=req.session.message;
         delete req.session.message;
         const advertId=req.params.advertId;
-        const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{id:advertId},{isDeleted: false}]}});
+        const userId=req.session.userID;
+
+        const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{id:advertId},{isDeleted: false},{userID: userId}]}});
         const provinces=await Province.findAll();
         const startPoint=await District.findOne({where:{id:advert.startPoint},include:{model:Province}});
         const endPoint=await District.findOne({where:{id:advert.endPoint},include:{model:Province}});
@@ -112,8 +116,8 @@ exports.post_customer_advert_edit=async(req,res)=>{
         }
         const startDistrict=req.body.startDistrict;
         const endDistrict=req.body.endDistrict;
-        
-        const advert=await CustomerAdvert.findByPk(advertId,{include: {model: Cargo}});
+        const userId=req.session.userID;
+        const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{userId: userId},{id: advertId}]},include: {model: Cargo}});
         advert.title=title;
         advert.description=description;
         advert.startDate=startDate;
@@ -140,22 +144,27 @@ exports.post_customer_advert_edit=async(req,res)=>{
     
 };
 exports.post_customer_advert_delete=async(req,res)=>{
-   const advertId=req.body.advertId;
-   const advertCode=req.body.advertCode;
+    const advertId=req.body.advertId;
+    const advertCode=req.body.advertCode;
+    const userId=req.session.userID;
+    const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{userId: userId},{id:advertId}]}});
+    if(advert){
+        advert.isDeleted=true;
+        await advert.save();
+        await Cargo.update({isDeleted: true},{where:{[Op.and]:[{userId: userId},{id:advert.cargoId}]}}); 
+        req.session.message={text:`${advertCode} kodlu ilan silindi`, class:"danger"};
+    }else{
+        req.session.message={text:`${advertCode} kodlu ilan silinemedi`, class:"danger"};
 
-    const advert=await CustomerAdvert.findOne({where:{id:advertId}});
-    advert.isDeleted=true;
-    await advert.save();
-    await Cargo.update({isDeleted: true},{where:{id: advert.cargoId}});
-
-    req.session.message={text:`${advertCode} kodlu ilan silindi`, class:"danger"};
+    }
     return res.redirect("/customer/customer-adverts");
 
 };
 exports.get_customer_adverts=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const adverts=await CustomerAdvert.findAll({where:{isDeleted: false}, include:{model:Cargo}});
+    const userId=req.session.userID;
+    const adverts=await CustomerAdvert.findAll({where:{[Op.and]:[{isDeleted: false},{userId: userId}]}, include:{model:Cargo}});
     const districts=await District.findAll({include:{model: Province, attributes:["name"]}, attributes:["id", "name"]});
     return res.render("admin/customer-advert/customer-adverts",{
         title:"İlanlarım",
@@ -185,6 +194,7 @@ exports.post_cargo_create=async(req,res)=>{
     const verticalHeight=req.body.verticalHeight ? req.body.verticalHeight : 0;
     const horizontalHeight=req.body.horizontalHeight ? req.body.horizontalHeight : 0;
     const cargoType=req.body.cargoType;
+    const userId=req.session.userID;
 
     try {
         const cargo=await Cargo.create({
@@ -193,7 +203,8 @@ exports.post_cargo_create=async(req,res)=>{
             description: description,
             weight: weight,
             verticalHeight: verticalHeight,
-            horizontalHeight: horizontalHeight
+            horizontalHeight: horizontalHeight,
+            userId: userId
         });
         await cargo.setCargoType(cargoType);
 
@@ -223,9 +234,10 @@ exports.get_cargo_edit=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
     const cargoId=req.params.cargoId;
+    const userId=req.session.userID;
     const cargo=await Cargo.findOne({where:{
         [Op.and]:[
-            {id:cargoId},{isdeleted:false}
+            {id:cargoId},{isdeleted:false},{userId: userId}
         ]},
         include:{model:CargoType, attributes:["id", "cargoTypeName"]}
     });
@@ -302,7 +314,8 @@ exports.get_cargo_detail=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
     const cargoCode=req.params.cargoCode;
-    const cargo=await Cargo.findOne({where:{cargoCode:cargoCode},include:{model:CargoType, attributes:["id", "cargoTypeName"]}});
+    const userId=req.session.userID;
+    const cargo=await Cargo.findOne({where:{[Op.and]:[{userId: userId},{cargoCode:cargoCode}]},include:{model:CargoType, attributes:["id", "cargoTypeName"]}});
     return res.render("admin/cargo-pages/cargo-details",{
         title:"Kargo Düzenle",
         message: message,
@@ -312,16 +325,18 @@ exports.get_cargo_detail=async(req,res)=>{
 exports.post_cargo_delete=async(req,res)=>{
     const cargoId=req.body.cargoId;
     const cargoCode=req.body.cargoCode;
+    const userId=req.session.userID;
     //cargo is never delete because if have any problem like anti-legal cargo we must hide it for officers
-    await Cargo.update({isDeleted: true},{where:{id:cargoId}}); 
-    await CustomerAdvert.update({isDeleted: true},{where:{cargoId:cargoId}})
+    await Cargo.update({isDeleted: true},{where:{[Op.and]:[{id:cargoId},{userId: userId}]}}); 
+    await CustomerAdvert.update({isDeleted: true},{where:{[Op.and]:[{id:cargoId},{userId: userId}]}})
     req.session.message={text:`${cargoCode} kodlu kargonuz silinmiştir`, class: "danger"};
     return res.redirect("/customer/cargos");
 }
 exports.get_cargos=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
-    const cargos=await Cargo.findAll({where:{isDeleted:false},include:{model: CargoType}});
+    const userId=req.session.userID;
+    const cargos=await Cargo.findAll({where:{[Op.and]:[{isDeleted:false},{userId: userId}]},include:{model: CargoType}});
     return res.render("admin/cargo-pages/cargos",{
         title: "Kargolar",
         message: message,
