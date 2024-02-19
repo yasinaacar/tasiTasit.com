@@ -207,23 +207,27 @@ exports.get_route_create=async(req,res)=>{
 };
 exports.post_route_create=async(req,res)=>{
     try {        
-        const startPoint=req.body.startDistrict;
-        const endPoint=req.body.endDistrict;
+        const startPoint=req.body.startPoint;
+        const startDistrict=req.body.startDistrict;
+        const endPoint=req.body.endPoint;
+        const endDistrict=req.body.endDistrict;
+        console.log("Start Point------------->",startPoint);
+        console.log("Start District------------->",startDistrict);
+        console.log("End Point------------->",endPoint);
+        console.log("End District------------->",endDistrict);
         let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
-        if(startPoint==endPoint){
+        if(startDistrict==endDistrict){
             req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
             return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
         }
-        if(visitPoints && visitPoints.length>0){
-            const startProvince=req.body.startProvince;
-            const endProvince=req.body.endProvince;
-            if(visitPoints.includes(startProvince) || visitPoints.includes(endProvince)){
+        if(visitPoints && visitPoints.length>0){;
+            if(visitPoints.includes(startPoint) || visitPoints.includes(endPoint)){
                 req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
                 return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
             }
         }
         const userId=req.session.userID;
-        const route=await Route.create({startPoint: startPoint, endPoint: endPoint, visitPoints: visitPoints, userId: userId});
+        const route=await Route.create({startPoint: startPoint, startDistrict: startDistrict,endPoint: endPoint, endDistrict: endDistrict, visitPoints: visitPoints, userId: userId});
         route.routeCode=await randomCodeGenerator("ROT",route);
         await route.save();
         return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`);

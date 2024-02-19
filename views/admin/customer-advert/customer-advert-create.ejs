@@ -43,7 +43,7 @@
                             <hr>
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="startProvince" id="startProvince">
+                                    <select class="form-select" name="startPoint" id="startPoint">
                                         <option value="-1" selected>Şehir Seçin</option>
                                         <% provinces.forEach(province => { %>
                                             <option value="<%= province.id %>"><%= province.name %></option>
@@ -66,7 +66,7 @@
                             <hr>
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="finishProvince" id="finishProvince">
+                                    <select class="form-select" name="endPoint" id="endPoint">
                                         <option value="-1" selected>Şehir Seçin</option>
                                         <% provinces.forEach(province => { %>
                                             <option value="<%= province.id %>"><%= province.name %></option>

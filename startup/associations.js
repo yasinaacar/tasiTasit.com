@@ -15,8 +15,8 @@ module.exports=function(){
     District.belongsTo(Province)
 
     //route and district relation (one to many)
-    Route.belongsTo(District, { foreignKey: 'startPoint' });
-    Route.belongsTo(District, { foreignKey: 'endPoint'});
+    Route.belongsTo(District, { foreignKey: 'startDistrict' });
+    Route.belongsTo(District, { foreignKey: 'endDistrict'});
 
     //user and role relation (many to many)
     User.belongsToMany(Role, {through: userRole});

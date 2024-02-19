@@ -1407,3 +1407,740 @@
   level: 'error',
   timestamp: '17-01-2024  17:49:51'
 }
+{
+  message: "Invalid value { visitPoints: '71' }",
+  level: 'error',
+  timestamp: '19-02-2024  10:50:47'
+}
+{
+  message: "Invalid value { visitPoints: '71' }",
+  level: 'error',
+  timestamp: '19-02-2024  10:54:12'
+}
+{
+  message: "Invalid value { visitPoints: [ '71' ] }",
+  level: 'error',
+  timestamp: '19-02-2024  10:56:14'
+}
+{
+  message: 'Sequelize is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  11:01:11'
+}
+{
+  message: 'Sequelize is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  11:01:56'
+}
+{
+  message: 'Sequelize is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  11:02:07'
+}
+{
+  message: `Invalid value { startPoint: '"71"' }`,
+  level: 'error',
+  timestamp: '19-02-2024  11:03:02'
+}
+{
+  message: "Invalid value { startPoint: '71' }",
+  level: 'error',
+  timestamp: '19-02-2024  11:03:42'
+}
+{
+  message: "Invalid value { startPoint: '71' }",
+  level: 'error',
+  timestamp: '19-02-2024  11:04:45'
+}
+{
+  message: "Invalid value { visitPoints: [ '71' ] }",
+  level: 'error',
+  timestamp: '19-02-2024  11:08:01'
+}
+{
+  message: 'sequelize is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  11:08:52'
+}
+{
+  message: 's.replace is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  11:09:41'
+}
+{
+  message: "Invalid value { visitPoints: Literal { val: 'JSON_ARRAY(71)' } }",
+  level: 'error',
+  timestamp: '19-02-2024  11:11:24'
+}
+{
+  message: 's.replace is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  11:12:35'
+}
+{
+  message: 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'@> \'[\\"71\\"]\') AND (`route`.`endPoint` = \'50\' OR `route`.`visitPoints` @> \'[\\"50\' at line 1',
+  level: 'error',
+  timestamp: '19-02-2024  11:13:25'
+}
+{
+  message: "Invalid value { startDate: '2024-01-20' }",
+  level: 'error',
+  timestamp: '19-02-2024  12:17:43'
+}
+{
+  message: "Invalid value { startDate: '2024-01-20' }",
+  level: 'error',
+  timestamp: '19-02-2024  12:18:11'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:19:27'
+}
+{
+  message: '(intermediate value).split is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  12:21:15'
+}
+{
+  message: "Invalid value { startDate: '2024-01-20' }",
+  level: 'error',
+  timestamp: '19-02-2024  12:21:29'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:21:59'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:23:03'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:24:08'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:25:07'
+}
+{
+  message: 'req.body.startDate.toDateString is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  12:28:19'
+}
+{
+  message: 'toDateString is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  12:28:44'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:29:10'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-19T21:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:30:46'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-19T21:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:31:10'
+}
+{
+  message: 'startDate.split is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  12:31:31'
+}
+{
+  message: 'startDate.split is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  12:33:08'
+}
+{
+  message: 'startDate.split is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  12:33:20'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:33:35'
+}
+{
+  message: "Invalid value { startDate: '2024-01-20' }",
+  level: 'error',
+  timestamp: '19-02-2024  12:33:51'
+}
+{
+  message: "Invalid value { startDate: '2024-01-20' }",
+  level: 'error',
+  timestamp: '19-02-2024  12:34:44'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:37:54'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:40:04'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:40:22'
+}
+{
+  message: 'Invalid value { startDate: 2024-01-20T00:00:00.000Z }',
+  level: 'error',
+  timestamp: '19-02-2024  12:40:32'
+}
+{
+  message: '(intermediate value).split is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  12:41:49'
+}
+{
+  message: "Invalid value { startDate: '2024-01-20' }",
+  level: 'error',
+  timestamp: '19-02-2024  12:42:12'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:183\n' +
+    '    181|                                                             <h4>\r\n' +
+    '    182|                                                                 <span>\r\n' +
+    ' >> 183|                                                                     <% const foundDistrictStart = districts.find(district => district.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    184|                                                                     <%- foundDistrictStart ? `<b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    185|                                                                 </span>\r\n' +
+    '    186|                                                                 <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'startPoint')",
+  level: 'error',
+  timestamp: '19-02-2024  12:59:01'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:183\n' +
+    '    181|                                                             <h4>\r\n' +
+    '    182|                                                                 <span>\r\n' +
+    ' >> 183|                                                                     <% const foundDistrictStart = districts.find(district => district.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    184|                                                                     <%- foundDistrictStart ? `<b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    185|                                                                 </span>\r\n' +
+    '    186|                                                                 <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'startPoint')",
+  level: 'error',
+  timestamp: '19-02-2024  12:59:04'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:88\n' +
+    '    86|                                                             <h4>\r\n' +
+    '    87|                                                                 <span>\r\n' +
+    ' >> 88|                                                                     <% const foundDistrictStart = districts.find(district => district.id == advert.startPoint); %>\r\n' +
+    '    89|                                                                     <%- foundDistrictStart ? `<b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    90|                                                                 </span>\r\n' +
+    '    91|                                                                 <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    'districts is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  13:38:41'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:89\n' +
+    '    87|                                                                 <span>\r\n' +
+    '    88|                                                                     <% const foundProvinceStart = provinces.find(province => province.id == advert.startPoint); %>\r\n' +
+    ' >> 89|                                                                     <%- foundProvinceStart ? `<b>${foundProvinceStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    90|                                                                 </span>\r\n' +
+    '    91|                                                                 <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '    92|                                                                 <span>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '19-02-2024  13:39:34'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:93\n' +
+    '    91|                                                                 <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '    92|                                                                 <span>\r\n' +
+    ' >> 93|                                                                     <% const foundDistrictEnd = districts.find(district => district.id == advert.endPoint); %>\r\n' +
+    '    94|                                                                     <b>\r\n' +
+    '    95|                                                                         <%- foundDistrictEnd ? `${foundDistrictEnd.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    96|                                                                     </b>\r\n' +
+    '\n' +
+    'districts is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  13:39:46'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\customer-advert\\customer-advert-edit.ejs:47\n' +
+    '    45|                                 <div class="col-sm-10 d-flex">\r\n' +
+    '    46|                                     <select class="form-select" name="startProvince" id="startProvince">\r\n' +
+    ' >> 47|                                         <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    48|                                         <% provinces.forEach(province => { %>\r\n' +
+    '    49|                                             <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    50|                                         <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'province')",
+  level: 'error',
+  timestamp: '19-02-2024  13:53:13'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\customer-advert\\customer-advert-edit.ejs:47\n' +
+    '    45|                                 <div class="col-sm-10 d-flex">\r\n' +
+    '    46|                                     <select class="form-select" name="startProvince" id="startProvince">\r\n' +
+    ' >> 47|                                         <option value="<%= startDistrict.province.id %>" selected><%= startDistrict.province.name %></option>\r\n' +
+    '    48|                                         <% provinces.forEach(province => { %>\r\n' +
+    '    49|                                             <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    50|                                         <% }) %>\r\n' +
+    '\n' +
+    'startDistrict is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  13:55:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:104\n' +
+    '    102|                                                         </div>\r\n' +
+    '    103|                                                         <div class="col-md-3">\r\n' +
+    ' >> 104|                                                             <p><%= advert.cargo.cargoType.cargoTypeName %></p>\r\n' +
+    '    105|                                                         </div>\r\n' +
+    '    106|                                                         <div class="col-md-2">\r\n' +
+    '    107|                                                             <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="false" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'cargoType')",
+  level: 'error',
+  timestamp: '19-02-2024  14:24:54'
+}
+{
+  message: 'Invalid value { model: cargo, include: { model: cargoType } }',
+  level: 'error',
+  timestamp: '19-02-2024  14:26:43'
+}
+{
+  message: 'e is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  14:36:42'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`routes`, CONSTRAINT `routes_ibfk_1` FOREIGN KEY (`startPoint`) REFERENCES `districts` (`id`) ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '19-02-2024  14:36:57'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`routes`, CONSTRAINT `routes_ibfk_1` FOREIGN KEY (`startPoint`) REFERENCES `districts` (`id`) ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '19-02-2024  14:38:55'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`routes`, CONSTRAINT `routes_ibfk_1` FOREIGN KEY (`startPoint`) REFERENCES `districts` (`id`) ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '19-02-2024  14:40:58'
+}
+{
+  message: 'Cannot add or update a child row: a foreign key constraint fails (`tasitasitdb`.`routes`, CONSTRAINT `routes_ibfk_1` FOREIGN KEY (`startPoint`) REFERENCES `districts` (`id`) ON UPDATE CASCADE)',
+  level: 'error',
+  timestamp: '19-02-2024  14:42:17'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:237\n' +
+    '    235|                                                                     <b class="text-success">\r\n' +
+    '    236|                                                                         \r\n' +
+    ' >> 237|                                                                         <%- foundDistrictStart ? `<b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    238|                                                                     </b> \r\n' +
+    '    239|                                                                     <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '    240|                                                                     <% if (advert.voyage.route.visitPoints) { %>\r\n' +
+    '\n' +
+    'foundDistrictStart is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  14:47:36'
+}
+{
+  message: "Unexpected token '.' in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '19-02-2024  14:55:38'
+}
+{
+  message: 'voyage is not associated to voyage!',
+  level: 'error',
+  timestamp: '19-02-2024  14:56:36'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  14:57:25'
+}
+{
+  message: "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '19-02-2024  14:58:50'
+}
+{
+  message: "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '19-02-2024  14:59:34'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:00:12'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:01:50'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:03:20'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:04:02'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:06:25'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:06:42'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:08:16'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:09:59'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:11:04'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:11:19'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:11:29'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:11:52'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:12:03'
+}
+{
+  message: 'voyages.voyage is not iterable',
+  level: 'error',
+  timestamp: '19-02-2024  15:12:18'
+}
+{
+  message: "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '19-02-2024  15:12:38'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:12:58'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:14:31'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:14:45'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:14:58'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  15:15:08'
+}
+{
+  message: "Cannot read properties of undefined (reading 'id')",
+  level: 'error',
+  timestamp: '19-02-2024  15:16:05'
+}
+{
+  message: "Cannot read properties of undefined (reading 'push')",
+  level: 'error',
+  timestamp: '19-02-2024  15:21:10'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:21:30'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:22:03'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:23:13'
+}
+{
+  message: 'include.model.getTableName is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  15:24:36'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:25:17'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:26:16'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:27:03'
+}
+{
+  message: "Cannot read properties of undefined (reading 'push')",
+  level: 'error',
+  timestamp: '19-02-2024  15:27:37'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:28:16'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:28:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:196\n' +
+    '    194|                                                         <div class="col-md-3">\r\n' +
+    '    195|                                                             \r\n' +
+    ' >> 196|                                                             <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>\r\n' +
+    '    197|                                                             \r\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'startDate')",
+  level: 'error',
+  timestamp: '19-02-2024  15:29:14'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:200\n' +
+    '    198|                                                         </div>\r\n' +
+    '    199|                                                         <div class="col-md-3">\r\n' +
+    ' >> 200|                                                             <p><%= advert.voyage.vehicle.vehicleType.vehicleTypeName %></p>\r\n' +
+    '    201|                                                         </div>\r\n' +
+    '    202|                                                         <div class="col-md-2">\r\n' +
+    '    203|                                                             <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="false" aria-controls="advertId_<%= advert.id %>">İncele</button>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'vehicle')",
+  level: 'error',
+  timestamp: '19-02-2024  15:31:51'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:171\n' +
+    '    169|                                     \r\n' +
+    '    170|                                     <% adverts.forEach(adv => { %>   \r\n' +
+    ' >> 171|                                         <% advert.forEach(adv => { %>                                         \r\n' +
+    '    172|                                             <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    173|                                                 <div class="accordion-item my-2">\r\n' +
+    '    174|                                                     <div class="row">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  15:32:38'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:239\n' +
+    '    237|                                                                         <b class="text-success">\r\n' +
+    '    238|                                                                             \r\n' +
+    ' >> 239|                                                                             <%- foundDistrictStart ? `<b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    240|                                                                         </b> \r\n' +
+    '    241|                                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '    242|                                                                         <% if (advert.voyage.route.visitPoints) { %>\r\n' +
+    '\n' +
+    'foundDistrictStart is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  15:32:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:171\n' +
+    '    169|                                     \r\n' +
+    '    170|                                     <% adverts.forEach(adv => { %>   \r\n' +
+    ' >> 171|                                         <% adv.forEach(advert => { %>                                         \r\n' +
+    '    172|                                             <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    173|                                                 <div class="accordion-item my-2">\r\n' +
+    '    174|                                                     <div class="row">\r\n' +
+    '\n' +
+    'adv.forEach is not a function',
+  level: 'error',
+  timestamp: '19-02-2024  16:37:23'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:36\n' +
+    '    34|                                             <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="startPoint" id="startPointSelector">\r\n' +
+    '    35|                                                 <option selected>\r\n' +
+    ' >> 36|                                                     <%= provinces.find(province=> province.id==startPoint)? province.name : "" %>\r\n' +
+    '    37|                                                 </option>\r\n' +
+    '    38|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    39|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '\n' +
+    'province is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  16:49:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:36\n' +
+    '    34|                                             <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="startPoint" id="startPointSelector">\r\n' +
+    '    35|                                                 <option selected value="<%= startPoint %>">\r\n' +
+    ' >> 36|                                                     <%= provinces.some(province=> province.id==startPoint) ? province.name : "" %>\r\n' +
+    '    37|                                                 </option>\r\n' +
+    '    38|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    39|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '\n' +
+    'province is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  16:51:07'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  17:07:17'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  17:07:49'
+}
+{
+  message: 'WHERE parameter "voyageId" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '19-02-2024  17:08:17'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:35\n' +
+    '    33|                                             <label for="startPointSelector" class="form-label border-bottom">Başlangıç Noktası</label>\r\n' +
+    '    34|                                             <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="startPoint" id="startPointSelector">\r\n' +
+    ' >> 35|                                                 <option selected value="<%= startPoint %>"><%= startPoint.province.name %></option>\r\n' +
+    '    36|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    37|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    38|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'name')",
+  level: 'error',
+  timestamp: '19-02-2024  17:19:29'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:53\n' +
+    '    51|                                         <div class="col-md-2">\r\n' +
+    '    52|                                             <label for="startDatePicker" class="form-label border-bottom">Başlangıç Tarihi</label>\r\n' +
+    ' >> 53|                                             <input type="date" class="form-control" name="startDate" id="startDatePicker" value="<%= start %>">\r\n' +
+    '    54|                                         </div>\r\n' +
+    '    55|                                         <div class="col-md-2">\r\n' +
+    '    56|                                             <label for="endDatePicker" class="form-label border-bottom">Son Teslim Tarihi</label>\r\n' +
+    '\n' +
+    'start is not defined',
+  level: 'error',
+  timestamp: '19-02-2024  17:20:24'
+}

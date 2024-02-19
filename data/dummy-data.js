@@ -110,9 +110,9 @@ async function dummyData(){
         
         
                 const customerAdverts=await CustomerAdvert.bulkCreate([
-                    {title: "Denizli'ye Teslim, Tekstil Ürünü", startPoint: 1832, endPoint: 1871, description: `<a href="#">Tekstilcim</a>'e (bir Denizli Tekstil Firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-14", endDate:"2024-01-20", cargoId: cargos[0].id, userId: users[0].id},
-                    {title: "Malatya'ya Teslim", startPoint: 1823, endPoint: 1729, description: `<a href="#">Nil Tuhafiye</a>'ye <b>(Malatya'da Hobi/Sanatsal Malzemler Firması)</b> teslim edilmesi gereken <em>kolili</em> ürünler mevcut.`, startDate: "2024-01-16", endDate:"2024-01-24", cargoId: cargos[1].id, userId: users[2].id},
-                    {title: "Anadolu Yem (Kayseri)", startPoint: 1566, endPoint: 1846, description: `<a href="#">Anadolu Yem</a>'e (Kayseri firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-16", endDate:"2024-02-16", cargoId: cargos[2].id, userId: users[3].id},
+                    {title: "Denizli'ye Teslim, Tekstil Ürünü", startPoint: 16, startDistrict: 1832, endPoint: 20, endDistrict: 1832, description: `<a href="#">Tekstilcim</a>'e (bir Denizli Tekstil Firması) teslim edilmesi gerekiyor.`, startDate: "2024-02-22", endDate:"2024-02-25", cargoId: cargos[0].id, userId: users[0].id},
+                    {title: "Malatya'ya Teslim", startPoint: 34, startDistrict: 1823, endPoint: 44, endDistrict: 1729, description: `<a href="#">Nil Tuhafiye</a>'ye <b>(Malatya'da Hobi/Sanatsal Malzemler Firması)</b> teslim edilmesi gereken <em>kolili</em> ürünler mevcut.`, startDate: "2024-01-16", endDate:"2024-01-24", cargoId: cargos[1].id, userId: users[2].id},
+                    {title: "Anadolu Yem (Kayseri)", startPoint: 23, startDistrict: 1566, endPoint: 36,  endDistrict: 1846, description: `<a href="#">Anadolu Yem</a>'e (Kayseri firması) teslim edilmesi gerekiyor.`, startDate: "2024-01-16", endDate:"2024-02-16", cargoId: cargos[2].id, userId: users[3].id},
         
                 ]);
         

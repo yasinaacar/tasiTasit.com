@@ -12,10 +12,22 @@ const Route = sequelize.define('route', {
       allowNull: false,
       validate:{
         notEmpty:{
-          msg: "Başlangıç Noktası Boş Geçilemez !!!"
+          msg: "Başlangıç Şehri Boş Geçilemez !!!"
         },
         notNull:{
-          msg: "Başlangıç Noktası Boş Geçilemez !!!"
+          msg: "Başlangıç Şehri Boş Geçilemez !!!"
+        },
+      }
+    },
+    startDistrict: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate:{
+        notEmpty:{
+          msg: "Başlangıç İlçesi Boş Geçilemez !!!"
+        },
+        notNull:{
+          msg: "Başlangıç İlçesi Boş Geçilemez !!!"
         },
       }
     },
@@ -24,10 +36,22 @@ const Route = sequelize.define('route', {
       allowNull: false,
       validate:{
         notEmpty:{
-          msg: "Bitiş Noktası Boş Geçilemez !!!"
+          msg: "Bitiş Şehri Boş Geçilemez !!!"
         },
         notNull:{
-          msg: "Bitiş Noktası Boş Geçilemez !!!"
+          msg: "Bitiş Şehri Boş Geçilemez !!!"
+        },
+      }
+    },
+    endDistrict: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate:{
+        notEmpty:{
+          msg: "Bitiş İlçesi Boş Geçilemez !!!"
+        },
+        notNull:{
+          msg: "Bitiş İlçesi Boş Geçilemez !!!"
         },
       }
     },

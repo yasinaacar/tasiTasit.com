@@ -43,8 +43,8 @@
                             <hr>
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="startProvince" id="startProvince">
-                                        <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>
+                                    <select class="form-select" name="startPoint" id="startPoint">
+                                        <option value="<%= startDistrict.province.id %>" selected><%= startDistrict.province.name %></option>
                                         <% provinces.forEach(province => { %>
                                             <option value="<%= province.id %>"><%= province.name %></option>
                                         <% }) %>
@@ -54,7 +54,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="startDistrict" id="startDistrict">
-                                        <option value="<%= startPoint.id %>" selected><%= startPoint.name %></option>
+                                        <option value="<%= startDistrict.id %>" selected><%= startDistrict.name %></option>
                                     </select>
                                 </div>
                             </div>
@@ -64,8 +64,8 @@
                             <hr>
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
-                                    <select class="form-select" name="finishProvince" id="finishProvince">
-                                        <option value="<%= endPoint.province.id %>" selected><%= endPoint.province.name %></option>
+                                    <select class="form-select" name="endPoint" id="endPoint">
+                                        <option value="<%= endDistrict.province.id %>" selected><%= endDistrict.province.name %></option>
                                         <% provinces.forEach(province => { %>
                                             <option value="<%= province.id %>"><%= province.name %></option>
                                         <% }) %>
@@ -75,7 +75,7 @@
                             <div class="col-md-6">
                                 <div class="col-sm-10 d-flex">
                                     <select class="form-select" name="endDistrict" id="endDistrict">
-                                        <option value="<%= endPoint.id %>" selected><%= endPoint.name %></option>
+                                        <option value="<%= endDistrict.id %>" selected><%= endDistrict.name %></option>
                                     </select>
                                 </div>
                             </div>

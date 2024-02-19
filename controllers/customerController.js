@@ -40,6 +40,8 @@ exports.post_customer_advert_create=async(req,res)=>{
             return res.redirect("/customer/customer-advert/create/"+cargoId);
 
         }
+        const startPoint=req.body.startPoint;
+        const endPoint=req.body.endPoint;
         const startDistrict=req.body.startDistrict;
         const endDistrict=req.body.endDistrict;
         const userId=req.session.userID;
@@ -49,8 +51,10 @@ exports.post_customer_advert_create=async(req,res)=>{
             description: description,
             startDate: startDate,
             endDate: endDate,
-            startPoint: startDistrict,
-            endPoint: endDistrict,
+            startPoint: startPoint,
+            startDistrict: startDistrict,
+            endPoint: endPoint,
+            endDistrict: endDistrict,
             userId: userId
         });
         advert.advertCode=await randomCodeGenerator("ADVCST",advert);
@@ -82,15 +86,15 @@ exports.get_customer_advert_edit=async(req,res)=>{
 
         const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{id:advertId},{isDeleted: false},{userID: userId}]}});
         const provinces=await Province.findAll();
-        const startPoint=await District.findOne({where:{id:advert.startPoint},include:{model:Province}});
-        const endPoint=await District.findOne({where:{id:advert.endPoint},include:{model:Province}});
+        const startDistrict=await District.findOne({where:{id:advert.startDistrict},include:{model:Province}});
+        const endDistrict=await District.findOne({where:{id:advert.endDistrict},include:{model:Province}});
         return res.render("admin/customer-advert/customer-advert-edit",{
             title:"Kargo Düzenle",
             message: message,
             advert:advert,
             provinces: provinces,
-            startPoint: startPoint,
-            endPoint: endPoint
+            startDistrict: startDistrict,
+            endDistrict: endDistrict
         });
         
     } catch (err) {
@@ -114,7 +118,9 @@ exports.post_customer_advert_edit=async(req,res)=>{
             return res.redirect("/customer/customer-advert/edit/"+advertId);
 
         }
+        const startPoint=req.body.startPoint;
         const startDistrict=req.body.startDistrict;
+        const endPoint=req.body.endPoint;
         const endDistrict=req.body.endDistrict;
         const userId=req.session.userID;
         const advert=await CustomerAdvert.findOne({where:{[Op.and]:[{userId: userId},{id: advertId}]},include: {model: Cargo}});
@@ -122,8 +128,10 @@ exports.post_customer_advert_edit=async(req,res)=>{
         advert.description=description;
         advert.startDate=startDate;
         advert.endDate=endDate;
-        advert.startPoint=startDistrict;
-        advert.endPoint=endDistrict;
+        advert.startPoint=startPoint;
+        advert.startDistrict=startDistrict;
+        advert.endPoint=endPoint;
+        advert.endDistrict=endDistrict;
         await advert.save();
         req.session.message={text:`${advert.advertCode} kodlu ilan yayınlandı`, class:"success"};
         return res.redirect("/customer/customer-adverts")

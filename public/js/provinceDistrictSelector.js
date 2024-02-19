@@ -1,9 +1,9 @@
 //to get district associated with province when the province is selected
 
 document.addEventListener('DOMContentLoaded', function () {
-    const startProvince = document.getElementById('startProvince');
+    const startProvince = document.getElementById('startPoint');
     const startDistrict = document.getElementById('startDistrict');
-    const endProvince = document.getElementById('endProvince');
+    const endProvince = document.getElementById('endPoint');
     const endDistrict = document.getElementById('endDistrict');
 
     // function of get district

@@ -14,13 +14,28 @@ const CustomerAdvert=sequelize.define("customerAdvert", {
         allowNull: false,
         validate:{
             notNull:{
-                msg:"Başlangıç Noktası boş geçilemez"
+                msg:"Başlangıç Şehiri boş geçilemez"
             },
             notEmpty:{
-                msg:"Başlangıç Noktası boş geçilemez"
+                msg:"Başlangıç Şehri boş geçilemez"
             },
             isInt:{
-                msg:"Başlangıç Noktası için sadece sunulan seçeneklerden birini seçin"
+                msg:"Başlangıç Şehri için sadece sunulan seçeneklerden birini seçin"
+            }
+        }
+    }, 
+    startDistrict:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+            notNull:{
+                msg:"Başlangıç İlçesi boş geçilemez"
+            },
+            notEmpty:{
+                msg:"Başlangıç İlçesi boş geçilemez"
+            },
+            isInt:{
+                msg:"Başlangıç İlçesi için sadece sunulan seçeneklerden birini seçin"
             }
         }
     }, 
@@ -29,13 +44,28 @@ const CustomerAdvert=sequelize.define("customerAdvert", {
         allowNull: false,
         validate:{
             notNull:{
-                msg:"Bitiş noktası boş geçilemez"
+                msg:"Bitiş Şehri boş geçilemez"
             },
             notEmpty:{
-                msg:"Bitiş noktası boş geçilemez"
+                msg:"Bitiş Şehri boş geçilemez"
             },
             isInt:{
-                msg:"Bitiş noktası için sadece sunulan seçeneklerden birini seçin"
+                msg:"Bitiş Şehri için sadece sunulan seçeneklerden birini seçin"
+            }
+        }
+    },
+    endDistrict:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+            notNull:{
+                msg:"Bitiş İlçesi boş geçilemez"
+            },
+            notEmpty:{
+                msg:"Bitiş İlçesi boş geçilemez"
+            },
+            isInt:{
+                msg:"Bitiş İlçesi için sadece sunulan seçeneklerden birini seçin"
             }
         }
     },
@@ -66,6 +96,7 @@ const CustomerAdvert=sequelize.define("customerAdvert", {
             }
         }
     },
+    
     endDate:{
         type: DataTypes.DATEONLY,
         allowNull: false,

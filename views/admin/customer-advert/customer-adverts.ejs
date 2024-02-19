@@ -28,11 +28,11 @@
                                 <td><%= advert.advertCode %></td>
                                 <td><%= advert.title %></td>
                                 <td>
-                                    <% const foundDistrictStart = districts.find(district => district.id == advert.startPoint); %>
+                                    <% const foundDistrictStart = districts.find(district => district.id == advert.startDistrict); %>
                                     <%- foundDistrictStart ? `${foundDistrictStart.name}, <b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>
                                 </td>
                                 <td class="endPoint">
-                                    <% const foundDistrictEnd = districts.find(district => district.id == advert.endPoint); %>
+                                    <% const foundDistrictEnd = districts.find(district => district.id == advert.endDistrict); %>
                                     <b>
                                         <%- foundDistrictEnd ? `${foundDistrictEnd.name}, <b>${foundDistrictEnd.province.name}</b>` : "Bulunamadı"; %>
                                     </b>
