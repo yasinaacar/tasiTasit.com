@@ -24,37 +24,14 @@
               <a class="nav-link" id="link" aria-current="page" href="/admin/users">Kullanıcılar</a>
             </li>
           <% } %>           
-          <% if (isFirm) { %>             
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/firm/drivers">Şöförler</a>
-            </li>
-          <% } %>
-          <% if (isShipper) { %>
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/shipper/vehicles">Araçlar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/shipper/routes">Rotalar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/shipper/voyages">Seferlerim</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/shipper/shipper-advert/create/route">Yük Taşı</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="/shipper/shipper-adverts">İlanlarım (Nakliyeci)</a>
-            </li>
-          <% } %>
           <li class="nav-item">
             <a class="nav-link" id="link" aria-current="page" href="/customer/customer-advert/create/cargo">Yük Taşıt</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="link" aria-current="page" href="/customer/cargos">Kargolarım</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="link" aria-current="page" href="/customer/customer-adverts">İlanlarım (Müşteri)</a>
-          </li>
+          <% if (isShipper) { %>
+            <li class="nav-item">
+              <a class="nav-link" id="link" aria-current="page" href="/shipper/shipper-advert/create/route">Yük Taşı</a>
+            </li>
+          <% } %>
         <% } %>
       </ul>
       <ul class="navbar-nav ms-auto">        
@@ -68,13 +45,40 @@
           </li>
           <% } %>
           <% if (isAuth) { %>    
-                     
-            <li class="nav-item">
-              <a class="nav-link" id="link" aria-current="page" href="#"><%= fullname %></a>
-            </li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="link" href="/auth/logout">Çıkış Yap</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= fullname %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Hesabım</a></li>
+                <li><a class="dropdown-item" href="/offers?offerType=my-offers">Tekliflerim</a></li>
+                <% if (isFirm) { %>             
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/firm/drivers">Şöförlerim</a>
+                  </li>
+                <% } %>
+                <% if (isShipper) { %>
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/shipper/vehicles">Araçlarım</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/shipper/routes">Rotalar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/shipper/voyages">Seferlerim</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/shipper/shipper-adverts">İlanlarım (Nakliyeci)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/customer/customer-adverts">İlanlarım (Müşteri)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link toggle-link" id="link" aria-current="page" href="/customer/cargos">Kargolarım</a>
+                  </li>
+                <% } %>
+                <li><a class="dropdown-item" href="/auth/logout"><i class="bi bi-box-arrow-right"></i> Çıkış Yap</a></li>
+              </ul>
             </li>
           <% } %>
         </ul>

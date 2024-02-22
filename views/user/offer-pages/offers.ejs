@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    <div class="container">
+        <div class="forms">
+            <div class="card" id="card">
+                <div class="card-body">
+                    <%- include('../../partials/alert') %>
+                    <h3 class="text-center my-4 border-bottom pb-3"><%= title %></h3>
+                    <div class="mb-2 category-list-table table-responsive">
+                        <div class="filter-offers">
+                            <div class="row">
+                                <div class="total-offers col-md-6">
+                                    <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>
+                                </div>
+                                <div class="filter-box col-md-6">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <option  href="/offers?offerType=my-offers" <%= offerType=="my-offers" ? "selected" : ""%>><a href="">Verdiğim Teklifler</a></option>
+                                        <option href="/offers?offerType=recived-offers" <%= offerType=="recived-offers" ? "selected" : ""%>>Aldığım Teklifler</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover" id="table">
+                            <thead>
+                                <tr class="text-center">
+                                    <th style="width:180px">Teklif Kodu</th>
+                                    <th>Müşteri İlanı</th>
+                                    <th>Nakliyeci İlanı</th>
+                                    <th>Rolüm</th>
+                                    <th>Teklif Durumu</th>
+                                    <th>Teklif Tarihi</th>
+                                    <th style="width: 200px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% offers.forEach(offer => { %>
+                                    <tr>
+                                        <td><%= offer.offerCode %></td>
+                                        <td><%= offer.customerAdvert.title %></td>
+                                        <td><%= offer.shipperAdvert.title %></td>
+                                        <td>
+                                            <%= offer.shipperAdvert.userId==userId ? "Nakliyeci" : "Müşteri" %>
+                                        </td>
+                                        <td>
+                                            <% if (offer.isSeened == false) { %>
+                                                Teslim Edildi
+                                            <% } else if (offer.isSeened == true) { %>
+                                                <% if (offer.isAccepted == true) { %>
+                                                    Onaylandı
+                                                <% } else if (offer.isAccepted == false) { %>
+                                                    Reddedildi
+                                                <% } else { %>
+                                                    Cevap Bekleniyor
+                                                <% } %>
+                                            <% } %>
+                                        </td>
+                                        <td class="date"><%= offer.estimatedDeadline %></td>
+                                        <td>
+                                            <div class="btns">
+                                                <button type="submit" class="btn btn-sm btn-success">İncele</button>
+                                                <button type="button" class="btn btn-sm btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#offer_<%= offer.id %>">
+                                                    Sil
+                                                </button>
+                                                <div class="modal fade" id="offer_<%= offer.id %>" tabindex="-1" aria-labelledby="offer_<%= offer.id %>Label" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h1 class="modal-title fs-5" id="offer_<%= offer.id %>Label">Modal title</h1>
+                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table class="table table-striped table-hover" id="table">
+                                                                <thead>
+                                                                    <tr class="text-center">
+                                                                        <th style="width:180px">Teklif Kodu</th>
+                                                                        <th>Müşteri İlanı</th>
+                                                                        <th>Nakliyeci İlanı</th>
+                                                                        <th>Rolüm</th>
+                                                                        <th>Teklif Durumu</th>
+                                                                        <th>Teklif Tarihi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><%= offer.offerCode %></td>
+                                                                        <td><%= offer.customerAdvert.title %></td>
+                                                                        <td><%= offer.shipperAdvert.title %></td>
+                                                                        <td>
+                                                                            <%= offer.shipperAdvert.userId==userId ? "Nakliyeci" : "Müşteri" %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <% if (offer.isSeened == false) { %>
+                                                                                Teslim Edildi
+                                                                            <% } else if (offer.isSeened == true) { %>
+                                                                                <% if (offer.isAccepted == true) { %>
+                                                                                    Onaylandı
+                                                                                <% } else if (offer.isAccepted == false) { %>
+                                                                                    Reddedildi
+                                                                                <% } else { %>
+                                                                                    Cevap Bekleniyor
+                                                                                <% } %>
+                                                                            <% } %>
+                                                                        </td>
+                                                                        <td class="date"><%= offer.estimatedDeadline %></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <p>Bu teklifi silemk istediğinize emin misiniz? </p>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                                            <form action="/offer/delete/<%= offer.offerCode %>" method="post">
+                                                                <input type="hidden" name="offerId" value="<%= offer.id %>">
+                                                                <button type="submit" class="btn btn-danger">Sil</button>
+                                                            </form>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/script') %>
+    <script src="/static/js/dateFormatConvertor.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectElement = document.querySelector('.form-select');
+            
+            selectElement.addEventListener('change', function () {
+                var selectedOption = selectElement.options[selectElement.selectedIndex];
+                console.log(selectedOption)
+                var link = selectedOption.getAttribute('href');
+                console.log(link)
+                if (link) {
+                    window.location.href = link;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

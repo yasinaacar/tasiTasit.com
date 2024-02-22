@@ -1,4 +1,4 @@
-const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, VehicleDriver, CustomerAdvert, Voyage, ShipperAdvert }=require("../models/index-models");
+const { Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, VehicleDriver, CustomerAdvert, Voyage, ShipperAdvert, Offer }=require("../models/index-models");
 
 module.exports=function(){
 
@@ -46,21 +46,38 @@ module.exports=function(){
     User.hasMany(Cargo);
     Cargo.belongsTo(User);
 
+    //customerAdvert and user relation (one to many)
     User.hasMany(CustomerAdvert);
     CustomerAdvert.belongsTo(User);
 
+    //user and route relation (one to many)
     User.hasMany(Route);
     Route.belongsTo(User);
 
+    //user and voyage relation (one to many)
     User.hasMany(Voyage);
     Voyage.belongsTo(User);
 
+    //user and vehicle relation (one to many)
     User.hasMany(Vehicle);
     Vehicle.belongsTo(User);
 
+    //user and driver relation (one to many)
     User.hasMany(Driver);
     Driver.belongsTo(User);
 
+    //user and shipperAdvert relation (one to many)
     User.hasMany(ShipperAdvert);
     ShipperAdvert.belongsTo(User);
+
+    CustomerAdvert.hasMany(Offer);
+    Offer.belongsTo(CustomerAdvert);
+
+    ShipperAdvert.hasMany(Offer);
+    Offer.belongsTo(ShipperAdvert);
+
+    Offer.belongsTo(User, { foreignKey: 'offeredBy' });
+    Offer.belongsTo(User, { foreignKey: 'recivedBy'});
+
+
 };

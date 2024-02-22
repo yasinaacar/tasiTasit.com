@@ -1,0 +1,94 @@
+<div class="accordion advert-card" id="accordion_<%= advert.id %>">
+    <div class="accordion-item my-2">
+        <div class="row">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed bg-danger text-light" type="button" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="true" aria-controls="advertId_<%= advert.id %>">
+                    <%= advert.title %>  ~ <%= advert.user.fullname %>
+                </button>
+            </h2>
+            <div class="row mx-3 my-4">
+                <!-- start point to end point -->
+                <div class="col-md-4">
+                    <h4>
+                        <span>
+                            <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>
+                            <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>
+                        </span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span>
+                            <% const foundEndPoint = provinces.find(province => province.id == advert.voyage.route.endPoint); %>
+                            <%- foundEndPoint ? `<b>${foundEndPoint.name}</b>` : "Bulunamadı"; %>
+                        </span>
+                    </h4>
+                </div>
+                <div class="col-md-3">
+                    
+                    <h5><span class="startDate"><%= advert.voyage.startDate %></span> - <span class="endDate"><%= advert.voyage.endDate %></span> </h5>
+                    
+                </div>
+                <div class="col-md-3">
+                    <p><%= advert.voyage.vehicle.vehicleType.vehicleTypeName %></p>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="false" aria-controls="advertId_<%= advert.id %>">İncele</button>
+                </div>
+            </div>
+        </div>
+      <div id="advertId_<%= advert.id %>" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordion_<%= advert.id %>">
+        <div class="accordion-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row mb-3">
+                        <h6 class="text-muted"><b>İlan Açıklaması</b></h6>
+                        <hr>
+                        <p><%- advert.description %></p>
+                    </div>
+                    <div class="row mb-3">
+                        <h6 class="text-muted"><b>Araç Bilgileri</b></h6>
+                        <hr> 
+                        <div class="col-md-4">
+                            Araç Markası: <b><%= advert.voyage.vehicle.brand %></b>
+                        </div>
+                        <div class="col-md-3">
+                            Kapasite: <%= advert.voyage.vehicle.capacity %> Kg
+                        </div>
+                        <div class="col-md-3">
+                            Teker Sayısı: <%= advert.voyage.vehicle.wheels %> 
+                        </div>
+                        <div class="col-md-3">
+                            Araç Türü: <%= advert.voyage.vehicle.vehicleType.vehicleTypeName %> 
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <h6 class="text-muted"><b>Sefer/Güzergah Bilgileri</b></h6>
+                        <hr> 
+                        <p>
+                            <b class="text-success">
+                                
+                                <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>
+                            </b> 
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <% if (advert.voyage.route.visitPoints) { %>
+                                <% for (let visitPoint of advert.voyage.route.visitPoints) { %>
+                                    <% const findVisitPoint = provinces.find(province => province.id == visitPoint); %>
+                                    <%- findVisitPoint ? `${findVisitPoint.name}` : "Bulunamadı"; %>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                <% } %>
+                            <% } %>
+                            <b class="text-danger">
+                                
+                                <%- foundEndPoint ? `<b>${foundEndPoint.name}</b>` : "Bulunamadı"; %>
+                            </b>  
+                        </p>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+      </div>
+    </div>
+</div>

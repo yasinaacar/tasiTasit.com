@@ -19,9 +19,6 @@ const User=sequelize.define("user", {
             },
             notEmpty:  {
                 msg: "Ad Soyad/Firma Adı boş geçilemez"
-            },
-            isAlpha:{
-                msg: "Ad Soyad/Firma Adı yalnızca harflerden oluşmalıdır"
             }
         }
     },

@@ -2144,3 +2144,912 @@
   level: 'error',
   timestamp: '19-02-2024  17:20:24'
 }
+{
+  message: "Araç silindi ancak resmi silinemedi. Silinemeyen resim: man-tgs-1708363509262.jpg,Error: ENOENT: no such file or directory, unlink 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\public\\images\\man-tgs-1708363509262.jpg'",
+  level: 'error',
+  timestamp: '19-02-2024  20:27:34'
+}
+{
+  message: "Cannot read properties of undefined (reading 'filename')",
+  level: 'error',
+  timestamp: '19-02-2024  20:34:13'
+}
+{
+  message: "Cannot read properties of undefined (reading 'filename')",
+  level: 'error',
+  timestamp: '19-02-2024  20:36:00'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:33\n' +
+    '    31|                                 <% if (adverts) { %>                                 \r\n' +
+    '    32|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 33|                                         <%- include('../partials/advert-card-forCargo') %>\r\n" +
+    '    34|                                     <% }) %>\r\n' +
+    '    35|                                 <% } else { %>\r\n' +
+    '    36|                                     İlan Bulunamadı\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCargo.ejs:1\n' +
+    ' >> 1| <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    2|     <div class="accordion-item my-2">\r\n' +
+    '    3|         <div class="row">\r\n' +
+    '    4|             <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  11:57:59'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:4\n' +
+    '    2| <html lang="en">\r\n' +
+    '    3| <head>\r\n' +
+    " >> 4|     <%- include('../partials/head') %>\r\n" +
+    '    5| </head>\r\n' +
+    '    6| <body>\r\n' +
+    "    7|     <%- include('../partials/navbar') %>\r\n" +
+    '\n' +
+    'Could not find the include file "../partials/head"',
+  level: 'error',
+  timestamp: '20-02-2024  12:24:42'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:18\n' +
+    '    16|                     <div class="col-md-12">\r\n' +
+    '    17|                         <div class="card">\r\n' +
+    ' >> 18|                             <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    19|                                 <div class="accordion-item my-2">\r\n' +
+    '    20|                                     <div class="row">\r\n' +
+    '    21|                                         <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  12:28:03'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:18\n' +
+    '    16|                     <div class="col-md-12">\r\n' +
+    '    17|                         <div class="card">\r\n' +
+    ' >> 18|                             <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    19|                                 <div class="accordion-item my-2">\r\n' +
+    '    20|                                     <div class="row">\r\n' +
+    '    21|                                         <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  12:28:30'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '20-02-2024  12:34:27'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '20-02-2024  12:40:53'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '20-02-2024  12:42:36'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '20-02-2024  12:43:27'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:18\n' +
+    '    16|                     <div class="col-md-12">\r\n' +
+    '    17|                         <div class="card">\r\n' +
+    ' >> 18|                             <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    19|                                 <div class="accordion-item my-2">\r\n' +
+    '    20|                                     <div class="row">\r\n' +
+    '    21|                                         <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  12:44:11'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:18\n' +
+    '    16|                     <div class="col-md-12">\r\n' +
+    '    17|                         <div class="card">\r\n' +
+    ' >> 18|                             <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    19|                                 <div class="accordion-item my-2">\r\n' +
+    '    20|                                     <div class="row">\r\n' +
+    '    21|                                         <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  12:44:15'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:31\n' +
+    '    29|                                                 <h4>\r\n' +
+    '    30|                                                     <span>\r\n' +
+    ' >> 31|                                                         <% const foundStartPoint = provinces.find(province => province.id == advert.startPoint); %>\r\n' +
+    '    32|                                                         <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    33|                                                     </span>\r\n' +
+    '    34|                                                     <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  12:44:48'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:31\n' +
+    '    29|                                                 <h4>\r\n' +
+    '    30|                                                     <span>\r\n' +
+    ' >> 31|                                                         <% const foundStartPoint = provinces.find(province => province.id == advert.startPoint); %>\r\n' +
+    '    32|                                                         <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    33|                                                     </span>\r\n' +
+    '    34|                                                     <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  12:44:50'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                             <% myAdverts.forEach(myAdvert => { %>\r\n' +
+    '    120|                                                 <% if (advertType=="customer") { %>\r\n' +
+    ' >> 121|                                                     <option value="<%= myAdvert.id %>"><%= myAdvert.title %> | <%= myAdvert.vehicle.plate %></option>\r\n' +
+    '    122|                                                 <% } %>\r\n' +
+    '    123|                                             <% }) %>\r\n' +
+    '    124|                                         </select>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'plate')",
+  level: 'error',
+  timestamp: '20-02-2024  14:17:33'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:47\n' +
+    '    45|                                             </div>\r\n' +
+    '    46|                                             <div class="col-md-3">\r\n' +
+    ' >> 47|                                                 <p><%= advert.cargo.cargoType.cargoTypeName %></p>\r\n' +
+    '    48|                                             </div>\r\n' +
+    '    49|                                             <div class="col-md-2">\r\n' +
+    '    50|                                                 <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="false" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'cargoType')",
+  level: 'error',
+  timestamp: '20-02-2024  14:26:22'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                                     <h4>\r\n' +
+    '    120|                                                         <span>\r\n' +
+    ' >> 121|                                                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    122|                                                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    123|                                                         </span>\r\n' +
+    '    124|                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'route')",
+  level: 'error',
+  timestamp: '20-02-2024  14:27:47'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                                     <h4>\r\n' +
+    '    120|                                                         <span>\r\n' +
+    ' >> 121|                                                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    122|                                                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    123|                                                         </span>\r\n' +
+    '    124|                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'route')",
+  level: 'error',
+  timestamp: '20-02-2024  14:28:33'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                                     <h4>\r\n' +
+    '    120|                                                         <span>\r\n' +
+    ' >> 121|                                                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    122|                                                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    123|                                                         </span>\r\n' +
+    '    124|                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'route')",
+  level: 'error',
+  timestamp: '20-02-2024  14:30:20'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                                     <h4>\r\n' +
+    '    120|                                                         <span>\r\n' +
+    ' >> 121|                                                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    122|                                                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    123|                                                         </span>\r\n' +
+    '    124|                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'route')",
+  level: 'error',
+  timestamp: '20-02-2024  14:30:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                                     <h4>\r\n' +
+    '    120|                                                         <span>\r\n' +
+    ' >> 121|                                                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    122|                                                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    123|                                                         </span>\r\n' +
+    '    124|                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'route')",
+  level: 'error',
+  timestamp: '20-02-2024  14:30:52'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:121\n' +
+    '    119|                                                     <h4>\r\n' +
+    '    120|                                                         <span>\r\n' +
+    ' >> 121|                                                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    122|                                                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    123|                                                         </span>\r\n' +
+    '    124|                                                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'route')",
+  level: 'error',
+  timestamp: '20-02-2024  14:31:07'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:203\n' +
+    '    201|                                 <h4 class="text-center border-bottom pb-2">Teklif Formu</h4>\r\n' +
+    "    202|                                 <%- include('../../partials/alert') %>\r\n" +
+    ' >> 203|                                 <form action="/<%= advertType %>/offer/create/<%= advertCode %>" method="post">\r\n' +
+    '    204|                                     <div class="mb-3">\r\n' +
+    '    205|                                         <select class="form-select" name="myAdvert" required>\r\n' +
+    '    206|                                             <option selected value="-1">Teklif İçin İlan Seçin</option>\r\n' +
+    '\n' +
+    'advertCode is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  16:13:03'
+}
+{
+  message: 'logger is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  17:05:37'
+}
+{
+  message: 'logger is not defined',
+  level: 'error',
+  timestamp: '20-02-2024  17:07:55'
+}
+{
+  message: "Unexpected token ')' in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '21-02-2024  11:59:44'
+}
+{
+  message: "Unexpected identifier 'selected' in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '21-02-2024  12:13:31'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  12:16:55'
+}
+{
+  message: 'customerAdvert is not associated to offer!',
+  level: 'error',
+  timestamp: '21-02-2024  12:22:27'
+}
+{
+  message: "Unknown column 'offer.userId' in 'where clause'",
+  level: 'error',
+  timestamp: '21-02-2024  16:14:33'
+}
+{
+  message: 'offers.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  16:21:21'
+}
+{
+  message: 'offers.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  16:21:58'
+}
+{
+  message: 'userOffers is not defined',
+  level: 'error',
+  timestamp: '21-02-2024  16:23:03'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-pages\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'province')",
+  level: 'error',
+  timestamp: '21-02-2024  17:13:59'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  17:14:31'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  17:15:56'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  17:16:57'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  17:17:03'
+}
+{
+  message: 'offers.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:20:38'
+}
+{
+  message: 'offer is not defined',
+  level: 'error',
+  timestamp: '21-02-2024  17:20:48'
+}
+{
+  message: 'offers.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:22:43'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  17:26:16'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '21-02-2024  17:27:11'
+}
+{
+  message: 'offers.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:27:33'
+}
+{
+  message: 'offers.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:27:41'
+}
+{
+  message: "Cannot access 'offer' before initialization",
+  level: 'error',
+  timestamp: '21-02-2024  17:30:50'
+}
+{
+  message: 'offer.getShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:31:22'
+}
+{
+  message: 'offer.getShipperAdvert is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:31:42'
+}
+{
+  message: 'offer.countShipperAdvert is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:32:37'
+}
+{
+  message: 'offer.countShipperAdverts is not a function',
+  level: 'error',
+  timestamp: '21-02-2024  17:33:03'
+}
+{
+  message: 'recivedBy is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  09:32:54'
+}
+{
+  message: 'recivedBy is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  09:35:20'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '22-02-2024  09:40:35'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '22-02-2024  09:45:30'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '22-02-2024  09:47:58'
+}
+{
+  message: 'recivedBy is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  09:49:56'
+}
+{
+  message: 'recivedBy is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  09:50:45'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    'shipperAdvert is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  09:52:36'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  09:52:46'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  09:56:28'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  09:56:56'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  09:56:58'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  09:57:21'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:44\n' +
+    '    42|                                     <tr>\r\n' +
+    '    43|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 44|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    45|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    46|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '    47|                                         <td><button type="submit" class="btn btn-sm btn-success">Teklifi İncele</button></td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  10:00:12'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:49\n' +
+    '    47|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    48|                                         <td>\r\n' +
+    ' >> 49|                                             <%= offer.shipperAdvert.userId==userId ? "Nakliyeci" : "Müşteri" %>\r\n' +
+    '    50|                                         </td>\r\n' +
+    '    51|                                         <td><%= offer.isApprove==true ? "Onaylandı" : "Reddedildi" %></td>\r\n' +
+    '    52|                                         <td class="date"><%= offer.estimatedDeadline %></td>\r\n' +
+    '\n' +
+    'userId is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  12:44:27'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:46\n' +
+    '    44|                                     <tr>\r\n' +
+    '    45|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 46|                                         <td><%= offer.customerAdvert.title %></td>\r\n' +
+    '    47|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    48|                                         <td>\r\n' +
+    '    49|                                             <%= offer.shipperAdvert.userId==userId ? "Nakliyeci" : "Müşteri" %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  12:44:44'
+}
+{
+  message: 'missing ) after argument list in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs while compiling ejs\n' +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '22-02-2024  12:53:29'
+}
+{
+  message: 'missing ) after argument list in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs while compiling ejs\n' +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '22-02-2024  12:53:51'
+}
+{
+  message: 'missing ) after argument list in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs while compiling ejs\n' +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '22-02-2024  12:55:54'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:55\n' +
+    '    53|                                                 Teslim Edildi\r\n' +
+    '    54|                                             <% } else if (offer.isSeened == true) { %>\r\n' +
+    ' >> 55|                                                 <% if (isApprove == true) { %>\r\n' +
+    '    56|                                                     Onaylandı\r\n' +
+    '    57|                                                 <% } else if (isApprove == false) { %>\r\n' +
+    '    58|                                                     Reddedildi\r\n' +
+    '\n' +
+    'isApprove is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  12:57:13'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:55\n' +
+    '    53|                                                 Teslim Edildi\r\n' +
+    '    54|                                             <% } else if (offer.isSeened == true) { %>\r\n' +
+    ' >> 55|                                                 <% if (isApproved == true) { %>\r\n' +
+    '    56|                                                     Onaylandı\r\n' +
+    '    57|                                                 <% } else if (isApproved == false) { %>\r\n' +
+    '    58|                                                     Reddedildi\r\n' +
+    '\n' +
+    'isApproved is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  12:57:26'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:55\n' +
+    '    53|                                                 Teslim Edildi\r\n' +
+    '    54|                                             <% } else if (offer.isSeened == true) { %>\r\n' +
+    ' >> 55|                                                 <% if (isApproved == true) { %>\r\n' +
+    '    56|                                                     Onaylandı\r\n' +
+    '    57|                                                 <% } else if (isApproved == false) { %>\r\n' +
+    '    58|                                                     Reddedildi\r\n' +
+    '\n' +
+    'isApproved is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  12:57:26'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:46\n' +
+    '    44|                                     <tr>\r\n' +
+    '    45|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 46|                                         <td><%= offer.customerAdvert.title %></td>\r\n' +
+    '    47|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    48|                                         <td>\r\n' +
+    '    49|                                             <%= offer.shipperAdvert.userId==userId ? "Nakliyeci" : "Müşteri" %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  14:12:09'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:46\n' +
+    '    44|                                     <tr>\r\n' +
+    '    45|                                         <td><%= offer.offerCode %></td>\r\n' +
+    ' >> 46|                                         <td><%= offer.customerAdvert.title %></td>\r\n' +
+    '    47|                                         <td><%= offer.shipperAdvert.title %></td>\r\n' +
+    '    48|                                         <td>\r\n' +
+    '    49|                                             <%= offer.shipperAdvert.userId==userId ? "Nakliyeci" : "Müşteri" %>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'title')",
+  level: 'error',
+  timestamp: '22-02-2024  14:18:16'
+}
+{
+  message: 'logger is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  14:29:37'
+}
+{
+  message: "Unknown column 'offer.offerId' in 'where clause'",
+  level: 'error',
+  timestamp: '22-02-2024  14:30:11'
+}
+{
+  message: "Unknown column 'offer.offerId' in 'where clause'",
+  level: 'error',
+  timestamp: '22-02-2024  14:31:29'
+}
+{
+  message: "Unknown column 'offer.offerId' in 'where clause'",
+  level: 'error',
+  timestamp: '22-02-2024  14:32:33'
+}
+{
+  message: "OFR7047 kodlu ve 825 id'li bir teklif bulunmadı",
+  level: 'error',
+  timestamp: '22-02-2024  14:32:46'
+}
+{
+  message: "OFR7047 kodlu ve 825 id'li bir teklif bulunmadı",
+  level: 'error',
+  timestamp: '22-02-2024  14:33:07'
+}
+{
+  message: "OFR7047 kodlu ve 825 id'li bir teklif bulunmadı",
+  level: 'error',
+  timestamp: '22-02-2024  14:33:31'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:34\n' +
+    '    32|                                 <% if (adverts) { %>                                 \r\n' +
+    '    33|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 34|                                         <%- include('../partials/advert-card-forCustomer') %>\r\n" +
+    '    35|                                         \r\n' +
+    '    36|                                     <% }) %>\r\n' +
+    '    37|                                 <% } else { %>\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:1\n' +
+    ' >> 1| <div class="accordion advert-card" id="accordion_<%= advert.id %>">\r\n' +
+    '    2|     <div class="accordion-item my-2">\r\n' +
+    '    3|         <div class="row">\r\n' +
+    '    4|             <h2 class="accordion-header" id="headingOne">\r\n' +
+    '\n' +
+    'advert is not defined',
+  level: 'error',
+  timestamp: '22-02-2024  14:53:00'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:43\n' +
+    '    41|                                 <% if (adverts) { %>\r\n' +
+    '    42|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 43|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    44| \r\n' +
+    '    45|                                     <% }) %>\r\n' +
+    '    46|                                  \r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:30\n' +
+    '    28|                 </div>\r\n' +
+    '    29|                 <div class="col-md-3">\r\n' +
+    ' >> 30|                     <p><%= advert.cargo.cargoType.cargoTypeName %></p>\r\n' +
+    '    31|                 </div>\r\n' +
+    '    32|                 <div class="col-md-2">\r\n' +
+    '    33|                     <button type="submit" class="btn btn-sm btn-danger" id="advertDetailBtn" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="false" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'cargoType')",
+  level: 'error',
+  timestamp: '22-02-2024  14:56:46'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\filtered-adverts.ejs:69\n' +
+    '    67|                                 <% if (adverts) { %>                                 \r\n' +
+    '    68|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 69|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    70|                                     <% }) %>\r\n' +
+    '    71|                                 <% } else { %>\r\n' +
+    '    72|                                     <h1>İlan Bulunamadı</h1>\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:6\n' +
+    '    4|             <h2 class="accordion-header" id="headingOne">\r\n' +
+    '    5|                 <button class="accordion-button collapsed bg-danger text-light" type="button" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="true" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    ' >> 6|                     <%= advert.title %> ~ <%= advert.user.fullname %>\r\n' +
+    '    7|                 </button>\r\n' +
+    '    8|             </h2>\r\n' +
+    '    9|             <div class="row mx-3 my-4">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'fullname')",
+  level: 'error',
+  timestamp: '22-02-2024  15:00:10'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:19\n' +
+    '    17|                         <div class="card my-4">\r\n' +
+    '    18|                             <% if (advertType=="customer") { %>                             \r\n' +
+    " >> 19|                                 <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    20|                             <% } %>\r\n' +
+    '    21|                             <% if (advertType=="shipper") { %>\r\n' +
+    "    22|                                 <%- include('../partials/advert-card-forShipper',{advert: advert}) %>                                      \r\n" +
+    '\n' +
+    'Could not find the include file "../partials/advert-card-forCustomer"',
+  level: 'error',
+  timestamp: '22-02-2024  15:04:30'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:19\n' +
+    '    17|                         <div class="card my-4">\r\n' +
+    '    18|                             <% if (advertType=="customer") { %>                             \r\n' +
+    " >> 19|                                 <%- include('../../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    20|                             <% } %>\r\n' +
+    '    21|                             <% if (advertType=="shipper") { %>\r\n' +
+    "    22|                                 <%- include('../../partials/advert-card-forShipper',{advert: advert}) %>                                      \r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:6\n' +
+    '    4|             <h2 class="accordion-header" id="headingOne">\r\n' +
+    '    5|                 <button class="accordion-button collapsed bg-danger text-light" type="button" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="true" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    ' >> 6|                     <%= advert.title %> ~ <%= advert.user.fullname %>\r\n' +
+    '    7|                 </button>\r\n' +
+    '    8|             </h2>\r\n' +
+    '    9|             <div class="row mx-3 my-4">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'fullname')",
+  level: 'error',
+  timestamp: '22-02-2024  15:04:51'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:19\n' +
+    '    17|                         <div class="card my-4">\r\n' +
+    '    18|                             <% if (advertType=="customer") { %>                             \r\n' +
+    " >> 19|                                 <%- include('../../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    20|                             <% } %>\r\n' +
+    '    21|                             <% if (advertType=="shipper") { %>\r\n' +
+    "    22|                                 <%- include('../../partials/advert-card-forShipper',{advert: advert}) %>                                      \r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:6\n' +
+    '    4|             <h2 class="accordion-header" id="headingOne">\r\n' +
+    '    5|                 <button class="accordion-button collapsed bg-danger text-light" type="button" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="true" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    ' >> 6|                     <%= advert.title %> ~ <%= advert.user.fullname %>\r\n' +
+    '    7|                 </button>\r\n' +
+    '    8|             </h2>\r\n' +
+    '    9|             <div class="row mx-3 my-4">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'fullname')",
+  level: 'error',
+  timestamp: '22-02-2024  15:05:49'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\create-offer.ejs:22\n' +
+    '    20|                             <% } %>\r\n' +
+    '    21|                             <% if (advertType=="shipper") { %>\r\n' +
+    " >> 22|                                 <%- include('../../partials/advert-card-forShipper',{advert: advert}) %>                                      \r\n" +
+    '    23| \r\n' +
+    '    24|                             <% } %>\r\n' +
+    '    25|                         </div>\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forShipper.ejs:6\n' +
+    '    4|             <h2 class="accordion-header" id="headingOne">\r\n' +
+    '    5|                 <button class="accordion-button collapsed bg-danger text-light" type="button" data-bs-toggle="collapse" data-bs-target="#advertId_<%= advert.id %>" aria-expanded="true" aria-controls="advertId_<%= advert.id %>">\r\n' +
+    ' >> 6|                     <%= advert.title %>  ~ <%= advert.user.fullname %>\r\n' +
+    '    7|                 </button>\r\n' +
+    '    8|             </h2>\r\n' +
+    '    9|             <div class="row mx-3 my-4">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'fullname')",
+  level: 'error',
+  timestamp: '22-02-2024  15:07:54'
+}
