@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    
+    
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- adverts -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card my-4">
+                            <% if (advertType=="customer") { %>                             
+                                <%- include('../../partials/advert-card-forCustomer',{advert: advert}) %>                                      
+                            <% } %>
+                            <% if (advertType=="shipper") { %>
+                                <%- include('../../partials/advert-card-forShipper',{advert: advert}) %>                                      
+
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <!-- offer form -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card my-4">
+                            <div class="row  my-2">
+                                <h4 class="text-center border-bottom pb-2">Teklif Formu</h4>
+                                <%- include('../../partials/alert') %>
+                                <form action="/<%= advertType %>/offer/create/<%= advert.advertCode %>" method="post">
+                                    <div class="mb-3">
+                                        <select class="form-select" name="myAdvert" required>
+                                            <option selected value="-1">Teklif İçin İlan Seçin</option>
+                                            <% myAdverts.forEach(myAdvert => { %>
+                                                <% if (advertType=="customer") { %>
+                                                    <option value="<%= myAdvert.id %>">
+                                                        <%= myAdvert.title %> | <%= myAdvert.voyage.route.startPoint %> -> <%= myAdvert.voyage.route.endPoint %> | <%= myAdvert.voyage.vehicle.plate %> | <%= myAdvert.voyage.startDate %> -> <%= myAdvert.voyage.endDate %>
+                                                    </option>
+                                                <% } %>
+                                                <% if (advertType=="shipper") { %>
+                                                    <option value="<%= myAdvert.id %>">
+                                                        <%= myAdvert.title %> | <%= myAdvert.title %>
+                                                    </option>
+                                                <% } %>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 my-2 d-flex justify-content-around">
+                                        <div class="col-md-5">
+                                            <label for="estimatedDeadline" class="form-label border-bottom">Tahmini Teslim Tarihi Seçin</label>
+                                            <input type="date" class="form-control form-select" name="estimatedDeadline" id="estimatedDeadline" >
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="estimatedDeadline" class="form-label border-bottom">Tahmini Teslim Ücreti</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" step="0.1" name="estimatedPrice">
+                                                <span class="input-group-text">$</span>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 my-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="shareContactInfo" name="shareContactInfo">
+                                            <label class="form-check-label">
+                                                <a class="shareContactInfo-link" data-bs-toggle="modal" data-bs-target="#sharedInformation">İletişim Bilgileri</a>min teklif sahibiyle paylaşılmasını onaylıyorum 
+                                            </label>
+                                            <div class="modal fade" id="sharedInformation" tabindex="-1" aria-labelledby="sharedInformationLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="sharedInformationLabel">İletişim Bilgilerinin Paylaşılması</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                          <h6 class="border-bottom pb-2">İletişim Bilgilerini kimlerle ve neden paylaşıyoruz?</h6>
+                                                          <p>İletişim bilgilerin yalnızca ilanına teklif verdiğin ilan sahibiyle, karşılıklı olarak iletişime geçebilmeniz için paylaşılır. İlan sahibi ve sen dışında bu bilgiler kimseyle paylaşılmaz</p>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                            <h6 class="border-bottom pb-2">İlan Sahibi hangi bilgilerini görebilir? </h6>
+                                                            <p>Teklif verdiğin ilanın sahibi aşağıdaki bilgilerine erişebilir:</p>
+                                                            <ul>
+                                                                <li>Ad-Soyad</li>
+                                                                <li>E-Mail</li>
+                                                                <li>Telefon Numarası</li>
+                                                            </ul>
+                                                      </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 my-2 ">
+                                        <div class="float-end">
+                                            <input type="hidden" name="offerToThisAdvert" value="<%= advert.id %>">
+                                            <button type="submit" class="btn btn-danger">Teklifi Gönder</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+         
+    <%- include('../../partials/script') %>
+    <script src="/static/js/dateFormatConvertor.js"></script>
+</body>
+</html>

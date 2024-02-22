@@ -188,14 +188,12 @@ async function dummyData(){
     };
 
 
-    //fk key error (for startPoint and endPoint) from route table
-
     // const routeCount=await Route.count();
     // if(routeCount==0){
     //     const routes=await Route.bulkCreate([
-    //         {startPoint: 1832, endPoint: 1871, visitPoints:["10", "45", "35", "09"]},
-    //         {startPoint: 1823, endPoint: 1729, visitPoints:["14", "06", "71", "40", "50", "38"]},
-    //         {startPoint: 1566, endPoint: 1846, visitPoints:["23", "44", "58"]},
+    //         {startPoint: 34, startDistrict: 1166, endPoint: 23, endDistrict: 1173, visitPoints:{"":"16", "":"06","": "71","": "50", "":"44"}},
+    //         // {startPoint: 1823, endPoint: 1729, visitPoints:["14", "06", "71", "40", "50", "38"]},
+    //         // {startPoint: 1566, endPoint: 1846, visitPoints:["23", "44", "58"]},
     //     ]);
 
     //     for (const route of routes) {

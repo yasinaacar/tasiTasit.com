@@ -1,0 +1,40 @@
+<!-- advert-filter -->
+<div class="row my-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form id="advertsFilter" action="/adverts/<%= advertType=="customer" ? "customer" : "shipper" %>" method="post">                                        
+                    <div class="row ">
+                        <!-- startPoint Selector -->
+                        <div class="col-md-3">
+                            <label for="startPointSelector" class="form-label border-bottom">Başlangıç Noktası</label>
+                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="startPoint" id="startPointSelector" required>
+                                <option selected>Kalkış Noktası Seçin</option>
+                                <% provinces.forEach(province => { %>
+                                    <option value="<%= province.id %>"><%= province.name %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <!-- endPoint Selector -->
+                        <div class="col-md-3">
+                            <label for="endPointSelector" class="form-label border-bottom">Bitiş Noktası</label>
+                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="endPoint" id="endPointSelector" required>
+                                <option selected>Varış Noktası Seçin</option>
+                                <% provinces.forEach(province => { %>
+                                    <option value="<%= province.id %>"><%= province.name %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="startDatePicker" class="form-label border-bottom">Başlangıç Tarihi</label>
+                            <input type="date" class="form-control" name="startDate" id="startDatePicker" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" id="filterAndSearchBtn" class=" btn btn-sm btn-outline-danger px-3" style="margin-top: 36px;">Ara</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

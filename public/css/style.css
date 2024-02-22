@@ -5,3 +5,17 @@
 .btn-disabled{
     display: none;
 }
+
+.toggle-link{
+    color: #615d5d !important;
+    margin-left: 8px;
+}
+
+.shareContactInfo-link{
+    text-decoration: underline;
+    color: blue;
+}
+
+.shareContactInfo-link:hover{
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ function formatDateToCustomFormat(dateString) {
 }           
 const startDates=document.querySelectorAll(".startDate");
 const endDates=document.querySelectorAll(".endDate");
+const date=document.querySelectorAll(".date");
 
 
 startDates.forEach(element => {
@@ -19,4 +20,11 @@ endDates.forEach(element => {
     const formattedEndDate = formatDateToCustomFormat(originalEndDate);
     element.textContent = formattedEndDate;
 });
+
+date.forEach(element => {
+    const originalEndDate = element.textContent;
+    const formattedEndDate = formatDateToCustomFormat(originalEndDate);
+    element.textContent = formattedEndDate;
+});
+
 

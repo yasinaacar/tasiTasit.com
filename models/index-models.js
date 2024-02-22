@@ -13,5 +13,6 @@ const VehicleDriver=require("../models/vehicleDriver");
 const CustomerAdvert=require("../models/customer-advert");
 const ShipperAdvert=require("../models/shipper-advert");
 const Voyage=require("../models/voyage");
+const Offer=require("../models/offer");
 
-module.exports={ Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, VehicleDriver, CustomerAdvert, Voyage, ShipperAdvert };
+module.exports={ Cargo, CargoType, District, Driver, Province, Role, Route, User, VehicleType, Vehicle, userRole, VehicleDriver, CustomerAdvert, Voyage, ShipperAdvert,Offer };

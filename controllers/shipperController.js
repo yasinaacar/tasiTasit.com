@@ -24,13 +24,13 @@ exports.get_vehicle_create=async(req,res)=>{
 exports.post_vehicle_create=async(req,res)=>{
     const plate=req.body.plate;
     try {
-        const vehicleImg=req.file ? req.file.filename: "defaultVehicle.jpg";
+        const vehicleImg=req.file ? req.file.filename:"defaultVehicle.jpg";
         const brand=req.body.brand;
         const capacity=req.body.capacity;
         const wheels=req.body.wheels;
         const vehicleTypeId=req.body.vehicleTypeId;
         const userId=req.session.userID;
-    
+        
     
         const vehicle=await Vehicle.create({vehicleImg: vehicleImg, plate: plate, brand: brand, capacity: capacity, wheels: wheels, userId:userId});
     
@@ -185,7 +185,6 @@ exports.get_vehicles=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
     const vehicles=await Vehicle.findAll({where:{userId:userId},include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
-    console.log(vehicles)
     return res.render("admin/vehicle-pages/vehicles",{
         title: "Araçlarım",
         vehicles: vehicles,
