@@ -5,5 +5,6 @@ module.exports=function(req,res,next){
     res.locals.isAdmin=req.session.isAdmin
     res.locals.isShipper=req.session.isShipper;
     res.locals.isFirm=req.session.isFirm;
+    res.locals.haveOffer=req.session.haveOffer;
     next();
 }

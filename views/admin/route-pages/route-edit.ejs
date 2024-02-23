@@ -20,7 +20,7 @@
                                     <hr>
                                     <div class="col-md-6 mb-5">
                                         <div class="col-sm-10 d-flex">
-                                            <select class="form-select text-center" name="startProvince" id="startProvince">
+                                            <select class="form-select text-center" name="startPoint" id="startPoint">
                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>
                                                 <% provinces.forEach(province => { %>
                                                     <option value="<%= province.id %>"><%= province.name %></option>
@@ -41,7 +41,7 @@
                                     <hr>
                                     <div class="col-md-6">
                                         <div class="col-sm-10 d-flex mb-5">
-                                            <select class="form-select text-center" name="endProvince" id="endProvince">
+                                            <select class="form-select text-center" name="endPoint" id="endPoint">
                                                 <option value="<%= endPoint.province.id %>" selected><%= endPoint.province.name %></option>
                                                 <% provinces.forEach(province => { %>
                                                     <option value="<%= province.id %>"><%= province.name %></option>

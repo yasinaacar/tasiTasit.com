@@ -1,8 +1,10 @@
 //models
-const {  Role, User }=require("../models/index-models");
+const {  Role, User, Offer }=require("../models/index-models");
 
 //helper
-const {bcrypt, transporter, randomCodeGenerator,}=require("../helpers/index-helpers")
+const {bcrypt, transporter, randomCodeGenerator,}=require("../helpers/index-helpers");
+
+const { Op } = require("sequelize");
 
 //middlewares
 const {isAuth}=require("../middlewares/isAccess");
@@ -183,6 +185,14 @@ exports.post_login=async(req,res)=>{
                 req.session.isFirm=false;
                 req.session.isShipper=true;
             }
+            const offers=await Offer.findAll({where:{
+                [Op.and]:[
+                    {recivedBy: user.id},{isSeened: false}
+                ]
+            
+            }});
+            console.log(offers)
+            req.session.haveOffer=offers.length;
 
             return res.redirect(url);
         }

@@ -210,10 +210,6 @@ exports.post_route_create=async(req,res)=>{
         const startDistrict=req.body.startDistrict;
         const endPoint=req.body.endPoint;
         const endDistrict=req.body.endDistrict;
-        console.log("Start Point------------->",startPoint);
-        console.log("Start District------------->",startDistrict);
-        console.log("End Point------------->",endPoint);
-        console.log("End District------------->",endDistrict);
         let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
         if(startDistrict==endDistrict){
             req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
@@ -232,6 +228,7 @@ exports.post_route_create=async(req,res)=>{
         return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`);
     } catch (err) {
         let message= "";
+        console.log(err)
         if(err.name=="SequelizeValidationError"){
             for (const e of err.errors) {
                 message += `${e.message} <br>`
@@ -242,7 +239,7 @@ exports.post_route_create=async(req,res)=>{
             return res.render("errors/500",{title: "500"});
         }
 
-        return res.redirect("/shipper-advert/create/route");
+        return res.redirect("/shipper/shipper-advert/create/route");
     }
 
     
@@ -253,8 +250,8 @@ exports.get_route_edit=async(req,res)=>{
     const routeId=req.params.routeId;
     const userId=req.session.userID;
     const route=await Route.findOne({where:{[Op.and]:[{userId: userId},{id: routeId}]},raw:true});
-    const startPoint=await District.findOne({where:{id:route.startPoint},include:{model:Province}});
-    const endPoint=await District.findOne({where:{id:route.endPoint},include:{model:Province}});
+    const startPoint=await District.findOne({where:{id:route.startDistrict},include:{model:Province}});
+    const endPoint=await District.findOne({where:{id:route.endDistrict},include:{model:Province}});
     const provinces=await Province.findAll();
     let visitPoints=route.visitPoints;
 
@@ -273,23 +270,25 @@ exports.post_route_edit=async(req,res)=>{
     const advertId=req.params.advertId;
     const userId=req.session.userID;
     try {        
-        const startPoint=req.body.startDistrict;
-        const endPoint=req.body.endDistrict;
+        const startPoint=req.body.startPoint;
+        const startDistrict=req.body.startDistrict;
+        const endPoint=req.body.endPoint;
+        const endDistrict=req.body.endDistrict;
         if(startPoint==endPoint){
             req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
             return res.redirect(`/shipper/shipper-advert/edit/advertid/${advertId}/routeid/${routeId}`);
         }
         let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
-        const startProvince=req.body.startProvince;
-        const endProvince=req.body.endProvince;
-        if(visitPoints.includes(startProvince) || visitPoints.includes(endProvince)){
+        if(visitPoints.includes(startPoint) || visitPoints.includes(endPoint)){
             req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
             return res.redirect(`/shipper/shipper-advert/edit/advertid/${advertId}/routeid/${routeId}`)
         }
         //update on database
         const route=await Route.findOne({where:{[Op.and]:[{userId: userId},{id: routeId}]},include:{model:Voyage}});
         route.startPoint=startPoint;
+        route.startDistrict=startDistrict;
         route.endPoint=endPoint;
+        route.endDistrict=endDistrict;
         route.visitPoints=visitPoints;
         await route.save();
 
@@ -297,6 +296,7 @@ exports.post_route_edit=async(req,res)=>{
         return res.redirect(`/shipper/shipper-advert/edit/advertid/${advertId}/routeid/${routeId}/voyageid/${route.voyage.id}`);
     } catch (err) {
         let message= "";
+        console.log(err);
         if(err.name=="SequelizeValidationError"){
             for (const e of err.errors) {
                 message += `${e.message} <br>`

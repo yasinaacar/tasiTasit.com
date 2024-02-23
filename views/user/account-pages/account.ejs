@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-light text-center my-3 border-bottom pb-3">Hesabım</h3>
+                <a href="/account/change-password">
+                    <div class="card my-3">
+                        <h6><i class="bi bi-key-fill"></i> Şifre Değiştir</h6>
+                    </div>
+                </a>
+                <a href="/account/edit-contact-informations" class="my-3">
+                    <div class="card my-3">
+                        <h6><i class="bi bi-telephone-fill"></i> İletişim Bilgilerini Düzenle</h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+         
+    <%- include('../../partials/script') %>
+</body>
+</html>

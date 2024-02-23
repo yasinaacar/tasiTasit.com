@@ -1,6 +1,5 @@
 const {DataTypes}=require("sequelize");
 const {sequelize} = require("../startup/db");
-const District=require("./district");
 
 const Route = sequelize.define('route', {
     routeCode:{

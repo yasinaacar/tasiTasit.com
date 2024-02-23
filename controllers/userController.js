@@ -1,7 +1,7 @@
 const { Op, and } = require("sequelize");
 const {Province, CustomerAdvert, ShipperAdvert, Cargo, CargoType, District, Voyage, Vehicle, VehicleType, Route, User, Offer}=require("../models/index-models");
 const { sequelize } = require('../startup/db');
-const {randomCodeGenerator, transporter}=require("../helpers/index-helpers");
+const {randomCodeGenerator, transporter, bcrypt}=require("../helpers/index-helpers");
 const config= require("config");
 const logger = require("../startup/logger");
 
@@ -15,6 +15,7 @@ exports.get_homepage=async(req,res)=>{
     })
 };
 
+// advert operations
 exports.get_adverts=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
@@ -96,11 +97,11 @@ exports.post_filter_adverts=async (req,res)=>{
         startPoint: startPoint,
         endPoint: endPoint,
         startDate: startDate
-        // districts: districts
     });
 
 };
 
+// offer operations
 exports.get_create_offer=async (req,res)=>{
     const message=req.session.message;
     delete req.session.message;
@@ -321,7 +322,126 @@ exports.post_delete_offer= async (req,res)=>{
         req.session.message={text: message, class:"warning"};
         return res.redirect(`/offers?offerType=my-offers`);
     }
-}
+};
+
+exports.get_offer_detail=async(req,res)=>{
+    const {offerCode, offerId, offerType, myRole}=req.query
+    let offer=await Offer.findOne({where:{id: offerId, offerCode: offerCode},include:[{model: CustomerAdvert},{model: ShipperAdvert}]});
+    let recivedAdvert;
+    let offeredAdvert;
+    console.log(req.session.haveOffer)
+    if(!offer){
+        req.session.message={text:`<b>${offerCode}</b> kodlu teklif bulunamadı`, class:"warning"};
+        return res.redirect("/offers?offerType="+offerType);
+    };
+    if(offerType=="recived-offers"){
+        offer.isSeened==false ? offer.isSeened=true : "";
+        await offer.save();
+        req.session.haveOffer= req.session.haveOffer-1;
+
+    };
+    if(offerType=="my-offers"){
+        if(myRole=="shipper"){
+            offeredAdvert=await ShipperAdvert.findOne({
+                where:{
+                    id: offer.shipperAdvertId
+                }, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}]
+            });
+            recivedAdvert=await CustomerAdvert.findOne({
+                where:{
+                    id: offer.customerAdvertId
+                }, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}]
+            });
+        }else if(myRole=="customer"){
+            offeredAdvert=await CustomerAdvert.findOne({
+                where:{
+                    id: offer.customerAdvertId
+                }, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}]
+            });
+            recivedAdvert=await ShipperAdvert.findOne({
+                where:{
+                    id: offer.shipperAdvertId
+                }, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}]
+            });
+        }
+    }if(offerType=="recived-offers"){
+        if(myRole=="shipper"){
+            recivedAdvert=await ShipperAdvert.findOne({
+                where:{
+                    id: offer.shipperAdvertId
+                }, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}]
+            });
+            offeredAdvert=await CustomerAdvert.findOne({
+                where:{
+                    id: offer.customerAdvertId
+                }, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}]
+            });
+        }else if(myRole=="customer"){
+            recivedAdvert=await CustomerAdvert.findOne({
+                where:{
+                    id: offer.customerAdvertId
+                }, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}]
+            });
+            offeredAdvert=await ShipperAdvert.findOne({
+                where:{
+                    id: offer.shipperAdvertId
+                }, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}]
+            });
+        }
+    }
+    const provinces=await Province.findAll();
+    return res.render("user/offer-pages/offer-detail",{
+        title: "Teklif Detayı",
+        offer: offer,
+        recivedAdvert: recivedAdvert,
+        offeredAdvert: offeredAdvert,
+        offerType: offerType,
+        myRole: myRole,
+        provinces: provinces
+    });
+
+};
+
+exports.post_approve_offer=async(req,res)=>{
+    const offerCode=req.params.offerCode;
+    const offerId=req.body.offerId;
+    let offer=await Offer.findOne({where:{
+        id: offerId, offerCode: offerCode
+    }});
+
+    if(!offer){
+        req.session.message={text:`<b>${offerCode}</b> kodlu teklif bulunamadı`, class:"warning"};
+        return res.redirect("/offers?offerType=recived-offers");
+    };
+
+    if(offer.isAccepted!=true){
+        offer.isAccepted=true;
+        await offer.save();
+    };
+    req.session.message={text:`<b>${offerCode}</b> kodlu teklif onaylandı `, class:"success"};
+    return res.redirect("/offers?offerType=recived-offers");
+
+};
+
+exports.post_reject_offer=async(req,res)=>{
+    const offerCode=req.params.offerCode;
+    const offerId=req.body.offerId;
+    let offer=await Offer.findOne({where:{
+        id: offerId, offerCode: offerCode
+    }});
+
+    if(!offer){
+        req.session.message={text:`<b>${offerCode}</b> kodlu teklif bulunamadı`, class:"warning"};
+        return res.redirect("/offers?offerType=recived-offers");
+    };
+
+    if(offer.isAccepted!=false){
+        offer.isAccepted=false;
+        await offer.save();
+    };
+    req.session.message={text:`<b>${offerCode}</b> kodlu teklif reddedildi `, class:"danger"};
+    return res.redirect("/offers?offerType=recived-offers");
+};
 
 exports.get_offers=async (req,res)=>{
     const userId=req.session.userID;
@@ -332,9 +452,9 @@ exports.get_offers=async (req,res)=>{
     let offers;
 
     if(offerType=="recived-offers"){
-        offers=await Offer.findAll({where:{recivedBy: userId},include:[{model: CustomerAdvert},{model: ShipperAdvert}]});
+        offers=await Offer.findAll({where:{recivedBy: userId},include:[{model: CustomerAdvert, include:{model: User}},{model: ShipperAdvert, include:{model: User}}]});
     }else if(offerType=="my-offers"){
-        offers=await Offer.findAll({where:{offeredBy: userId},include:[{model: CustomerAdvert},{model: ShipperAdvert}]});
+        offers=await Offer.findAll({where:{offeredBy: userId},include:[{model: CustomerAdvert, include:{model: User}},{model: ShipperAdvert, include:{model: User}}]});
     }
 
 
@@ -347,3 +467,122 @@ exports.get_offers=async (req,res)=>{
     });
 };
 
+//account operations
+exports.get_account=async (req,res)=>{
+    return res.render("user/account-pages/account",{
+        title: "Hesabım"
+    });
+};
+
+exports.get_change_password=async (req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    return res.render("user/account-pages/change-password",{
+        title: "Şifre değiştir",
+        message: message
+    });
+};
+
+exports.post_change_password=async (req,res)=>{
+    const userId=req.session.userID;
+    let user=await User.findByPk(userId);
+    if(!user){
+        req.session.message={text:"Şifresi değiştirilmek istenen kullanıcı bulunamadı, daha sonra tekrar deneyin.", class:"warning"};
+        return res.redirect("/account/change-password");
+    }
+    try {
+        
+        const {password, newPassword, newPasswordAgain}=req.body;
+    
+        const match=await bcrypt.compare(password, user.password);
+    
+        if(!match){
+            req.session.message={text:"Şu anki Şifreniz için girdiğiniz değer hatalı", class:"warning"};
+            return res.redirect("/account/change-password");
+        };
+    
+        if(await bcrypt.compare(newPassword, user.password)){
+            req.session.message={text:"Yeni Şifre ve Şu anki Şifre aynı olamaz", class:"warning"};
+            return res.redirect("/account/change-password");
+        };
+    
+        if(newPassword!=newPasswordAgain){
+            req.session.message={text:"Yeni Şifre ve Yeni Şifre (Tekrar) Aynı Olmalıdır", class:"warning"};
+            return res.redirect("/account/change-password");
+        };
+    
+        const hashedPassword=await bcrypt.hash(newPassword);
+    
+        user.password=hashedPassword;
+        await user.save();
+    
+        req.session.message={text:"Şifreniz başarıyla güncellendi. Lütfen yeni şifrenizle giriş yapın", class:"success"};
+        await req.session.destroy();
+        return res.redirect("/auth/login")
+    } catch (err) {
+        
+    }
+};
+
+exports.get_edit_contact_informations=async(req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
+    const userId=req.session.userID;
+    const user=await User.findByPk(userId,{attributes:["id", "fullname", "phone", "email"]});
+
+    try {
+        if(!user){
+            throw new Error(`${userId} id numarasına sahip kullanıcı bulunamadı. İletişim bilgilerimi düzenlede bu hata alındı`);
+        };
+        
+        return res.render("user/account-pages/edit-contact-informations",{
+            title: "İletişim Bilgilerim",
+            message: message,
+            user: user
+        })
+        
+    } catch (err) {
+        
+    }
+};
+
+exports.post_edit_contact_informations=async (req,res)=>{
+    const {fullname, phone}=req.body;
+    const userId=req.session.userID;
+    try {        
+        // if(userId!=userID){
+        //     throw new Error("Oturum Açan Kişi ile bilgileri değiştirilmek istenen hesap uyuşmuyor. Oturum Açan Kişinin Id'si:"+userID)
+        // };
+        let user=await User.findByPk(userId,{attributes:["id", "fullname", "email", "phone"]});
+        if(user){
+            if(user.fullname!=fullname){
+                user.fullname=fullname;
+            };
+
+            if(user.phone!=phone){
+                user.phone=phone;
+            };
+            await user.save();
+            req.session.message={text:"Kullancı bilgileriniz başarıyla güncellendi", class:"primary"};
+            return res.redirect("/account/edit-contact-informations");
+        }
+    } catch (err) {
+        console.log(err);
+        let message="";
+        if(err.name=="SequelizeValidationError"){
+            for (const e of err.errors) {
+                    message += `${e.message} <br>`;
+            }
+        }
+        else if(err.name=="SequelizeUniqueConstraintError"){
+            message="Telefon numarasına kayıtlı başka bir kullanıcı var"
+        }
+        else{
+            logger.error(err.message);
+            return res.render("errors/500",{title: "500"});
+        }
+
+        req.session.message={text: message, class:"warning"};
+        return res.redirect("/account/edit-contact-informations");
+    }
+};

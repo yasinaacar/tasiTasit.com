@@ -50,8 +50,14 @@
                 <%= fullname %>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Hesabım</a></li>
-                <li><a class="dropdown-item" href="/offers?offerType=my-offers">Tekliflerim</a></li>
+                <li><a class="dropdown-item" href="/account">Hesabım</a></li>
+                <li>
+                  <a class="dropdown-item" href="/offers?offerType=my-offers">Tekliflerim 
+                    <% if (haveOffer>0) { %>
+                      <span class="mt-5" ><i class="bi bi-dot fs-2 mt-5 text-danger"></i></span>
+                    <% } %>
+                  </a>
+                </li>
                 <% if (isFirm) { %>             
                   <li class="nav-item">
                     <a class="nav-link toggle-link" id="link" aria-current="page" href="/firm/drivers">Şöförlerim</a>

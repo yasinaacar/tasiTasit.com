@@ -5,7 +5,7 @@
 </head>
 <body>
     <%- include('../../partials/navbar') %>
-    <div class="container">
+    <div class="container-fluid">
         <div class="forms">
             <div class="card" id="card">
                 <div class="card-body">
@@ -62,8 +62,52 @@
                                         <td class="date"><%= offer.estimatedDeadline %></td>
                                         <td>
                                             <div class="btns">
-                                                <button type="submit" class="btn btn-sm btn-success">İncele</button>
-                                                <button type="button" class="btn btn-sm btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#offer_<%= offer.id %>">
+                                                <form action="/offer/detail">
+                                                    <input type="hidden" name="offerType" value="<%= offerType %>">
+                                                    <input type="hidden" name="offerId" value="<%= offer.id %>">
+                                                    <input type="hidden" name="offerCode" value="<%= offer.offerCode %>">
+                                                    <input type="hidden" name="myRole" value="<%= offer.shipperAdvert.userId==userId ? "shipper" : "customer" %>">
+                                                    <button type="submit" class="btn btn-sm btn-success mx-1">İncele</button>
+                                                </form>
+                                                <% if (offer.isAccepted) { %>
+                                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#contact_<%= offer.id %>">
+                                                        İletişim
+                                                    </button>
+                                                    
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="contact_<%= offer.id %>" tabindex="-1" aria-labelledby="contactLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="contactLabel"><%= offer.shipperAdvert.userId==userId ? "Müşteri bilgileri" : "Nakliyeci Bilgileri" %></h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <% if (offer.shipperAdvert.userId==userId) { %>                                                                 
+                                                                    <ul>
+                                                                        <li>Ad-Soyad: <%= offer.customerAdvert.user.fullname %></li>
+                                                                        <li>Telefon Numarası: <a href="tel:+90<%= offer.customerAdvert.user.phone %>">+90<%= offer.customerAdvert.user.phone %></a></li>
+                                                                        <li><a href="https://wa.me/<%= offer.customerAdvert.user.phone %>" target="_blank">Whatsapp</a></li>
+                                                                        <li>E-Mail: <a href="mailto:<%= offer.customerAdvert.user.email %>"><%= offer.customerAdvert.user.email %></a></li>
+                                                                    </ul>
+                                                                <% } %>
+                                                                <% if (offer.customerAdvert.userId==userId) { %>                                                                 
+                                                                    <ul>
+                                                                        <li>Ad-Soyad: <%= offer.shipperAdvert.user.fullname %></li>
+                                                                        <li>Telefon Numarası: <a href="tel:+90<%= offer.shipperAdvert.user.phone %>">+90<%= offer.shipperAdvert.user.phone %></a></li>
+                                                                        <li><a href="https://wa.me/<%= offer.shipperAdvert.user.phone %>" target="_blank">Whatsapp</a></li>
+                                                                        <li>E-Mail: <a href="mailto:<%= offer.shipperAdvert.user.email %>"><%= offer.shipperAdvert.user.email %></a></li>
+                                                                    </ul>
+                                                                <% } %>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                <% } %>
+                                                <button type="button" class="btn btn-sm btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#offer_<%= offer.id %>">
                                                     Sil
                                                 </button>
                                                 <div class="modal fade" id="offer_<%= offer.id %>" tabindex="-1" aria-labelledby="offer_<%= offer.id %>Label" aria-hidden="true">

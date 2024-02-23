@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+    
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <%- include('../../partials/alert') %>
+                <div class="card my-4">
+                    <h3 class="text-center my-3 border-bottom pb-3"><%= title %></h3>
+                    <div class="row">
+                        <form action="/account/edit-contact-informations" method="post">
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Ad-Soyad: </label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" value="<%= user.fullname %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-Posta:</label>
+                                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon Numarası:</label>
+                                <input type="number" class="form-control" id="phone" name="phone" value="<%= user.phone %>">
+                            </div>
+                            <div class="mb-3">
+                                <div class="btn float-end">
+                                    <input type="hidden" name="userId" value="<%= user.id %>">
+                                    <button type="submit" class="btn btn-primary" id="updateBtn">Güncelle</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+         
+    <%- include('../../partials/script') %>
+</body>
+</html>

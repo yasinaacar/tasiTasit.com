@@ -3053,3 +3053,395 @@
   level: 'error',
   timestamp: '22-02-2024  15:07:54'
 }
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\route-pages\\route-edit.ejs:24\n' +
+    '    22|                                         <div class="col-sm-10 d-flex">\r\n' +
+    '    23|                                             <select class="form-select text-center" name="startProvince" id="startProvince">\r\n' +
+    ' >> 24|                                                 <option value="<%= startPoint.province.id %>" selected><%= startPoint.province.name %></option>\r\n' +
+    '    25|                                                 <% provinces.forEach(province => { %>\r\n' +
+    '    26|                                                     <option value="<%= province.id %>"><%= province.name %></option>\r\n' +
+    '    27|                                                 <% }) %>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'province')",
+  level: 'error',
+  timestamp: '22-02-2024  15:18:36'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '22-02-2024  15:20:02'
+}
+{
+  message: "Cannot access 'route' before initialization",
+  level: 'error',
+  timestamp: '22-02-2024  15:30:40'
+}
+{
+  message: "Cannot access 'route' before initialization",
+  level: 'error',
+  timestamp: '22-02-2024  15:40:08'
+}
+{
+  message: "Cannot access 'route' before initialization",
+  level: 'error',
+  timestamp: '22-02-2024  15:40:38'
+}
+{
+  message: "Cannot access 'route' before initialization",
+  level: 'error',
+  timestamp: '22-02-2024  15:40:53'
+}
+{
+  message: "Cannot access 'route' before initialization",
+  level: 'error',
+  timestamp: '22-02-2024  15:41:57'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  09:54:47'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  09:55:39'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  09:58:36'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  09:59:00'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:01:20'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:01:24'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:02:15'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:02:54'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:02:57'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:03:25'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:03:29'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:05:13'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:06:52'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:06:55'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:08:24'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:08:27'
+}
+{
+  message: 'WHERE parameter "id" has invalid "undefined" value',
+  level: 'error',
+  timestamp: '23-02-2024  10:08:38'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:18\n' +
+    '    16|                             <div class="row">\r\n' +
+    '    17|                                 <div class="total-offers col-md-6">\r\n' +
+    ' >> 18|                                     <p><b>Toplam Teklif Sayısı : </b> <%= offers.length %></p>\r\n' +
+    '    19|                                 </div>\r\n' +
+    '    20|                                 <div class="filter-box col-md-6">\r\n' +
+    '    21|                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'length')",
+  level: 'error',
+  timestamp: '23-02-2024  10:09:52'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offer-detail.ejs:21\n' +
+    '    19|                                 <h4 class="text-center border-bottom px-2">Teklif Verilen İlanım</h4>\r\n' +
+    '    20|                                 <% if (myRole=="shipper") { %>\r\n' +
+    " >> 21|                                     <%- include('../../partials/advert-card-forShipper',{advert: recivedAdvert}) %>             \r\n" +
+    '    22|                                 <% } %>\r\n' +
+    '    23|                                 <% if (myRole=="customer") { %>\r\n' +
+    "    24|                                     <%- include('../../partials/advert-card-forCustomer',{advert: recivedAdvert}) %>\r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forShipper.ejs:14\n' +
+    '    12|                     <h4>\r\n' +
+    '    13|                         <span>\r\n' +
+    ' >> 14|                             <% const foundStartPoint = provinces.find(province => province.id == advert.voyage.route.startPoint); %>\r\n' +
+    '    15|                             <%- foundStartPoint ? `<b>${foundStartPoint.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    16|                         </span>\r\n' +
+    '    17|                         <i class="fa-solid fa-arrow-right"></i>\r\n' +
+    '\n' +
+    'provinces is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:10:01'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offer-detail.ejs:21\n' +
+    '    19|                                 <h4 class="text-center border-bottom px-2">Teklif Verilen İlanım</h4>\r\n' +
+    '    20|                                 <% if (myRole=="shipper") { %>\r\n' +
+    " >> 21|                                     <%- include('../../partials/advert-card-forShipper',{advert: recivedAdvert}) %>             \r\n" +
+    '    22|                                 <% } %>\r\n' +
+    '    23|                                 <% if (myRole=="customer") { %>\r\n' +
+    "    24|                                     <%- include('../../partials/advert-card-forCustomer',{advert: recivedAdvert}) %>\r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forShipper.ejs:86\n' +
+    '    84|                     <div class="row mb-3">\r\n' +
+    '    85|                         <div class="col-md-12">\r\n' +
+    ' >> 86|                             <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    87|                         </div>\r\n' +
+    '    88|                     </div>\r\n' +
+    '    89|                 </div>\r\n' +
+    '\n' +
+    'advertType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:10:39'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offer-detail.ejs:21\n' +
+    '    19|                                 <h4 class="text-center border-bottom px-2">Teklif Verilen İlanım</h4>\r\n' +
+    '    20|                                 <% if (myRole=="shipper") { %>\r\n' +
+    " >> 21|                                     <%- include('../../partials/advert-card-forShipper',{advert: recivedAdvert}) %>             \r\n" +
+    '    22|                                 <% } %>\r\n' +
+    '    23|                                 <% if (myRole=="customer") { %>\r\n' +
+    "    24|                                     <%- include('../../partials/advert-card-forCustomer',{advert: recivedAdvert}) %>\r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forShipper.ejs:87\n' +
+    '    85|                         <% if (offerType) { %>                         \r\n' +
+    '    86|                             <div class="col-md-12">\r\n' +
+    ' >> 87|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    88|                             </div>\r\n' +
+    '    89|                         <% } %>\r\n' +
+    '    90|                     </div>\r\n' +
+    '\n' +
+    'advertType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:12:26'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offer-detail.ejs:38\n' +
+    '    36|                                     <h4 class="text-center border-bottom px-2">Teklif Veren İlan</h4>\r\n' +
+    '    37|                                     <% if (myRole=="shipper") { %>\r\n' +
+    " >> 38|                                         <%- include('../../partials/advert-card-forCustomer',{advert: offeredAdvert}) %>\r\n" +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                         <% if (myRole=="customer") { %>\r\n' +
+    "    41|                                             <%- include('../../partials/advert-card-forShipper',{advert: offeredAdvert}) %>             \r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:79\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    '    78|                         <div class="col-md-12">\r\n' +
+    ' >> 79|                             <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    80|                         </div>\r\n' +
+    '    81|                     </div>\r\n' +
+    '    82|                 </div>\r\n' +
+    '\n' +
+    'advertType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:14:53'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offer-detail.ejs:38\n' +
+    '    36|                                     <h4 class="text-center border-bottom px-2">Teklif Veren İlan</h4>\r\n' +
+    '    37|                                     <% if (myRole=="shipper") { %>\r\n' +
+    " >> 38|                                         <%- include('../../partials/advert-card-forCustomer',{advert: offeredAdvert}) %>\r\n" +
+    '    39|                                         <% } %>\r\n' +
+    '    40|                                         <% if (myRole=="customer") { %>\r\n' +
+    "    41|                                             <%- include('../../partials/advert-card-forShipper',{advert: offeredAdvert}) %>             \r\n" +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:78\n' +
+    '    76|                     </div>\r\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    ' >> 78|                         <% if (!advertType) { %>                         \r\n' +
+    '    79|                             <div class="col-md-12">\r\n' +
+    '    80|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    81|                             </div>\r\n' +
+    '\n' +
+    'advertType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:15:20'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:34\n' +
+    '    32|                                 <% if (adverts) { %>                                 \r\n' +
+    '    33|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 34|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    35|                                     <% }) %>\r\n' +
+    '    36|                                 <% } else { %>\r\n' +
+    '    37|                                     İlan Bulunamadı\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:78\n' +
+    '    76|                     </div>\r\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    ' >> 78|                         <% if (!offerType) { %>                         \r\n' +
+    '    79|                             <div class="col-md-12">\r\n' +
+    '    80|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    81|                             </div>\r\n' +
+    '\n' +
+    'offerType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:16:18'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:34\n' +
+    '    32|                                 <% if (adverts) { %>                                 \r\n' +
+    '    33|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 34|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    35|                                     <% }) %>\r\n' +
+    '    36|                                 <% } else { %>\r\n' +
+    '    37|                                     İlan Bulunamadı\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:78\n' +
+    '    76|                     </div>\r\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    ' >> 78|                         <% if (offerType=="undefined") { %>                         \r\n' +
+    '    79|                             <div class="col-md-12">\r\n' +
+    '    80|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    81|                             </div>\r\n' +
+    '\n' +
+    'offerType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:17:03'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:34\n' +
+    '    32|                                 <% if (adverts) { %>                                 \r\n' +
+    '    33|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 34|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    35|                                     <% }) %>\r\n' +
+    '    36|                                 <% } else { %>\r\n' +
+    '    37|                                     İlan Bulunamadı\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:78\n' +
+    '    76|                     </div>\r\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    ' >> 78|                         <% if (offerType==undefined) { %>                         \r\n' +
+    '    79|                             <div class="col-md-12">\r\n' +
+    '    80|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    81|                             </div>\r\n' +
+    '\n' +
+    'offerType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:17:15'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:34\n' +
+    '    32|                                 <% if (adverts) { %>                                 \r\n' +
+    '    33|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 34|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    35|                                     <% }) %>\r\n' +
+    '    36|                                 <% } else { %>\r\n' +
+    '    37|                                     İlan Bulunamadı\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:78\n' +
+    '    76|                     </div>\r\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    ' >> 78|                         <% if (offerType) { %>                         \r\n' +
+    '    79|                             <div class="col-md-12">\r\n' +
+    '    80|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    81|                             </div>\r\n' +
+    '\n' +
+    'offerType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:17:34'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\adverts.ejs:34\n' +
+    '    32|                                 <% if (adverts) { %>                                 \r\n' +
+    '    33|                                     <% adverts.forEach(advert => { %>                                 \r\n' +
+    " >> 34|                                         <%- include('../partials/advert-card-forCustomer',{advert: advert}) %>                                      \r\n" +
+    '    35|                                     <% }) %>\r\n' +
+    '    36|                                 <% } else { %>\r\n' +
+    '    37|                                     İlan Bulunamadı\r\n' +
+    '\n' +
+    'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\partials\\advert-card-forCustomer.ejs:78\n' +
+    '    76|                     </div>\r\n' +
+    '    77|                     <div class="row mb-3">\r\n' +
+    ' >> 78|                         <% if (!offerType) { %>                         \r\n' +
+    '    79|                             <div class="col-md-12">\r\n' +
+    '    80|                                 <a href="/<%= advertType %>/offer/create/<%= advert.advertCode %>" class="btn btn-outline-danger float-end <%= userID==advert.userId ? "btn-disabled" : "" %>">Teklif Gönder</a>\r\n' +
+    '    81|                             </div>\r\n' +
+    '\n' +
+    'offerType is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  12:17:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\offer-pages\\offers.ejs:131\n' +
+    '    129|                                                     </div>\r\n' +
+    '    130|                                                 </div>\r\n' +
+    ' >> 131|                                                 <% if (isApproved) { %>\r\n' +
+    '    132|                                                     <a href="" class="btn btn-sm btn-warning">İletişim bilgileri</a>\r\n' +
+    '    133|                                                 <% } %>\r\n' +
+    '    134|                                             </div>\r\n' +
+    '\n' +
+    'isApproved is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  13:03:25'
+}
+{
+  message: "Unknown column 'customerAdvert.fullname' in 'field list'",
+  level: 'error',
+  timestamp: '23-02-2024  14:45:24'
+}
+{
+  message: "Unknown column 'customerAdvert.fullname' in 'field list'",
+  level: 'error',
+  timestamp: '23-02-2024  14:46:15'
+}
+{
+  message: 'haveOffer is not defined',
+  level: 'error',
+  timestamp: '23-02-2024  15:23:24'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\user\\account-pages\\account.ejs:4\n' +
+    '    2| <html lang="en">\r\n' +
+    '    3| <head>\r\n' +
+    " >> 4|     <%- include('../partials/head') %>\r\n" +
+    '    5| </head>\r\n' +
+    '    6| <body>\r\n' +
+    "    7|     <%- include('../partials/navbar') %>\r\n" +
+    '\n' +
+    'Could not find the include file "../partials/head"',
+  level: 'error',
+  timestamp: '23-02-2024  15:37:17'
+}
