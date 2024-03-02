@@ -22,7 +22,6 @@ router.get("/customer-adverts", customerController.get_customer_adverts);
 //cargo url
 router.get("/cargo/details/:cargoCode", customerController.get_cargo_detail);
 router.post("/cargo/delete/:id", customerController.post_cargo_delete);
-router.get("/cargos", customerController.get_cargos);
 
 
 module.exports=router;

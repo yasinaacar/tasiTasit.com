@@ -186,9 +186,7 @@
             
             selectElement.addEventListener('change', function () {
                 var selectedOption = selectElement.options[selectElement.selectedIndex];
-                console.log(selectedOption)
                 var link = selectedOption.getAttribute('href');
-                console.log(link)
                 if (link) {
                     window.location.href = link;
                 }

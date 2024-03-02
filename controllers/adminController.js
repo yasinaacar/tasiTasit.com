@@ -108,7 +108,7 @@ exports.post_vehicleType_delete=async(req,res)=>{
     return res.redirect("/admin/vehicle-types");
 };
 exports.get_vehicleTypes=async(req,res)=>{
-    const vehicleTypes=await VehicleType.findAll({include:{model: Vehicle}});
+    const vehicleTypes=await VehicleType.findAll({include:{model: Vehicle},order: [['createdAt', 'DESC']]});
     const message=req.session.message;
     delete req.session.message;
     return res.render("admin/vehicle-pages/vehicle-types",{
@@ -393,7 +393,7 @@ exports.get_users=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
 
-    const users=await User.findAll({include:{model: Role}});
+    const users=await User.findAll({include:{model: Role},order: [['createdAt', 'DESC']]});
     const roles=await Role.findAll({attributes:["id", "roleName"]});
     return res.render("admin/users",{
         title:"Kullanıcı Listesi",

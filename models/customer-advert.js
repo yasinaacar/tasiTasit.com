@@ -7,7 +7,16 @@ const CustomerAdvert=sequelize.define("customerAdvert", {
         unique: true
     },
     title:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notNull:{
+                msg: `<b>İlan Başlığı</b> boş geçilemez`
+            },
+            notEmpty:{
+                msg: `<b>İlan Başlığı</b> boş geçilemez`
+            }
+        }
     },
     startPoint:{
         type: DataTypes.INTEGER,

@@ -24,9 +24,9 @@ exports.get_adverts=async(req,res)=>{
     let adverts;
 
     if(advertType=="customer"){
-         adverts=await CustomerAdvert.findAll({where:{isActive: true, isDeleted: false}, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}]});
+         adverts=await CustomerAdvert.findAll({where:{isActive: true, isDeleted: false}, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}],order: [['createdAt', 'DESC']]});
     }else{
-         adverts=await ShipperAdvert.findAll({where:{isActive: true, isDeleted: false}, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}]});
+         adverts=await ShipperAdvert.findAll({where:{isActive: true, isDeleted: false}, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}],order: [['createdAt', 'DESC']]});
     }
     return res.render("user/adverts",{
         title: "İlanlar",
@@ -67,7 +67,7 @@ exports.post_filter_adverts=async (req,res)=>{
             
         }
         for (const voyage of voyages) {
-            const advert=await ShipperAdvert.findAll({where:{voyageId: voyage.id}, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}]});
+            const advert=await ShipperAdvert.findAll({where:{voyageId: voyage.id}, include:[{model: Voyage, include:[{model: Vehicle, include:{model: VehicleType}},{model: Route}]},{model: User, attributes:["fullname"]}],order: [['createdAt', 'DESC']]});
             if(advert.length>0){
                 adverts.push(advert[0]);
             }
@@ -84,11 +84,10 @@ exports.post_filter_adverts=async (req,res)=>{
                     { isActive: true },
                     { isDeleted: false }
                 ]
-            }, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}]
+            }, include: [{model: Cargo, include:{model:CargoType}},{model: User, attributes:["fullname"]}],order: [['createdAt', 'DESC']]
         });
     };
     const provinces=await Province.findAll();
-    console.log(provinces.some(province=>province.id==startPoint ? province.name : "Yokkkkkkkkkkkkkkk"))
     return res.render("user/filtered-adverts",{
         title: "İlanlar",
         provinces: provinces,
@@ -448,13 +447,12 @@ exports.get_offers=async (req,res)=>{
     const message= req.session.message;
     delete req.session.message;
     const offerType=req.query.offerType;
-
     let offers;
 
     if(offerType=="recived-offers"){
-        offers=await Offer.findAll({where:{recivedBy: userId},include:[{model: CustomerAdvert, include:{model: User}},{model: ShipperAdvert, include:{model: User}}]});
+        offers=await Offer.findAll({where:{recivedBy: userId},include:[{model: CustomerAdvert, include:{model: User}},{model: ShipperAdvert, include:{model: User}}],order: [['createdAt', 'DESC']]});
     }else if(offerType=="my-offers"){
-        offers=await Offer.findAll({where:{offeredBy: userId},include:[{model: CustomerAdvert, include:{model: User}},{model: ShipperAdvert, include:{model: User}}]});
+        offers=await Offer.findAll({where:{offeredBy: userId},include:[{model: CustomerAdvert, include:{model: User}},{model: ShipperAdvert, include:{model: User}}],order: [['createdAt', 'DESC']]});
     }
 
 
@@ -469,8 +467,11 @@ exports.get_offers=async (req,res)=>{
 
 //account operations
 exports.get_account=async (req,res)=>{
+    const message=req.session.message;
+    delete req.session.message;
     return res.render("user/account-pages/account",{
-        title: "Hesabım"
+        title: "Hesabım",
+        message: message
     });
 };
 
@@ -584,5 +585,111 @@ exports.post_edit_contact_informations=async (req,res)=>{
 
         req.session.message={text: message, class:"warning"};
         return res.redirect("/account/edit-contact-informations");
+    }
+};
+
+exports.post_freeze_account=async (req,res)=>{
+    const userId=req.session.userID;
+    const password=req.body.password;
+
+    try {
+        let user=await User.findByPk(userId);
+        if(!user){
+            throw new Error(`Hesap dondurmak için kullanıcı bulunamadı. İşlemi geerçekleştirmeye çalışan kullanıcı Id: ${userId}`);
+        }
+        const match=await bcrypt.compare(password, user.password);
+
+        if(!match){
+            req.session.message={text:"Hesabınızı dondurabilmek için şifrenizi doğru bir şekilde girmeniz gerekmektedir", class:"warning"};
+            return res.redirect("/account");
+        };
+
+        let customerAdverts=await CustomerAdvert.findAll({where:{userId: user.id, isActive: true}});
+
+        if(customerAdverts.length>0){
+            for (const customerAdvert of customerAdverts) {
+                customerAdvert.isActive=false;
+                await customerAdvert.save();
+                let offers=await Offer.findAll({where:{customerAdvertId: customerAdvert.id, isActive: true}});
+                if(offers.length>0){              
+                    for (const offer of offers) {
+                        offer.isActive=false;
+                        await offer.save();
+                    }
+                }
+            };
+        };
+
+        if(req.session.isFirm || req.session.isShipper){
+            let shipperAdverts=await ShipperAdvert.findAll({where:{userId: user.id, isActive: true}});
+
+            if(shipperAdverts.length>0){
+                for (const shipperAdvert of shipperAdverts) {
+                    shipperAdvert.isActive=false;
+                    await shipperAdvert.save();
+                    let offers=await Offer.findAll({where:{shipperAdvertId: shipperAdvert.id, isActive: true}});
+                    if(offers.length>0){
+                        for (const offer of offers) {
+                            offer.isActive=false;
+                            await offer.save();
+                        }
+                    }
+                };
+            };
+        };
+
+        let lastFreezeDate=user.lastFreezeDate;
+        if (lastFreezeDate) {
+            let earliestFreezeDate = new Date(lastFreezeDate);
+            earliestFreezeDate.setDate(earliestFreezeDate.getDate() + 7);
+        
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const formattedLastFreezeDate = earliestFreezeDate.toLocaleDateString('tr-TR', options);
+            
+            let currentDate = new Date(); // Şu anın tarihini al
+            currentDate.setDate(currentDate.getDate() - 7); // Şu andan 7 gün öncesini hesapla
+        
+            if (earliestFreezeDate < currentDate) { // Eğer son dondurulma tarihinden 7 gün geçmişse
+                req.session.message = {
+                    text: `Görünüşe göre hesabınızı en son ${formattedLastFreezeDate} tarihinde dondurmuşsunuz. Tekrar dondurma işlemi gerçekleştirebileceğiniz en erken tarih ${formattedLastFreezeDate}`,
+                    class: "warning"
+                };
+                return res.redirect("/account");
+            }
+        }
+        
+
+        user.isFreezed=true;
+        user.lastFreezeDate=new Date();
+        await user.save();
+        
+        const sendedMail=await transporter.sendMail({
+            from: config.get("email.from"),
+            to: user.email,
+            subject: "Hesabınız donduruludu || tasitasit.com",
+            html:`
+                <h1>Merhaba, ${user.fullname}</h1>
+                <p>Aramızdan ayrıldığın için üzgünüz, hesabını dondurma talebini aldık ve hesabını dondurduk. Unutma istediğin zaman uygulmaya giriş yaparak tekrar hesabını aktif edebilirsin.</a> </p><br>
+            `
+        });
+
+        if(sendedMail){
+            logger.info(`Hesabını donduran kullanıcıya mail gönderildi. DETAY: ${sendedMail.messageId}`)
+        }
+
+
+
+        await req.session.destroy();
+        return res.redirect("/auth/login");
+
+
+    } catch (err) {
+        console.log(err)
+        logger.error(err)
+        req.session.message = {
+            text: "Bir hata oluştu, lütfen daha sonra tekrar deneyin.",
+            class: "danger"
+        };
+        return res.redirect("/account");
     }
 };

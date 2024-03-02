@@ -12,16 +12,69 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-light text-center my-3 border-bottom pb-3">Hesabım</h3>
-                <a href="/account/change-password">
-                    <div class="card my-3">
-                        <h6><i class="bi bi-key-fill"></i> Şifre Değiştir</h6>
+                <div class="row mb-3">
+                    <%- include('../../partials/alert') %>
+                </div>
+                <div class="row mb-3">
+                    <a href="/account/change-password">
+                        <div class="card">
+                            <h6><i class="bi bi-key-fill"></i> Şifre Değiştir</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="row mb-3">
+                    <a href="/account/edit-contact-informations" class="my-3">
+                        <div class="card my-3">
+                            <h6><i class="bi bi-telephone-fill"></i> İletişim Bilgilerini Düzenle</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="row mb-3">
+                    <div class="btn d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#freezeMyAccount">
+                            Hesabımı Dondur
+                        </button>
                     </div>
-                </a>
-                <a href="/account/edit-contact-informations" class="my-3">
-                    <div class="card my-3">
-                        <h6><i class="bi bi-telephone-fill"></i> İletişim Bilgilerini Düzenle</h6>
+                    <div class="modal fade" id="freezeMyAccount" tabindex="-1" aria-labelledby="freezeMyAccountLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="freezeMyAccountLabel">Hesabımı Dondur</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Eğer hesabınızı dondurursanız bir sonraki hesabınıza giriş işlemine kadar hesabınıza erişilemez ve hesabınıza ait tüm ilanlar, teklifler pasif hale getirilir. Yine de <b>hesabınızı dondurmak</b> istediğinize emin misiniz?</p>
+                                    <sub><em><b>Not:</b> Bu işlem hesabınızı kalıcı olarak silmez</em></sub>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                    <button type="button" class="btn btn-danger" data-bs-target="#passwordForFreeze" data-bs-toggle="modal" >Hesabımı Dondur</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </a>
+                    <div class="modal fade" id="passwordForFreeze" aria-hidden="true" aria-labelledby="passwordForFreezeLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="passwordForFreezeLabel">Hesabımı Dondur</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="/account/freeze-account" method="post">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Hesabınızı Dondurmak İçin <b>Şifrenizi Girin:</b></label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                    <button type="submit" class="btn btn-danger" >Dondur</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -164,6 +164,10 @@ exports.post_login=async(req,res)=>{
 
         if(match){
             user.lastActivity=new Date();
+            if(user.isFreezed){
+                user.isFreezed=false;
+                
+            }
             await user.save();
             req.session.isAuth=true;
             req.session.fullname=user.fullname;
@@ -191,7 +195,6 @@ exports.post_login=async(req,res)=>{
                 ]
             
             }});
-            console.log(offers)
             req.session.haveOffer=offers.length;
 
             return res.redirect(url);

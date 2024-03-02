@@ -12,25 +12,16 @@
             <%- include('../../partials/alert') %>
             <form method="post"  enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="mb-3 row">
-                            <label for="cargoName" class="col-sm-2 col-form-label">İlan Başlığı veya Kargo Adı:</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="cargoName" name="cargoName" placeholder="Bursa-İstanbul Kolili Ürün" value="<%= cargo.cargoName %>" >  
+                            <label for="image" class="col-sm-2 col-form-label">Kargo Resmi:</label>
+                            <img src="/static/images/<%= cargo.cargoImg %>" alt="<%= cargo.cargoImg %>" class="col-sm-2" id="previewImg">
+                            <div class="col-sm-7">
+                                <input type="file" class="form-control" id="image" name="cargoImg">
+                                <p class="mt-2">Ayarlanan Görsel: <b><input type="hidden" value="<%= cargo.cargoImg %>" name="cargoImg"><%= cargo.cargoImg %></p></b>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="cargoImg" class="col-sm-2 col-form-label">Kargo Resmi:</label>
-                            <img src="/static/images/<%= cargo.cargoImg %>" alt="<%= cargo.cargoImg %>" class="col-sm-2">
-                            <div class="col-sm-8">
-                            <input type="file" class="form-control" id="cargoImg" name="cargoImg">
-                            <p class="mt-2">Ayarlanan Görsel: <b><input type="hidden" value="<%= cargo.cargoImg %>" name="cargoImg"><%= cargo.cargoImg %></p></b>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="editor" class="col-sm-2 col-form-label">Kargo Açıklaması:</label>
-                            <div class="col-sm-10">
-                              <textarea type="text" class="form-control" id="editor" name="description" style="width: 100% ;" rows="3" placeholder="Kargo hakkında detay ekle" maxlength="200"><%- cargo.description %></textarea>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-danger" id="removeImgBtn">Kaldır</button>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -75,7 +66,8 @@
     </div>
 
     <%- include('../../partials/script') %>
-    <%- include('../../partials/ckEditor') %>
+    <script src="/static/js/imagePrev.js"></script>
+
 
 </body>
 </html>

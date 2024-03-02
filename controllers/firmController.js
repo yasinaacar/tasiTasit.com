@@ -163,7 +163,7 @@ exports.get_drivers=async(req,res)=>{
     const message=req.session.message;
     delete req.session.message;
     const userId=req.session.userID;
-    const drivers=await Driver.findAll({where:{userId: userId},include:{model:Vehicle, attributes:["plate"]}});
+    const drivers=await Driver.findAll({where:{userId: userId},include:{model:Vehicle, attributes:["plate"]},order: [['createdAt', 'DESC']]});
     return res.render("admin/driver-pages/drivers",{
         title: "Şöförler",
         message: message,

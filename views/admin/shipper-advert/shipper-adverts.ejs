@@ -9,7 +9,16 @@
         <div class="row mt-5">
             <%- include('../../partials/alert') %>
             <div class="col-md-12">
-                <!-- vehicle-table -->
+                <% if (isShipper) { %>                 
+                    <ul class="nav justify-content-center text-light bg-danger">
+                        <li class="nav-item">
+                          <a class="nav-link active text-light" aria-current="page" href="/customer/customer-adverts">Yük Taşıtma İlanlarım</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="/shipper/shipper-adverts">Yük Taşıma İlanlarım</a>
+                        </li>
+                    </ul>
+                <% } %>
                 <table class="table table-striped table-hover table-bordered mt-5">
                     <thead>
                         <tr>
@@ -19,7 +28,11 @@
                             <th>Bitiş Noktası</th>
                             <th>Sefer Tarihi</th>
                             <th>Araç Bilgisi</th>
-                            <th>Şöförler</th>
+                            <% if (isFirm) { %>
+                             
+                                <th>Şöförler</th>
+                            <% } %>
+                            <th>Durumu</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,15 +42,27 @@
                             <tr>
                                 <td><%= advert.advertCode %></td>
                                 <td><%= advert.title %></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <% const foundDistrictStart = districts.find(district => district.id == advert.voyage.route.startDistrict); %>
+                                    <%- foundDistrictStart ? `${foundDistrictStart.name}, <b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>
+                                </td>
+                                <td>
+                                    <% const foundDistrictEnd = districts.find(district => district.id == advert.voyage.route.endDistrict); %>
+                                    <%- foundDistrictEnd ? `${foundDistrictEnd.name}, <b>${foundDistrictEnd.province.name}</b>` : "Bulunamadı"; %>
+                                    
+                                </td>
                                 <td>
                                     <span class="startDate"><%= advert.voyage.startDate %></span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                     <span class="endDate"><%= advert.voyage.endDate %></span>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td><%= advert.voyage.vehicle.plate %></td>
+                                <% if (isFirm) { %>
+                                    <td><% advert.voyage.vehicle.drivers.forEach(driver => { %>
+                                        <p><%= driver.fullname %></p>
+                                    <% }) %></td>
+                                <% } %>
+                                <td><%= advert.isActive==true ? "Yayınlandı" : "Yayınlanmadı" %></td>
                                 <td>
                                     <div class="btns">
                                         <a href="/shipper/shipper-advert/edit/advertid/<%= advert.id %>/routeid/<%= advert.voyage.routeId %>" class="btn btn-primary btn-sm">Düzenle</a>
@@ -56,19 +81,35 @@
                                                                 <tr>
                                                                     <th>İlan Kodu</th>
                                                                     <th>İlan Başlığı</th>
-                                                                    <th>Başlangıç Noktası</th>
-                                                                    <th>Bitiş Noktası</th>
-                                                                    <th>Teslimat Tarihi</th>
-                                                                    <th>Kargo</th>
+                                                                    <th>Sefer Tarihi</th>
+                                                                    <th>Araç Bilgisi</th>
+                                                                    <% if (isFirm) { %>
+                                                                     
+                                                                        <th>Şöförler</th>
+                                                                    <% } %>
+                                                                    <th>Durumu</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-
+                                                                    <td><%= advert.advertCode %></td>
+                                                                    <td><%= advert.title %></td>
+                                                                    <td>
+                                                                        <span class="startDate"><%= advert.voyage.startDate %></span>
+                                                                        <i class="fa-solid fa-arrow-right"></i>
+                                                                        <span class="endDate"><%= advert.voyage.endDate %></span>
+                                                                    </td>
+                                                                    <td><%= advert.voyage.vehicle.plate %></td>
+                                                                    <% if (isFirm) { %>
+                                                                        <td><% advert.voyage.vehicle.drivers.forEach(driver => { %>
+                                                                            <p><%= driver.fullname %></p>
+                                                                        <% }) %></td>
+                                                                    <% } %>
+                                                                    <td><%= advert.isActive==true ? "Yayınlandı" : "Yayınlanmadı" %></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                        <h6>Bu ilanı silerseniz, ilişkili kargonuzda silinir. Yine de silmek istiyor musunuz?</h6>
+                                                        <h6>Bu ilanı silmek istediğinize emin misiniz?</h6>
                                                     </div>
                                                     <div class="modal-footer">
                                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

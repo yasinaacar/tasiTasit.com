@@ -54,7 +54,7 @@
                             <div class="mb-3 float-start">
                                 <div class="form-check mb-2 ">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"  id="termsAndConditions" name="termsAndConditions">
+                                        <input class="form-check-input" type="checkbox"  id="termsAndConditions" name="termsAndConditions" disabled>
                                         <label class="form-check-label" for="termsAndConditions"><a href="#">Gizlilik ve Şartlar</a> sözleşmesini okudum kabul ediyorum</label>
                                     </div>
                                 </div>
@@ -72,27 +72,7 @@
         </div>
     </div>
     <%- include('../partials/script') %>
-    <script>
-        const termsAndConditions = document.getElementById('termsAndConditions');
-        const privacyPolicy = document.getElementById('privacyPolicy');
-        const password = document.getElementById('password');
-        const passwordAgain = document.getElementById('passwordagain');
-        const signUpBtn = document.getElementById('signUpBtn');
-        const noMatches = document.getElementById('noMatches');
 
-        passwordAgain.addEventListener("input", () => {
-            if (password.value === passwordAgain.value) {
-                noMatches.style.display = "none"; // Eşleşme varsa hata mesajını gizle
-                termsAndConditions.addEventListener('change', function () {
-                    signUpBtn.disabled = !termsAndConditions.checked; // Buton durumunu güncelle
-                });
-
-            } else {
-                noMatches.style.display = "block"; // Eşleşme yoksa hata mesajını göster
-                signUpBtn.disabled = true; // Butonu devre dışı bırak
-            }
-        });
-
-    </script>
+    <script src="/static/js/signUpForm.js"></script>
 </body>
 </html>

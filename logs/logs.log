@@ -3445,3 +3445,186 @@
   level: 'error',
   timestamp: '23-02-2024  15:37:17'
 }
+{
+  message: 'Message failed: 554 5.2.0 STOREDRV.Submission.Exception:OutboundSpamException; Failed to process message due to a permanent exception with message [BeginDiagnosticData]WASCL UserAction verdict is not None. Actual verdict is Suspend, ShowTierUpgrade. OutboundSpamException: WASCL UserAction verdict is not None. Actual verdict is Suspend, ShowTierUpgrade.[EndDiagnosticData] [Hostname=DB4PR02MB9431.eurprd02.prod.outlook.com]',
+  level: 'error',
+  timestamp: '23-02-2024  17:56:23'
+}
+{
+  name: 'SequelizeDatabaseError',
+  parent: Error: Incorrect datetime value: 'Invalid date' for column 'lastFreezeDate' at row 1
+      at Packet.asError (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\packets\packet.js:728:17)
+      at Execute.execute (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\commands\command.js:29:26)
+      at Connection.handlePacket (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\connection.js:456:32)
+      at PacketParser.onPacket (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\connection.js:85:12)
+      at PacketParser.executeStart (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\connection.js:92:25)
+      at Socket.emit (node:events:514:28)
+      at addChunk (node:internal/streams/readable:376:12)
+      at readableAddChunk (node:internal/streams/readable:349:9)
+      at Readable.push (node:internal/streams/readable:286:10) {
+    code: 'ER_TRUNCATED_WRONG_VALUE',
+    errno: 1292,
+    sqlState: '22007',
+    sqlMessage: "Incorrect datetime value: 'Invalid date' for column 'lastFreezeDate' at row 1",
+    sql: 'UPDATE `users` SET `isFreezed`=?,`lastFreezeDate`=?,`updatedAt`=? WHERE `id` = ?',
+    parameters: [ true, 'Invalid date', '2024-02-24 08:32:31', 5 ]
+  },
+  original: Error: Incorrect datetime value: 'Invalid date' for column 'lastFreezeDate' at row 1
+      at Packet.asError (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\packets\packet.js:728:17)
+      at Execute.execute (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\commands\command.js:29:26)
+      at Connection.handlePacket (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\connection.js:456:32)
+      at PacketParser.onPacket (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\connection.js:85:12)
+      at PacketParser.executeStart (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (C:\Users\Yasin\OneDrive\Masaüstü\Projeler\tasiTasit.com\node_modules\mysql2\lib\connection.js:92:25)
+      at Socket.emit (node:events:514:28)
+      at addChunk (node:internal/streams/readable:376:12)
+      at readableAddChunk (node:internal/streams/readable:349:9)
+      at Readable.push (node:internal/streams/readable:286:10) {
+    code: 'ER_TRUNCATED_WRONG_VALUE',
+    errno: 1292,
+    sqlState: '22007',
+    sqlMessage: "Incorrect datetime value: 'Invalid date' for column 'lastFreezeDate' at row 1",
+    sql: 'UPDATE `users` SET `isFreezed`=?,`lastFreezeDate`=?,`updatedAt`=? WHERE `id` = ?',
+    parameters: [ true, 'Invalid date', '2024-02-24 08:32:31', 5 ]
+  },
+  sql: 'UPDATE `users` SET `isFreezed`=?,`lastFreezeDate`=?,`updatedAt`=? WHERE `id` = ?',
+  parameters: [ true, 'Invalid date', '2024-02-24 08:32:31', 5 ],
+  level: 'error',
+  timestamp: '24-02-2024  11:32:31'
+}
+{ level: 'error', timestamp: '24-02-2024  11:33:14' }
+{
+  code: 'EAUTH',
+  response: '535 5.7.139 Authentication unsuccessful, account locked. Contact your administrator. [VI1PR0102CA0008.eurprd01.prod.exchangelabs.com 2024-02-24T08:40:44.519Z 08DC34403112F0B6]',
+  responseCode: 535,
+  command: 'AUTH LOGIN',
+  level: 'error',
+  timestamp: '24-02-2024  11:40:44'
+}
+{
+  code: 'EAUTH',
+  response: '535 5.7.139 Authentication unsuccessful, account locked. Contact your administrator. [VI1PR0502CA0010.eurprd05.prod.outlook.com 2024-02-24T08:42:38.324Z 08DC350A643B1D0A]',
+  responseCode: 535,
+  command: 'AUTH LOGIN',
+  level: 'error',
+  timestamp: '24-02-2024  11:42:38'
+}
+{
+  code: 'EAUTH',
+  response: '535 5.7.139 Authentication unsuccessful, account locked. Contact your administrator. [VI1PR0502CA0003.eurprd05.prod.outlook.com 2024-02-24T08:44:07.053Z 08DC34B0AAB711B4]',
+  responseCode: 535,
+  command: 'AUTH LOGIN',
+  level: 'error',
+  timestamp: '24-02-2024  11:44:07'
+}
+{
+  code: 'EAUTH',
+  response: '535 5.7.139 Authentication unsuccessful, account locked. Contact your administrator. [VI1PR10CA0109.EURPRD10.PROD.OUTLOOK.COM 2024-02-24T08:45:17.713Z 08DC34FA26AF1E31]',
+  responseCode: 535,
+  command: 'AUTH LOGIN',
+  level: 'error',
+  timestamp: '24-02-2024  11:45:18'
+}
+{
+  code: 'EAUTH',
+  response: '535 5.7.139 Authentication unsuccessful, account locked. Contact your administrator. [VI1P195CA0060.EURP195.PROD.OUTLOOK.COM 2024-02-24T08:47:48.730Z 08DC34AB3D0717BF]',
+  responseCode: 535,
+  command: 'AUTH LOGIN',
+  level: 'error',
+  timestamp: '24-02-2024  11:47:49'
+}
+{ level: 'error', timestamp: '24-02-2024  12:00:54' }
+{ level: 'error', timestamp: '24-02-2024  12:02:09' }
+{ level: 'error', timestamp: '24-02-2024  12:02:50' }
+{ level: 'error', timestamp: '24-02-2024  12:04:13' }
+{ level: 'error', timestamp: '24-02-2024  12:05:44' }
+{ level: 'error', timestamp: '24-02-2024  12:16:28' }
+{ level: 'error', timestamp: '24-02-2024  12:33:18' }
+{ level: 'error', timestamp: '24-02-2024  12:40:44' }
+{ level: 'error', timestamp: '24-02-2024  12:42:09' }
+{ level: 'error', timestamp: '24-02-2024  12:44:00' }
+{
+  message: "Cannot access 'route' before initialization",
+  level: 'error',
+  timestamp: '01-03-2024  16:30:29'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\cargo-pages\\cargos.ejs:35\n' +
+    '    33|                                 <td><%= cargo.weight %></td>\r\n' +
+    '    34|                                 <td><%= cargo.verticalHeight %> X <%= cargo.horizontalHeight %></td>\r\n' +
+    ' >> 35|                                 <td><li><%= cargo.cargoType.cargoTypeName %></li></td>\r\n' +
+    '    36|                                 <td>\r\n' +
+    '    37|                                     <div class="btns">\r\n' +
+    '    38|                                         <a href="/admin/cargo/edit/<%= cargo.id %>" class="btn btn-primary btn-sm">Düzenle</a>\r\n' +
+    '\n' +
+    "Cannot read properties of null (reading 'cargoTypeName')",
+  level: 'error',
+  timestamp: '02-03-2024  10:28:10'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-adverts.ejs:50\n' +
+    '    48|                                 </td>\r\n' +
+    '    49|                                 <td><%= advert.voyage.vehicle.plate %></td>\r\n' +
+    ' >> 50|                                 <td><%= advert.voyage.vehicle.driver.fullname %></td>\r\n' +
+    '    51|                                 <td><%= advert.isActive==true ? "Yayınlandı" : "Yayınlanmadı" %></td>\r\n' +
+    '    52|                                 <td>\r\n' +
+    '    53|                                     <div class="btns">\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'fullname')",
+  level: 'error',
+  timestamp: '02-03-2024  15:57:38'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-adverts.ejs:54\n' +
+    '    52|                                 <td><%= advert.voyage.vehicle.plate %></td>\r\n' +
+    '    53|                                 <% if (isFirm) { %>\r\n' +
+    ' >> 54|                                     <td><%= advert.voyage.vehicle.driver.fullname %></td>\r\n' +
+    '    55|                                 <% } %>\r\n' +
+    '    56|                                 <td><%= advert.isActive==true ? "Yayınlandı" : "Yayınlanmadı" %></td>\r\n' +
+    '    57|                                 <td>\r\n' +
+    '\n' +
+    "Cannot read properties of undefined (reading 'fullname')",
+  level: 'error',
+  timestamp: '02-03-2024  16:00:40'
+}
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-adverts.ejs:46\n' +
+    '    44|                                 <td><%= advert.title %></td>\r\n' +
+    '    45|                                 <td>\r\n' +
+    ' >> 46|                                     <% const foundDistrictStart = districts.find(district => district.id == advert.startDistrict); %>\r\n' +
+    '    47|                                     <%- foundDistrictStart ? `${foundDistrictStart.name}, <b>${foundDistrictStart.province.name}</b>` : "Bulunamadı"; %>\r\n' +
+    '    48|                                 </td>\r\n' +
+    '    49|                                 <td></td>\r\n' +
+    '\n' +
+    'districts is not defined',
+  level: 'error',
+  timestamp: '02-03-2024  16:03:40'
+}
+{
+  message: "Unexpected token '.' in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '02-03-2024  16:05:30'
+}
+{
+  message: "Identifier 'foundDistrictStart' has already been declared in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '02-03-2024  16:07:25'
+}
+{
+  message: "Identifier 'foundDistrictStart' has already been declared in C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\shipper-advert\\shipper-adverts.ejs while compiling ejs\n" +
+    '\n' +
+    'If the above error is not helpful, you may want to try EJS-Lint:\n' +
+    'https://github.com/RyanZim/EJS-Lint\n' +
+    'Or, if you meant to create an async function, pass `async: true` as an option.',
+  level: 'error',
+  timestamp: '02-03-2024  16:08:34'
+}

@@ -59,6 +59,10 @@ const Offer=sequelize.define("offer", {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: false
+   },
+   isActive:{
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
    }
 
 });

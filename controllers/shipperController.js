@@ -184,7 +184,7 @@ exports.get_vehicles=async(req,res)=>{
     const userId=req.session.userID;
     const message=req.session.message;
     delete req.session.message;
-    const vehicles=await Vehicle.findAll({where:{userId:userId},include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}]});
+    const vehicles=await Vehicle.findAll({where:{userId:userId},include:[{model:VehicleType,  attributes:["vehicleTypeName"]},{model: Driver, attributes:["fullname"]}],order: [['createdAt', 'DESC']]});
     return res.render("admin/vehicle-pages/vehicles",{
         title: "Araçlarım",
         vehicles: vehicles,
@@ -212,13 +212,13 @@ exports.post_route_create=async(req,res)=>{
         const endDistrict=req.body.endDistrict;
         let visitPoints=req.body.visitPoint == "-1" ? null : req.body.visitPoint;
         if(startDistrict==endDistrict){
-            req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz", class:"warning"};
-            return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
+            req.session.message={text:"Başlangıç ve Bitiş noktaları aynı olamaz veya boş geçilemez", class:"warning"};
+            return res.redirect(`/shipper/shipper-advert/create/route`)
         }
         if(visitPoints && visitPoints.length>0){;
             if(visitPoints.includes(startPoint) || visitPoints.includes(endPoint)){
                 req.session.message={text:"Başlangıç veya Bitiş noktalarını durak/güzergah olarak ekleyemezsiniz.", class:"warning"};
-                return res.redirect(`/shipper/shipper-advert/create/route/${route.id}/voyage`)
+                return res.redirect(`/shipper/shipper-advert/create/route/`)
             }
         }
         const userId=req.session.userID;
@@ -233,12 +233,12 @@ exports.post_route_create=async(req,res)=>{
             for (const e of err.errors) {
                 message += `${e.message} <br>`
             }
-            req.session.message={text: message, class:"danger"}
         }else{
             logger.error(err.message);
             return res.render("errors/500",{title: "500"});
         }
-
+        
+        req.session.message={text: message, class:"danger"}
         return res.redirect("/shipper/shipper-advert/create/route");
     }
 
@@ -309,21 +309,6 @@ exports.post_route_edit=async(req,res)=>{
 
         return res.redirect(`/shipper/shipper-advert/edit/advertid/${advertId}/routeid/${routeId}`);
     }
-};
-exports.get_routes=async(req,res)=>{
-    const message=req.session.message;
-    delete req.session.message;
-    const userId=req.session.userID;
-    const routes=await Route.findAll({where:{userId: userId},include:{model:District},raw: true});
-    const districts=await District.findAll({include:{model: Province}});
-    const provinces=await Province.findAll();
-    return res.render("admin/route-pages/routes",{
-        title: "Rotalar",
-        routes: routes,
-        districts: districts,
-        provinces: provinces,
-        message: message
-    });
 };
 
 //voyage process
@@ -438,17 +423,6 @@ exports.post_voyage_delete=async(req,res)=>{
         return res.redirect("/shipper/voyages");
     }
 };
-exports.get_voyages=async(req,res)=>{
-    const userId=req.session.userID;
-    const message=req.session.message;
-    delete req.session.message;
-    const voyages=await Voyage.findAll({where:{[Op.and]:[{userId: userId},{isDeleted: false}]},include:[{model:Vehicle, attributes:["plate"], include:{model: Driver, attributes:["fullname"]}}]});
-    return res.render("admin/voyage-pages/voyages", {
-        title: "Seferlerim",
-        message: message,
-        voyages: voyages,
-    })
-};
 
 //shipper-advert
 exports.get_shipper_advert_create=async(req,res)=>{
@@ -469,10 +443,11 @@ exports.post_shipper_advert_create=async(req,res)=>{
     try {
         const title=req.body.title;
         const description=req.body.description;
+        const isActive=req.body.isActive=="on" ? true : false;
         const userId=req.session.userID;
 
 
-        const advert=await ShipperAdvert.create({title: title, description: description, voyageId: voyageId, userId:userId});
+        const advert=await ShipperAdvert.create({title: title, description: description, voyageId: voyageId, isActive: isActive, userId:userId});
         advert.advertCode=await randomCodeGenerator("ADVSHP", advert);
         advert.save();
 
@@ -515,8 +490,11 @@ exports.post_shipper_advert_edit=async(req,res)=>{
         if(advert){
             const title=req.body.title;
             const description=req.body.description;
+            const isActive=req.body.isActive=="on" ? true : false;
+
             advert.title= title;
             advert.description=description;
+            advert.isActive= isActive;
             await advert.save();
 
             req.session.message={text:`${advert.advertCode} kodlu <b>yük taşıma</b> ilanı başarıyla gücellendi`, class:"primary"};
@@ -556,10 +534,13 @@ exports.get_shipper_adverts=async(req,res)=>{
     const message= req.session.message;
     delete req.session.message;
     const userId=req.session.userID;
-    const adverts=await ShipperAdvert.findAll({where:{[Op.and]:[{isDeleted: false},{userId: userId}]}, include:{model: Voyage}});
+    const adverts=await ShipperAdvert.findAll({where:{[Op.and]:[{isDeleted: false},{userId: userId}]}, include:[{model: Voyage, include:[{model: Route},{model: Vehicle, include:[{model: Driver}]}]}]},{order: [['createdAt', 'DESC']]});
+    const districts=await District.findAll({include:{model: Province, attributes:["name"]}, attributes:["id", "name"]});
+
     return res.render("admin/shipper-advert/shipper-adverts",{
         title: "İlanlarım",
         message: message,
-        adverts: adverts
+        adverts: adverts,
+        districts: districts
     });
 };

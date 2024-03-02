@@ -6,19 +6,9 @@ const Cargo=sequelize.define("cargo", {
         type: DataTypes.STRING,
         unique: true
     },
-    cargoName:{
-        type: DataTypes.STRING
-    },
     cargoImg:{
         type: DataTypes.STRING,
         defaultValue: "defaultCargo.jpg"
-    },
-    description:{
-        type: DataTypes.TEXT,
-        len:{
-            args: [0,200],
-            msg: `<b>Kargo Açıklaması</b> maksimum 200 karakter içermelidir`
-        }
     },
     weight:{
         type: DataTypes.FLOAT,

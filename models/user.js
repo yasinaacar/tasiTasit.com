@@ -90,6 +90,13 @@ const User=sequelize.define("user", {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     },
+    isFreezed:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    lastFreezeDate:{
+        type: DataTypes.DATE
+    }
 });
 
 

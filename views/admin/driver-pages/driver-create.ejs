@@ -12,11 +12,23 @@
           <div class="card-body">
             <form method="post" enctype="multipart/form-data">
               <div class="row">
-                <div class="col-md-6">
-                  <label for="driverImg" class="col-form-label">Şoför Resmi:</label>
+                <div class="col-md-3">
+                  <label for="image" class="col-form-label">Şoför Resmi:</label>
                 </div>
-                <div class="col-md-6">
-                  <input type="file" class="form-control" id="driverImg" name="driverImg">
+                <div class="col-md-9">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img src="/static/images/" alt="" id="previewImg" style="width: 200px;">
+
+                    </div>
+                    <div class="col-md-4">
+                      <input type="file" class="form-control" id="image" name="driverImg">
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="btn btn-danger" id="removeImgBtn" disabled>Kaldır</button>
+                      
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -64,5 +76,7 @@
       </div>
     <%- include('../../partials/script') %>
     <%- include('../../partials/phoneScript') %>
+    <script src="/static/js/imagePrev.js"></script>
+
 </body>
 </html>
