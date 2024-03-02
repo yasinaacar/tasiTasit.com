@@ -3628,3 +3628,16 @@
   level: 'error',
   timestamp: '02-03-2024  16:08:34'
 }
+{
+  message: 'C:\\Users\\Yasin\\OneDrive\\Masaüstü\\Projeler\\tasiTasit.com\\views\\admin\\vehicle-pages\\vehicle-edit.ejs:151\n' +
+    '    149|                                 <div class="form-check">\r\n' +
+    '    150|                                     <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" \r\n' +
+    ' >> 151|                                     <%= isFirm==false && isShipper==true ? checked : "" %>>\r\n' +
+    '    152|                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>\r\n' +
+    '    153|                                 </div>\r\n' +
+    '    154|                             <% }) %>\r\n' +
+    '\n' +
+    'checked is not defined',
+  level: 'error',
+  timestamp: '02-03-2024  16:47:56'
+}

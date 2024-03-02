@@ -693,3 +693,9 @@ exports.post_freeze_account=async (req,res)=>{
         return res.redirect("/account");
     }
 };
+
+exports.get_privacy_and_policy=async (req,res)=>{
+    return res.render("user/privacy-and-policy",{
+        title: "Gizlilik ve Politika"
+    })
+};

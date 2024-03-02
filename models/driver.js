@@ -31,7 +31,6 @@ const Driver=sequelize.define("driver", {
     phone:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate:{
             isNumeric:{
                 msg: `<b>Telefon Numarası</b> sadece sayı içermelidir`

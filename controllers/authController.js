@@ -1,8 +1,8 @@
 //models
-const {  Role, User, Offer }=require("../models/index-models");
+const {  Role, User, Offer, Driver }=require("../models/index-models");
 
 //helper
-const {bcrypt, transporter, randomCodeGenerator,}=require("../helpers/index-helpers");
+const {bcrypt, transporter, randomCodeGenerator, slugfield,}=require("../helpers/index-helpers");
 
 const { Op } = require("sequelize");
 
@@ -59,6 +59,17 @@ exports.post_register=async(req,res)=>{
         await user.addRole(customer.id);//set customer role for user (default every user must be customer)  
         const selectedRole=getRoleByName(userType);
         await user.addRole(selectedRole.id);//set selected role for user
+        if(userType=="shipper"){
+            let driver=await Driver.create({
+                fullname: user.fullname,
+                phone: user.phone,
+                email: user.email,
+                url:slugfield(user.fullname),
+                userId: user.id
+            });
+            driver.driverCode=await randomCodeGenerator("DRV", driver);
+            await driver.save();
+        }
         const sendedMail=await transporter.sendMail({
             from: config.get("email.from"),
             to: user.email,

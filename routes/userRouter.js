@@ -26,6 +26,8 @@ router.post("/account/change-password", isAuth, userController.post_change_passw
 router.get("/account/edit-contact-informations", isAuth, userController.get_edit_contact_informations);
 router.post("/account/edit-contact-informations", isAuth, userController.post_edit_contact_informations);
 router.post("/account/freeze-account", isAuth, userController.post_freeze_account);
+router.get("/privacy-and-policy", userController.get_privacy_and_policy);
+
 
 
 

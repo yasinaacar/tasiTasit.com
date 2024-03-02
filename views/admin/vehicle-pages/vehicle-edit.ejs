@@ -62,7 +62,7 @@
                             <h4 class="pb-3 border-bottom">Şoförler</h4>
                             <% drivers.forEach(driver => { %>                             
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=> drv.id==driver.id) ? "checked":"" %>>
+                                    <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= isFirm==false && isShipper==true ? "checked disabled" : "" %>>
                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>
                                 </div>
                             <% }) %>
@@ -147,7 +147,8 @@
                             <h4 class="pb-3 border-bottom">Şoförler</h4>
                             <% drivers.forEach(driver => { %>                             
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" <%= vehicle.drivers.some(drv=> drv.id==driver.id) ? "checked":"" %>>
+                                    <input class="form-check-input" type="checkbox" value="<%= driver.id %>" id="driver_<%= driver.id %>" name="driverIds[]" 
+                                    <%= isFirm==false && isShipper==true ? "checked disabled" : "" %>>
                                     <label class="form-check-label" for="driver_<%= driver.id %>"><%= driver.fullname %></label>
                                 </div>
                             <% }) %>
